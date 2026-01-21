@@ -32,7 +32,6 @@ import com.whosin.app.ui.activites.home.activity.WriteReviewActivity;
 import com.whosin.app.ui.activites.home.event.EventOrganizerDetailsActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.venue.VenueActivity;
-import com.whosin.app.ui.activites.yacht.YachtClubDetailActivity;
 
 import java.util.ArrayList;
 
@@ -190,8 +189,6 @@ public class MyReviewListActivity extends BaseActivity {
                     startActivity(new Intent(activity, RaynaTicketDetailActivity.class).putExtra("ticketId", model.getItemId()));
                 } else if (model.getType().equals("events_organizers")) {
                     startActivity(new Intent(activity, EventOrganizerDetailsActivity.class).putExtra("org_id", model.getItemId()).putExtra("type", "events_organizers").putExtra("name", model.getTitle()).putExtra("image", model.getImage()));
-                } else if (model.getType().equals("yachts")) {
-                    startActivity(new Intent(activity, YachtClubDetailActivity.class).putExtra("yachtClubId", model.getItemId()));
                 } else if (model.getType().equals("complimentary")) {
                     startActivity(new Intent(activity, CmPublicProfileActivity.class)
                             .putExtra("isFromSubAdmin", true)

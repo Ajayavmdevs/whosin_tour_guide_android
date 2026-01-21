@@ -1,6 +1,5 @@
 package com.whosin.app.ui.activites.home.Chat;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,17 +20,14 @@ import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.comman.ui.roundcornerlayout.CornerType;
 import com.whosin.app.databinding.ActivityChatProfileBinding;
-import com.whosin.app.databinding.BucketListItemBinding;
 import com.whosin.app.databinding.ImageListBinding;
 import com.whosin.app.databinding.InviteContactFreindItemBinding;
 import com.whosin.app.databinding.MediaItemBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.Repository.ChatRepository;
 import com.whosin.app.service.manager.AppSettingManager;
-import com.whosin.app.service.manager.ChatManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.BucketChatMainProfileModel;
-import com.whosin.app.service.models.BucketChatProfileModel;
 import com.whosin.app.service.models.BucketEventListModel;
 import com.whosin.app.service.models.BucketListModel;
 import com.whosin.app.service.models.ChatMessageModel;
@@ -49,24 +45,19 @@ import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.Profile.FollowingActivity;
 import com.whosin.app.ui.activites.Profile.FollowresActivity;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
-import com.whosin.app.ui.activites.Promoter.ComplementaryEventDetailActivity;
 import com.whosin.app.ui.activites.bucket.MyInvitationActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
 import com.whosin.app.ui.activites.reportedUser.ReportedUseSuccessDialog;
 import com.whosin.app.ui.activites.venue.Bucket.BucketListDetailActivity;
 import com.whosin.app.ui.activites.venue.VenueGalleryActivity;
-import com.whosin.app.ui.fragment.Chat.ChatMediaBottomSheet;
 import com.whosin.app.ui.fragment.Chat.ReportAndBlockBottomSheet;
 import com.whosin.app.ui.fragment.Chat.ReportBottomSheet;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import io.realm.RealmList;
@@ -79,7 +70,6 @@ public class ChatProfileActivity extends BaseActivity {
     private CreateBucketListModel bucketListModel = new CreateBucketListModel();
     private final InviteFriendAdapter inviteFriendAdapter = new InviteFriendAdapter<>();
     private UserDetailModel userDetailModel;
-    private final BucketListAdapter<BucketChatProfileModel> bucketListAdapter = new BucketListAdapter<>();
 
     private ChatModel chatModel;
 
@@ -114,17 +104,6 @@ public class ChatProfileActivity extends BaseActivity {
                 Toast.makeText( activity, "User not found", Toast.LENGTH_SHORT ).show();
                 finish();
             }
-        } else if (chatModel.getChatType().equals( "bucket" )) {
-            BucketListModel chatList = ChatRepository.shared( ChatProfileActivity.this ).getGroupChatFromCache();
-            if (chatList != null) {
-                Optional<CreateBucketListModel> outingModel = chatList.getBucketsModels().stream().filter(p -> p.getId().equals( chatModel.getChatId() ) ).findAny();
-                if (outingModel.isPresent()) {
-                    binding.constraintHeader.setVisibility( View.VISIBLE );
-                    bucketListModel = outingModel.get();
-                    setBucketList( bucketListModel );
-                }
-            }
-            requestBucketDetail( chatModel.getChatId() );
         } else if (chatModel.getChatType().equals( "event" )) {
             binding.progress.setVisibility(View.VISIBLE);
             BucketListModel chatList = ChatRepository.shared( ChatProfileActivity.this ).getGroupChatFromCache();
@@ -331,8 +310,6 @@ public class ChatProfileActivity extends BaseActivity {
     // --------------------------------------
 
     private void setChatProfileDetalis(UserDetailModel userDetailModel) {
-        requestBucketList();
-        binding.bucketTitle.setText(getValue("bucketlist_in_common"));
         String name = userDetailModel.getFirstName() + " " + userDetailModel.getLastName();
         binding.tvName.setText( name );
         Graphics.loadImageWithFirstLetter( userDetailModel.getImage(), binding.ivProfile, userDetailModel.getFullName() );
@@ -340,11 +317,6 @@ public class ChatProfileActivity extends BaseActivity {
         binding.tvReport.setText( getValue("report") + " " + name );
         binding.followersCount.setText( String.valueOf( userDetailModel.getFollower() ) );
         binding.followingCount.setText( String.valueOf( userDetailModel.getFollowing() ) );
-
-
-        binding.bucketRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false ) );
-        binding.bucketRecycler.setAdapter( bucketListAdapter );
-        binding.bucketRecycler.setNestedScrollingEnabled( false );
 
         binding.ivProfile.setOnClickListener( v -> startActivity( new Intent( activity, OtherUserProfileActivity.class ).putExtra( "friendId", userDetailModel.getId() ) ));
         binding.linearName.setOnClickListener( v -> startActivity( new Intent( activity, OtherUserProfileActivity.class ).putExtra( "friendId", userDetailModel.getId() ) ));
@@ -572,60 +544,6 @@ public class ChatProfileActivity extends BaseActivity {
                     inviteFriendAdapter.updateData( model.getData().getUserModel());
 
                 }
-            }
-        } );
-    }
-
-    private void requestBucketList() {
-        binding.progress.setVisibility(View.VISIBLE);
-        DataService.shared( activity ).requestBucketListForChatProfile( new RestCallback<ContainerModel<BucketChatMainProfileModel>>(this) {
-            @Override
-            public void result(ContainerModel<BucketChatMainProfileModel> model, String error) {
-                binding.progress.setVisibility(View.GONE);
-                if (!Utils.isNullOrEmpty( error ) || model == null) {
-                    Toast.makeText( activity, error, Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-
-                String userId = chatModel.getMembers().stream().filter( p -> !p.equals( SessionManager.shared.getUser().getId() ) ).findAny().orElse( "" );
-                if (!userId.isEmpty()) {
-                    if (model.getData() != null && model.getData().getBucketsModels() != null && !model.getData().getBucketsModels().isEmpty()) {
-                        model.getData().getBucketsModels().removeIf(bucketModel -> {
-                            List<String> sharedWith = bucketModel.getSharedWith();
-                            if (sharedWith != null) {
-                                return sharedWith.stream().noneMatch(id -> id.equals(userId));
-                            }
-                            return true;
-                        });
-                    }
-                }
-
-
-                if (model.getData() != null && !model.getData().getBucketsModels().isEmpty()) {
-                    bucketModelList = model.getData();
-                    binding.constraintHeader.setVisibility(View.VISIBLE);
-                    bucketListAdapter.updateData(model.getData().getBucketsModels());
-                    binding.bucketTitle.setVisibility(View.VISIBLE);
-                }
-                else {
-                    binding.bucketTitle.setVisibility(View.GONE);
-                }
-            }
-        } );
-    }
-
-    private void requestBucketDetail(String id) {
-        DataService.shared( activity ).requestBucketDetail( id, new RestCallback<ContainerModel<CreateBucketListModel>>(this) {
-            @Override
-            public void result(ContainerModel<CreateBucketListModel> model, String error) {
-                if (!Utils.isNullOrEmpty( error ) || model == null) {
-                    Toast.makeText( activity, error, Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-                bucketListModel = model.getData();
-                setBucketList( bucketListModel );
-                binding.constraintHeader.setVisibility( View.VISIBLE );
-
             }
         } );
     }
@@ -895,68 +813,6 @@ public class ChatProfileActivity extends BaseActivity {
 
 
 
-    }
-
-    public class BucketListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder( UiUtils.getViewBy( parent, R.layout.bucket_list_item ) );
-        }
-
-        @SuppressLint("SetTextI18n")
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            BucketChatProfileModel model = (BucketChatProfileModel) getItem( position );
-            viewHolder.mBinding.tvRenameDeleteLayout.setVisibility( View.GONE );
-
-            if (model != null) {
-                if (model.getCoverImage().isEmpty()) {
-                    Graphics.loadImageWithFirstLetter( model.getCoverImage(), viewHolder.mBinding.ivCover, model.getName() );
-                } else {
-                    Graphics.loadImage( model.getCoverImage(), viewHolder.mBinding.ivCover );
-                }
-
-//                viewHolder.setupUsers( model.getSharedWith() );
-                viewHolder.mBinding.tvName.setText( model.getName() );
-
-                viewHolder.mBinding.tvOffer.setText( model.getItems().size() + " " + "Offers" );
-
-                viewHolder.itemView.setOnClickListener( view -> startActivity( new Intent( activity, BucketListDetailActivity.class ).putExtra( "bucketId", model.getId() ).putExtra( "name", model.getName() ) ) );
-            }
-        }
-
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final BucketListItemBinding mBinding;
-            private final PlayerAdapter<ContactListModel> playerAdapter = new PlayerAdapter<>();
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                mBinding = BucketListItemBinding.bind( itemView );
-                mBinding.recyclerPlayer.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.HORIZONTAL, false ) );
-                mBinding.recyclerPlayer.setAdapter( playerAdapter );
-            }
-
-            private void setupUsers(List<ContactListModel> sharedUsers) {
-                if (sharedUsers != null && !sharedUsers.isEmpty()) {
-                    List<ContactListModel> shareUser = bucketModelList.getUsers().stream().filter( p -> sharedUsers.contains( p.getId() ) ).collect( Collectors.toList() );
-                    StringJoiner nameShare = new StringJoiner( ", " );
-                    for (ContactListModel user : shareUser) {
-                        nameShare.add( user.getFirstName() );
-                    }
-                    mBinding.tvShareUserName.setText( nameShare.toString() );
-                    playerAdapter.updateData( shareUser );
-
-
-                } else {
-                    mBinding.ivSharedUser.setVisibility( View.GONE );
-                }
-            }
-
-        }
     }
 
 

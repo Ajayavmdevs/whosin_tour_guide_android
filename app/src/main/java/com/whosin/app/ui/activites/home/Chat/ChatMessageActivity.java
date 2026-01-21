@@ -73,7 +73,6 @@ import com.whosin.app.databinding.ItemEventReplyToBinding;
 import com.whosin.app.databinding.ItemRaynaTicketReceiveBinding;
 import com.whosin.app.databinding.ItemRaynaTicketSentViewBinding;
 import com.whosin.app.databinding.ItemRaynaticketReplyToBinding;
-import com.whosin.app.databinding.ItemYachtClubViewBinding;
 import com.whosin.app.databinding.MessageItemImageBinding;
 import com.whosin.app.databinding.OfferViewItemBinding;
 import com.whosin.app.databinding.SentAudioMessageItemBinding;
@@ -86,7 +85,6 @@ import com.whosin.app.databinding.SentRaynaticketItemBinding;
 import com.whosin.app.databinding.SentStoryItemBinding;
 import com.whosin.app.databinding.SentUserMessageItemBinding;
 import com.whosin.app.databinding.SentVenueMessageItemBinding;
-import com.whosin.app.databinding.SentYachtClubViewBinding;
 import com.whosin.app.databinding.StoryMessageItemBinding;
 import com.whosin.app.databinding.UserMessageItemBinding;
 import com.whosin.app.databinding.VenueMessageItemBinding;
@@ -965,10 +963,6 @@ public class ChatMessageActivity extends BaseActivity {
                     return new OfferViewHolder(UiUtils.getViewBy(parent, R.layout.offer_view_item));
                 case 13:
                     return new SentOfferViewHolder(UiUtils.getViewBy(parent, R.layout.sent_offer_view_item));
-                case 14:
-                    return new YachtClubViewHolder(UiUtils.getViewBy(parent, R.layout.item_yacht_club_view));
-                case 15:
-                    return new SentYachtClubViewHolder(UiUtils.getViewBy(parent, R.layout.sent_yacht_club_view));
                 case 16:
                     return new SentPromoterEventViewHolder(UiUtils.getViewBy(parent, R.layout.event_message_item));
                 case 17:
@@ -1117,14 +1111,6 @@ public class ChatMessageActivity extends BaseActivity {
                 case 13:
                     SentOfferViewHolder sentOfferViewHolder = (SentOfferViewHolder) holder;
                     sentOfferViewHolder.setup(model);
-                    break;
-                case 14:
-                    YachtClubViewHolder yachtViewHolder = (YachtClubViewHolder) holder;
-                    yachtViewHolder.setUp(model);
-                    break;
-                case 15:
-                    SentYachtClubViewHolder sentYachtViewHolder = (SentYachtClubViewHolder) holder;
-                    sentYachtViewHolder.setUp(model);
                     break;
                 case 16:
                     SentPromoterEventViewHolder sentPromoterEventViewHolder = (SentPromoterEventViewHolder) holder;
@@ -1984,63 +1970,6 @@ public class ChatMessageActivity extends BaseActivity {
                     startActivity(new Intent(activity, VenueShareActivity.class)
                             .putExtra("offer", model.getMsg())
                             .putExtra("type", "offer"));
-                });
-            }
-        }
-
-        //YACHT HOLDER
-
-        public class YachtClubViewHolder extends RecyclerView.ViewHolder {
-
-            private ItemYachtClubViewBinding binding;
-
-            public YachtClubViewHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemYachtClubViewBinding.bind(itemView);
-            }
-
-            private void setUp(ChatMessageModel model) {
-
-                binding.txtTime.setText(model.getSendTime());
-                YachtClubModel yachtModel = new Gson().fromJson(model.getMsg(), YachtClubModel.class);
-                Graphics.loadImage(yachtModel.getCover(), binding.cover);
-                Graphics.loadRoundImage(yachtModel.getLogo(), binding.image);
-                binding.tvTitle.setText(yachtModel.getName());
-                binding.tvAddress.setText(yachtModel.getAddress());
-                Graphics.applyBlurEffect(activity, binding.blurView);
-
-                binding.layoutSend.setOnClickListener(v -> {
-                    startActivity(new Intent(activity, VenueShareActivity.class)
-                            .putExtra("yachtClub", model.getMsg())
-                            .putExtra("type", "yachtClub"));
-                });
-
-
-            }
-        }
-
-        public class SentYachtClubViewHolder extends RecyclerView.ViewHolder {
-
-            private SentYachtClubViewBinding binding;
-
-            public SentYachtClubViewHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = SentYachtClubViewBinding.bind(itemView);
-            }
-
-            private void setUp(ChatMessageModel model) {
-                binding.txtTime.setText(model.getSendTime());
-                YachtClubModel yachtModel = new Gson().fromJson(model.getMsg(), YachtClubModel.class);
-                Graphics.loadImage(yachtModel.getCover(), binding.cover);
-                Graphics.loadRoundImage(yachtModel.getLogo(), binding.image);
-
-                binding.tvTitle.setText(yachtModel.getName());
-                binding.tvAddress.setText(yachtModel.getAddress());
-                Graphics.applyBlurEffect(activity, binding.blurView);
-                binding.layoutSend.setOnClickListener(v -> {
-                    startActivity(new Intent(activity, VenueShareActivity.class)
-                            .putExtra("yachtClub", model.getMsg())
-                            .putExtra("type", "yachtClub"));
                 });
             }
         }

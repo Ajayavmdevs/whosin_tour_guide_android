@@ -5,9 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
@@ -17,28 +14,21 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-
-import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.common.reflect.TypeToken;
@@ -52,49 +42,27 @@ import com.whosin.app.comman.AppExecutors;
 import com.whosin.app.comman.DiffAdapter;
 import com.whosin.app.comman.DiffIdentifier;
 import com.whosin.app.comman.Graphics;
-import com.whosin.app.comman.HorizontalSpaceItemDecoration;
 import com.whosin.app.comman.Preferences;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.interfaces.BooleanResult;
 import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.comman.ui.UiUtils;
-import com.whosin.app.comman.ui.UserInfoView;
 import com.whosin.app.comman.ui.roundcornerlayout.CornerType;
 import com.whosin.app.databinding.ActivitySearchBinding;
 import com.whosin.app.databinding.AllSearchOfferItemBinding;
 import com.whosin.app.databinding.AllSearchVenueDesginItemBinding;
 import com.whosin.app.databinding.CategoryListItemBinding;
-import com.whosin.app.databinding.FrindListItemBinding;
-import com.whosin.app.databinding.HomeExclusiveDealItemBinding;
 import com.whosin.app.databinding.IteamSearchEventBinding;
 import com.whosin.app.databinding.ItemAllSerachTicketBinding;
-import com.whosin.app.databinding.ItemCategoriesBinding;
-import com.whosin.app.databinding.ItemCategoriesContainerCompenetentBinding;
-import com.whosin.app.databinding.ItemCustomComponentBinding;
-import com.whosin.app.databinding.ItemCustomComponentRecyclerBinding;
-import com.whosin.app.databinding.ItemCustomOfferContainerComponentBinding;
 import com.whosin.app.databinding.ItemHomeAdViewBinding;
-import com.whosin.app.databinding.ItemHomeEventRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeExclusiveDealRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeOutingRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeSuggestedUserRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeTestActivityBlockBinding;
-import com.whosin.app.databinding.ItemHomeVenueSuggestionRecyclerBinding;
-import com.whosin.app.databinding.ItemLargeContainerCompententBinding;
-import com.whosin.app.databinding.ItemLargeOfferBlockBinding;
-import com.whosin.app.databinding.ItemLargeVenueComoponentRecyclerBinding;
+import com.whosin.app.databinding.ItemLayoutEmptyHolderBinding;
 import com.whosin.app.databinding.ItemRecentSearchBinding;
 import com.whosin.app.databinding.ItemRecentSearchTabBinding;
 import com.whosin.app.databinding.ItemRecentSearchUserBinding;
 import com.whosin.app.databinding.ItemSearchActivityBinding;
-import com.whosin.app.databinding.ItemSearchSuggestionLayoutBinding;
 import com.whosin.app.databinding.ItemSearchVenueBinding;
-import com.whosin.app.databinding.ItemSpecialVenueLayoutBinding;
 import com.whosin.app.databinding.ItemTicketRecyclerBinding;
-import com.whosin.app.databinding.ItemVenueRecyclerBinding;
-import com.whosin.app.databinding.OutingListItemBinding;
 import com.whosin.app.databinding.SearchUserItemBinding;
-import com.whosin.app.databinding.TestActivityItemBinding;
 import com.whosin.app.databinding.TicketShimmerPlaceholderBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.LogManager;
@@ -103,15 +71,12 @@ import com.whosin.app.service.manager.SearchSuggestionStore;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.ActivityDetailModel;
 import com.whosin.app.service.models.BannerModel;
-import com.whosin.app.service.models.CategoriesModel;
 import com.whosin.app.service.models.ChatModel;
 import com.whosin.app.service.models.CommanSearchModel;
 import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.CustomComponentModel;
 import com.whosin.app.service.models.EventModel;
-import com.whosin.app.service.models.ExclusiveDealModel;
 import com.whosin.app.service.models.FollowUnfollowModel;
 import com.whosin.app.service.models.HomeBlockModel;
 import com.whosin.app.service.models.HomeObjectModel;
@@ -129,30 +94,19 @@ import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.CmProfile.CmPublicProfileActivity;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
 import com.whosin.app.ui.activites.PromoterPublic.PromoterPublicProfileActivity;
-import com.whosin.app.ui.activites.Story.StoryViewActivity;
-import com.whosin.app.ui.activites.bucket.MyInvitationActivity;
-import com.whosin.app.ui.activites.bucket.OutingListActivity;
-import com.whosin.app.ui.activites.category.CategoryActivity;
-import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.home.Chat.ChatMessageActivity;
-import com.whosin.app.ui.activites.home.SeeAllDetalisActivity;
 import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.activity.YourOrderActivity;
 import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
 import com.whosin.app.ui.activites.home.event.EventOrganizerDetailsActivity;
-import com.whosin.app.ui.activites.home.event.InviteGuestListBottomSheet;
 import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
-import com.whosin.app.ui.activites.offers.VoucherDetailScreenActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketListActivity;
 import com.whosin.app.ui.activites.venue.Bucket.BucketListBottomSheet;
-import com.whosin.app.ui.activites.venue.SmallVenueComponentSeeAllActivity;
 import com.whosin.app.ui.activites.venue.VenueShareActivity;
 import com.whosin.app.ui.activites.venue.VenueTimingDialog;
-import com.whosin.app.ui.activites.venue.ui.BuyNowActivity;
 import com.whosin.app.ui.adapter.OfferPackagesAdapter;
 import com.whosin.app.ui.adapter.raynaTicketAdapter.RaynaTicketImageAdapter;
-import com.whosin.app.ui.fragment.home.InviteFriendBottomSheet;
+import com.whosin.app.ui.fragment.comman.BaseFragment;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -168,7 +122,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
@@ -176,7 +129,7 @@ import java.util.stream.Collectors;
 import io.realm.RealmList;
 import retrofit2.Call;
 
-public class SearchActivity extends BaseActivity {
+public class SearchFragment extends BaseFragment {
     private ActivitySearchBinding binding;
     private List<CommanSearchModel> commanSearch = new ArrayList<>();
     private SearchResultAdapter searchResultAdapter = new SearchResultAdapter();
@@ -196,8 +149,8 @@ public class SearchActivity extends BaseActivity {
     private boolean ignoreTextChange = false;
     private Call<ContainerModel<List<String>>> suggestionService = null;
 
-    private SearchPopupAdapter adapter = new SearchPopupAdapter(this);
-
+    private SearchPopupAdapter adapter;
+    private Activity activity;
 
     // --------------------------------------
     // region LifeCycle
@@ -205,15 +158,17 @@ public class SearchActivity extends BaseActivity {
 
 
     @Override
-    protected void initUi() {
-
+    public void initUi(View view) {
+        binding = ActivitySearchBinding.bind( view );
+        activity = requireActivity();
+        adapter = new SearchPopupAdapter(requireActivity());
         binding.tvSearchTitle.setText(getValue("search"));
         binding.tvRecentSearches.setText(getValue("recent_searches"));
         binding.clearAllRecentSearch.setText(getValue("clear_all"));
         binding.edtSearch.setHint(getValue("where_do_you_want_to_go"));
         binding.emptyPlaceHolderView.setEmptyPlaceTxtTitle(getValue("empty_search"));
 
-        binding.searchHomeRecycleView.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false ) );
+        binding.searchHomeRecycleView.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.VERTICAL, false ) );
         searchHomeBlockAdapter = new SearchHomeBlockAdapter<>();
         binding.searchHomeRecycleView.setAdapter( searchHomeBlockAdapter );
 
@@ -235,19 +190,18 @@ public class SearchActivity extends BaseActivity {
 
         requestSearchGetHomeBlock();
 
-        binding.searchResultRecycleView.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false ) );
+        binding.searchResultRecycleView.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.VERTICAL, false ) );
 
-        binding.searchHistoryRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false ) );
+        binding.searchHistoryRecycler.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.VERTICAL, false ) );
         binding.searchHistoryRecycler.setAdapter( historyAdapter );
 
-        binding.searchTabRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.HORIZONTAL, false ) );
+        binding.searchTabRecycler.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.HORIZONTAL, false ) );
         binding.searchTabRecycler.setAdapter( searchTabHistory );
-        Utils.hideKeyboard( activity );
+        Utils.hideKeyboard( requireActivity() );
     }
 
-
     @Override
-    protected void setListeners() {
+    public void setListeners() {
 
         binding.edtSearch.setOnDismissListener(() -> {
             binding.edtSearch.setBackgroundResource(R.drawable.rounded_full_bg_search);
@@ -271,7 +225,7 @@ public class SearchActivity extends BaseActivity {
                 binding.edtSearch.setText(selectedText);
                 binding.edtSearch.dismissDropDown();
                 binding.edtSearch.setSelection( binding.edtSearch.getText().length() );
-                Utils.hideKeyboard( activity );
+                Utils.hideKeyboard( requireActivity() );
                 binding.edtSearch.setBackgroundResource(R.drawable.rounded_full_bg_search);
                 requestCommanSearch(selectedText);
                 ignoreTextChange = false;
@@ -287,10 +241,11 @@ public class SearchActivity extends BaseActivity {
                 binding.tvCancel.setVisibility( View.VISIBLE );
                 binding.edtSearch.setCursorVisible(true);
                 binding.edtSearch.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (imm != null) {
-                    imm.showSoftInput(binding.edtSearch, InputMethodManager.SHOW_IMPLICIT);
-                }
+                Utils.showSoftKeyboard(activity, v);
+//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                if (imm != null) {
+//                    imm.showSoftInput(binding.edtSearch, InputMethodManager.SHOW_IMPLICIT);
+//                }
             }
         });
 
@@ -308,11 +263,11 @@ public class SearchActivity extends BaseActivity {
             binding.headerConstraint.setVisibility( View.VISIBLE );
             binding.searchHomeRecycleView.setVisibility( View.VISIBLE );
             binding.emptyPlaceHolderView.setVisibility( View.GONE );
-            Utils.hideKeyboard( activity );
+            Utils.hideKeyboard( requireActivity() );
             binding.edtSearch.post(() -> ignoreTextChange = false);
         } );
 
-        binding.ivBack.setOnClickListener( view -> activity.onBackPressed() );
+        binding.ivBack.setOnClickListener( view -> requireActivity().onBackPressed() );
 
         binding.clearAllRecentSearch.setOnClickListener( view -> {
             clearSearchText();
@@ -381,7 +336,7 @@ public class SearchActivity extends BaseActivity {
                 if (!searchQuery.isEmpty()) {
                     requestCommanSearch(searchQuery);
                     addSearchTitle( searchQuery );
-                    Utils.hideKeyboard( v, activity );
+                    Utils.hideKeyboard( v, requireActivity() );
                     return true;
                 }
             }
@@ -449,18 +404,23 @@ public class SearchActivity extends BaseActivity {
 
     }
 
-
     @Override
-    protected int getLayoutRes() {
-        return 0;
+    public void populateData(boolean getDataFromServer) {
+
     }
 
-    @Override
-    protected View getLayoutView() {
-        binding = ActivitySearchBinding.inflate( getLayoutInflater() );
-        return binding.getRoot();
 
+    @Override
+    public int getLayoutRes() {
+        return R.layout.activity_search;
     }
+
+//    @Override
+//    protected View getLayoutView() {
+//        binding = ActivitySearchBinding.inflate( getLayoutInflater() );
+//        return binding.getRoot();
+//
+//    }
 
     // endregion
     // --------------------------------------
@@ -579,12 +539,6 @@ public class SearchActivity extends BaseActivity {
         for (TabLayout.Tab tab : otherTabs) {
             binding.tabLayout.addTab(tab);
         }
-
-//        commanSearch.forEach( commanSearchModel -> {
-//            String capitalizedTitle = commanSearchModel.getType().substring( 0, 1 ).toUpperCase() + commanSearchModel.getType().substring( 1 );
-//            TabLayout.Tab tab = binding.tabLayout.newTab().setText( capitalizedTitle );
-//            binding.tabLayout.addTab( tab );
-//        } );
 
         if (selectedCategory.equals( "All" )) {
             binding.searchResultRecycleView.setAdapter( allSearchResultAdapter );
@@ -715,13 +669,6 @@ public class SearchActivity extends BaseActivity {
         Preferences.shared.setString( "search_text", "" );
     }
 
-
-    private void setItemWidth(int itemCount, View view) {
-        ViewGroup.LayoutParams params = view.getLayoutParams();
-        params.width = (int) (Graphics.getScreenWidth(activity) * (itemCount > 1 ? 0.89 : 0.93));
-        view.setLayoutParams(params);
-    }
-
     private void filterData(List<HomeBlockModel> searchHomeBlocks) {
         // TODO : type of list will remove totally from home-block
         Thread backgroundThread = new Thread(() -> {
@@ -831,27 +778,6 @@ public class SearchActivity extends BaseActivity {
         backgroundThread.start();
     }
 
-    private void setVenueInfo(String venueId, UserInfoView infoView) {
-        Thread backgroundThread = new Thread(() -> {
-            Optional<VenueObjectModel> venueObjectModel = searchHomeObjectModel.getVenues().stream().filter(p -> p.getId().equals(venueId)).findFirst();
-            venueObjectModel.ifPresent(objectModel -> AppExecutors.get().mainThread().execute(() -> {
-                infoView.setVenueDetail(objectModel);
-            }));
-        });
-        backgroundThread.start();
-    }
-
-    private void setupRecycleHorizontalManager(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        int spacing = getResources().getDimensionPixelSize(com.intuit.ssp.R.dimen._10ssp);
-        recyclerView.addItemDecoration(new HorizontalSpaceItemDecoration(spacing));
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.offsetChildrenHorizontal(1);
-        recyclerView.offsetChildrenVertical(1);
-    }
-
-
     // endregion
     // --------------------------------------
     // region Data/Service
@@ -890,13 +816,13 @@ public class SearchActivity extends BaseActivity {
         binding.searchResultRecycleView.setAdapter(shimmerEffectAdapter);
 
 
-        service = DataService.shared(activity).requestCommanSearch(searchJsonObject,
+        service = DataService.shared(requireActivity()).requestCommanSearch(searchJsonObject,
                 new RestCallback<ContainerListModel<CommanSearchModel>>(this) {
                     @Override
                     public void result(ContainerListModel<CommanSearchModel> model, String error) {
                         // Handle error or null model
                         if (!Utils.isNullOrEmpty(error) || model == null) {
-                            Toast.makeText(activity, R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -967,7 +893,7 @@ public class SearchActivity extends BaseActivity {
         if (suggestionService != null) {
             suggestionService.cancel();
         }
-        suggestionService = DataService.shared(activity).requestRaynaSearchSuggestions(binding.edtSearch.getText().toString(),new RestCallback<ContainerModel<List<String>>>(this) {
+        suggestionService = DataService.shared(requireActivity()).requestRaynaSearchSuggestions(binding.edtSearch.getText().toString(),new RestCallback<ContainerModel<List<String>>>(this) {
             @Override
             public void result(ContainerModel<List<String>> model, String error) {
                 if (!Utils.isNullOrEmpty(error) || model == null) {
@@ -995,12 +921,12 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void reqOfferFollowUnFollow(String id, BooleanResult callBack) {
-        DataService.shared(activity).requestVenueFollow(id, new RestCallback<ContainerModel<FollowUnfollowModel>>(this) {
+        DataService.shared(requireActivity()).requestVenueFollow(id, new RestCallback<ContainerModel<FollowUnfollowModel>>(this) {
             @Override
             public void result(ContainerModel<FollowUnfollowModel> model, String error) {
 
                 if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(activity, R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -1016,21 +942,21 @@ public class SearchActivity extends BaseActivity {
 
     private void reqRecommendation(String id, VenueObjectModel venueModel) {
         showProgress();
-        DataService.shared(activity).requestFeedRecommandation(id, "venue", new RestCallback<ContainerModel<UserDetailModel>>(this) {
+        DataService.shared(requireActivity()).requestFeedRecommandation(id, "venue", new RestCallback<ContainerModel<UserDetailModel>>(this) {
             @Override
             public void result(ContainerModel<UserDetailModel> model, String error) {
                 hideProgress();
                 if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(activity, R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (model.message.equals( "recommendation added successfully!" )) {
                     venueModel.setRecommendation(true);
-                    Alerter.create(activity).setTitle("Thank you!").setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("for recommended " + venueModel.getName() + "to your friends!").setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
+                    Alerter.create(requireActivity()).setTitle("Thank you!").setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("for recommended " + venueModel.getName() + "to your friends!").setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
                 } else {
                     venueModel.setRecommendation(false);
-                    Alerter.create(activity).setTitle("Oh Snap!!").setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("you have removed recommendation of " + venueModel.getName()).setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
+                    Alerter.create(requireActivity()).setTitle("Oh Snap!!").setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("you have removed recommendation of " + venueModel.getName()).setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
                 }
 
                 searchResultAdapter.notifyDataSetChanged();
@@ -1044,12 +970,12 @@ public class SearchActivity extends BaseActivity {
         if (searchHomeBlockAdapter.getData() == null && searchHomeBlockAdapter.getData().isEmpty()){
             showProgress();
         }
-        DataService.shared(activity).requestSearchGetHomeBlock(new RestCallback<ContainerModel<HomeObjectModel>>(this) {
+        DataService.shared(requireActivity()).requestSearchGetHomeBlock(new RestCallback<ContainerModel<HomeObjectModel>>(this) {
             @Override
             public void result(ContainerModel<HomeObjectModel> model, String error) {
                 hideProgress();
                 if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -1092,39 +1018,10 @@ public class SearchActivity extends BaseActivity {
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
             switch (AppConstants.HomeBlockType.valueOf(viewType)) {
-                case OFFER_SMALL:
-                case OFFER_LARGE:
-                    return new LargeOfferBlockHolder(UiUtils.getViewBy(parent, R.layout.item_large_offer_block));
-                case VENUE_SMALL:
-                    return new SmallVenueBlockHolder(UiUtils.getViewBy(parent, R.layout.item_special_venue_layout));
-                case CUSTOM_OFFER:
-                    return new CustomOfferHolder(UiUtils.getViewBy(parent, R.layout.item_large_container_compentent));
-                case CUSTOM_VENUE:
-                    return new LargeContainerHolder(UiUtils.getViewBy(parent, R.layout.item_large_container_compentent));
-                case CUSTOM_COMPOMENTS:
-                    return new CustomComponentBlockHolder(UiUtils.getViewBy(parent, R.layout.item_custom_component_recycler));
-                case DEALS:
-                    return new ExclusiveDealBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_exclusive_deal_recycler));
-                case VENUE_LARGE:
-                    return new LargeVenueBlockHolder(UiUtils.getViewBy(parent, R.layout.item_large_venue_comoponent_recycler));
-                case CATEGORIES:
-                    return new CategoriesBlockHolder(UiUtils.getViewBy(parent, R.layout.item_categories_container_compenetent));
-                case ACTIVITIES:
-                    return new TestActivityBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_test_activity_block));
-                case EVENTS:
-                    return new EventBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_event_recycler));
-                case MY_OUTING:
-                    return new MyOutingBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_outing_recycler));
-                case SUGGESTED_USERS:
-                    return new SuggestedUserBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_suggested_user_recycler));
-                case VENUE_SUGGESTION:
-                    return new SuggestedVenueViewHolder(UiUtils.getViewBy(parent, R.layout.item_home_venue_suggestion_recycler));
                 case TICKET:
                     return new TicketHolder(UiUtils.getViewBy(parent, R.layout.item_ticket_recycler));
-                case HOME_AD:
-                    return new HomeAdHolder(UiUtils.getViewBy(parent, R.layout.item_home_ad_view));
                 default:
-                    return new LargeVenueBlockHolder(UiUtils.getViewBy(parent, R.layout.item_large_venue_comoponent_recycler));
+                    return new EmptyHolder(UiUtils.getViewBy(parent, R.layout.item_layout_empty_holder));
             }
 
         }
@@ -1132,85 +1029,11 @@ public class SearchActivity extends BaseActivity {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             HomeBlockModel model = (HomeBlockModel) getItem(position);
             boolean isLastItem = position == getItemCount() - 1;
-            if (model.getBlockType() == AppConstants.HomeBlockType.VENUE_SMALL) {
-                SmallVenueBlockHolder venueViewHolder = (SmallVenueBlockHolder) holder;
-                venueViewHolder.setupData(model.venueList);
-                venueViewHolder.mBinding.txtTitle.setText(model.getTitle());
-                venueViewHolder.mBinding.seeAll.setOnClickListener( view -> {
-                    List<VenueObjectModel> list = model.venueList;
-                    startActivity( new Intent( activity, SmallVenueComponentSeeAllActivity.class )
-                            .putExtra( "venueModel", new Gson().toJson( list ) )
-                            .putExtra( "title",model.getTitle() ));
-                } );
-            }
-            else if (model.getBlockType() == AppConstants.HomeBlockType.VENUE_LARGE) {
-                LargeVenueBlockHolder viewHolder = (LargeVenueBlockHolder) holder;
-                viewHolder.mBinding.venueListView.setupData(model.venueList, SearchActivity.this, getSupportFragmentManager());
-                viewHolder.mBinding.txtTitle.setText(model.getTitle());
-                viewHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            }
-            else if (model.getBlockType() == AppConstants.HomeBlockType.OFFER_LARGE || model.getBlockType() == AppConstants.HomeBlockType.OFFER_SMALL) {
-                LargeOfferBlockHolder viewHolder = (LargeOfferBlockHolder) holder;
-                viewHolder.mBinding.txtTitle.setText(model.getTitle());
-                viewHolder.mBinding.txtSubTitle.setText(model.getDescription());
-                viewHolder.mBinding.offerListView.setupData(model.offerList, SearchActivity.this, getSupportFragmentManager());
-//            viewHolder.setupData(model.offerList);
-            }
-            else if (model.getBlockType() == AppConstants.HomeBlockType.CUSTOM_VENUE) {
-                LargeContainerHolder viewHolder = (LargeContainerHolder) holder;
-                model.getCustomVenues().removeIf(p -> searchHomeObjectModel.getVenues().stream().noneMatch(o -> o.getId().equals(p.getVenueId())));
-                viewHolder.mBinding.customVenueView.setupData(model.getCustomVenues(), SearchActivity.this, getSupportFragmentManager());
-            }
-            else if (model.getBlockType() == AppConstants.HomeBlockType.CUSTOM_OFFER) {
-                CustomOfferHolder viewHolder = (CustomOfferHolder) holder;
-                viewHolder.mBinding.offerView.setupData(model.getCustomOffers(), SearchActivity.this, getSupportFragmentManager());
-//            viewHolder.setupData(model.getCustomOffers());
-            } else if (model.getBlockType() == AppConstants.HomeBlockType.CUSTOM_COMPOMENTS) {
-                CustomComponentBlockHolder componentHolder = (CustomComponentBlockHolder) holder;
-                componentHolder.setupData(model);
-            } else if (model.getBlockType() == AppConstants.HomeBlockType.DEALS) {
-                ExclusiveDealBlockHolder exclusiveDealViewHolder = (ExclusiveDealBlockHolder) holder;
-                exclusiveDealViewHolder.setupData(model.getDeals());
-                exclusiveDealViewHolder.mBinding.txtTitle.setText(model.getTitle());
-                exclusiveDealViewHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == AppConstants.HomeBlockType.CATEGORIES) {
-                CategoriesBlockHolder categoriesContainerHolder = (CategoriesBlockHolder) holder;
-                categoriesContainerHolder.setupData(model.getHomeBlockCategory());
-            }
-            else if (model.getBlockType() == AppConstants.HomeBlockType.ACTIVITIES) {
-                TestActivityBlockHolder testActivityBlockHolder = (TestActivityBlockHolder) holder;
-                testActivityBlockHolder.setupData(model.activityList);
-                testActivityBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-                testActivityBlockHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == AppConstants.HomeBlockType.EVENTS) {
-                EventBlockHolder eventBlockHolder = (EventBlockHolder) holder;
-//            eventBlockHolder.setupData(model.eventList);
-                eventBlockHolder.mBinding.eventListView.setupData(model.eventList, SearchActivity.this, getSupportFragmentManager());
-                eventBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-                eventBlockHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            }
-            else if (model.getBlockType() == AppConstants.HomeBlockType.MY_OUTING) {
-                MyOutingBlockHolder myOutingBlockHolder = (MyOutingBlockHolder) holder;
-                myOutingBlockHolder.setupData(model.getMyOuting());
-                myOutingBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-                myOutingBlockHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == AppConstants.HomeBlockType.SUGGESTED_USERS) {
-                SuggestedUserBlockHolder suggestedUserBlockHolder = (SuggestedUserBlockHolder) holder;
-                suggestedUserBlockHolder.setupData(model.getSuggestedUsers());
-                suggestedUserBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-            } else if (model.getBlockType() == AppConstants.HomeBlockType.VENUE_SUGGESTION) {
-                SuggestedVenueViewHolder suggestedVenueViewHolder = (SuggestedVenueViewHolder) holder;
-                suggestedVenueViewHolder.setupData(model.getSuggestedVenue());
-                suggestedVenueViewHolder.mBinding.txtTitle.setText(model.getTitle());
-            }else if (model.getBlockType() == AppConstants.HomeBlockType.TICKET) {
+            if (model.getBlockType() == AppConstants.HomeBlockType.TICKET) {
                 TicketHolder viewHolder = (TicketHolder) holder;
                 viewHolder.binding.userTitle.setText(model.getTitle());
                 viewHolder.binding.description.setText(model.getDescription());
                 viewHolder.setupData(model.getTicketList(),model.getType());
-            }else if (model.getBlockType() == AppConstants.HomeBlockType.HOME_AD) {
-                HomeAdHolder viewHolder = (HomeAdHolder) holder;
-                viewHolder.mBinding.adView.setupAppLifeCycleCallback(holder.itemView,SearchActivity.class);
-                viewHolder.setupData();
             }
 
 
@@ -1239,9 +1062,9 @@ public class SearchActivity extends BaseActivity {
             }
 
             public void setupData() {
-                activity.runOnUiThread(() -> {
-                    mBinding.adView.activity = activity;
-                    mBinding.adView.seUpData(activity);
+                requireActivity().runOnUiThread(() -> {
+                    mBinding.adView.activity = requireActivity();
+                    mBinding.adView.seUpData(requireActivity());
                 });
             }
 
@@ -1249,220 +1072,6 @@ public class SearchActivity extends BaseActivity {
                 mBinding.adView.onItemVisibilityChanged(isVisible);
             }
 
-        }
-
-        public class LargeContainerHolder extends RecyclerView.ViewHolder {
-            private final ItemLargeContainerCompententBinding mBinding;
-//        private final CustomVenueAdapter<CustomVenueModel> adapter = new CustomVenueAdapter<>();
-
-            public LargeContainerHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemLargeContainerCompententBinding.bind(itemView);
-//            setupRecycleHorizontalManager(mBinding.recyclerView);
-//            mBinding.recyclerView.setAdapter(adapter);
-            }
-
-//        public void setupData(List<CustomVenueModel> customVenues) {
-//            customVenues.removeIf(p -> searchHomeObjectModel.getVenues().stream().noneMatch(o -> o.getId().equals(p.getVenueId())));
-//            adapter.updateData(customVenues);
-//        }
-        }
-
-        public class CustomOfferHolder extends RecyclerView.ViewHolder {
-            private final ItemCustomOfferContainerComponentBinding mBinding;
-//        private final CustomOfferAdapter<CustomVenueModel> adapter = new CustomOfferAdapter<>();
-
-            public CustomOfferHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCustomOfferContainerComponentBinding.bind(itemView);
-//            setupRecycleHorizontalManager(mBinding.recyclerView);
-//            mBinding.recyclerView.setAdapter(adapter);
-            }
-
-//        public void setupData(List<CustomVenueModel> customVenues) {
-//            adapter.updateData(customVenues);
-//        }
-        }
-
-        public class CategoriesBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemCategoriesContainerCompenetentBinding mBinding;
-            private final CategoriesAdapter<CategoriesModel> adapter = new CategoriesAdapter<>();
-
-            public CategoriesBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCategoriesContainerCompenetentBinding.bind(itemView);
-                setupRecycleHorizontalManager(mBinding.categoriesRecycler);
-                mBinding.categoriesRecycler.setAdapter(adapter);
-            }
-
-            public void setupData(List<CategoriesModel> categoriesList) {
-                adapter.updateData(categoriesList);
-            }
-        }
-
-        public class SmallVenueBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemSpecialVenueLayoutBinding mBinding;
-            private final SmallVenueBlockAdapter<VenueObjectModel> adapter = new SmallVenueBlockAdapter<>();
-
-            public SmallVenueBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemSpecialVenueLayoutBinding.bind(itemView);
-                mBinding.venueRecycler.setLayoutManager(new GridLayoutManager(activity, 4, LinearLayoutManager.HORIZONTAL, false));
-                mBinding.venueRecycler.setAdapter(adapter);
-            }
-
-            public void setupData(List<VenueObjectModel> modelList) {
-                adapter.updateData(modelList);
-            }
-        }
-
-        public class ExclusiveDealBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeExclusiveDealRecyclerBinding mBinding;
-            private final ExclusiveDealAdapter<ExclusiveDealModel> adapter = new ExclusiveDealAdapter<>();
-
-            public ExclusiveDealBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeExclusiveDealRecyclerBinding.bind(itemView);
-                setupRecycleHorizontalManager(mBinding.recyclerView);
-                GravitySnapHelper snapHelper = new GravitySnapHelper(Gravity.START);
-                snapHelper.setSnapLastItem(true);
-                snapHelper.setSnapToPadding(true);
-                snapHelper.attachToRecyclerView(mBinding.recyclerView);
-                mBinding.recyclerView.setAdapter(adapter);
-            }
-
-            public void setupData(List<ExclusiveDealModel> deals) {
-                adapter.updateData(deals);
-            }
-        }
-
-        public class TestActivityBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeTestActivityBlockBinding mBinding;
-            private final TestActivityAdapter<ActivityDetailModel> adapter = new TestActivityAdapter<>();
-            public TestActivityBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeTestActivityBlockBinding.bind(itemView);
-                setupRecycleHorizontalManager(mBinding.testActivityRecycler);
-                GravitySnapHelper snapHelper = new GravitySnapHelper(Gravity.START);
-                snapHelper.setSnapLastItem(true);
-                snapHelper.setSnapToPadding(true);
-                snapHelper.attachToRecyclerView(mBinding.testActivityRecycler);
-                mBinding.testActivityRecycler.setAdapter(adapter);
-                mBinding.txtSeeAll.setOnClickListener(view -> startActivity(new Intent(activity, SeeAllDetalisActivity.class)));
-            }
-
-            public void setupData(List<ActivityDetailModel> activities) {
-                adapter.updateData(activities);
-            }
-        }
-
-        public class MyOutingBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeOutingRecyclerBinding mBinding;
-            private final OutingListAdapter<InviteFriendModel> adapter = new OutingListAdapter<>();
-
-            public MyOutingBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeOutingRecyclerBinding.bind(itemView);
-                setupRecycleHorizontalManager(mBinding.outingRecycler);
-                mBinding.outingRecycler.setAdapter(adapter);
-            }
-
-            public void setupData(List<InviteFriendModel> outingList) {
-                adapter.updateData(outingList);
-                mBinding.txtSeeAll.setOnClickListener(view -> {
-                    startActivity(new Intent(activity, OutingListActivity.class));
-                });
-            }
-        }
-
-        public class SuggestedUserBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeSuggestedUserRecyclerBinding mBinding;
-
-            public SuggestedUserBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeSuggestedUserRecyclerBinding.bind(itemView);
-
-            }
-
-            public void setupData(List<UserDetailModel> suggestedUsers) {
-                mBinding.suggestedUserView.setSuggestedUser( suggestedUsers,activity,getSupportFragmentManager(), (success, error) -> {} );
-            }
-        }
-
-        public class SuggestedVenueViewHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeVenueSuggestionRecyclerBinding mBinding;
-
-            public SuggestedVenueViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeVenueSuggestionRecyclerBinding.bind(itemView);
-            }
-
-            public void setupData(List<VenueObjectModel> suggestedVenue) {
-                mBinding.suggestedVenue.setSuggestedVenue( suggestedVenue,activity,getSupportFragmentManager(), (success, error1) -> {});
-            }
-
-        }
-
-        public class EventBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemHomeEventRecyclerBinding mBinding;
-            //        private final EventAdapter<EventModel> adapter = new EventAdapter<>();
-            public EventBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeEventRecyclerBinding.bind(itemView);
-//            setupRecycleHorizontalManager(mBinding.eventRecycler);
-//            GravitySnapHelper snapHelper = new GravitySnapHelper(Gravity.START);
-//            snapHelper.setSnapLastItem(true);
-//            snapHelper.setSnapToPadding(true);
-//            snapHelper.attachToRecyclerView(mBinding.eventRecycler);
-//            mBinding.eventRecycler.setAdapter(adapter);
-            }
-
-//        public void setupData(List<EventModel> eventDetailModels) {
-//            AppExecutors.get().mainThread().execute(() -> adapter.updateData(eventDetailModels));
-//        }
-        }
-
-        public class LargeVenueBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemLargeVenueComoponentRecyclerBinding mBinding;
-
-            public LargeVenueBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemLargeVenueComoponentRecyclerBinding.bind(itemView);
-            }
-        }
-
-        public class CustomComponentBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemCustomComponentRecyclerBinding mBinding;
-            private final CustomComponentAdapter<CustomComponentModel> adapter = new CustomComponentAdapter<>();
-            public CustomComponentBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCustomComponentRecyclerBinding.bind(itemView);
-                mBinding.customRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-                GravitySnapHelper snapHelper = new GravitySnapHelper(Gravity.START);
-                snapHelper.setSnapLastItem(true);
-                snapHelper.setSnapToPadding(true);
-                snapHelper.attachToRecyclerView(mBinding.customRecycler);
-                mBinding.customRecycler.setAdapter(adapter);
-                Utils.smoothScrollToPosition(mBinding.customRecycler, 0);
-
-            }
-
-            public void setupData(HomeBlockModel model) {
-                mBinding.txtTitle.setText(model.getTitle());
-                mBinding.txtSubTitle.setText(model.getDescription());
-                adapter.updateData(model.getCustomComponentModelList());
-            }
-        }
-
-        public class LargeOfferBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemLargeOfferBlockBinding mBinding;
-
-            public LargeOfferBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemLargeOfferBlockBinding.bind(itemView);
-            }
         }
 
         public class TicketHolder extends RecyclerView.ViewHolder {
@@ -1476,518 +1085,34 @@ public class SearchActivity extends BaseActivity {
             }
 
             public void setupData(List<RaynaTicketDetailModel> ticket,String type) {
-                activity.runOnUiThread(() -> {
+                requireActivity().runOnUiThread(() -> {
                     binding.ticketRecyclerView.isVertical = false;
-                    binding.ticketRecyclerView.activity = activity;
-                    binding.ticketRecyclerView.setupData(ticket, activity, false, false);
+                    binding.ticketRecyclerView.activity = requireActivity();
+                    binding.ticketRecyclerView.setupData(ticket, requireActivity(), false, false);
                     binding.seeAll.setOnClickListener(v -> {
                         RaynaTicketManager.shared.raynaTicketList.clear();
                         Utils.preventDoubleClick(v);
                         RaynaTicketManager.shared.raynaTicketList.addAll(ticket);
-                        Intent intent = new Intent(activity, RaynaTicketListActivity.class);
+                        Intent intent = new Intent(requireActivity(), RaynaTicketListActivity.class);
                         intent.putExtra("Description", binding.userTitle.getText().toString());
                         intent.putExtra("type", type);
-                        activity.startActivity(intent);
+                        requireActivity().startActivity(intent);
                     });
                 });
             }
         }
 
+        public class EmptyHolder extends RecyclerView.ViewHolder {
 
-    }
+            ItemLayoutEmptyHolderBinding binding;
 
-    public class CategoriesAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.item_categories);
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            ((Activity) activity).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            view.getLayoutParams().width = (int) (displayMetrics.widthPixels * 0.40);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            CategoriesModel model = (CategoriesModel) getItem(position);
-            viewHolder.mBinding.txtCategories.setText(model.getTitle());
-            if (TextUtils.isEmpty(model.getImage())) {
-                int color = Color.parseColor(model.getColor().getStartColor());
-                viewHolder.mBinding.bgImageView.setBackgroundColor(color);
-            } else {
-                Graphics.loadImage(model.getImage(), viewHolder.mBinding.bgImageView);
-            }
-            viewHolder.itemView.setOnClickListener(view -> {
-                startActivity(new Intent(activity, CategoryActivity.class).putExtra("categoryId", model.getId()).putExtra("image", model.getImage()));
-            });
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final ItemCategoriesBinding mBinding;
-            public ViewHolder(@NonNull View itemView) {
+            public EmptyHolder(@NonNull View itemView) {
                 super(itemView);
-                mBinding = ItemCategoriesBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class SmallVenueBlockAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.item_venue_recycler);
-            setItemWidth(2, view);
-            return new VenueViewHolder(view);
-        }
-
-        private boolean hasStory(VenueObjectModel venueObjectModel) {
-            if (venueObjectModel.getStories() != null) {
-                if (!venueObjectModel.getStories().isEmpty()) {
-                    return true;
-                }
-            }
-            HomeObjectModel homeObjectModel = SessionManager.shared.geHomeBlockData();
-            if (homeObjectModel != null) {
-                Optional<VenueObjectModel> tmpVenue = homeObjectModel.getStories().stream().filter(p -> Objects.equals(p.getId(), venueObjectModel.getId())).findFirst();
-                return tmpVenue.isPresent();
-            }
-            return false;
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-            VenueViewHolder viewHolder = (VenueViewHolder) holder;
-            VenueObjectModel model = (VenueObjectModel) getItem(position);
-            if (model != null) {
-                viewHolder.mBinding.txtName.setText(model.getName());
-                viewHolder.mBinding.txtAddress.setText(model.getAddress());
-                Graphics.loadRoundImage(model.getLogo(), viewHolder.mBinding.image);
-                Thread backgroundThread = new Thread(() -> {
-                    if (hasStory(model)) {
-                        activity.runOnUiThread(() -> Graphics.setStoryRing(model.getId(), viewHolder.mBinding.roundLinear));
-                    }
-                });
-                backgroundThread.start();
-                viewHolder.mBinding.btnContinue.setOnClickListener(v -> Graphics.openVenueDetail(activity, model.getId()));
-                viewHolder.mBinding.roundLinear.setOnClickListener(view -> {
-                    HomeObjectModel homeObjectModel = SessionManager.shared.geHomeBlockData();
-                    List<VenueObjectModel> matchingStories = homeObjectModel.getStories().stream().filter(model1 -> model1.getId().equals(model.getId())).collect(Collectors.toList());
-                    if (!matchingStories.isEmpty()) {
-                        Intent intent = new Intent(activity, StoryViewActivity.class);
-                        intent.putExtra("stories", new Gson().toJson(matchingStories));
-                        intent.putExtra("selectedPosition", 0);
-                        activity.startActivity(intent);
-                    }
-                });
-            }
-        }
-
-        public class VenueViewHolder extends RecyclerView.ViewHolder {
-            private final ItemVenueRecyclerBinding mBinding;
-            public VenueViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemVenueRecyclerBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class CustomComponentAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.item_custom_component);
-            int screenWidth = Graphics.getScreenWidth(activity);
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            params.width = (int) (screenWidth * 0.80);
-            view.setLayoutParams(params);
-            return new CustomViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            CustomViewHolder viewHolder = (CustomViewHolder) holder;
-
-            CustomComponentModel model = (CustomComponentModel) getItem(position);
-            viewHolder.binding.tvTitle.setText(model.getTitle());
-            viewHolder.binding.tvDescription.setText(model.getDescription());
-            Graphics.loadImage(model.getImage(), viewHolder.binding.ivCover);
-            viewHolder.binding.tvPrice.setText(Utils.addPercentage(model.getBadge()));
-            Optional<VenueObjectModel> tVenueModel = searchHomeObjectModel.getVenues().stream().filter(p -> p.getId().equalsIgnoreCase(model.getVenue())).findFirst();
-            if (tVenueModel.isPresent()) {
-                viewHolder.binding.venueContainer.setVenueDetail(tVenueModel.get());
-                viewHolder.binding.tvView.setOnClickListener(view -> {
-                    Graphics.openVenueDetail(activity,tVenueModel.get().getId());
-                });
-            }
-
-        }
-
-        public class CustomViewHolder extends RecyclerView.ViewHolder {
-            private ItemCustomComponentBinding binding;
-            public CustomViewHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemCustomComponentBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class ExclusiveDealAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.home_exclusive_deal_item);
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            params.width = (int) (Graphics.getScreenWidth(activity) * (getItemCount() > 1 ? 0.83 : 0.93));
-            view.setLayoutParams(params);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-
-            ExclusiveDealModel model = (ExclusiveDealModel) getItem(position);
-            viewHolder.mBinding.tvTitle.setText(model.getDescription());
-            viewHolder.mBinding.tvSubTitle.setText(model.getTitle());
-            Graphics.loadImage(model.getImage(), viewHolder.mBinding.cover);
-            if (model.getActualPrice() != 0) {
-                viewHolder.mBinding.tvAED.setText(String.valueOf(model.getActualPrice()));
-            } else {
-                viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-            }
-
-            if (model.getActualPrice() == model.getDiscountedPrice()) {
-                viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-                viewHolder.mBinding.tvPrice.setText(String.valueOf(model.getActualPrice()));
-            } else {
-                viewHolder.mBinding.tvAED.setVisibility(View.VISIBLE);
-            }
-
-            viewHolder.mBinding.tvPrice.setText(String.valueOf(model.getDiscountedPrice()));
-            viewHolder.mBinding.tvAED.setPaintFlags(viewHolder.mBinding.tvAED.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            // Graphics.applyBlurEffect(activity, viewHolder.mBinding.blurView);
-            // Graphics.applyBlurEffect(activity, viewHolder.mBinding.blurViewTime);
-
-            setVenueInfo(model.getVenueId(), viewHolder.mBinding.venueContainer);
-
-            viewHolder.mBinding.buyNowBtn.setOnClickListener(v -> {
-                Optional<VenueObjectModel> venueObjectModel = searchHomeObjectModel.getVenues().stream().filter(p -> p.getId().equals(model.getVenueId())).findFirst();
-                if (venueObjectModel.isPresent()) {
-                    Intent intent = new Intent(activity, BuyNowActivity.class);
-                    intent.putExtra("dealId", model.getId())
-                            .putExtra("venueDetail", new Gson().toJson(venueObjectModel.get()))
-                            .putExtra("offerModel", new Gson().toJson(model));
-                    startActivity(intent);
-                }
-            });
-
-            viewHolder.mBinding.getRoot().setOnClickListener(v -> {
-               /* Optional<VenueObjectModel> venueObjectModel = homeObjectModel.getVenues().stream().filter(p -> p.getId().equals(model.getVenueId())).findFirst();
-                if (venueObjectModel.isPresent()) {
-                    startActivity(new Intent(requireActivity(), VoucherDetailScreenActivity.class).putExtra("id", model.getId()));
-                }*/
-                startActivity(new Intent(activity, VoucherDetailScreenActivity.class).putExtra("id", model.getId()));
-
-            });
-
-            if (model.getEndDate() != null) {
-                String combinedDateTime = model.getEndDate() + "T" + model.getEndTime() + ":00.000Z";
-                Utils.setTimer(combinedDateTime, viewHolder.mBinding.countTimer);
-                try {
-                    Date givenDate =  Utils.stringToDate(combinedDateTime, AppConstants.DATEFORMAT_LONG_TIME);
-                    Date currentDate = new Date();
-                    if (givenDate.before(currentDate)) {
-                        viewHolder.mBinding.roundBlur.setVisibility(View.INVISIBLE);
-                    } else if (givenDate.after(currentDate)) {
-                        viewHolder.mBinding.roundBlur.setVisibility(View.VISIBLE);
-                    } else {
-                        viewHolder.mBinding.roundBlur.setVisibility(View.INVISIBLE);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private HomeExclusiveDealItemBinding mBinding;
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = HomeExclusiveDealItemBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class TestActivityAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.test_activity_item);
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            params.width = (int) (Graphics.getScreenWidth(activity) * (getItemCount() > 1 ? 0.83 : 0.93));
-            view.setLayoutParams(params);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            ActivityDetailModel model = (ActivityDetailModel) getItem(position);
-
-            viewHolder.mBinding.tvTitle.setText(model.getName());
-            viewHolder.mBinding.textName.setText(model.getProvider().getName());
-            viewHolder.mBinding.txtAddress.setText(model.getProvider().getAddress());
-            Graphics.loadRoundImage(model.getProvider().getLogo(), viewHolder.mBinding.imgLogo);
-            Graphics.loadImage(model.getGalleries().get(0), viewHolder.mBinding.cover);
-            if (model.getAvgRating() != 0) {
-                viewHolder.mBinding.tvRate.setText(String.format("%.1f", model.getAvgRating()));
-            } else {
-                viewHolder.mBinding.linearRate.setVisibility(View.GONE);
-            }
-
-            if (model.getDiscount().equals("0")) {
-                viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-            } else {
-                viewHolder.mBinding.tvAED.setVisibility(View.VISIBLE);
-            }
-            viewHolder.mBinding.tvAED.setPaintFlags(viewHolder.mBinding.tvAED.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-            int discount = Integer.parseInt(model.getDiscount());
-            int amount = model.getPrice();
-            int value = discount * amount / 100;
-            int discountPrice = amount - value;
-
-            if ("0".equals(model.getDiscount())) {
-                viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-                viewHolder.mBinding.tvPrice.setText(String.valueOf(model.getPrice()));
-            }
-            else {
-                if (amount == discountPrice) {
-                    viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-                    viewHolder.mBinding.tvPrice.setText(String.valueOf(model.getPrice()));
-                } else {
-                    viewHolder.mBinding.tvAED.setVisibility(View.VISIBLE);
-                    viewHolder.mBinding.tvAED.setText(String.valueOf(model.getPrice()));
-                    viewHolder.mBinding.tvPrice.setText(String.valueOf(discountPrice));
-
-                }
-            }
-
-
-            viewHolder.itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(activity, ActivityListDetail.class);
-                intent.putExtra("activityId", model.getId()).putExtra("type", "activities");
-                intent.putExtra("name", model.getName());
-                intent.putExtra("image", model.getProvider().getLogo());
-                intent.putExtra("title", model.getProvider().getName());
-                intent.putExtra("address", model.getProvider().getAddress());
-                startActivity(intent);
-            });
-
-            viewHolder.mBinding.buyNowBtn.setOnClickListener(view -> startActivity(new Intent(activity, YourOrderActivity.class).putExtra("activityModel", new Gson().toJson(model))));
-
-        }
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private TestActivityItemBinding mBinding;
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = TestActivityItemBinding.bind(itemView);
+                binding = ItemLayoutEmptyHolderBinding.bind(itemView);
             }
         }
 
     }
-
-    public class OutingListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.outing_list_item);
-            setItemWidth(getItemCount(), view);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            InviteFriendModel model = (InviteFriendModel) getItem(position);
-
-            viewHolder.mBinding.txtCancelled.setVisibility(View.GONE);
-            viewHolder.mBinding.btnCancel.setVisibility(View.GONE);
-            viewHolder.mBinding.layoutPending.setVisibility(View.GONE);
-
-            if (model.getVenue() != null) {
-                viewHolder.mBinding.txtUserName.setText(model.getVenue().getName());
-                viewHolder.mBinding.tvAddress.setText(model.getVenue().getAddress());
-                Graphics.loadImage(model.getVenue().getCover(), viewHolder.mBinding.ivCover);
-                Graphics.loadImageWithFirstLetter(model.getVenue().getLogo(), viewHolder.mBinding.imgUserLogo, model.getVenue().getName());
-            }
-
-            viewHolder.mBinding.tvOutingTitle.setText(model.getTitle());
-            viewHolder.mBinding.txtExtraGuest.setText(String.valueOf(model.getExtraGuest()));
-            viewHolder.mBinding.createDate.setText(String.format("Created date: %s", Utils.convertMainDateFormat(model.getCreatedAt())));
-            viewHolder.mBinding.txtDate.setText(Utils.convertDateFormat(model.getDate(), "yyyy-MM-dd"));
-
-            if (model.getStartTime() != null && model.getEndTime() != null) {
-                viewHolder.mBinding.txtTime.setText(String.format("%s - %s", model.getStartTime(), Utils.convertTimeFormat(model.getEndTime())));
-            } else {
-                viewHolder.mBinding.txtTime.setText("Time not available");
-            }
-
-            if (model.getInvitedUser() != null) {
-                viewHolder.friendListAdapter.updateData(model.getInvitedUser());
-            }
-
-            if (model.isOwnerOfOuting()) {
-                if (model.getUser() != null) {
-                    Graphics.loadImageWithFirstLetter(model.getUser().getImage(), viewHolder.mBinding.imageLogo, model.getUser().getFirstName());
-                }
-                viewHolder.mBinding.txtOutingDescribe.setText("You created");
-                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(activity, R.drawable.stroke_gradiant_line_me));
-                viewHolder.mBinding.txtOutingTitle.setVisibility(View.GONE);
-                viewHolder.mBinding.layoutStatus.setVisibility(View.INVISIBLE);
-                if (model.getStatus().equals("completed") || model.getStatus().equals("cancelled")) {
-                    viewHolder.mBinding.layoutEdit.setVisibility(View.GONE);
-                } else {
-                    viewHolder.mBinding.layoutEdit.setVisibility(View.VISIBLE);
-                }
-            }
-            else {
-                if (model.getUser() != null) {
-                    viewHolder.mBinding.txtOutingTitle.setVisibility(View.VISIBLE);
-                    viewHolder.mBinding.txtOutingTitle.setText(model.getUser().getFirstName());
-                    viewHolder.mBinding.txtOutingDescribe.setVisibility(View.VISIBLE);
-                    viewHolder.mBinding.txtOutingDescribe.setText("invited you to");
-                    Graphics.loadImageWithFirstLetter(model.getUser().getImage(), viewHolder.mBinding.imageLogo, model.getUser().getFirstName());
-                }
-                viewHolder.mBinding.txtStatus.setText(model.getStatus());
-                Thread backgroundThread = new Thread(() -> {
-                    ContactListModel invitedUser = model.getInvitedUser().stream().filter(model1 -> model1.getUserId().equals(SessionManager.shared.getUser().getId())).findFirst().orElse(null);
-                    if (invitedUser != null) {
-                        AppExecutors.get().mainThread().execute(() -> {
-                            if (invitedUser.getInviteStatus().equals("pending")) {
-                                viewHolder.mBinding.layoutStatus.setBackgroundColor(ContextCompat.getColor(activity, R.color.pending_yellow));
-                                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(activity, R.drawable.stroke_gradiant_line_pending));
-                            }
-                            else if (invitedUser.getInviteStatus().equals("in")) {
-                                viewHolder.mBinding.layoutStatus.setBackgroundColor(ContextCompat.getColor(activity, R.color.in_green));
-                                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(activity, R.drawable.stroke_gradiant_line_in));
-                            }
-                            else {
-                                viewHolder.mBinding.layoutStatus.setBackgroundColor(ContextCompat.getColor(activity, R.color.out_red));
-                                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(activity, R.drawable.stroke_gradiant_line_out));
-                            }
-                        });
-                    }
-                });
-                backgroundThread.start();
-
-                viewHolder.mBinding.layoutEdit.setVisibility(View.GONE);
-                viewHolder.mBinding.layoutStatus.setVisibility(View.VISIBLE);
-
-                viewHolder.mBinding.layout2.setOnClickListener(view -> {
-                    if (model.getUser() != null) {
-                        if (SessionManager.shared.getUser().isRingMember() && model.getUser().isPromoter()) {
-                            startActivity(new Intent(activity, PromoterPublicProfileActivity.class)
-                                    .putExtra("isFromOtherUserProfile", true)
-                                    .putExtra("isPromoterProfilePublic", true).putExtra("id", model.getUser().getId()));
-                        } else if (SessionManager.shared.getUser().isPromoter() && model.getUser().isRingMember()) {
-                            startActivity(new Intent(activity, CmPublicProfileActivity.class)
-                                    .putExtra("isFromOtherUserProfile", true)
-                                    .putExtra("promoterUserId", model.getUser().getId()));
-                        } else {
-                            startActivity(new Intent(activity, OtherUserProfileActivity.class).putExtra("friendId", model.getUser().getId()));
-                        }
-                    }
-                });
-            }
-
-            viewHolder.mBinding.btnSeeAll.setOnClickListener(v -> {
-                Utils.preventDoubleClick(v);
-                InviteGuestListBottomSheet inviteGuestListBottomSheet = new InviteGuestListBottomSheet();
-                inviteGuestListBottomSheet.model = model.getInvitedUser();
-                inviteGuestListBottomSheet.type = "outing";
-                inviteGuestListBottomSheet.show(getSupportFragmentManager(), "");
-            });
-
-            viewHolder.mBinding.layoutEdit.setOnClickListener(view -> {
-                Utils.preventDoubleClick( view );
-                InviteFriendBottomSheet inviteFriendDialog = new InviteFriendBottomSheet();
-                inviteFriendDialog.inviteFriendModel = model;
-                inviteFriendDialog.setShareListener(data -> {
-                    AppExecutors.get().mainThread().execute(() -> {
-                        notifyDataSetChanged();
-                    });
-                });
-                inviteFriendDialog.show(getSupportFragmentManager(), "1");
-            });
-
-            viewHolder.mBinding.getRoot().setOnClickListener(view -> startActivity(new Intent(activity, MyInvitationActivity.class).putExtra("id", model.getId()).putExtra("notificationType", "notification")));
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final OutingListItemBinding mBinding;
-            private final FriendListAdapter<ContactListModel> friendListAdapter = new FriendListAdapter<>();
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = OutingListItemBinding.bind(itemView);
-                mBinding.friendRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-                mBinding.friendRecycler.setAdapter(friendListAdapter);
-                mBinding.friendRecycler.setNestedScrollingEnabled(false);
-            }
-        }
-    }
-
-    public static class FriendListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(UiUtils.getViewBy(parent, R.layout.frind_list_item));
-        }
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            ContactListModel model = (ContactListModel) getItem(position);
-            if (model == null) { return; }
-            if (SessionManager.shared.getUser().getId().equals(model.getUserId())) {
-                viewHolder.mBinding.txtUserName.setText("Me");
-            } else {
-                viewHolder.mBinding.txtUserName.setText(model.getFirstName());
-            }
-            Graphics.loadImageWithFirstLetter(model.getImage(), viewHolder.mBinding.imgUserLogo, model.getFirstName());
-            switch (model.getInviteStatus()) {
-                case "pending":
-                    viewHolder.mBinding.iconStatus.setImageResource(R.drawable.icon_pending);
-                    break;
-                case "in":
-                    viewHolder.mBinding.iconStatus.setImageResource(R.drawable.icon_complete);
-                    break;
-                case "out":
-                    viewHolder.mBinding.iconStatus.setImageResource(R.drawable.icon_deleted);
-                    break;
-            }
-
-        }
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private FrindListItemBinding mBinding;
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = FrindListItemBinding.bind(itemView);
-            }
-        }
-    }
-
-
-    // endregion
-    // --------------------------------------
-    // region Search Result Adapter
-    // --------------------------------------
-
 
     // endregion
     // --------------------------------------
@@ -2169,14 +1294,14 @@ public class SearchActivity extends BaseActivity {
                 binding.txtTitle.setText( model.getTitle() );
                 binding.tvDescription.setText( model.getDescription() );
 
-                binding.offerInfoView.setOfferDetail(model, SearchActivity.this, getSupportFragmentManager());
-                binding.offerButtonView.setupButtons(model, SearchActivity.this, getSupportFragmentManager());
+                binding.offerInfoView.setOfferDetail(model, activity, getParentFragmentManager());
+                binding.offerButtonView.setupButtons(model, activity, getParentFragmentManager());
 
                 itemView.setOnClickListener( v -> {
                     SearchHistoryModel.addRecord( model.getId(), "offer", model.getTitle(), model.getDescription(), model.getImage(), model.getVenue().getId(),null,null );
                     OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
                     dialog.offerId = model.getId();
-                    dialog.show(getSupportFragmentManager(), "");
+                    dialog.show(getParentFragmentManager(), "");
                 } );
 
                 if (!model.getPackages().isEmpty()) {
@@ -2203,7 +1328,7 @@ public class SearchActivity extends BaseActivity {
                             case 0:
                                 BucketListBottomSheet dialog = new BucketListBottomSheet();
                                 dialog.offerId = model.getId();
-                                dialog.show( getSupportFragmentManager(), "" );
+                                dialog.show( getParentFragmentManager(), "" );
                                 break;
                             case 1:
                                 reqOfferFollowUnFollow( model.getVenue().getId(), (success, error) -> {
@@ -2611,7 +1736,7 @@ public class SearchActivity extends BaseActivity {
             public HomeAdHolder(@NonNull View itemView) {
                 super(itemView);
                 mBinding = ItemHomeAdViewBinding.bind(itemView);
-                mBinding.adView.setupAppLifeCycleCallback(itemView,SearchActivity.class);
+//                mBinding.adView.setupAppLifeCycleCallback(itemView,SearchActivity.class);
                 releaseVideoPlayerCallBack = data -> {
                   if (data){
                       mBinding.adView.relaseAllplayer();
@@ -2955,7 +2080,7 @@ public class SearchActivity extends BaseActivity {
                 viewHolder.binding.endDate.setText(Utils.convertMainDateFormat(model.getEndTime()));
             }
 
-            viewHolder.binding.offerButtonView.setupButtons(model, SearchActivity.this, getSupportFragmentManager());
+            viewHolder.binding.offerButtonView.setupButtons(model, activity, getParentFragmentManager());
 
             viewHolder.binding.txtOfferTime.setText(model.getOfferTiming());
             viewHolder.binding.btnTimeInfo.setVisibility(model.isShowTimeInfo() ? View.GONE : View.VISIBLE);
@@ -2968,7 +2093,7 @@ public class SearchActivity extends BaseActivity {
                         return;
                     }
                     VenueTimingDialog dialog = new VenueTimingDialog(model.getVenue().getTiming(), activity);
-                    dialog.show(getSupportFragmentManager(), "1");
+                    dialog.show(getParentFragmentManager(), "1");
                 }
             });
 
@@ -2978,7 +2103,7 @@ public class SearchActivity extends BaseActivity {
                 SearchHistoryModel.addRecord( model.getId(), "offer", model.getTitle(), model.getDescription(), model.getImage(), model.getVenue().getId(),null,null );
                 OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
                 dialog.offerId = model.getId();
-                dialog.show(getSupportFragmentManager(), "");
+                dialog.show(getParentFragmentManager(), "");
 
             } );
 
@@ -2995,7 +2120,7 @@ public class SearchActivity extends BaseActivity {
                         case 0:
                             BucketListBottomSheet dialog = new BucketListBottomSheet();
                             dialog.offerId = model.getId();
-                            dialog.show( getSupportFragmentManager(), "" );
+                            dialog.show( getParentFragmentManager(), "" );
                             break;
                         case 1:
                             reqOfferFollowUnFollow( model.getVenue().getId(), (success, error) -> {
@@ -3536,7 +2661,7 @@ public class SearchActivity extends BaseActivity {
                     if (model.getType().equals( "offer" )) {
                         OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
                         dialog.offerId = model.getId();
-                        dialog.show(getSupportFragmentManager(), "");
+                        dialog.show(getParentFragmentManager(), "");
                         //startActivity(new Intent(activity, OfferDetailActivity.class).putExtra("offerId",  model.getId()));
                     } else if (model.getType().equals( "venue" )) {
                         Graphics.openVenueDetail(activity,  model.getId() );

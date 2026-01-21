@@ -54,7 +54,6 @@ import com.whosin.app.ui.activites.Profile.UpdateProfileActivity;
 import com.whosin.app.ui.activites.Promoter.PromoterActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.home.event.MutualFriendFragment;
-import com.whosin.app.ui.fragment.Bucket.BucketListFragment;
 import com.whosin.app.ui.fragment.CmProfile.CmTmpProfileFragment;
 import com.whosin.app.ui.fragment.CmProfile.MyActionFragment;
 import com.whosin.app.ui.fragment.Profile.FeedFragment;
@@ -113,7 +112,6 @@ public class ProfileFragment extends BaseActivity {
             tabList.add(new RatingModel("My Actions"));
 
             fragmentList.add(new FeedFragment());
-            fragmentList.add(new BucketListFragment());
         }
 
         binding.viewPager.setAdapter(new ViewPagerAdapter(this, fragmentList));

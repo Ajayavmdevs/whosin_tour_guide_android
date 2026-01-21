@@ -50,13 +50,10 @@ import com.whosin.app.service.manager.PromotionalBannerManager;
 import com.whosin.app.service.models.BannerModel;
 import com.whosin.app.service.models.PromotionalBannerModels.PromotionalListModel;
 import com.whosin.app.service.models.PromotionalBannerModels.PromotionalMainModel;
-import com.whosin.app.ui.activites.explore.ExploreTicketActivity;
-import com.whosin.app.ui.activites.home.MainHomeActivity;
 import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
 import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
 import com.whosin.app.ui.activites.offers.OfferDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
-import com.whosin.app.ui.activites.search.SearchActivity;
 import com.whosin.app.ui.activites.venue.VenueActivity;
 
 import java.util.ArrayList;

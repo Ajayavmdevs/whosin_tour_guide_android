@@ -207,12 +207,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.yacht.YachtClubDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activites.yacht.YachtOfferDetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activites.auth.TwoFactorWaitingActivity"
             android:exported="false"
             android:launchMode="singleInstance" />
@@ -341,10 +335,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.search.SearchActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activites.home.Chat.ChatWallpaperActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
@@ -402,10 +392,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activites.venue.ui.SubscriptionPlanActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.home.HomeMenuActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

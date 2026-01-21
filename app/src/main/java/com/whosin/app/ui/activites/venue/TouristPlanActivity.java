@@ -3,7 +3,6 @@ package com.whosin.app.ui.activites.venue;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,19 +20,12 @@ import com.whosin.app.databinding.ItemSubscriptionDeatailRecyclerBinding;
 import com.whosin.app.service.manager.AppSettingManager;
 import com.whosin.app.service.models.FeatureModel;
 import com.whosin.app.service.models.MemberShipModel;
-import com.whosin.app.service.models.MemberShipPackageModel;
 import com.whosin.app.service.models.SubscriptionModel;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.activites.home.HomeMenuActivity;
-import com.whosin.app.ui.activites.venue.ui.PaymentActivity;
-import com.whosin.app.ui.fragment.home.SubscriptionPlanBottomSheet;
+import com.whosin.app.ui.activites.home.HomeMenuFragment;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 public class TouristPlanActivity extends BaseActivity {
 
@@ -78,7 +70,7 @@ public class TouristPlanActivity extends BaseActivity {
                 onBackPressed();
             }
             else {
-                startActivity(new Intent(activity, HomeMenuActivity.class));
+                startActivity(new Intent(activity, HomeMenuFragment.class));
                 activity.finish();
             }
         });

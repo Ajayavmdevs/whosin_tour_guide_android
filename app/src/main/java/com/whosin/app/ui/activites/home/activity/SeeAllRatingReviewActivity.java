@@ -78,7 +78,6 @@ public class SeeAllRatingReviewActivity extends BaseActivity {
     private CurrentUserRatingModel userRatingModel;
     String rateDate = "";
     private float start = 0;
-    private boolean isYacht;
     private boolean isMyProfile = false;
     private boolean ignoreNextRatingChange = false;
     private final Handler ratingHandler = new Handler(Looper.getMainLooper());
@@ -111,32 +110,6 @@ public class SeeAllRatingReviewActivity extends BaseActivity {
 
         String model = Utils.notNullString(getIntent().getStringExtra("currentUserRating"));
         userRatingModel = new Gson().fromJson(model, CurrentUserRatingModel.class);
-
-        isYacht = getIntent().getBooleanExtra("isYacht", false);
-
-        if (isYacht) {
-
-            Drawable yachtDrawable = getResources().getDrawable(R.drawable.yacht_progress_background);
-            int yachtColor = getResources().getColor(R.color.yacht_color);
-            ColorStateList yachtTint = ColorStateList.valueOf(yachtColor);
-
-            ProgressBar[] progressBars = {binding.progress, binding.progress1, binding.progress2, binding.progress3, binding.progress4};
-            for (ProgressBar bar : progressBars) {
-                bar.setProgressDrawable(yachtDrawable);
-            }
-
-            // Set tint for rating bars
-            RatingBar[] ratingBars = {
-                    binding.ruleRatingBar, binding.ruleRatingBar2,
-                    binding.ruleRatingBar3, binding.ruleRatingBar4,
-                    binding.ruleRatingBar5
-            };
-            for (RatingBar bar : ratingBars) {
-                bar.setProgressBackgroundTintList(yachtTint);
-            }
-
-            binding.rating.setProgressTintList(yachtTint);
-        }
 
         binding.ratingReviewRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         binding.ratingReviewRecycler.setAdapter(reviewAdapter);
@@ -550,11 +523,6 @@ public class SeeAllRatingReviewActivity extends BaseActivity {
                 throw new RuntimeException(e);
             }
             viewHolder.mBinding.txtDate.setText(rateDate);
-
-            if (isYacht) {
-                viewHolder.mBinding.replyLinear.setVisibility(View.GONE);
-                viewHolder.mBinding.rating.setProgressBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yacht_color)));
-            }
 
             if (isMyProfile) {
                 viewHolder.mBinding.replyLinear.setVisibility(View.VISIBLE);

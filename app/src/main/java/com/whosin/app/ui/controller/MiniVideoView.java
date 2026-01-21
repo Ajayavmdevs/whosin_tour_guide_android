@@ -51,7 +51,6 @@ import com.whosin.app.ui.activites.offers.VoucherDetailScreenActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaVideoFullScreenPreviewActivity;
 import com.whosin.app.ui.activites.venue.VenueActivity;
-import com.whosin.app.ui.activites.yacht.YachtClubDetailActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -186,9 +185,6 @@ public class MiniVideoView extends ConstraintLayout {
                         break;
                     case "event":
                         activity.startActivity(new Intent(activity, EventDetailsActivity.class).putExtra("eventId", model.getTypeId()));
-                        break;
-                    case "yacht":
-                        activity.startActivity(new Intent(activity, YachtClubDetailActivity.class).putExtra("yachtClubId", model.getTypeId()));
                         break;
                     case "activity":
                         activity.startActivity(new Intent(activity, ActivityListDetail.class).putExtra("activityId", model.getTypeId()));

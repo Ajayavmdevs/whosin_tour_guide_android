@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bottom_bg_color"
-    tools:context=".ui.activites.search.SearchActivity">
+    tools:context=".ui.activites.search.SearchFragment">
 
     <LinearLayout
         android:id="@+id/searchLayout"
@@ -30,6 +30,7 @@
                 android:layout_height="@dimen/_30sdp"
                 android:padding="@dimen/_7sdp"
                 android:src="@drawable/icon_left_back_arrow"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

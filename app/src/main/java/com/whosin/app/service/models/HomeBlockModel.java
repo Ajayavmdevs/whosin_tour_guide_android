@@ -186,57 +186,8 @@ public class HomeBlockModel implements DiffIdentifier, ModelProtocol {
         switch (getType()) {
             case "video":
                 return HomeBlockType.VIDEO;
-            case "custom-offer":
-                return HomeBlockType.CUSTOM_OFFER;
-            case "custom-venue":
-                return HomeBlockType.CUSTOM_VENUE;
-            case "custom-components":
-                return HomeBlockType.CUSTOM_COMPOMENTS;
-            case "offer":
-                return HomeBlockType.OFFER_LARGE;
-            case "activity":
-                return HomeBlockType.ACTIVITIES;
-            case "event":
-                return HomeBlockType.EVENTS;
-            case "deals":
-            case "deal":
-                return HomeBlockType.DEALS;
             case "stories":
                 return HomeBlockType.STORIES;
-            case "categories":
-                return HomeBlockType.CATEGORIES;
-            case "my-outing":
-                return HomeBlockType.MY_OUTING;
-            case "suggested-users":
-                return HomeBlockType.SUGGESTED_USERS;
-            case "suggested-venues":
-                return HomeBlockType.VENUE_SUGGESTION;
-            case "complete-profile":
-                return HomeBlockType.COMPLETE_PROFILE;
-            case "membership-package":
-                return HomeBlockType.MEMBERSHIP_PACKAGE;
-            case "yacht":
-                return HomeBlockType.YACTCH;
-            case "yacht-offer":
-                return HomeBlockType.YACTCH_OFFERS;
-            case "apply-promoter":
-                return HomeBlockType.APPLY_PROMOTER;
-            case "apply-ring":
-                return HomeBlockType.APPLY_RING;
-            case "venue":
-                if (getSize() != null) {
-                    if (getSize().getType().equalsIgnoreCase("large")) {
-                        return HomeBlockType.VENUE_LARGE;
-                    } else if (getSize().getType().equalsIgnoreCase("small")) {
-                        return HomeBlockType.VENUE_SMALL;
-                    } else {
-                        return HomeBlockType.VENUE_LARGE;
-                    }
-                } else {
-                    return HomeBlockType.VENUE_LARGE;
-                }
-            case "promoter-events":
-                return HomeBlockType.PROMOTER_EVENT;
             case "ticket":
                 return HomeBlockType.TICKET;
             case "ticket-category":
@@ -257,8 +208,6 @@ public class HomeBlockModel implements DiffIdentifier, ModelProtocol {
                 return HomeBlockType.TICKET_FAVORITE;
             case "juniper-hotel":
                 return HomeBlockType.JUNIPER_HOTEL;
-            case AppConstants.ADTYPE:
-                return HomeBlockType.HOME_AD;
             default:
                 return HomeBlockType.NONE;
         }

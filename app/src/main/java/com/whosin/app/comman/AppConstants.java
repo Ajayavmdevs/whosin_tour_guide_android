@@ -76,42 +76,18 @@ public class AppConstants {
 
     public enum HomeBlockType {
         NONE( 0 ),
-        VENUE_LARGE( 1 ),
-        VENUE_SMALL( 2 ),
-        OFFER_SMALL( 3 ),
-        OFFER_LARGE( 4 ),
-        VIDEO( 5 ),
-        CUSTOM_VENUE( 6 ),
-        CUSTOM_OFFER( 7 ),
-        CUSTOM_COMPOMENTS( 8 ),
-        DEALS( 9 ),
-        STORIES( 10 ),
-        CATEGORIES( 11 ),
-
-        ACTIVITIES( 12 ),
-
-        EVENTS( 13 ),
-        MY_OUTING( 14 ),
-        SUGGESTED_USERS( 15 ),
-        VENUE_SUGGESTION( 16 ),
-        COMPLETE_PROFILE( 17 ),
-        MEMBERSHIP_PACKAGE ( 18),
-        YACTCH ( 19),
-        YACTCH_OFFERS (20),
-        APPLY_PROMOTER(21),
-        APPLY_RING(22),
-        PROMOTER_EVENT(23),
-        TICKET(24),
-        TICKET_CATEGORY(25),
-        CITY(26),
-        BIG_CATEGORY(27),
-        SMALL_CATEGORY(28),
-        BANNER(29),
-        CUSTOM_COMPONENT(30),
-        TICKET_FAVORITE (31),
-        HOME_AD(32),
-        JUNIPER_HOTEL(33),
-        CONTACT_US(34);
+        VIDEO( 1 ),
+        STORIES( 2 ),
+        TICKET(3),
+        TICKET_CATEGORY(4),
+        CITY(5),
+        BIG_CATEGORY(6),
+        SMALL_CATEGORY(7),
+        BANNER(8),
+        CUSTOM_COMPONENT(9),
+        TICKET_FAVORITE (10),
+        JUNIPER_HOTEL(11),
+        CONTACT_US(12);
 
 
         private final int value;
@@ -446,7 +422,7 @@ public class AppConstants {
 
         Home( 0 ),
 
-        Chat( 1 ),
+        Search( 1 ),
 
         Profile(2),
 

@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -28,7 +27,6 @@ import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.ActivityBucketListDetailBinding;
 import com.whosin.app.databinding.ItemImageSlideRecyclerBinding;
-import com.whosin.app.databinding.ItemSelectFriendsBinding;
 import com.whosin.app.databinding.ItemSelectFriendsUserBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.SessionManager;
@@ -37,25 +35,16 @@ import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.CreateBucketListModel;
 import com.whosin.app.service.models.ImageUploadModel;
-import com.whosin.app.service.models.RatingListModel;
 import com.whosin.app.service.models.RatingModel;
-import com.whosin.app.service.models.UserDetailModel;
-import com.whosin.app.service.models.VenueObjectModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.home.Chat.ChatMessageActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 import com.whosin.app.ui.activites.venue.VenueGalleryActivity;
-import com.whosin.app.ui.fragment.Bucket.BucketActivitiesFragment;
-import com.whosin.app.ui.fragment.Bucket.BucketOfferFragment;
-import com.whosin.app.ui.fragment.Bucket.EventFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import io.realm.RealmList;
 
 public class BucketListDetailActivity extends BaseActivity {
 
@@ -107,24 +96,6 @@ public class BucketListDetailActivity extends BaseActivity {
             getImagePicker();
         } );
 
-        binding.tvEdit.setOnClickListener( v -> {
-            Utils.preventDoubleClick( v );
-
-            CreateBucketListBottomDialog dialog = new CreateBucketListBottomDialog();
-            dialog.bucketModel = bucketListModel;
-            dialog.isEdit = true;
-            dialog.selectedUsers = bucketListModel.getSharedWith();
-            dialog.callback = data -> {
-                if (data) {
-                    finish();
-                    startActivity( getIntent() );
-//                    overridePendingTransition(0, 0);
-                }
-            };
-            dialog.show( getSupportFragmentManager(), "1" );
-
-        } );
-
         binding.chatBtn.setOnClickListener( view -> {
             ChatModel chatModel = new ChatModel( bucketListModel );
             Intent intent = new Intent( activity, ChatMessageActivity.class );
@@ -168,13 +139,6 @@ public class BucketListDetailActivity extends BaseActivity {
     // --------------------------------------
 
     private void setupViewPager(CreateBucketListModel model) {
-        if (binding.tabLayout.getSelectedTabPosition() == 0) {
-            Graphics.replaceFragment( this, binding.contanier.getId(), new BucketOfferFragment( model ) );
-        } else if (binding.tabLayout.getSelectedTabPosition() == 1) {
-            Graphics.replaceFragment( this, binding.contanier.getId(), new BucketActivitiesFragment( model ) );
-        } else if (binding.tabLayout.getSelectedTabPosition() == 2) {
-            Graphics.replaceFragment( this, binding.contanier.getId(), new EventFragment( model ) );
-        }
     }
 
     private void setupTabView() {

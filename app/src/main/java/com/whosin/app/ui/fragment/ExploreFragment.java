@@ -32,7 +32,6 @@ import com.whosin.app.databinding.IteamSearchEventBinding;
 import com.whosin.app.databinding.ItemExploreOfferBinding;
 import com.whosin.app.databinding.ItemExploreVenueSuggestionRecyclerBinding;
 import com.whosin.app.databinding.ItemHomeSuggestedUserRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeVenueSuggestionRecyclerBinding;
 import com.whosin.app.databinding.ItemSearchActivityBinding;
 import com.whosin.app.databinding.SelectDaysItemBinding;
 import com.whosin.app.service.DataService;

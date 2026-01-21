@@ -72,56 +72,6 @@
 
                 </eightbitlab.com.blurview.BlurView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
-                        android:id="@+id/bannerContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_210sdp"
-                        android:layout_marginHorizontal="@dimen/_15sdp"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        app:corner_radius="@dimen/_15sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-
-                        <org.imaginativeworld.whynotimagecarousel.ImageCarousel
-                            android:id="@+id/imageCarousel"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:autoPlay="true"
-                            app:autoPlayDelay="3000"
-                            app:imageScaleType="center"
-                            app:indicatorMargin="0dp"
-                            app:showCaption="false"
-                            app:showIndicator="true"
-                            app:indicatorColor="@color/white_40"
-                            app:showNavigationButtons="false" />
-
-
-                    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
-
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/dealRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_6sdp"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/exclusive_item_recycler" />
-
-
-                </LinearLayout>
-
             </LinearLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

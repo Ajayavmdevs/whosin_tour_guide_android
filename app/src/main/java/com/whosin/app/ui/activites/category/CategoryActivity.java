@@ -40,7 +40,6 @@ import com.whosin.app.comman.interfaces.BooleanResult;
 import com.whosin.app.comman.ui.PreCachingLayoutManager;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.ActivityCategoryBinding;
-import com.whosin.app.databinding.ExclusiveItemRecyclerBinding;
 import com.whosin.app.databinding.NewItemDesignExclusiveBinding;
 import com.whosin.app.databinding.SwipeTagItemBinding;
 import com.whosin.app.service.DataService;
@@ -108,8 +107,6 @@ public class CategoryActivity extends BaseActivity {
 
         binding.offerListRecycler.setAdapter(offerAdapter);
 
-        binding.dealRecyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        binding.dealRecyclerView.setAdapter(dealAdapter);
 
         if (Preferences.shared.isExist("category_" + categoryId)) {
             Thread backgroundThread = new Thread(() -> {
@@ -118,8 +115,6 @@ public class CategoryActivity extends BaseActivity {
                     categoriesModel = new Gson().fromJson(categoryJson, CategoriesModel.class);
                     AppExecutors.get().mainThread().execute(() -> {
                         setCategoriesModel();
-                        setBanner(categoriesModel.getBanners());
-                        binding.dealRecyclerView.setVisibility(categoriesModel.getDeals().isEmpty() ? View.GONE : View.VISIBLE);
                         dealAdapter.updateData(categoriesModel.getDeals());
                     });
                 }
@@ -245,64 +240,6 @@ public class CategoryActivity extends BaseActivity {
         binding.emptyPlaceHolderView.setEmptyPlaceTxtTitle(setValue("siesta_message",categoriesModel.getTitle()));
     }
 
-    private void setBanner(List<BannerModel> banners) {
-        if (!banners.isEmpty()){
-            binding.bannerContainer.setVisibility(View.VISIBLE);
-            List<CarouselItem> carouselItems = new ArrayList<>();
-            for (BannerModel item : banners) {
-                carouselItems.add( new CarouselItem( item.getImage(), item.getTitle() ) );
-            }
-
-            binding.imageCarousel.registerLifecycle( getLifecycle() );
-            binding.imageCarousel.setData( carouselItems );
-
-            binding.imageCarousel.setCarouselListener( new CarouselListener() {
-                @Nullable
-                @Override
-                public ViewBinding onCreateViewHolder(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-                    return null;
-                }
-
-                @Override
-                public void onBindViewHolder(@NonNull ViewBinding viewBinding, @NonNull CarouselItem carouselItem, int i) {
-
-                }
-
-                @Override
-                public void onClick(int i, @NonNull CarouselItem carouselItem) {
-                    BannerModel model = banners.get( i );
-                   if (model.getType().equals("link")){
-                       if (!model.getLink().isEmpty() && Utils.isValidUrl(model.getLink())){
-                           openLinkInBrowser(model.getLink());
-                       }
-                   } else if (model.getType().equals("venue")) {
-                       if (model.getVenueId() != null && !model.getVenueId().isEmpty()){
-                           Graphics.openVenueDetail(activity,model.getVenueId());
-                       }
-                   } else if (model.getType().equals("offer")) {
-                       if (model.getOfferId() != null && !model.getOfferId().isEmpty()){
-                           OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                           dialog.offerId = model.getOfferId();
-                           dialog.show(getSupportFragmentManager(), "");
-                          // Utils.requestvenueOfferDetail(activity,model.getOfferId());
-                       }
-                   }else if (model.getType().equals("ticket")) {
-                       if (!TextUtils.isEmpty(model.getTicketId())){
-                           activity.startActivity(new Intent(activity, RaynaTicketDetailActivity.class).putExtra("ticketId", model.getTicketId()));
-                       }
-                   }
-                }
-
-                @Override
-                public void onLongClick(int i, @NonNull CarouselItem carouselItem) {
-
-                }
-            } );
-        }else {
-          binding.bannerContainer.setVisibility(View.GONE);
-        }
-    }
-
     private void openLinkInBrowser(String url) {
         if (!url.startsWith("http://") && !url.startsWith("https://")) {
             url = "http://" + url;
@@ -331,14 +268,6 @@ public class CategoryActivity extends BaseActivity {
                     categoriesModel = model.getData();
                     Preferences.shared.setString("category_" + categoryId, new Gson().toJson(categoriesModel));
                     setCategoriesModel();
-                    setBanner(model.getData().getBanners());
-                    if (model.getData().getDeals().isEmpty()) {
-                        binding.dealRecyclerView.setVisibility(View.GONE);
-                    }
-                    else {
-                        binding.dealRecyclerView.setVisibility(View.VISIBLE);
-                        dealAdapter.updateData(model.getData().getDeals());
-                    }
                 }
             }
         });

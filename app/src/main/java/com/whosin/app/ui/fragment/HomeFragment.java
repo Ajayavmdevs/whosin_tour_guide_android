@@ -6,11 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +18,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 import com.google.gson.Gson;
 import com.whosin.app.R;
 import com.whosin.app.comman.AppConstants;
@@ -41,98 +36,47 @@ import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.ui.ContactUsBlockManager;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.FragmentHomeBinding;
-import com.whosin.app.databinding.FrindListItemBinding;
-import com.whosin.app.databinding.HomeDealNewChangesBinding;
-import com.whosin.app.databinding.ItemApplyNowDesignBinding;
 import com.whosin.app.databinding.ItemAsyncVideoComponentBinding;
-import com.whosin.app.databinding.ItemCategoriesBinding;
-import com.whosin.app.databinding.ItemCategoriesContainerCompenetentBinding;
-import com.whosin.app.databinding.ItemCmHomeEventBinding;
-import com.whosin.app.databinding.ItemCompeleteProfileBannerRecyclerBinding;
 import com.whosin.app.databinding.ItemContactUsBlockBinding;
-import com.whosin.app.databinding.ItemCustomComponentBinding;
-import com.whosin.app.databinding.ItemCustomComponentRecyclerBinding;
-import com.whosin.app.databinding.ItemCustomOfferContainerComponentBinding;
 import com.whosin.app.databinding.ItemHomeAdViewBinding;
-import com.whosin.app.databinding.ItemHomeEventRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeExclusiveDealRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeOutingRecyclerBinding;
 import com.whosin.app.databinding.ItemHomeStoryRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeSuggestedUserRecyclerBinding;
-import com.whosin.app.databinding.ItemHomeTestActivityBlockBinding;
-import com.whosin.app.databinding.ItemHomeVenueSuggestionRecyclerBinding;
-import com.whosin.app.databinding.ItemLargeContainerCompententBinding;
-import com.whosin.app.databinding.ItemLargeOfferBlockBinding;
-import com.whosin.app.databinding.ItemLargeVenueComoponentRecyclerBinding;
+import com.whosin.app.databinding.ItemLayoutEmptyHolderBinding;
 import com.whosin.app.databinding.ItemNewCategoryShapeBinding;
 import com.whosin.app.databinding.ItemNewExploreBigCategoryDesignBinding;
 import com.whosin.app.databinding.ItemNewExploreCitiesRecycleBinding;
 import com.whosin.app.databinding.ItemNewExploreCityBinding;
 import com.whosin.app.databinding.ItemNewExploreCustomComponentRecycleBinding;
-import com.whosin.app.databinding.ItemRaynaCategoriesBinding;
-import com.whosin.app.databinding.ItemSpecialVenueLayoutBinding;
 import com.whosin.app.databinding.ItemStoriesContainerBinding;
-import com.whosin.app.databinding.ItemSubscriptionBannerRecyclerBinding;
 import com.whosin.app.databinding.ItemTicketRecyclerBinding;
-import com.whosin.app.databinding.ItemVenueRecyclerBinding;
-import com.whosin.app.databinding.ItemYachtsBlockRecyclerBinding;
-import com.whosin.app.databinding.OutingListItemBinding;
-import com.whosin.app.databinding.TestActivityItemBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.AppSettingManager;
-import com.whosin.app.service.manager.ComplementaryProfileManager;
 import com.whosin.app.service.manager.GetNotificationManager;
 import com.whosin.app.service.manager.RaynaTicketManager;
 import com.whosin.app.service.manager.SessionManager;
-import com.whosin.app.service.models.ActivityDetailModel;
 import com.whosin.app.service.models.BannerModel;
 import com.whosin.app.service.models.CategoriesModel;
 import com.whosin.app.service.models.ComplimentaryProfileModel;
-import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContactUsBlockModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.CustomComponentModel;
-import com.whosin.app.service.models.ExclusiveDealModel;
 import com.whosin.app.service.models.HomeBlockModel;
 import com.whosin.app.service.models.HomeObjectModel;
-import com.whosin.app.service.models.InviteFriendModel;
-import com.whosin.app.service.models.MemberShipModel;
 import com.whosin.app.service.models.MessageEvent;
-import com.whosin.app.service.models.PromoterEventModel;
 import com.whosin.app.service.models.SizeModel;
 import com.whosin.app.service.models.StoryObjectModel;
-import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.VenueObjectModel;
-import com.whosin.app.service.models.YachtDetailModel;
 import com.whosin.app.service.models.myCartModels.MyCartItemsModel;
 import com.whosin.app.service.models.myCartModels.MyCartMainModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.Notification.NotificaionActivity;
-import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
-import com.whosin.app.ui.activites.Profile.UpdateProfileActivity;
-import com.whosin.app.ui.activites.Promoter.PromoterActivity;
 import com.whosin.app.ui.activites.Story.StoryViewActivity;
-import com.whosin.app.ui.activites.bucket.MyInvitationActivity;
-import com.whosin.app.ui.activites.bucket.OutingListActivity;
 import com.whosin.app.ui.activites.cartManagement.TicketCartActivity;
-import com.whosin.app.ui.activites.category.CategoryActivity;
 import com.whosin.app.ui.activites.explore.ExploreDetailActivity;
-import com.whosin.app.ui.activites.home.HomeMenuActivity;
-import com.whosin.app.ui.activites.home.SeeAllDetalisActivity;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.activity.YourOrderActivity;
-import com.whosin.app.ui.activites.home.event.InviteGuestListBottomSheet;
-import com.whosin.app.ui.activites.offers.VoucherDetailScreenActivity;
+import com.whosin.app.ui.activites.home.HomeMenuFragment;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketListActivity;
-import com.whosin.app.ui.activites.search.SearchActivity;
-import com.whosin.app.ui.activites.venue.SmallVenueComponentSeeAllActivity;
-import com.whosin.app.ui.activites.venue.ui.BuyNowActivity;
-import com.whosin.app.ui.adapter.ComplementaryEventsListAdapter;
+import com.whosin.app.ui.activites.search.SearchFragment;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
-import com.whosin.app.ui.fragment.home.InviteFriendBottomSheet;
-import com.whosin.app.ui.fragment.home.SubscriptionPlanBottomSheet;
 import com.whosin.app.ui.fragment.home.VideoPreCaching;
 
 import org.greenrobot.eventbus.EventBus;
@@ -141,7 +85,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -189,7 +132,7 @@ public class HomeFragment extends BaseFragment {
             reqHomeBlocks(false);
         });
 
-        binding.navbar.getSettingBtn().setOnClickListener(view1 -> startActivity(new Intent(requireActivity(), HomeMenuActivity.class)));
+        binding.navbar.getSettingBtn().setOnClickListener(view1 -> startActivity(new Intent(requireActivity(), HomeMenuFragment.class)));
 
         binding.navbar.getLinearBtn().setOnClickListener(v -> {
             startActivity(new Intent(requireActivity(), TicketCartActivity.class));
@@ -197,7 +140,7 @@ public class HomeFragment extends BaseFragment {
 
         binding.navbar.getLeftBtn().setOnClickListener(view1 -> startActivity(new Intent(requireActivity(), NotificaionActivity.class)));
 
-        binding.navbar.getSearchBtn().setOnClickListener(view -> startActivity(new Intent(requireActivity(), SearchActivity.class)));
+        binding.navbar.getSearchBtn().setOnClickListener(view -> startActivity(new Intent(requireActivity(), SearchFragment.class)));
 
         RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
             @Override
@@ -544,7 +487,6 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-
     private void setupRecycleHorizontalManager(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
         int spacing = getResources().getDimensionPixelSize(com.intuit.ssp.R.dimen._10ssp);
@@ -552,12 +494,6 @@ public class HomeFragment extends BaseFragment {
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         recyclerView.offsetChildrenHorizontal(1);
-    }
-
-    private void setItemWidth(int itemCount, View view) {
-        ViewGroup.LayoutParams params = view.getLayoutParams();
-        params.width = (int) (screenWidth * (itemCount > 1 ? 0.89 : 0.93));
-        view.setLayoutParams(params);
     }
 
     private void hideAndShowTitle(HomeBlockModel model, TextView textView, String title) {
@@ -584,49 +520,8 @@ public class HomeFragment extends BaseFragment {
             switch (HomeBlockType.valueOf(viewType)) {
                 case VIDEO:
                     return new AsyncVideoViewHolder(UiUtils.getViewBy(parent, R.layout.item_async_video_component));
-                case OFFER_SMALL:
-                case OFFER_LARGE:
-                    return new LargeOfferBlockHolder(UiUtils.getViewBy(parent, R.layout.item_large_offer_block));
-                case VENUE_SMALL:
-                    return new SmallVenueBlockHolder(UiUtils.getViewBy(parent, R.layout.item_special_venue_layout));
-                case CUSTOM_OFFER:
-                    return new CustomOfferHolder(UiUtils.getViewBy(parent, R.layout.item_custom_offer_container_component));
-                case CUSTOM_VENUE:
-                    return new LargeContainerHolder(UiUtils.getViewBy(parent, R.layout.item_large_container_compentent));
-                case CUSTOM_COMPOMENTS:
-                    return new CustomComponentBlockHolder(UiUtils.getViewBy(parent, R.layout.item_custom_component_recycler));
-                case DEALS:
-                    return new ExclusiveDealBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_exclusive_deal_recycler));
-                case VENUE_LARGE:
-                    return new LargeVenueBlockHolder(UiUtils.getViewBy(parent, R.layout.item_large_venue_comoponent_recycler));
-                case CATEGORIES:
-                    return new CategoriesBlockHolder(UiUtils.getViewBy(parent, R.layout.item_categories_container_compenetent));
                 case STORIES:
                     return new StoriesContainerHolder(UiUtils.getViewBy(parent, R.layout.item_stories_container));
-                case ACTIVITIES:
-                    return new TestActivityBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_test_activity_block));
-                case EVENTS:
-                    return new EventBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_event_recycler));
-                case MY_OUTING:
-                    return new MyOutingBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_outing_recycler));
-                case SUGGESTED_USERS:
-                    return new SuggestedUserBlockHolder(UiUtils.getViewBy(parent, R.layout.item_home_suggested_user_recycler));
-                case VENUE_SUGGESTION:
-                    return new SuggestedVenueViewHolder(UiUtils.getViewBy(parent, R.layout.item_home_venue_suggestion_recycler));
-                case COMPLETE_PROFILE:
-                    return new CompleteProfileBannerViewHolder(UiUtils.getViewBy(parent, R.layout.item_compelete_profile_banner_recycler));
-                case MEMBERSHIP_PACKAGE:
-                    return new SubscriptionBannerViewHolder(UiUtils.getViewBy(parent, R.layout.item_subscription_banner_recycler));
-                case YACTCH:
-                    return new YachtsBlockHolder(UiUtils.getViewBy(parent, R.layout.item_yachts_block_recycler));
-                case YACTCH_OFFERS:
-                    return new YachtsOfferBlockHolder(UiUtils.getViewBy(parent, R.layout.item_yachts_block_recycler));
-                case APPLY_PROMOTER:
-                    return new ApplyPromoterHolder(UiUtils.getViewBy(parent, R.layout.item_apply_now_design));
-                case APPLY_RING:
-                    return new ApplyRingHolder(UiUtils.getViewBy(parent, R.layout.item_apply_now_design));
-                case PROMOTER_EVENT:
-                    return new PromoterEventHolder(UiUtils.getViewBy(parent, R.layout.item_cm_home_event));
                 case TICKET:
                 case JUNIPER_HOTEL:
                     return new TicketHolder(UiUtils.getViewBy(parent, R.layout.item_ticket_recycler));
@@ -642,15 +537,13 @@ public class HomeFragment extends BaseFragment {
                     return new SmallCategoriesHolder(UiUtils.getViewBy(parent, R.layout.item_new_explore_cities_recycle));
                 case BANNER:
                     return new BannersHolder(UiUtils.getViewBy(parent, R.layout.item_new_explore_cities_recycle));
-                case HOME_AD:
-                    return new HomeAdHolder(UiUtils.getViewBy(parent, R.layout.item_home_ad_view));
                 case CUSTOM_COMPONENT:
                     return new CusTomAsyncVideoViewHolder(UiUtils.getViewBy(parent, R.layout.item_new_explore_custom_component_recycle));
                 case CONTACT_US:
                     return new ContactUsHolder(UiUtils.getViewBy(parent, R.layout.item_contact_us_block));
 
             }
-            return new LargeVenueBlockHolder(UiUtils.getViewBy(parent, R.layout.item_large_venue_comoponent_recycler));
+            return new EmptyHolder(UiUtils.getViewBy(parent, R.layout.item_layout_empty_holder));
         }
 
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
@@ -659,124 +552,21 @@ public class HomeFragment extends BaseFragment {
                 AsyncVideoViewHolder viewHolder = (AsyncVideoViewHolder) holder;
                 viewHolder.binding.videoControl.title = model.getTitle();
                 viewHolder.binding.videoControl.setupData(model.getVideos(), holder.itemView, getActivity());
-            }else if (model.getBlockType() == HomeBlockType.HOME_AD) {
-                HomeAdHolder viewHolder = (HomeAdHolder) holder;
-                viewHolder.setupData();
-            } else if (model.getBlockType() == HomeBlockType.VENUE_SMALL) {
-                SmallVenueBlockHolder venueViewHolder = (SmallVenueBlockHolder) holder;
-                venueViewHolder.setupData(model.venueList);
-                venueViewHolder.mBinding.txtTitle.setText(model.getTitle());
-                venueViewHolder.mBinding.seeAll.setOnClickListener(view -> {
-                    List<VenueObjectModel> list = model.venueList;
-                    startActivity(new Intent(requireActivity(), SmallVenueComponentSeeAllActivity.class).putExtra("venueModel", new Gson().toJson(list)).putExtra("title", model.getTitle()));
-                });
-            } else if (model.getBlockType() == HomeBlockType.VENUE_LARGE) {
-                LargeVenueBlockHolder viewHolder = (LargeVenueBlockHolder) holder;
-                viewHolder.setupData(model.venueList);
-                viewHolder.mBinding.txtTitle.setText(model.getTitle());
-                viewHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == HomeBlockType.OFFER_LARGE || model.getBlockType() == HomeBlockType.OFFER_SMALL) {
-                LargeOfferBlockHolder viewHolder = (LargeOfferBlockHolder) holder;
-                viewHolder.mBinding.txtTitle.setText(model.getTitle());
-                viewHolder.mBinding.txtSubTitle.setText(model.getDescription());
-                viewHolder.mBinding.offerListView.activity = requireActivity();
-                viewHolder.mBinding.offerListView.setupData(model.offerList, requireActivity(), getChildFragmentManager());
-            } else if (model.getBlockType() == HomeBlockType.CUSTOM_VENUE) {
-                LargeContainerHolder viewHolder = (LargeContainerHolder) holder;
-                model.getCustomVenues().removeIf(p -> SessionManager.shared.geHomeBlockData().getVenues().stream().noneMatch(o -> o.getId().equals(p.getVenueId())));
-                viewHolder.mBinding.customVenueView.setupData(model.getCustomVenues(), getActivity(), getChildFragmentManager());
-            } else if (model.getBlockType() == HomeBlockType.CUSTOM_OFFER) {
-                CustomOfferHolder viewHolder = (CustomOfferHolder) holder;
-                viewHolder.mBinding.offerView.setupData(model.getCustomOffers(), getActivity(), getChildFragmentManager());
-            } else if (model.getBlockType() == HomeBlockType.CUSTOM_COMPOMENTS) {
-                CustomComponentBlockHolder componentHolder = (CustomComponentBlockHolder) holder;
-                componentHolder.setupData(model);
-            } else if (model.getBlockType() == HomeBlockType.DEALS) {
-                ExclusiveDealBlockHolder exclusiveDealViewHolder = (ExclusiveDealBlockHolder) holder;
-                exclusiveDealViewHolder.setupData(model.getDeals());
-                exclusiveDealViewHolder.mBinding.txtTitle.setText(model.getTitle());
-                exclusiveDealViewHolder.mBinding.txtSubTitle.setText(model.getDescription());
             } else if (model.getBlockType() == HomeBlockType.STORIES) {
                 StoriesContainerHolder storiesContainerHolder = (StoriesContainerHolder) holder;
                 storiesContainerHolder.setupData(model.getStories());
-            } else if (model.getBlockType() == HomeBlockType.CATEGORIES) {
-                CategoriesBlockHolder categoriesContainerHolder = (CategoriesBlockHolder) holder;
-                categoriesContainerHolder.setupData(model.getHomeBlockCategory());
-            }  else if (model.getBlockType() == HomeBlockType.TICKET_CATEGORY) {
-                TicketCategoriesBlockHolder categoriesContainerHolder = (TicketCategoriesBlockHolder) holder;
-                categoriesContainerHolder.setupData(model);
-            } else if (model.getBlockType() == HomeBlockType.ACTIVITIES) {
-                TestActivityBlockHolder testActivityBlockHolder = (TestActivityBlockHolder) holder;
-                testActivityBlockHolder.setupData(model.activityList);
-                testActivityBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-                testActivityBlockHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == HomeBlockType.EVENTS) {
-                EventBlockHolder eventBlockHolder = (EventBlockHolder) holder;
-                eventBlockHolder.mBinding.eventListView.setupData(model.eventList, getActivity(), getChildFragmentManager());
-                eventBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-                eventBlockHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == HomeBlockType.MY_OUTING) {
-                MyOutingBlockHolder myOutingBlockHolder = (MyOutingBlockHolder) holder;
-                myOutingBlockHolder.setupData(model.getMyOuting());
-                myOutingBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-                myOutingBlockHolder.mBinding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == HomeBlockType.SUGGESTED_USERS) {
-                SuggestedUserBlockHolder suggestedUserBlockHolder = (SuggestedUserBlockHolder) holder;
-                suggestedUserBlockHolder.setupData(model.getSuggestedUsers());
-                suggestedUserBlockHolder.mBinding.txtTitle.setText(model.getTitle());
-            } else if (model.getBlockType() == HomeBlockType.VENUE_SUGGESTION) {
-                SuggestedVenueViewHolder SuggestedVenueViewHolder = (SuggestedVenueViewHolder) holder;
-                SuggestedVenueViewHolder.setupData(model.getSuggestedVenue());
-                SuggestedVenueViewHolder.mBinding.txtTitle.setText(model.getTitle());
-            } else if (model.getBlockType() == HomeBlockType.COMPLETE_PROFILE) {
-                CompleteProfileBannerViewHolder completeProfileBannerViewHolder = (CompleteProfileBannerViewHolder) holder;
-                completeProfileBannerViewHolder.setupData();
-            } else if (model.getBlockType() == HomeBlockType.MEMBERSHIP_PACKAGE) {
-                SubscriptionBannerViewHolder subscriptionBannerViewHolder = (SubscriptionBannerViewHolder) holder;
-                subscriptionBannerViewHolder.setupData(model.memberShipList);
-            } else if (model.getBlockType() == HomeBlockType.YACTCH) {
-                YachtsBlockHolder viewHolder = (YachtsBlockHolder) holder;
-                viewHolder.setupData(model.yachtList);
-                viewHolder.binding.txtTitle.setText(model.getTitle());
-                viewHolder.binding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == HomeBlockType.YACTCH_OFFERS) {
-                YachtsOfferBlockHolder viewHolder = (YachtsOfferBlockHolder) holder;
-//                List<YachtDetailModel> yachtDetail = model.yachtOfferList.stream().map(YachtsOfferModel::getYacht).collect(Collectors.toList());
-                List<YachtDetailModel> yachtDetail = model.yachtOfferList.stream()
-                        .map(yachtOfferModel -> {
-                            YachtDetailModel yachtDetailModel = yachtOfferModel.getYacht();
-                            yachtDetailModel.setYachtOfferId(yachtOfferModel.getId());
-                            return yachtDetailModel;
-                        })
-                        .collect(Collectors.toList());
-
-                viewHolder.setupData(yachtDetail);
-                viewHolder.binding.txtTitle.setText(model.getTitle());
-                viewHolder.binding.txtSubTitle.setText(model.getDescription());
-            } else if (model.getBlockType() == HomeBlockType.APPLY_PROMOTER) {
-                ApplyPromoterHolder viewHolder = (ApplyPromoterHolder) holder;
-                viewHolder.setupData(model);
-            } else if (model.getBlockType() == HomeBlockType.APPLY_RING) {
-                ApplyRingHolder viewHolder = (ApplyRingHolder) holder;
-                viewHolder.setupData(model);
-            } else if (model.getBlockType() == HomeBlockType.PROMOTER_EVENT) {
-                PromoterEventHolder viewHolder = (PromoterEventHolder) holder;
-                viewHolder.binding.txtTitle.setText(model.getTitle());
-                viewHolder.binding.txtSubTitle.setText(model.getDescription());
-                viewHolder.setupData(model.getPromoterEvents(), model);
             } else if (model.getBlockType() == HomeBlockType.TICKET || model.getBlockType() == HomeBlockType.JUNIPER_HOTEL) {
                 TicketHolder viewHolder = (TicketHolder) holder;
                 viewHolder.binding.userTitle.setText(model.getTitle());
                 viewHolder.binding.description.setText(model.getDescription());
-//                hideAndShowTitle(model, viewHolder.binding.userTitle, model.getTitle());
-//                hideAndShowTitle(model, viewHolder.binding.description, model.getDescription());
                 viewHolder.setupData(model.getTicketList(),model.getType());
-            }else if (model.getBlockType() == HomeBlockType.TICKET_FAVORITE) {
+            } else if (model.getBlockType() == HomeBlockType.TICKET_CATEGORY) {
+                TicketCategoriesBlockHolder categoriesContainerHolder = (TicketCategoriesBlockHolder) holder;
+                categoriesContainerHolder.setupData(model);
+            } else if (model.getBlockType() == HomeBlockType.TICKET_FAVORITE) {
                 FavTicketHolder viewHolder = (FavTicketHolder) holder;
                 viewHolder.binding.userTitle.setText(model.getTitle());
                 viewHolder.binding.description.setText(model.getDescription());
-//                hideAndShowTitle(model, viewHolder.binding.userTitle, model.getTitle());
-//                hideAndShowTitle(model, viewHolder.binding.description, model.getDescription());
                 viewHolder.setupData(model.favTicketList);
             }else if (model.getBlockType() == HomeBlockType.CITY) {
                 CitiesHolder viewHolder = (CitiesHolder) holder;
@@ -919,46 +709,6 @@ public class HomeFragment extends BaseFragment {
             }
         }
 
-        public class LargeContainerHolder extends RecyclerView.ViewHolder {
-            private final ItemLargeContainerCompententBinding mBinding;
-
-            public LargeContainerHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemLargeContainerCompententBinding.bind(itemView);
-            }
-        }
-
-        public class CustomOfferHolder extends RecyclerView.ViewHolder {
-            private final ItemCustomOfferContainerComponentBinding mBinding;
-
-            public CustomOfferHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCustomOfferContainerComponentBinding.bind(itemView);
-            }
-        }
-
-        public class CategoriesBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemCategoriesContainerCompenetentBinding mBinding;
-
-            private final CategoriesAdapter<CategoriesModel> adapter = new CategoriesAdapter<>();
-
-            public CategoriesBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCategoriesContainerCompenetentBinding.bind(itemView);
-                mBinding.tvTitle.setText(getValue("categories"));
-                requireActivity().runOnUiThread(() -> {
-                    setupRecycleHorizontalManager(mBinding.categoriesRecycler);
-                    mBinding.categoriesRecycler.setNestedScrollingEnabled(true);
-                    mBinding.categoriesRecycler.setAdapter(adapter);
-                });
-            }
-
-            public void setupData(List<CategoriesModel> categoriesList) {
-                requireActivity().runOnUiThread(() -> adapter.updateData(categoriesList));
-            }
-        }
-
         public class TicketCategoriesBlockHolder extends RecyclerView.ViewHolder {
 
             private final ItemNewCategoryShapeBinding mBinding;
@@ -979,339 +729,6 @@ public class HomeFragment extends BaseFragment {
                 requireActivity().runOnUiThread(() -> mBinding.categoryView.setUpData(requireActivity(),model.getShape(),model,model.ticketCategory,true));
             }
         }
-
-        public class SmallVenueBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemSpecialVenueLayoutBinding mBinding;
-            private final SmallVenueBlockAdapter<VenueObjectModel> adapter = new SmallVenueBlockAdapter<>();
-
-            public SmallVenueBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemSpecialVenueLayoutBinding.bind(itemView);
-                requireActivity().runOnUiThread(() -> {
-                    mBinding.venueRecycler.setLayoutManager(new GridLayoutManager(requireActivity(), 4, LinearLayoutManager.HORIZONTAL, false));
-                    mBinding.venueRecycler.setAdapter(adapter);
-                });
-            }
-
-            public void setupData(List<VenueObjectModel> modelList) {
-                requireActivity().runOnUiThread(() -> adapter.updateData(modelList));
-            }
-        }
-
-        public class ExclusiveDealBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeExclusiveDealRecyclerBinding mBinding;
-            private ExclusiveDealAdapter<ExclusiveDealModel> adapter;
-
-            public ExclusiveDealBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeExclusiveDealRecyclerBinding.bind(itemView);
-                requireActivity().runOnUiThread(() -> {
-                    setupRecycleHorizontalManager(mBinding.recyclerView);
-                    GravitySnapHelper snapHelper = new GravitySnapHelper(Gravity.START);
-                    snapHelper.setSnapLastItem(true);
-                    snapHelper.setSnapToPadding(true);
-                    snapHelper.attachToRecyclerView(mBinding.recyclerView);
-                });
-            }
-
-            public void setupData(List<ExclusiveDealModel> deals) {
-                Log.d("ExclusiveDealAdapter", "setupData: " + deals.size());
-                requireActivity().runOnUiThread(() -> {
-                    adapter = new ExclusiveDealAdapter<>();
-                    mBinding.recyclerView.setAdapter(adapter);
-                    adapter.updateData(deals);
-                });
-
-            }
-        }
-
-        public class TestActivityBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeTestActivityBlockBinding mBinding;
-            private final TestActivityAdapter<ActivityDetailModel> adapter = new TestActivityAdapter<>();
-
-            public TestActivityBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeTestActivityBlockBinding.bind(itemView);
-                requireActivity().runOnUiThread(() -> {
-                    setupRecycleHorizontalManager(mBinding.testActivityRecycler);
-                    GravitySnapHelper snapHelper = new GravitySnapHelper(Gravity.START);
-                    snapHelper.setSnapLastItem(true);
-                    snapHelper.setSnapToPadding(true);
-                    snapHelper.attachToRecyclerView(mBinding.testActivityRecycler);
-                    mBinding.testActivityRecycler.setAdapter(adapter);
-                });
-                mBinding.txtSeeAll.setOnClickListener(view -> startActivity(new Intent(getActivity(), SeeAllDetalisActivity.class)));
-            }
-
-            public void setupData(List<ActivityDetailModel> activities) {
-                requireActivity().runOnUiThread(() -> adapter.updateData(activities));
-            }
-        }
-
-        public class MyOutingBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeOutingRecyclerBinding mBinding;
-            private final OutingListAdapter<InviteFriendModel> adapter = new OutingListAdapter<>();
-
-            public MyOutingBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeOutingRecyclerBinding.bind(itemView);
-                setupRecycleHorizontalManager(mBinding.outingRecycler);
-                mBinding.outingRecycler.setAdapter(adapter);
-            }
-
-            public void setupData(List<InviteFriendModel> outingList) {
-                adapter.updateData(outingList);
-                mBinding.txtSeeAll.setOnClickListener(view -> startActivity(new Intent(context, OutingListActivity.class)));
-            }
-        }
-
-        public class SuggestedUserBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeSuggestedUserRecyclerBinding mBinding;
-
-            public SuggestedUserBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeSuggestedUserRecyclerBinding.bind(itemView);
-            }
-
-            public void setupData(List<UserDetailModel> suggestedUsers) {
-                mBinding.suggestedUserView.setSuggestedUser(suggestedUsers, requireActivity(), getChildFragmentManager(), (success, error) -> {
-                });
-            }
-        }
-
-        public class SuggestedVenueViewHolder extends RecyclerView.ViewHolder {
-            private final ItemHomeVenueSuggestionRecyclerBinding mBinding;
-
-            public SuggestedVenueViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeVenueSuggestionRecyclerBinding.bind(itemView);
-
-            }
-
-            public void setupData(List<VenueObjectModel> suggestedVenue) {
-                mBinding.suggestedVenue.setSuggestedVenue(suggestedVenue, requireActivity(), getChildFragmentManager(), (success, error) -> {
-                });
-            }
-        }
-
-        public class CompleteProfileBannerViewHolder extends RecyclerView.ViewHolder {
-            private final ItemCompeleteProfileBannerRecyclerBinding mBinding;
-
-            public CompleteProfileBannerViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCompeleteProfileBannerRecyclerBinding.bind(itemView);
-            }
-
-            public void setupData() {
-                Graphics.loadImageWithFirstLetter(SessionManager.shared.getUser().getImage(), mBinding.image, SessionManager.shared.getUser().getFirstName());
-                mBinding.getRoot().setOnClickListener(view -> startActivity(new Intent(requireActivity(), UpdateProfileActivity.class)));
-            }
-        }
-
-        public class SubscriptionBannerViewHolder extends RecyclerView.ViewHolder {
-            private final ItemSubscriptionBannerRecyclerBinding mBinding;
-
-            public SubscriptionBannerViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemSubscriptionBannerRecyclerBinding.bind(itemView);
-            }
-
-            public void setupData(List<MemberShipModel> memberShipList) {
-                if (memberShipList != null && !memberShipList.isEmpty()) {
-                    mBinding.txtTitle.setText(memberShipList.get(0).getTitle());
-                    mBinding.txtSubTitle.setText(memberShipList.get(0).getSubTitle());
-
-                    mBinding.getRoot().setOnClickListener(v -> {
-                        Utils.preventDoubleClick(v);
-                        SubscriptionPlanBottomSheet subscriptionPlanDialog = new SubscriptionPlanBottomSheet();
-                        subscriptionPlanDialog.memberShipList = memberShipList;
-                        subscriptionPlanDialog.callback = data -> {
-                        };
-                        subscriptionPlanDialog.show(getChildFragmentManager(), "1");
-                    });
-                }
-            }
-        }
-
-        public class EventBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemHomeEventRecyclerBinding mBinding;
-
-            public EventBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemHomeEventRecyclerBinding.bind(itemView);
-            }
-        }
-
-        public class LargeVenueBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemLargeVenueComoponentRecyclerBinding mBinding;
-
-            public LargeVenueBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemLargeVenueComoponentRecyclerBinding.bind(itemView);
-            }
-
-            public void setupData(List<VenueObjectModel> venues) {
-                mBinding.venueListView.setupData(venues, requireActivity(), getChildFragmentManager());
-//                requireActivity().runOnUiThread( () ->  );
-            }
-        }
-
-        public class CustomComponentBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemCustomComponentRecyclerBinding mBinding;
-
-            private final CustomComponentAdapter<CustomComponentModel> adapter = new CustomComponentAdapter<>();
-
-            public CustomComponentBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCustomComponentRecyclerBinding.bind(itemView);
-                requireActivity().runOnUiThread(() -> {
-                    mBinding.customRecycler.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
-                    GravitySnapHelper snapHelper = new GravitySnapHelper(Gravity.START);
-                    snapHelper.setSnapLastItem(true);
-                    snapHelper.setSnapToPadding(true);
-                    snapHelper.attachToRecyclerView(mBinding.customRecycler);
-                    mBinding.customRecycler.setAdapter(adapter);
-                });
-//                Utils.smoothScrollToPosition(mBinding.customRecycler, 0);
-            }
-
-            public void setupData(HomeBlockModel model) {
-                mBinding.txtTitle.setText(model.getTitle());
-                mBinding.txtSubTitle.setText(model.getDescription());
-                adapter.updateData(model.getCustomComponentModelList());
-            }
-        }
-
-        public class LargeOfferBlockHolder extends RecyclerView.ViewHolder {
-            private final ItemLargeOfferBlockBinding mBinding;
-
-            public LargeOfferBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemLargeOfferBlockBinding.bind(itemView);
-            }
-        }
-
-        public class YachtsBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemYachtsBlockRecyclerBinding binding;
-
-
-            public YachtsBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemYachtsBlockRecyclerBinding.bind(itemView);
-
-            }
-
-            public void setupData(List<YachtDetailModel> yacht) {
-                requireActivity().runOnUiThread(() -> binding.yachtListView.setupData(yacht, requireActivity(),
-                        getChildFragmentManager(), false));
-            }
-        }
-
-        public class YachtsOfferBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemYachtsBlockRecyclerBinding binding;
-
-
-            public YachtsOfferBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemYachtsBlockRecyclerBinding.bind(itemView);
-
-            }
-
-            public void setupData(List<YachtDetailModel> yacht) {
-                requireActivity().runOnUiThread(() -> binding.yachtListView.setupData(yacht, requireActivity(),
-                        getChildFragmentManager(), true));
-            }
-        }
-
-        public class ApplyPromoterHolder extends RecyclerView.ViewHolder {
-
-            private final ItemApplyNowDesignBinding binding;
-
-
-            public ApplyPromoterHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemApplyNowDesignBinding.bind(itemView);
-
-            }
-
-            public void setupData(HomeBlockModel model) {
-                binding.txtTitle.setText(model.getTitle());
-                binding.txtSubTitle.setText(model.getDescription());
-                if (!Utils.isNullOrEmpty(model.getColor())) {
-                    String colorString = model.getColor();
-                    int color = Color.parseColor(colorString);
-                    binding.btnApply.setBackgroundColor(color);
-                }
-
-                Graphics.loadImage(model.getBackgroundImage(), binding.ivBackground);
-                binding.btnApplyTv.setText("APPLY FOR PROMOTER");
-
-                if (model.getApplicationStatus().equals("pending")) {
-                    binding.btnApply.setVisibility(View.GONE);
-                    binding.txtTitle.setText("Your application is pending.");
-                    binding.txtSubTitle.setText("Please wait for confirmation before taking further action.");
-                } else {
-                    binding.btnApply.setVisibility(View.VISIBLE);
-                }
-
-                binding.btnApply.setOnClickListener(v -> {
-                    Utils.preventDoubleClick(v);
-                    startActivity(new Intent(requireActivity(), PromoterActivity.class).putExtra("isPromoter", true));
-                });
-            }
-        }
-
-        public class ApplyRingHolder extends RecyclerView.ViewHolder {
-
-            private final ItemApplyNowDesignBinding binding;
-
-
-            public ApplyRingHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemApplyNowDesignBinding.bind(itemView);
-
-            }
-
-            public void setupData(HomeBlockModel model) {
-                binding.txtTitle.setText(model.getTitle());
-                binding.txtSubTitle.setText(model.getDescription());
-                if (!Utils.isNullOrEmpty(model.getColor())) {
-                    String colorString = model.getColor();
-                    int color = Color.parseColor(colorString);
-                    binding.btnApply.setBackgroundColor(color);
-                }
-
-                if (!TextUtils.isEmpty(model.getBackgroundImage())) {
-                    Graphics.loadImage(model.getBackgroundImage(), binding.ivBackground);
-                } else {
-                    Graphics.applyGradientBackground(binding.ivBackground,model.getColor());
-//                    binding.ivBackground.setBackgroundColor(Color.parseColor(model.getColor()));
-                }
-
-                binding.btnApplyTv.setText("Apply now");
-
-                Log.d("HomeBlock", "setupData: " + new Gson().toJson(model));
-
-                if (model.getApplicationStatus().equals("pending")) {
-                    binding.btnApply.setVisibility(View.GONE);
-                    binding.txtTitle.setText("Your application is pending.");
-                    binding.txtSubTitle.setText("Please wait for confirmation before taking further action.");
-                } else {
-                    binding.btnApply.setVisibility(View.VISIBLE);
-                }
-
-                binding.btnApply.setOnClickListener(v -> {
-                    Utils.preventDoubleClick(v);
-                    startActivity(new Intent(requireActivity(), PromoterActivity.class).putExtra("isPromoter", false));
-                });
-
-            }
-        }
-
 
         public class CitiesHolder extends RecyclerView.ViewHolder {
 
@@ -1514,38 +931,18 @@ public class HomeFragment extends BaseFragment {
             }
         }
 
+        public class EmptyHolder extends RecyclerView.ViewHolder {
 
-    }
+            ItemLayoutEmptyHolderBinding binding;
 
-    public class PromoterEventHolder extends RecyclerView.ViewHolder {
-
-        private final ItemCmHomeEventBinding binding;
-
-        private ComplementaryEventsListAdapter<PromoterEventModel> eventlistdapter;
-
-        public PromoterEventHolder(@NonNull View itemView) {
-            super(itemView);
-            binding = ItemCmHomeEventBinding.bind(itemView);
-            binding.seeAll.setText(getValue("see_all"));
-
+            public EmptyHolder(@NonNull View itemView) {
+                super(itemView);
+                binding = ItemLayoutEmptyHolderBinding.bind(itemView);
+            }
         }
 
-        public void setupData(List<PromoterEventModel> promoterEventModelList, HomeBlockModel model) {
-            eventlistdapter = new ComplementaryEventsListAdapter<>(requireActivity());
-            binding.eventImInRecycleView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            binding.eventImInRecycleView.setAdapter(eventlistdapter);
-            eventlistdapter.updateData(promoterEventModelList);
 
-
-            binding.seeAll.setOnClickListener(v -> {
-                Utils.preventDoubleClick(v);
-                ComplementaryProfileManager.shared.setProfileCallBack.onReceive(true);
-            });
-        }
     }
-
-
-
 
     public class StoryListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
         @NonNull
@@ -1583,521 +980,6 @@ public class HomeFragment extends BaseFragment {
             public StoriesHolder(@NonNull View itemView) {
                 super(itemView);
                 mBinding = ItemHomeStoryRecyclerBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class CategoriesAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.item_categories);
-            view.getLayoutParams().width = (int) (screenWidth * 0.40);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            CategoriesModel model = (CategoriesModel) getItem(position);
-            viewHolder.mBinding.txtCategories.setText(model.getTitle());
-            if (TextUtils.isEmpty(model.getImage())) {
-                int color = Color.parseColor(model.getColor().getStartColor());
-                viewHolder.mBinding.bgImageView.setBackgroundColor(color);
-            } else {
-                Graphics.loadImage(model.getImage(), viewHolder.mBinding.bgImageView);
-            }
-            viewHolder.itemView.setOnClickListener(view -> startActivity(new Intent(requireActivity(), CategoryActivity.class).putExtra("categoryId", model.getId()).putExtra("image", model.getImage())));
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final ItemCategoriesBinding mBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemCategoriesBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class SmallVenueBlockAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.item_venue_recycler);
-            setItemWidth(2, view);
-            return new VenueViewHolder(view);
-        }
-
-        private boolean hasStory(VenueObjectModel venueObjectModel) {
-            if (venueObjectModel.getStories() != null && (!venueObjectModel.getStories().isEmpty())) {
-                return true;
-            }
-            HomeObjectModel homeObjectModel1 = SessionManager.shared.geHomeBlockData();
-            if (homeObjectModel1 != null) {
-                Optional<VenueObjectModel> tmpVenue = homeObjectModel1.getStories().stream().filter(p -> Objects.equals(p.getId(), venueObjectModel.getId())).findFirst();
-                return tmpVenue.isPresent();
-            }
-            return false;
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-            VenueViewHolder viewHolder = (VenueViewHolder) holder;
-            VenueObjectModel model = (VenueObjectModel) getItem(position);
-            if (model != null) {
-                viewHolder.mBinding.txtName.setText(model.getName());
-                viewHolder.mBinding.txtAddress.setText(model.getAddress());
-                Graphics.loadRoundImage(model.getLogo(), viewHolder.mBinding.image);
-                Thread backgroundThread = new Thread(() -> {
-                    if (hasStory(model)) {
-                        requireActivity().runOnUiThread(() -> Graphics.setStoryRing(model.getId(), viewHolder.mBinding.roundLinear));
-                    }
-                });
-                backgroundThread.start();
-                viewHolder.mBinding.btnContinue.setOnClickListener(v -> Graphics.openVenueDetail(requireActivity(), model.getId()));
-                viewHolder.mBinding.roundLinear.setOnClickListener(view -> {
-                    HomeObjectModel homeObjectModel = SessionManager.shared.geHomeBlockData();
-                    List<VenueObjectModel> matchingStories = homeObjectModel.getStories().stream().filter(model1 -> model1.getId().equals(model.getId())).collect(Collectors.toList());
-                    if (!matchingStories.isEmpty()) {
-                        Intent intent = new Intent(context, StoryViewActivity.class);
-                        intent.putExtra("stories", new Gson().toJson(matchingStories));
-                        intent.putExtra("selectedPosition", 0);
-                        context.startActivity(intent);
-                    }
-                });
-            }
-        }
-
-        public class VenueViewHolder extends RecyclerView.ViewHolder {
-            private final ItemVenueRecyclerBinding mBinding;
-
-            public VenueViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemVenueRecyclerBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class CustomComponentAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.item_custom_component);
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            params.width = (int) (screenWidth * 0.80);
-            view.setLayoutParams(params);
-            return new CustomViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            CustomViewHolder viewHolder = (CustomViewHolder) holder;
-
-            CustomComponentModel model = (CustomComponentModel) getItem(position);
-            viewHolder.binding.tvTitle.setText(model.getTitle());
-            viewHolder.binding.tvDescription.setText(model.getDescription());
-            Graphics.loadImage(model.getImage(), viewHolder.binding.ivCover);
-            viewHolder.binding.tvPrice.setText(Utils.addPercentage(model.getBadge()));
-
-
-            activity.runOnUiThread(() -> {
-                if (model.getType().equals("venue") && model.getVenueObjectModel() != null) {
-                    viewHolder.binding.venueContainer.setVenueDetail(model.getVenueObjectModel());
-                } else if (model.getType().equals("ticket") && model.getRaynaTicketDetailModel() != null) {
-                    viewHolder.binding.venueContainer.setTicketDetail(model.getRaynaTicketDetailModel());
-                }
-            });
-
-
-            viewHolder.binding.getRoot().setOnClickListener(v -> {
-                Utils.preventDoubleClick(v);
-                if (model.getType().equals("venue")){
-                    Graphics.openVenueDetail(requireActivity(), model.getVenueId());
-                } else if (model.getType().equals("ticket")) {
-                    startActivity(new Intent(requireActivity(), RaynaTicketDetailActivity.class).putExtra("ticketId",model.getTicketId()));
-                }
-            });
-
-
-        }
-
-        public class CustomViewHolder extends RecyclerView.ViewHolder {
-
-            private ItemCustomComponentBinding binding;
-
-            public CustomViewHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemCustomComponentBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class ExclusiveDealAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.home_deal_new_changes);
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            Log.d("ExclusiveDealAdapter", "onCreateViewHolder: " + getItemCount());
-            params.width = (int) (screenWidth * (getItemCount() > 1 ? 0.83 : 0.93));
-            view.setLayoutParams(params);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-
-            ExclusiveDealModel model = (ExclusiveDealModel) getItem(position);
-
-
-            viewHolder.mBinding.roundBlur.isColorTranspart = true;
-            viewHolder.mBinding.roundBlur.activity = requireActivity();
-            viewHolder.mBinding.tvTitle.setText(model.getDescription());
-            viewHolder.mBinding.tvSubTitle.setText(model.getTitle());
-            Graphics.loadImage(model.getImage(), viewHolder.mBinding.cover);
-            Graphics.loadImage(model.getImage(), viewHolder.mBinding.backGroundImageForOffer);
-
-
-            if (model.getDiscountedPrice() != 0) {
-                viewHolder.mBinding.tvAED.setText(String.valueOf( model.getDiscountedPrice() + " AED"));
-                viewHolder.mBinding.roundLinear.setVisibility(View.VISIBLE);
-
-            } else {
-                viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-                viewHolder.mBinding.roundLinear.setVisibility(View.GONE);
-            }
-
-
-            viewHolder.mBinding.venueContainer.setVenueDetail(model.getVenue());
-
-            viewHolder.mBinding.roundLinear.setOnClickListener(v -> {
-                Optional<VenueObjectModel> venueObjectModel = SessionManager.shared.geHomeBlockData().getVenues().stream().filter(p -> p.getId().equals(model.getVenueId())).findFirst();
-                if (venueObjectModel.isPresent()) {
-                    Intent intent = new Intent(getActivity(), BuyNowActivity.class);
-                    intent.putExtra("dealId", model.getId())
-                            .putExtra("venueDetail", new Gson().toJson(venueObjectModel.get()))
-                            .putExtra("offerModel", new Gson().toJson(model));
-                    startActivity(intent);
-                }
-            });
-
-
-
-            viewHolder.mBinding.getRoot().setOnClickListener(v -> startActivity(new Intent(requireActivity(), VoucherDetailScreenActivity.class).putExtra("id", model.getId())));
-
-            if (model.getEndDate() != null) {
-                viewHolder.mBinding.roundBlur.setVisibility(View.VISIBLE);
-                viewHolder.mBinding.roundBlur.setUpData( model.getEndDate(),  model.getEndTime());
-            }else {
-                viewHolder.mBinding.roundBlur.setVisibility(View.GONE);
-            }
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private HomeDealNewChangesBinding mBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = HomeDealNewChangesBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class TestActivityAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.test_activity_item);
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            params.width = (int) (screenWidth * (getItemCount() > 1 ? 0.83 : 0.93));
-            view.setLayoutParams(params);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            ActivityDetailModel model = (ActivityDetailModel) getItem(position);
-
-            viewHolder.mBinding.tvTitle.setText(model.getName());
-            viewHolder.mBinding.textName.setText(model.getProvider().getName());
-            viewHolder.mBinding.txtAddress.setText(model.getProvider().getAddress());
-            Graphics.loadRoundImage(model.getProvider().getLogo(), viewHolder.mBinding.imgLogo);
-            Graphics.loadImage(model.getGalleries().get(0), viewHolder.mBinding.cover);
-            if (model.getAvgRating() != 0) {
-                viewHolder.mBinding.tvRate.setText(String.format("%.1f", model.getAvgRating()));
-            } else {
-                viewHolder.mBinding.linearRate.setVisibility(View.GONE);
-            }
-
-            viewHolder.mBinding.tvAED.setVisibility(model.getDiscount().equals("0") ? View.GONE : View.VISIBLE);
-            viewHolder.mBinding.tvAED.setPaintFlags(viewHolder.mBinding.tvAED.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-            int discount = Integer.parseInt(model.getDiscount());
-            int amount = model.getPrice();
-            int value = discount * amount / 100;
-            int discountPrice = amount - value;
-
-            if ("0".equals(model.getDiscount())) {
-                viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-                viewHolder.mBinding.tvPrice.setText(String.valueOf(model.getPrice()));
-            } else {
-                if (amount == discountPrice) {
-                    viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-                    viewHolder.mBinding.tvPrice.setText(String.valueOf(model.getPrice()));
-                } else {
-                    viewHolder.mBinding.tvAED.setVisibility(View.VISIBLE);
-                    viewHolder.mBinding.tvAED.setText(String.valueOf(model.getPrice()));
-                    viewHolder.mBinding.tvPrice.setText(String.valueOf(discountPrice));
-
-                }
-            }
-
-            viewHolder.itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), ActivityListDetail.class);
-                intent.putExtra("activityId", model.getId()).putExtra("type", "activities");
-                intent.putExtra("name", model.getName());
-                intent.putExtra("image", model.getProvider().getLogo());
-                intent.putExtra("title", model.getProvider().getName());
-                intent.putExtra("address", model.getProvider().getAddress());
-                startActivity(intent);
-            });
-            viewHolder.mBinding.buyNowBtn.setOnClickListener(view -> startActivity(new Intent(requireActivity(), YourOrderActivity.class).putExtra("activityModel", new Gson().toJson(model))));
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private TestActivityItemBinding mBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = TestActivityItemBinding.bind(itemView);
-            }
-        }
-
-    }
-
-    public class OutingListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.outing_list_item);
-            setItemWidth(getItemCount(), view);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            InviteFriendModel model = (InviteFriendModel) getItem(position);
-
-            viewHolder.mBinding.txtCancelled.setVisibility(View.GONE);
-            viewHolder.mBinding.btnCancel.setVisibility(View.GONE);
-            viewHolder.mBinding.layoutPending.setVisibility(View.GONE);
-
-            if (model.getVenue() != null) {
-                viewHolder.mBinding.txtUserName.setText(model.getVenue().getName());
-                viewHolder.mBinding.tvAddress.setText(model.getVenue().getAddress());
-                Graphics.loadImage(model.getVenue().getCover(), viewHolder.mBinding.ivCover);
-                Graphics.loadImageWithFirstLetter(model.getVenue().getLogo(), viewHolder.mBinding.imgUserLogo, model.getVenue().getName());
-            }
-
-            viewHolder.mBinding.tvOutingTitle.setText(model.getTitle());
-            viewHolder.mBinding.txtExtraGuest.setText(String.valueOf(model.getExtraGuest()));
-            viewHolder.mBinding.createDate.setText(String.format("Created date: %s", Utils.convertMainDateFormat(model.getCreatedAt())));
-            viewHolder.mBinding.txtDate.setText(Utils.convertDateFormat(model.getDate(), "yyyy-MM-dd"));
-
-            if (model.getStartTime() != null && model.getEndTime() != null) {
-                viewHolder.mBinding.txtTime.setText(String.format("%s - %s", model.getStartTime(), Utils.convert24HourTimeFormat(model.getEndTime())));
-            } else {
-                viewHolder.mBinding.txtTime.setText("Time not available");
-            }
-
-            if (model.getInvitedUser() != null) {
-                viewHolder.friendListAdapter.updateData(model.getInvitedUser());
-            }
-
-            if (model.isOwnerOfOuting()) {
-                if (model.getUser() != null) {
-                    Graphics.loadImageWithFirstLetter(model.getUser().getImage(), viewHolder.mBinding.imageLogo, model.getUser().getFirstName());
-                }
-                viewHolder.mBinding.txtOutingDescribe.setText("You created");
-                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(context, R.drawable.stroke_gradiant_line_me));
-                viewHolder.mBinding.txtOutingTitle.setVisibility(View.GONE);
-                viewHolder.mBinding.layoutStatus.setVisibility(View.INVISIBLE);
-                if (model.getStatus().equals("completed") || model.getStatus().equals("cancelled")) {
-                    viewHolder.mBinding.layoutEdit.setVisibility(View.GONE);
-                } else {
-                    viewHolder.mBinding.layoutEdit.setVisibility(View.VISIBLE);
-                }
-            } else {
-                if (model.getUser() != null) {
-                    viewHolder.mBinding.txtOutingTitle.setVisibility(View.VISIBLE);
-                    viewHolder.mBinding.txtOutingTitle.setText(model.getUser().getFirstName());
-                    viewHolder.mBinding.txtOutingDescribe.setVisibility(View.VISIBLE);
-                    viewHolder.mBinding.txtOutingDescribe.setText("invited you to");
-                    Graphics.loadImageWithFirstLetter(model.getUser().getImage(), viewHolder.mBinding.imageLogo, model.getUser().getFirstName());
-                }
-                viewHolder.mBinding.txtStatus.setText(model.getStatus());
-                Thread backgroundThread = new Thread(() -> {
-                    ContactListModel invitedUser = model.getInvitedUser().stream().filter(model1 -> model1.getUserId().equals(SessionManager.shared.getUser().getId())).findFirst().orElse(null);
-                    if (invitedUser != null) {
-                        AppExecutors.get().mainThread().execute(() -> {
-                            if (invitedUser.getInviteStatus().equals("pending")) {
-                                viewHolder.mBinding.layoutStatus.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.pending_yellow));
-                                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(context, R.drawable.stroke_gradiant_line_pending));
-                            } else if (invitedUser.getInviteStatus().equals("in")) {
-                                viewHolder.mBinding.layoutStatus.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.in_green));
-                                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(context, R.drawable.stroke_gradiant_line_in));
-                            } else {
-                                viewHolder.mBinding.layoutStatus.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.out_red));
-                                viewHolder.mBinding.constraint.setBackground(ContextCompat.getDrawable(context, R.drawable.stroke_gradiant_line_out));
-                            }
-                        });
-                    }
-                });
-                backgroundThread.start();
-
-                viewHolder.mBinding.layoutEdit.setVisibility(View.GONE);
-                viewHolder.mBinding.layoutStatus.setVisibility(View.VISIBLE);
-
-                viewHolder.mBinding.layout2.setOnClickListener(view -> {
-                    if (model.getUser() != null) {
-                        startActivity(new Intent(requireActivity(), OtherUserProfileActivity.class).putExtra("friendId", model.getUser().getId()));
-                    }
-                });
-            }
-
-            viewHolder.mBinding.btnSeeAll.setOnClickListener(v -> {
-                Utils.preventDoubleClick(v);
-                InviteGuestListBottomSheet inviteGuestListBottomSheet = new InviteGuestListBottomSheet();
-                inviteGuestListBottomSheet.model = model.getInvitedUser();
-                inviteGuestListBottomSheet.type = "outing";
-                inviteGuestListBottomSheet.show(getChildFragmentManager(), "");
-            });
-
-            viewHolder.mBinding.layoutEdit.setOnClickListener(view -> {
-                Utils.preventDoubleClick(view);
-                InviteFriendBottomSheet inviteFriendDialog = new InviteFriendBottomSheet();
-                inviteFriendDialog.inviteFriendModel = model;
-                inviteFriendDialog.setShareListener(data -> {
-                    AppExecutors.get().mainThread().execute(() -> {
-                        notifyDataSetChanged();
-                    });
-                });
-                inviteFriendDialog.show(getChildFragmentManager(), "1");
-            });
-
-            viewHolder.mBinding.getRoot().setOnClickListener(view -> startActivity(new Intent(context, MyInvitationActivity.class).putExtra("id", model.getId()).putExtra("notificationType", "notification")));
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final OutingListItemBinding mBinding;
-            private final FriendListAdapter<ContactListModel> friendListAdapter = new FriendListAdapter<>();
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = OutingListItemBinding.bind(itemView);
-                mBinding.friendRecycler.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
-                mBinding.friendRecycler.setAdapter(friendListAdapter);
-                mBinding.friendRecycler.setNestedScrollingEnabled(false);
-            }
-        }
-    }
-
-    public static class FriendListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(UiUtils.getViewBy(parent, R.layout.frind_list_item));
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            ContactListModel model = (ContactListModel) getItem(position);
-            if (model == null) {
-                return;
-            }
-            if (SessionManager.shared.getUser().getId().equals(model.getUserId())) {
-                viewHolder.mBinding.txtUserName.setText("Me");
-            } else {
-                viewHolder.mBinding.txtUserName.setText(model.getFirstName());
-            }
-            Graphics.loadImageWithFirstLetter(model.getImage(), viewHolder.mBinding.imgUserLogo, model.getFirstName());
-            switch (model.getInviteStatus()) {
-                case "pending":
-                    viewHolder.mBinding.iconStatus.setImageResource(R.drawable.icon_pending);
-                    break;
-                case "in":
-                    viewHolder.mBinding.iconStatus.setImageResource(R.drawable.icon_complete);
-                    break;
-                case "out":
-                    viewHolder.mBinding.iconStatus.setImageResource(R.drawable.icon_deleted);
-                    break;
-            }
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private FrindListItemBinding mBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = FrindListItemBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class TicketCategoriesAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy(parent, R.layout.item_rayna_categories);
-            view.getLayoutParams().width = (int) (screenWidth * 0.40);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            CategoriesModel model = (CategoriesModel) getItem(position);
-            viewHolder.mBinding.txtCategories.setText(model.getTitle());
-
-
-            if (TextUtils.isEmpty(model.getImage())) {
-                int color = Color.parseColor(model.getColor().getStartColor());
-                viewHolder.mBinding.bgImageView.setBackgroundColor(color);
-            } else {
-                Graphics.loadImage(model.getImage(), viewHolder.mBinding.bgImageView);
-            }
-
-
-
-            viewHolder.mBinding.getRoot().setOnClickListener(v -> {
-                Utils.preventDoubleClick(v);
-                Intent intent = new Intent(requireActivity(), ExploreDetailActivity.class);
-                intent.putExtra("isCity", false);
-                intent.putExtra("categoryModel", new Gson().toJson(model));
-                intent.putExtra("title", model.getTitle());
-                startActivity(intent);
-            });
-
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final ItemRaynaCategoriesBinding mBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemRaynaCategoriesBinding.bind(itemView);
             }
         }
     }

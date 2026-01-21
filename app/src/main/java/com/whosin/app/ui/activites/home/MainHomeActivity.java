@@ -3,7 +3,6 @@ package com.whosin.app.ui.activites.home;
 import static com.whosin.app.comman.AppConstants.TabOption.valueOf;
 import static com.whosin.app.comman.Graphics.context;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -14,9 +13,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -62,7 +59,6 @@ import com.whosin.app.service.manager.BlockUserManager;
 import com.whosin.app.service.manager.ChatManager;
 import com.whosin.app.service.manager.CheckUserSession;
 import com.whosin.app.service.manager.ComplementaryProfileManager;
-import com.whosin.app.service.manager.ContactManager;
 import com.whosin.app.service.manager.DialogManager;
 import com.whosin.app.service.manager.GetNotificationManager;
 import com.whosin.app.service.manager.LocationManager;
@@ -91,7 +87,6 @@ import com.whosin.app.ui.activites.Notification.NotificaionActivity;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
 import com.whosin.app.ui.activites.Promoter.ComplementaryEventDetailActivity;
 import com.whosin.app.ui.activites.Promoter.PromoterActivity;
-import com.whosin.app.ui.activites.Promoter.PromoterMyProfile;
 import com.whosin.app.ui.activites.auth.AuthenticationActivity;
 import com.whosin.app.ui.activites.auth.TwoFactorAuthActivity;
 import com.whosin.app.ui.activites.bucket.MyInvitationActivity;
@@ -103,16 +98,14 @@ import com.whosin.app.ui.activites.offers.OfferDetailActivity;
 import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
 import com.whosin.app.ui.activites.offers.VoucherDetailScreenActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
+import com.whosin.app.ui.activites.search.SearchFragment;
 import com.whosin.app.ui.activites.venue.Bucket.BucketListDetailActivity;
 import com.whosin.app.ui.activites.venue.VenueActivity;
 import com.whosin.app.ui.activites.wallet.MyWalletActivity;
 import com.whosin.app.ui.activites.wallet.WalletActivity;
-import com.whosin.app.ui.controller.MiniVideoView;
-import com.whosin.app.ui.fragment.ChatFragment;
 import com.whosin.app.ui.fragment.HomeFragment;
 import com.whosin.app.ui.fragment.InAppNotification.InAppNotificationDialog;
 import com.whosin.app.ui.fragment.NewExploreFragment;
-import com.whosin.app.ui.fragment.Profile.UserProfileFragment;
 import com.whosin.app.ui.fragment.TicketReview.RaynaTicketReviewDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -120,11 +113,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -423,7 +413,6 @@ public class MainHomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setChatCount();
         setWalletCount();
 //        appUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
 //            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
@@ -794,7 +783,7 @@ public class MainHomeActivity extends BaseActivity {
     private void setupBottomTab() {
 
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getValue("home")).setIcon(getTabBarIconForId(valueOf(0), true)).setId(0));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getValue("chat")).setIcon(getTabBarIconForId(valueOf(1), false)).setId(1));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getValue("Search")).setIcon(getTabBarIconForId(valueOf(1), false)).setId(1));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("  ").setIcon(getTabBarIconForId(valueOf(2), false)).setId(2));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getValue("explore")).setIcon(getTabBarIconForId(valueOf(3), false)).setId(3));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getValue("home_tab_wallet")).setIcon(getTabBarIconForId(valueOf(4), false)).setId(4));
@@ -841,8 +830,8 @@ public class MainHomeActivity extends BaseActivity {
         switch (option) {
             case Home:
                 return isSelected ? R.drawable.icon_tab_home_fill : R.drawable.icon_tab_home_line;
-            case Chat:
-                return isSelected ? R.drawable.icon_tab_chat_fill : R.drawable.icon_tab_chat_line;
+            case Search:
+                return isSelected ? R.drawable.icon_search_fill : R.drawable.icon_search_outline;
             case Profile:
                 return isSelected ? R.drawable.icon_profile_fill : R.drawable.icon_profile_without_fill;
             case Explore:
@@ -909,17 +898,12 @@ public class MainHomeActivity extends BaseActivity {
             switch (valueOf(position)) {
                 case Home:
                     return new HomeFragment();
-                case Chat:
-                    return new ChatFragment();
+                case Search:
+                    return new SearchFragment();
                 case Profile:
-                    if (SessionManager.shared.getUser().isPromoter()){
-                        return new PromoterMyProfile();
-                    }else {
-                        return new UserProfileFragment();
-                    }
+                    return new HomeMenuFragment();
                 case Explore:
                     return new NewExploreFragment();
-//                    return new ExploreFragment();
                 default:
                     return new MyWalletActivity();
             }

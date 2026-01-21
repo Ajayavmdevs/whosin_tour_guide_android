@@ -3,13 +3,11 @@ package com.whosin.app.ui.activites.home;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.whosin.app.R;
 import com.whosin.app.comman.Graphics;
-import com.whosin.app.comman.Preferences;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.databinding.ActivityHomeMenuBinding;
 import com.whosin.app.service.manager.CheckUserSession;
@@ -18,17 +16,17 @@ import com.whosin.app.service.manager.TranslationManager;
 import com.whosin.app.ui.activites.Profile.FollowingActivity;
 import com.whosin.app.ui.activites.Profile.FollowresActivity;
 import com.whosin.app.ui.activites.auth.AuthenticationActivity;
-import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.home.privacy.PrivacyPolicyActivity;
 import com.whosin.app.ui.activites.offers.ClaimHistoryActivity;
 import com.whosin.app.ui.activites.setting.SettingActivity;
 import com.whosin.app.ui.activites.venue.ui.SubscriptionPlanActivity;
 import com.whosin.app.ui.activites.wallet.WalletActivity;
+import com.whosin.app.ui.fragment.comman.BaseFragment;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class HomeMenuActivity extends BaseActivity {
+public class HomeMenuFragment extends BaseFragment {
 
     private ActivityHomeMenuBinding binding;
 
@@ -37,61 +35,61 @@ public class HomeMenuActivity extends BaseActivity {
     // --------------------------------------
 
     @Override
-    protected void initUi() {
+    public void initUi(View view) {
+
+        binding = ActivityHomeMenuBinding.bind( view );
 
         applyTranslations();
 
         binding.avmdevsLlcTv.setClickable(true);
 
         setupUserData();
-
     }
 
     @Override
-    protected void setListeners() {
+    public void setListeners() {
 
-        binding.ilLogout.setOnClickListener( v -> Graphics.showAlertDialogWithOkCancel( activity, getString(R.string.app_name), getValue("logout_confirmation"), aBoolean -> {
+        binding.ilLogout.setOnClickListener( v -> Graphics.showAlertDialogWithOkCancel( requireActivity(), getString(R.string.app_name), getValue("logout_confirmation"), aBoolean -> {
             if (aBoolean) {
                 //SessionManager.shared.clearSessionData( activity );
                 showProgress();
-                SessionManager.shared.logout(activity, (success, error) -> {
+                SessionManager.shared.logout(requireActivity(), (success, error) -> {
                     hideProgress();
                     if (!Utils.isNullOrEmpty(error)) {
-                        Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    startActivity( new Intent( activity, AuthenticationActivity.class ).addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK ).addFlags( Intent.FLAG_ACTIVITY_NEW_TASK ) );
-                    finish();
+                    startActivity( new Intent( requireActivity(), AuthenticationActivity.class ).addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK ).addFlags( Intent.FLAG_ACTIVITY_NEW_TASK ) );
                 });
 
             }
         } ) );
 
 
-        binding.ilWallet.setOnClickListener( v -> startActivity( new Intent( activity, WalletActivity.class ) ));
+        binding.ilWallet.setOnClickListener( v -> startActivity( new Intent( requireActivity(), WalletActivity.class ) ));
 
-        Glide.with( activity ).load( R.drawable.icon_left_back_arrow ).into( binding.ivClose );
-        binding.ivClose.setOnClickListener( view -> onBackPressed());
+        Glide.with( requireActivity() ).load( R.drawable.icon_left_back_arrow ).into( binding.ivClose );
+//        binding.ivClose.setOnClickListener( view -> onBackPressed());
 
-        binding.ilSettings.setOnClickListener( view -> startActivity( new Intent( activity, SettingActivity.class ) ));
+        binding.ilSettings.setOnClickListener( view -> startActivity( new Intent( requireActivity(), SettingActivity.class ) ));
 
-        binding.ilClaimHistory.setOnClickListener( view -> startActivity( new Intent( activity, ClaimHistoryActivity.class ) ));
+        binding.ilClaimHistory.setOnClickListener( view -> startActivity( new Intent( requireActivity(), ClaimHistoryActivity.class ) ));
 
-        binding.ilFollowing.setOnClickListener( view -> startActivity( new Intent( activity, FollowingActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ));
+        binding.ilFollowing.setOnClickListener( view -> startActivity( new Intent( requireActivity(), FollowingActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ));
 
-        binding.ilFollowers.setOnClickListener( view -> startActivity( new Intent( activity, FollowresActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ) );
+        binding.ilFollowers.setOnClickListener( view -> startActivity( new Intent( requireActivity(), FollowresActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ) );
 
-        binding.ilContact.setOnClickListener( v -> startActivity( new Intent( activity, ContactUsActivity.class ) ));
+        binding.ilContact.setOnClickListener( v -> startActivity( new Intent( requireActivity(), ContactUsActivity.class ) ));
 
-        binding.ilPrivacyPolicy.setOnClickListener( v -> startActivity( new Intent( activity, PrivacyPolicyActivity.class ).putExtra( "type", "Privacy Policy" ) ));
+        binding.ilPrivacyPolicy.setOnClickListener( v -> startActivity( new Intent( requireActivity(), PrivacyPolicyActivity.class ).putExtra( "type", "Privacy Policy" ) ));
 
-        binding.roundTerms.setOnClickListener( view -> startActivity( new Intent( activity, PrivacyPolicyActivity.class ).putExtra( "type", "Terms & Condition" ) ));
+        binding.roundTerms.setOnClickListener( view -> startActivity( new Intent( requireActivity(), PrivacyPolicyActivity.class ).putExtra( "type", "Terms & Condition" ) ));
 
-        binding.ilFriend.setOnClickListener( view -> Utils.openShareDialog( activity ));
+        binding.ilFriend.setOnClickListener( view -> Utils.openShareDialog( requireActivity() ));
 
         binding.ilBundle.setVisibility(SessionManager.shared.getUser().isMembershipActive() ? View.VISIBLE : View.GONE);
 
-        binding.ilBundle.setOnClickListener( view -> startActivity( new Intent( activity, SubscriptionPlanActivity.class )));
+        binding.ilBundle.setOnClickListener( view -> startActivity( new Intent( requireActivity(), SubscriptionPlanActivity.class )));
 
         binding.avmdevsLlcTv.setOnClickListener(v -> {
             String url = "https://avmdevs.com/";
@@ -103,20 +101,24 @@ public class HomeMenuActivity extends BaseActivity {
     }
 
     @Override
-    protected int getLayoutRes() {
-        return 0;
+    public void populateData(boolean getDataFromServer) {
+
     }
 
     @Override
-    protected View getLayoutView() {
-        binding = ActivityHomeMenuBinding.inflate( getLayoutInflater() );
-        return binding.getRoot();
-    }
+    public int getLayoutRes() {
+        return R.layout.activity_home_menu; }
+
+//    @Override
+//    protected View getLayoutView() {
+//        binding = ActivityHomeMenuBinding.inflate( getLayoutInflater() );
+//        return binding.getRoot();
+//    }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
-        CheckUserSession.checkSessionAndProceed(activity, this::requestUserDetail);
+        CheckUserSession.checkSessionAndProceed(requireActivity(), this::requestUserDetail);
     }
 
     @Override
@@ -159,9 +161,9 @@ public class HomeMenuActivity extends BaseActivity {
     // --------------------------------------
 
     private void requestUserDetail() {
-        SessionManager.shared.getCurrentUserProfile( this, (success, error) -> {
+        SessionManager.shared.getCurrentUserProfile( requireActivity(), (success, error) -> {
             if (!Utils.isNullOrEmpty( error )) {
-                Toast.makeText( activity, error, Toast.LENGTH_SHORT ).show();
+                Toast.makeText( requireActivity(), error, Toast.LENGTH_SHORT ).show();
                 return;
             }
             setupUserData();

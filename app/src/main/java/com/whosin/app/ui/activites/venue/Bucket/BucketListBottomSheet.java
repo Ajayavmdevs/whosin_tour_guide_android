@@ -29,7 +29,6 @@ import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.comman.ui.UiUtils;
-import com.whosin.app.databinding.BucketBootomSheetItemBinding;
 import com.whosin.app.databinding.FragmentBucketListBottomSheetBinding;
 import com.whosin.app.databinding.ImageListBinding;
 import com.whosin.app.service.DataService;
@@ -45,7 +44,6 @@ import java.util.stream.Collectors;
 
 public class BucketListBottomSheet extends DialogFragment implements SlideToActView.OnSlideCompleteListener {
     private FragmentBucketListBottomSheetBinding binding;
-    private final BucketListAdapter<CreateBucketListModel> bucketListAdapter = new BucketListAdapter<>();
     private BucketListModel bucketListModel;
 
     public String offerId = "";
@@ -79,15 +77,12 @@ public class BucketListBottomSheet extends DialogFragment implements SlideToActV
 
     private void setListener() {
         binding.createBucket.setOnSlideCompleteListener( this );
-        binding.bucketRecycler.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.VERTICAL, false ) );
-        binding.bucketRecycler.setAdapter( bucketListAdapter );
         binding.ivClose.setOnClickListener( view -> dismiss() );
 
     }
 
     private void initUi(View view) {
         binding = FragmentBucketListBottomSheetBinding.bind( view );
-        requestBucketList(false);
         Glide.with( requireActivity() ).load( R.drawable.icon_close_btn ).into( binding.ivClose );
         binding.createBucket.setSliderIcon(R.drawable.icon_swipe);
     }
@@ -117,35 +112,6 @@ public class BucketListBottomSheet extends DialogFragment implements SlideToActV
     // --------------------------------------
     // region Data/Service
     // --------------------------------------
-
-    private void requestBucketList(boolean isNewBucketCreate) {
-        binding.progress.setVisibility(View.VISIBLE);
-        DataService.shared( requireActivity() ).requestBucketList( new RestCallback<ContainerModel<BucketListModel>>(this) {
-            @Override
-            public void result(ContainerModel<BucketListModel> model, String error) {
-                binding.progress.setVisibility(View.GONE);
-                if (!Utils.isNullOrEmpty( error ) || model == null) {
-                    Toast.makeText( requireActivity(), error, Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-                bucketListModel = model.getData();
-                if (model.getData().getBucketsModels() != null && !model.getData().getBucketsModels().isEmpty()) {
-                    binding.bucketRecycler.setVisibility(View.VISIBLE);
-                    binding.tvCreateNewBucket.setVisibility(View.VISIBLE);
-                    binding.layoutEmptyPlace.setVisibility(View.GONE);
-                    bucketListAdapter.updateData( model.getData().getBucketsModels() );
-
-                } else {
-                    binding.bucketRecycler.setVisibility(View.GONE);
-//                    binding.tvCreateNewBucket.setVisibility(View.GONE);
-                    binding.layoutEmptyPlace.setVisibility(View.VISIBLE);
-                }
-                if (isNewBucketCreate){
-                    dismiss();
-                }
-            }
-        } );
-    }
 
     private void requestAddBucket(CreateBucketListModel bucketsModel) {
         binding.progress.setVisibility(View.VISIBLE);
@@ -220,13 +186,6 @@ public class BucketListBottomSheet extends DialogFragment implements SlideToActV
 
     @Override
     public void onSlideComplete(@NonNull SlideToActView slideToActView) {
-        CreateBucketListBottomDialog dialog = new CreateBucketListBottomDialog();
-        dialog.callback = create -> {
-            if (create != null) {
-                requestBucketList(true);
-            }
-        };
-        dialog.show( getChildFragmentManager(), "1" );
         resetSlider( slideToActView );
     }
 
@@ -241,60 +200,6 @@ public class BucketListBottomSheet extends DialogFragment implements SlideToActV
     // --------------------------------------
     // region Adapter
     // --------------------------------------
-
-    public class BucketListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder( UiUtils.getViewBy( parent, R.layout.bucket_bootom_sheet_item ) );
-        }
-
-        @SuppressLint("SetTextI18n")
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            CreateBucketListModel model = (CreateBucketListModel) getItem( position );
-            viewHolder.mBinding.tvName.setText( model.getName() );
-
-            Graphics.loadImageWithFirstLetter(model.getCoverImage(),viewHolder.mBinding.ivCover,model.getName());
-            viewHolder.setupUsers( model.getSharedWith() );
-
-            viewHolder.mBinding.tvOffer.setText(model.getItems().size() + " " + "Offers" );
-
-            viewHolder.itemView.setOnClickListener(view -> {
-                requestAddBucket(model);
-            });
-
-        }
-
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final BucketBootomSheetItemBinding mBinding;
-            private final PlayerAdapter<ContactListModel> playerAdapter= new PlayerAdapter<>();
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                mBinding = BucketBootomSheetItemBinding.bind( itemView );
-                mBinding.recyclerPlayer.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.HORIZONTAL, false ) );
-                mBinding.recyclerPlayer.setAdapter( playerAdapter );
-            }
-
-            private void setupUsers(List<ContactListModel> sharedUsers) {
-                if (sharedUsers != null) {
-                    mBinding.ivSharedUser.setVisibility( View.VISIBLE );
-                    List<ContactListModel> shareUser = bucketListModel.getUsers().stream().filter(p -> sharedUsers.contains(p.getId())).collect(Collectors.toList());
-                    String nameShare = shareUser.stream().map(ContactListModel::getFirstName).collect(Collectors.joining(", "));
-                    mBinding.tvShareUserName.setText(nameShare);
-                    playerAdapter.updateData(shareUser);
-                } else {
-                    mBinding.ivSharedUser.setVisibility( View.GONE );
-                }
-
-
-            }
-        }
-    }
 
 
     public class PlayerAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {

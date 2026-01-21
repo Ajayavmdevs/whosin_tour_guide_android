@@ -29,23 +29,18 @@ import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.comman.ui.UiUtils;
-import com.whosin.app.databinding.BucketListItemBinding;
 import com.whosin.app.databinding.ImageListBinding;
 import com.whosin.app.databinding.InviteGuestBottomSheetBinding;
 import com.whosin.app.databinding.ItemSelectGuesetBinding;
 import com.whosin.app.service.DataService;
-import com.whosin.app.service.models.BucketListModel;
 import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.CreateBucketListModel;
 import com.whosin.app.service.models.EventDetailModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.venue.Bucket.ContactShareBottomSheet;
-import com.whosin.app.ui.activites.venue.Bucket.CreateBucketListBottomDialog;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class InviteGuestBottomSheet extends DialogFragment implements SlideToActView.OnSlideCompleteListener {

@@ -42,11 +42,8 @@ import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.ActivityVenueBinding;
-import com.whosin.app.databinding.ExclusiveItemRecyclerBinding;
 import com.whosin.app.databinding.InfoBottomsheetDialogBinding;
-import com.whosin.app.databinding.ItemDiscountRecyclerBinding;
 import com.whosin.app.databinding.ItemImageSlideRecyclerBinding;
-import com.whosin.app.databinding.ItemPhoneNumberBinding;
 import com.whosin.app.databinding.ItemRatingReviewRecyclerBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.AppSettingManager;
@@ -100,8 +97,6 @@ public class VenueActivity extends BaseActivity {
     private final RatingReviewAdapter<CurrentUserRatingModel> ratingReviewAdapter = new RatingReviewAdapter<>();
     private final VenueImageSlideAdapter imageSlideAdapter = new VenueImageSlideAdapter();
     private OfferAdapter<OffersModel> offerAdapter;
-    private final DiscountOfferAdapter<SpecialOfferModel> discountOfferAdapter = new DiscountOfferAdapter<>();
-    private final ExclusiveDealAdapter<VoucherModel> exclusiveDealAdapter = new ExclusiveDealAdapter<>();
     private List<String> galleryList = new ArrayList<>();
     private VenueObjectModel venueObjectModel;
     private String venueId = "";
@@ -140,7 +135,6 @@ public class VenueActivity extends BaseActivity {
         setRatingReviewAdapter();
         reqVenueDetails(venueId);
         reqOfferDetails(venueId, false);
-        requestDeals(venueId);
 
         Graphics.applyBlurEffect(activity, binding.blurView);
 
@@ -413,9 +407,6 @@ public class VenueActivity extends BaseActivity {
         offerAdapter = new OfferAdapter<>(this, getSupportFragmentManager(), OfferAdapter.OfferType.VENUE);
         binding.businessRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         binding.businessRecycler.setAdapter(offerAdapter);
-
-        binding.exclusiveRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
-        binding.exclusiveRecycler.setAdapter(exclusiveDealAdapter);
     }
 
     private void setVenueImageSlideAdapter(VenueObjectModel data) {
@@ -445,22 +436,6 @@ public class VenueActivity extends BaseActivity {
             mBinding.layoutEmail.setVisibility(View.GONE);
         }
 
-        if (venueObjectModel.getPhone() != null && !venueObjectModel.getPhone().isEmpty()) {
-            String phone = venueObjectModel.getPhone();
-            String[] phoneNumbers;
-            if (phone.contains(",")) {
-                phoneNumbers = phone.split(",\\s*");
-            } else {
-                phoneNumbers = new String[]{phone};
-            }
-
-            mBinding.listRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
-            PhoneNumberAdapter adapter = new PhoneNumberAdapter(phoneNumbers);
-            mBinding.listRecycler.setAdapter(adapter);
-        } else {
-            mBinding.listRecycler.setVisibility(View.GONE);
-        }
-
 
         mBinding.tvMail.setOnClickListener(view -> {
             Intent i = new Intent(Intent.ACTION_SENDTO);
@@ -474,18 +449,6 @@ public class VenueActivity extends BaseActivity {
         bottomSheetDialog.show();
     }
 
-    private void setDiscountAdapter() {
-        binding.discountRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
-        binding.discountRecycler.setAdapter(discountOfferAdapter);
-
-        if (!venueObjectModel.getSpecialOffers().isEmpty()) {
-            discountOfferAdapter.updateData(venueObjectModel.getSpecialOffers());
-        } else {
-            binding.linearOffer.setVisibility(View.GONE);
-        }
-
-
-    }
 
     private void setVenueModelData() {
 
@@ -629,12 +592,6 @@ public class VenueActivity extends BaseActivity {
         }
 
         binding.btnFollowButton.setVenueRequestStatus(venueObjectModel);
-
-        if (venueObjectModel.getSpecialOffers() != null && !venueObjectModel.getSpecialOffers().isEmpty()) {
-            setDiscountAdapter();
-        } else {
-            binding.linearOffer.setVisibility(View.GONE);
-        }
 
 
         double i = venueObjectModel.getDistance();
@@ -811,26 +768,6 @@ public class VenueActivity extends BaseActivity {
                 }
             }
         });
-    }
-
-    private void requestDeals(String venueId) {
-        JsonObject object = new JsonObject();
-        object.addProperty("venueId", venueId);
-        DataService.shared(activity).requestCategoryDealList(object, new RestCallback<ContainerListModel<VoucherModel>>(this) {
-            @Override
-            public void result(ContainerListModel<VoucherModel> model, String error) {
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (model.data != null && !model.data.isEmpty()) {
-                    exclusiveDealAdapter.updateData(model.data);
-                } else {
-                    binding.linearDeal.setVisibility(View.GONE);
-                }
-            }
-        });
-
     }
 
     private void reqAddRatings(int rating) {
@@ -1087,149 +1024,6 @@ public class VenueActivity extends BaseActivity {
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 mBinding = ItemRatingReviewRecyclerBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class DiscountOfferAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(UiUtils.getViewBy(parent, R.layout.item_discount_recycler));
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            SpecialOfferModel model = (SpecialOfferModel) getItem(position);
-
-            Log.d("TAG", "onBindViewHolder: " + model.getClaimCode());
-            if (!Utils.isNullOrEmpty(String.valueOf(model.getDiscount()))) {
-                viewHolder.mBinding.tvDiscount.setText(model.getDiscount() + "% OFF");
-            } else {
-                viewHolder.mBinding.tvDiscount.setText(" 0%\nOFF");
-            }
-            viewHolder.mBinding.tvOffer.setText(model.getTitle());
-            viewHolder.mBinding.tvDescription.setText(model.getDescription());
-
-            viewHolder.itemView.setOnClickListener(v -> {
-                Utils.preventDoubleClick(v);
-                if (model.getType().equals("total")) {
-                    startActivity(new Intent(activity, ClaimOfferActivity.class).putExtra("specialOfferModel", new Gson().toJson(model)).putExtra("venueModel", new Gson().toJson(venueObjectModel)));
-                } else {
-                    startActivity(new Intent(activity, ClaimBrunchActivity.class).putExtra("specialOfferModel", new Gson().toJson(model)).putExtra("venueModel", new Gson().toJson(venueObjectModel)));
-                }
-            });
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final ItemDiscountRecyclerBinding mBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ItemDiscountRecyclerBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class ExclusiveDealAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//            return new ViewHolder(UiUtils.getViewBy(parent, R.layout.exclusive_item_recycler));
-            View view = UiUtils.getViewBy(parent, R.layout.exclusive_item_recycler);
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            params.width = (int) (Graphics.getScreenWidth(Graphics.context) * (getItemCount() > 1 ? 0.83 : 0.93));
-            view.setLayoutParams(params);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            VoucherModel model = (VoucherModel) getItem(position);
-
-            viewHolder.mBinding.tvSubTitle.setText(model.getTitle());
-            viewHolder.mBinding.tvTitle.setText(model.getDescription());
-
-
-//            viewHolder.mBinding.tvAED.setPaintFlags(viewHolder.mBinding.tvAED.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-//            if (model.getDiscountedPrice() == Integer.parseInt(model.getActualPrice())) {
-//                viewHolder.mBinding.tvAED.setVisibility(View.GONE);
-//                viewHolder.mBinding.tvPrice.setText(String.valueOf(model.getActualPrice()));
-//            } else {
-//                viewHolder.mBinding.tvAED.setVisibility(View.VISIBLE);
-//            }
-//            viewHolder.mBinding.tvAED.setText(String.valueOf(model.getActualPrice()));
-
-
-            SpannableString styledPrice = Utils.getStyledText(activity,String.valueOf(model.getDiscountedPrice()));
-            SpannableStringBuilder fullText = new SpannableStringBuilder();
-            fullText.append(getValue("from")).append(styledPrice);
-            viewHolder.mBinding.buyNowBtn.setText(fullText);
-
-            Graphics.loadImage(model.getImage(), viewHolder.mBinding.ivCover);
-
-            if (position % 2 == 0) {
-                viewHolder.mBinding.linear.setBackgroundResource(R.drawable.pink_orange_gradiant);
-            } else {
-                viewHolder.mBinding.linear.setBackgroundResource(R.drawable.multi_green_color_gradiant);
-            }
-
-            viewHolder.mBinding.buyNowBtn.setOnClickListener(view ->
-                    startActivity(new Intent(activity, BuyNowActivity.class).putExtra("deals", model.getId())
-                            .putExtra("venueDetail", new Gson().toJson(model.getVenue())).putExtra("offerModel", new Gson().toJson(model))));
-            viewHolder.mBinding.getRoot().setOnClickListener(view -> startActivity(new Intent(activity, VoucherDetailScreenActivity.class).putExtra("id", model.getId())));
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final ExclusiveItemRecyclerBinding mBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = ExclusiveItemRecyclerBinding.bind(itemView);
-            }
-        }
-    }
-
-    public class PhoneNumberAdapter extends RecyclerView.Adapter<PhoneNumberAdapter.ViewHolder> {
-        private String[] phoneNumbers;
-
-        public PhoneNumberAdapter(String[] phoneNumbers) {
-            this.phoneNumbers = phoneNumbers;
-        }
-
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_phone_number, parent, false);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.binding.tvPhone.setText(phoneNumbers[position]);
-            holder.itemView.setOnClickListener(view -> {
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" + phoneNumbers[position]));
-                startActivity(callIntent);
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return phoneNumbers.length;
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private ItemPhoneNumberBinding binding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemPhoneNumberBinding.bind(itemView);
             }
         }
     }
