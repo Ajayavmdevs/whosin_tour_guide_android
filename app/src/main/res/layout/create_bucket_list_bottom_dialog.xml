@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/_20sdp"
+    android:background="@color/bottom_bg_color"
+    app:corner_radius="@dimen/_12sdp"
+    android:isScrollContainer="false"
+    android:windowSoftInputMode="adjustResize"
+    tools:context=".ui.activites.venue.Bucket.CreateBucketListBottomDialog">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_56sdp"
+        android:background="@color/main_bg_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvBucketTitle"
+            style="@style/txt16SemiBoldWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:text="Add to Bucketlist"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@drawable/icon_close_btn" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.72dp"
+            android:background="@color/white_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintHeader">
+
+
+        <TextView
+            style="@style/txt12Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Cover Image" />
+
+
+        <RelativeLayout
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/rectangal_dash_bg">
+
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:corner_radius="@dimen/_10sdp">
+
+
+                <ImageView
+                    android:id="@+id/imagePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/rectangal_dash_bg" />
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/ivPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/icon_pluse_pick" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            style="@style/txt12Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="What do you have in mind?" />
+
+        <EditText
+            android:id="@+id/edName"
+            style="@style/CreateBucketEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/invitesheet_edittext_background"
+            android:hint="name you list"
+            android:imeOptions="actionDone"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:inputType="textMultiLine"
+            android:textColorHint="@color/white_50" />
+
+
+        <TextView
+            style="@style/txt12Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Share with" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/contactRecycler"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_75sdp"
+                            android:visibility="visible"/>
+
+                        <LinearLayout
+                            android:id="@+id/layoutContact"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@drawable/ripple"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:background="@drawable/create_circal_dash_bg"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tvContact"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:background="@drawable/icon_pluse_pick" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/createBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@drawable/swipe_green_btn_gradient"
+            android:orientation="horizontal">
+
+            <com.ncorti.slidetoact.SlideToActView
+                android:id="@+id/createBucket"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_43sdp"
+                android:layout_gravity="center"
+                android:elevation="0dp"
+                app:border_radius="2dp"
+                app:inner_color="@color/white"
+                app:outer_color="@color/transparent"
+                app:slider_height="190dp"
+                app:slider_icon="@drawable/icon_swipe"
+                app:text="Swipe to create"
+                app:text_size="18sp"
+                app:text_style="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        android:indeterminateTint="@color/brand_pink"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

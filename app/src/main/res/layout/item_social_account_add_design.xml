@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginBottom="@dimen/_8sdp"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        android:id="@+id/roundLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:corner_radius="@dimen/_12sdp"
+        android:background="@color/share_doc_bg"
+        android:layout_weight="1"
+
+        >
+        <EditText
+            android:id="@+id/socialEditText"
+            style="@style/txt11Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:drawableStart="@drawable/instagram_icon"
+            android:drawablePadding="@dimen/_10sdp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="Enter your social acount"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:clickable="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:textColorHint="#7B7B7B"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/btnRemove"
+        android:layout_width="@dimen/_21sdp"
+        android:layout_height="@dimen/_21sdp"
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/_1sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@drawable/icon_remove" />
+
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

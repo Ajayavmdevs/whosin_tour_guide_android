@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linear"
+    android:layout_width="@dimen/_218sdp"
+    android:layout_height="@dimen/_140sdp"
+    android:layout_marginHorizontal="@dimen/_8sdp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:corner_radius="@dimen/_12ssp">
+
+
+    <TextView
+        android:id="@+id/tvSubTitle"
+        style="@style/txt12RegularWhite85"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:singleLine="true"
+        android:text=" dadadadad"
+        app:layout_constraintEnd_toStartOf="@+id/ivCover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/txt14Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:maxLines="3"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/ivCover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubTitle" />
+
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/black"
+        android:gravity="center_horizontal"
+        android:paddingVertical="@dimen/_7sdp"
+        app:corner_radius="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivCover"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/buyNowBtn"
+            style="@style/txt12SemiBoldWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="160 AED" />
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="@dimen/_98sdp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

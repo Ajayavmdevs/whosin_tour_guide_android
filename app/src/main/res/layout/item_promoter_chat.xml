@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_15sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    app:corner_radius="@dimen/_12sdp">
+
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/home_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/eventUsersRecycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:top_left_corner_radius="@dimen/_12sdp"
+        app:top_right_corner_radius="@dimen/_12sdp">
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:corner_radius="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/profileImage"
+                style="@style/txt14Regular"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_venue_image"
+                android:textColor="@color/white" />
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userName"
+                style="@style/txt12SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attiko"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/timeDate"
+                    style="@style/txt9Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sun 19,June 2024 |"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/startEndTime"
+                    style="@style/txt9Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="19:00-21:00"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/countTime"
+                    style="@style/txt10Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:text="5 seats"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+
+                <TextView
+                    android:id="@+id/description"
+                    style="@style/txt10Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:text="Joined your event"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    <View
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/linear" />
+
+    <com.whosin.app.ui.controller.promoter.PromoterEventUserInviteView
+        android:id="@+id/userInvitedView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_1sdp"
+        app:backgroundColor="@color/features_bg"
+        app:countTitleText="true"
+        app:eventTitleText="Users"
+        app:isSeeAllShow="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_black_color"
+        app:bottom_left_corner_radius="@dimen/_12sdp"
+        app:bottom_right_corner_radius="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userInvitedView">
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            android:id="@+id/seeAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/date_red"
+            app:corner_radius="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/txt10SemiBoldWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_3sdp"
+                android:text="See all" />
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+        <com.whosin.app.ui.controller.IconButton
+            android:id="@+id/btnGroupChat"
+            style="@style/txt12Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_10sdp"
+            app:buttonBg="@color/light_green_bg"
+            app:buttonTintColor="@color/white"
+            app:buttonTitle="GROUP CHAT"
+            app:buttonCorner="@dimen/_9sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seeAll" />
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            android:id="@+id/roundCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@color/date_red"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:paddingVertical="@dimen/_1sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:corner_radius="@dimen/_12sdp"
+            app:layout_constraintTop_toTopOf="@id/btnGroupChat"
+            >
+            <TextView
+                android:id="@+id/chatCount"
+                style="@style/txt10Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/img_bottomsheet_bg"
+    android:isScrollContainer="false"
+    android:windowSoftInputMode="adjustResize"
+    tools:context=".ui.activites.auth.OtpVerificationBottomSheet">
+
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerFrameLayout
+        android:id="@+id/dragView"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_3sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_25sdp"
+        android:background="@color/white_20"
+        app:corner_radius="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:src="@drawable/icon_close_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/progrssView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:layout_constraintDimensionRatio="h,1:1"
+        android:layout_marginTop="@dimen/_25sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dragView">
+
+        <com.whosin.app.ui.controller.RoundProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            style="@style/txt16Bold"
+            android:text="20"
+            android:id="@+id/txtTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.whosin.app.ui.controller.RoundButton
+            android:id="@+id/indicatorView"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            app:centerImg="@drawable/icon_right_check"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.whosin.app.ui.controller.OnBoardTextInfoView
+        android:id="@+id/infoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintTop_toBottomOf="@id/progrssView"
+        app:mainTitle="Account Created!"
+        app:subTitle="We have sent a 4 digits OTP to your Phone.\nPlease check your phone."
+        />
+
+    <com.chaos.view.PinView
+        android:id="@+id/otpTextField"
+        style="@style/txt11Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_25sdp"
+        android:cursorVisible="true"
+        android:digits="0123456789"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:inputType="numberPassword"
+        android:imeOptions="actionDone"
+        android:lineHeight="@dimen/_1sdp"
+        app:itemCount="4"
+        app:itemHeight="@dimen/_40sdp"
+        app:itemSpacing="@dimen/_15sdp"
+        app:itemWidth="@dimen/_40sdp"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/infoTextView"
+        app:lineColor="@color/white_50"
+        app:viewType="line" />
+
+
+    <TextView
+        android:id="@+id/resendOtpTv"
+        style="@style/txt10Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:clickable="true"
+        android:onClick="onResendOtpClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/otpTextField" />
+
+    <com.whosin.app.ui.controller.IconButton
+        android:id="@+id/btnVerify"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/otpTextField"
+        app:layout_constraintStart_toStartOf="@id/otpTextField"
+        app:layout_constraintTop_toBottomOf="@id/resendOtpTv"
+        app:buttonBgColor="@color/brand_pink"
+        android:layout_marginVertical="@dimen/_30sdp"
+        app:buttonTitle="Verify"
+        app:buttonTintColor="@color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

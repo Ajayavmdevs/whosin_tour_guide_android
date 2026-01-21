@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/startingFromLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/rayna_tags_colour"
+    android:paddingHorizontal="@dimen/_8ssp"
+    android:paddingVertical="@dimen/_1sdp"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginEnd="@dimen/_8ssp"
+    app:layout_constraintTop_toBottomOf="@+id/tvTickeTitle">
+
+
+    <TextView
+        android:id="@+id/tags"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/sf_medium"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp" />
+
+
+</LinearLayout>

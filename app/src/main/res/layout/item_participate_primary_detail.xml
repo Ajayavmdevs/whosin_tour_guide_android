@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintRound"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:background="@color/tour_option_background"
+    android:padding="@dimen/_1sdp"
+    app:corner_radius="@dimen/_8sdp">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/detailLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/venue_bg"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:corner_radius="@dimen/_8sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            style="@style/txt14SemiBoldWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Primary Guest Details" />
+
+        <!-- Pickup Section -->
+        <LinearLayout
+            android:id="@+id/passengerPickUpLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tvPickUpTitle"
+                style="@style/txt11Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pickup" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pickUpLocationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <EditText
+                    android:id="@+id/editPickUp"
+                    style="@style/CommonEditDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tour_option_spinner_stock_bg"
+                    android:hint="Select pickup Location"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:clickable="true"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_7sdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                android:id="@+id/pickupNoteLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_8sdp"
+                android:background="@color/gray_600"
+                android:visibility="visible"
+                app:corner_radius="@dimen/_8sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvPickupInfoTitle"
+                        style="@style/txt11SemiBoldWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚠️ Important Information &amp; Pick-Up Details" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPickupInfoDesc"
+                    style="@style/txt11Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:text="• Shared transfers are provided only from centrally located hotels and residences in Dubai city (Deira, Bur Dubai, Sheikh Zayed Road, Marina)." />
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+        </LinearLayout>
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

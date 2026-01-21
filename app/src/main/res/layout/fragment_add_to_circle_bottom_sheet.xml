@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bottom_bg_color"
+    android:isScrollContainer="false"
+    android:windowSoftInputMode="adjustResize"
+    app:top_left_corner_radius="@dimen/_20sdp"
+    app:top_right_corner_radius="@dimen/_20sdp"
+    tools:context=".ui.activites.CmProfile.AddToCircleBottomSheet">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_56sdp"
+        android:background="@color/main_bg_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/userName"
+            style="@style/txt15SemiBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:text="Add to Circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivClose"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/icon_close_btn" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.72dp"
+            android:background="@color/white_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/circlesRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintAddToCircle"
+        android:layout_marginBottom="@dimen/_15sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintHeader" />
+
+    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+        android:id="@+id/emptyPlaceHolderView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:emptyPlaceTxtIcon="@drawable/friend_icon"
+        app:emptyPlaceTxtTitle="There is no users available"
+        app:emptyPlaceTxtTitleColor="@color/white"
+        app:emptyPlaceTxtTitleSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintAddToCircle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout-->
+<!--        android:id="@+id/constraintAddToCircle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/date_red"-->
+<!--        app:corner_radius="@dimen/_15sdp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginVertical="@dimen/_15sdp"-->
+<!--        android:layout_marginHorizontal="@dimen/_25sdp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--       >-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvCircle"-->
+<!--            style="@style/txt11SemiBold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="@dimen/_6sdp"-->
+<!--            android:text="Add"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>-->
+
+    <com.whosin.app.ui.controller.IconButton
+        android:id="@+id/constraintAddToCircle"
+        style="@style/txt12Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:visibility="visible"
+        app:buttonBgColor="@color/date_red"
+        app:buttonTintColor="@color/white"
+        app:buttonTitle="Add"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_25sdp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

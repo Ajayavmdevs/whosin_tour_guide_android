@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roundConstraint"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_300sdp"
+    android:background="@drawable/stroke_gradiant_line_pending"
+    android:padding="@dimen/_1sdp"
+    app:corner_radius="@dimen/_10sdp">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/appBackgroundColor"
+        app:corner_radius="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="center"
+            android:src="@drawable/appicon" />
+
+        <LinearLayout
+            android:id="@+id/linearEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@color/black_75"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/venuLogo"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_8sdp"
+                tools:ignore="DuplicateIds" />
+
+            <TextView
+                android:id="@+id/textVenuName"
+                style="@style/txt14Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="6"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:text="" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtEventName"
+            style="@style/txt18Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@id/linearEvent" />
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            android:id="@+id/layoutTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:background="@color/black_50"
+            app:corner_radius="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtEventName">
+
+
+            <TextView
+                android:id="@+id/countTimer"
+                style="@style/txt14SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                android:foreground="@color/dark_transparent"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_3sdp"
+                android:text="00 : 00 :00" />
+
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:id="@+id/blurView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:bottom_left_corner_radius="@dimen/_8sdp"
+            android:background="@color/black_75"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_6sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:top_left_corner_radius="@dimen/_8sdp">
+
+
+                <com.whosin.app.comman.ui.UserInfoView
+                    android:id="@+id/venueContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activites.Yacht.YachtOfferDetailActivity">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appBackgroundColor">
+
+
+            <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                android:id="@+id/imageCarousel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_250sdp"
+                app:autoPlay="true"
+                app:autoPlayDelay="3000"
+                app:imageScaleType="center"
+                app:indicatorMargin="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:showCaption="false"
+                app:showIndicator="true"
+                app:indicatorColor="@color/white_40"
+                app:showNavigationButtons="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/top_to_bottom_yacht_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imageCarousel" />
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_55sdp"
+                android:background="@drawable/sky_blue_gradiant"
+                android:paddingHorizontal="@dimen/_10sdp"
+                app:bottom_left_corner_radius="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:top_right_corner_radius="@dimen/_12sdp">
+
+                <TextView
+                    android:id="@+id/tvStart"
+                    style="@style/txt11SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="STARTING"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/txt12SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="AED 24/HR"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvStart" />
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+            <com.whosin.app.ui.controller.yacht.YachtSpecificationView
+                android:id="@+id/specificationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageCarousel" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/specificationView">
+
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    style="@style/txt11Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:text="Small description goes here Small description goes ... Small description goes here Small de Small description goes ... Small description goes here Small description... more"
+                    android:textColor="@color/grey_text" />
+
+                <com.whosin.app.ui.controller.yacht.YachtFeatureView
+                    android:id="@+id/featureRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.whosin.app.ui.controller.yacht.YachtPackagesView
+                    android:id="@+id/yachtPackagesListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp" />
+
+                <com.whosin.app.ui.controller.yacht.YachtAddOnView
+                    android:id="@+id/yachatAddOnView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                     />
+
+                <com.whosin.app.ui.controller.yacht.YachtImportantMessageView
+                    android:id="@+id/needToKnowView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:subTitleBgColor="@color/package_color"
+                    app:titleTxtBgColor="@color/message_title_bg"
+
+                    />
+
+                <com.whosin.app.ui.controller.yacht.YachtImportantMessageView
+                    android:id="@+id/importantMessageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:subTitleBgColor="@color/package_color"
+                    app:titleTxtBgColor="@color/message_title_bg" />
+
+                <com.whosin.app.ui.controller.yacht.YachtImportantMessageView
+                    android:id="@+id/disclaimerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:messageTitleTextStyleBold="true"
+                    app:messageTitleTextStyleItalic="true"
+                    app:subTitleBgColor="@color/message_bg"
+                    app:titleTxtBgColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packageRecycler">
+
+                    <com.whosin.app.ui.controller.IconButton
+                        android:id="@+id/btnInvite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:buttonBg="@color/package_color"
+                        app:buttonTintColor="@color/white"
+                        app:buttonTitle="Buy Now!" />
+
+                    <com.whosin.app.ui.controller.IconButton
+                        android:id="@+id/btnClaim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        app:buttonBg="@color/lime_green_medium"
+                        app:buttonTintColor="@color/white"
+                        app:buttonTitle="Contact Agent" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_4sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_5sdp"
+                android:paddingStart="@dimen/_15sdp"
+                android:src="@drawable/icon_left_back_arrow" />
+
+
+            <LinearLayout
+                android:id="@+id/venueTitleContainer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/txt13SemiBoldWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    style="@style/txt10RegularWhite70"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/white_70"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

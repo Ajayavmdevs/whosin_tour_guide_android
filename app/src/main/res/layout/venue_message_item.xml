@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/layoutSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:corner_radius="@dimen/_30sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:src="@drawable/story_share_icon"
+            android:padding="@dimen/_8sdp"
+            android:layout_gravity="center" />
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/blue_gradient"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.75">
+
+        <TextView
+            android:id="@+id/txtSender"
+            style="@style/txt10Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/solid_blue"
+            android:text="WhosIn" />
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp"
+            app:corner_radius="@dimen/_10sdp"
+            android:background="@color/black"
+            android:layout_margin="@dimen/_1sdp">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtInviteFriend"
+                style="@style/txt12SemiBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_3sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/pink_button_bg"
+                android:text="Invite"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <FrameLayout
+                android:id="@+id/blurView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_4sdp"
+                android:background="@color/black_70"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.whosin.app.comman.ui.UserInfoView
+                    android:id="@+id/venueContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtTime"
+            style="@style/txt8Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:text="" />
+
+    </LinearLayout>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

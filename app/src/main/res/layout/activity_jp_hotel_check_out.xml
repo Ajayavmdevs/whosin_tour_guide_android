@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bottom_bg_color"
+    tools:context=".ui.activites.JpHotel.JpHotelCheckOutActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/mainConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintHeader">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ticketImagesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:corner_radius="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:paddingTop="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/raynaGalleryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_172sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.whosin.app.comman.DotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    app:dot_height="10dp"
+                    app:dot_width="10dp"
+                    app:dots_count="3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:margins_between_dots="5dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:selected_dot_resource="@drawable/icon_selected_dot"
+                    app:selected_dot_scale_factor="2"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    app:unselected_dot_resource="@drawable/icon_unselected_dot" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/titleConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ticketImagesLayout">
+
+                <TextView
+                    android:id="@+id/tvDiscount"
+                    style="@style/txt11Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/discount_tag"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:paddingVertical="@dimen/_2sdp"
+                    android:text="   " />
+
+                <TextView
+                    android:id="@+id/tvTickeTitle"
+                    style="@style/txt16SemiBoldWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ticketImagesLayout" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/startingFromLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleConstraint">
+
+
+                <TextView
+                    android:id="@+id/tvStartingFrom"
+                    style="@style/txt10Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="Starting from" />
+
+
+                <TextView
+                    android:id="@+id/tvAmoutStart"
+                    style="@style/txt12SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="285 AED" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ratingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/startingFromLayout">
+
+                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                    android:id="@+id/rating"
+                    style="@style/Widget.MaterialRatingBar.RatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_gravity="end"
+                    android:stepSize="1.0"
+                    app:mrb_progressBackgroundTint="@color/white"
+                    app:mrb_progressTint="@color/brand_pink"
+                    app:mrb_secondaryProgressTint="@color/brand_pink"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/avg_ratingsTv"
+                    style="@style/txt11SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:text="4.00" />
+
+
+                <TextView
+                    android:id="@+id/totalReviewsTv"
+                    style="@style/txt11SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 Reviews" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvTickeDescription"
+                style="@style/txt11Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ratingLayout" />
+
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                android:id="@+id/guest_detail_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:background="@color/checkout_bg"
+                app:corner_radius="@dimen/_7sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/tvTickeDescription">
+
+                <TextView
+                    android:id="@+id/tvGuestTitle"
+                    style="@style/txt12SemiBoldWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="Guest Details"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    app:layout_constraintTop_toBottomOf="@id/totalPersonLayout" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/guestDetailView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGuestTitle" />
+
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+            <include
+                android:id="@+id/jpHotelDetailview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/guest_detail_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                layout="@layout/item_checkout_jp_hotel_option_details"
+                android:layout_marginHorizontal="@dimen/_12sdp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/constraintHeader"
+        layout="@layout/item_rayna_header_view" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/video_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/mainConstraint">
+
+        <LinearLayout
+            android:id="@+id/promoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/promo_stroke_bg"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toTopOf="@+id/tvValidationError">
+
+                <ImageView
+                    android:id="@+id/ivPromoCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:src="@drawable/icon_promo_code" />
+
+                <EditText
+                    android:id="@+id/edtPromoCode"
+                    style="@style/txt11Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter promo code..."
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:imeOptions="actionDone"
+                    android:maxLength="8"
+                    android:singleLine="true"
+                    android:visibility="visible"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/tvApplyPromoCode"
+                    style="@style/txt11Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/btnApplyPromoCode"
+                    style="@style/txt10SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:text="Apply"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_minus5sdp"
+                    android:textColor="@color/brand_pink" />
+
+                <ImageView
+                    android:id="@+id/imgValidation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:src="@drawable/icon_wrong_promocode"
+                    android:visibility="gone" />
+
+                <ProgressBar
+                    android:id="@+id/promoCodeProgressView"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:indeterminateTint="@color/brand_pink"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvValidationError"
+                style="@style/txt9Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Invalid promo code"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_8sdp"/>
+
+        </LinearLayout>
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            android:id="@+id/YourSavingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:visibility="gone"
+            android:background="@color/gray_500"
+            app:corner_radius="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/promoLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/insideSavingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTotalSavingTitle"
+                    style="@style/txt10SemiBoldWhite85"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Total Savings"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvYourSaving"
+                    style="@style/txt11Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:gravity="end"
+                    android:text=""
+                    app:layout_constraintEnd_toStartOf="@+id/ivDropDown"
+                    app:layout_constraintStart_toEndOf="@+id/tvTotalSavingTitle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/brand_pink"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/ivDropDown"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:rotation="90"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:src="@drawable/icon_left_btn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutPromoAndDiscount"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingStart="@dimen/_10sdp"
+                android:background="@color/saving_layout_bg"
+                android:paddingEnd="@dimen/_30sdp"
+                app:layout_constraintTop_toBottomOf="@+id/insideSavingLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutPromoCodeApply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    android:paddingVertical="@dimen/_3sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvPromoCodeTitleForPromoLayout"
+                        style="@style/txt10RegularWhite70"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Promo Code"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tvPromoCode"
+                        style="@style/txt10Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="end"
+                        android:text="AED 73"
+                        android:textColor="@color/brand_pink"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/promoCodeDiscountLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvDiscountTitleForPromoLayout"
+                        style="@style/txt10RegularWhite70"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Discount"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tvTotalDiscount"
+                        style="@style/txt10Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:gravity="end"
+                        android:text=""
+                        android:textColor="@color/brand_pink"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/check_out_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/YourSavingLayout">
+
+            <TextView
+                android:id="@+id/btnBackBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1.7"
+                android:background="@drawable/edit_profile_bg"
+                android:gravity="center"
+                android:padding="@dimen/_7sdp"
+                android:text="Back"
+                android:fontFamily="@font/sf_medium"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/white"  />
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                android:id="@+id/btnCheckOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/brand_pink"
+                android:padding="@dimen/_6sdp"
+                android:layout_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/check_out_buttons"
+                app:corner_radius="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_next_step"
+                    style="@style/txt12SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check out"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

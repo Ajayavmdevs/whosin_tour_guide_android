@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".ui.activites.auth.MemberShipActivity">
+
+    <com.whosin.app.ui.controller.NavBarWithBack
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftImage="@drawable/icon_next"
+        app:navBgColor="@color/transparent"
+        app:navTitle="Select Preferences (optional)"
+        app:navTitleColor="@color/white"
+        app:showBackButton="true" />
+
+    <com.whosin.app.ui.controller.OnBoardTextInfoView
+        android:id="@+id/nameControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar"
+        app:mainTitle="Do you have any \n membership? "
+        app:subTitle="Select from the list the best option" />
+
+    <TextView
+        android:id="@+id/txtPlatinum"
+        style="@style/GenderTextview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:gravity="center"
+        android:text="EK Platinum"
+        app:layout_constraintDimensionRatio="h,381:49"
+        app:layout_constraintTop_toBottomOf="@id/nameControl" />
+
+    <TextView
+        android:id="@+id/txtEmirates"
+        style="@style/GenderTextview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:gravity="center"
+        android:text="Emirates NBD"
+        app:layout_constraintDimensionRatio="h,381:49"
+        app:layout_constraintTop_toBottomOf="@id/txtPlatinum" />
+
+    <TextView
+        android:id="@+id/txtFaceCard"
+        style="@style/GenderTextview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:gravity="center"
+        android:text="FACECARD"
+        app:layout_constraintDimensionRatio="h,381:49"
+        app:layout_constraintTop_toBottomOf="@id/txtEmirates" />
+
+   <!-- <TextView
+        android:id="@+id/tvSkip"
+        style="@style/GenderTextview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:gravity="center"
+        android:text="Skip"
+        app:layout_constraintDimensionRatio="h,381:49"
+        app:layout_constraintTop_toBottomOf="@id/tvOther" />-->
+
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/btnSkip"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:background="@drawable/img_input_bg"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/txtFaceCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:corner_radius="@dimen/_30sdp">
+
+        <TextView
+            style="@style/txt14SemiBoldWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Skip" />
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+
+    <com.whosin.app.ui.controller.RoundButton
+        android:id="@+id/imageNext"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_55sdp"
+        app:centerImg="@drawable/icon_next"
+        app:imgMargin="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

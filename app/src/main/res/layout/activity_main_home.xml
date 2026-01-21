@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".ui.activites.home.MainHomeActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+       app:layout_constraintBottom_toTopOf="@+id/confiremedEventView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/miniPlayerContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        android:elevation="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/confiremedEventView"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.whosin.app.ui.controller.MiniVideoView
+            android:id="@+id/miniVideoView"
+            android:layout_width="@dimen/_148sdp"
+            android:layout_height="@dimen/_102sdp"
+            android:visibility="gone"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintBottom_toTopOf="@+id/confiremedEventView"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </FrameLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/bottomBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/mainImg"-->
+<!--            android:layout_width="@dimen/_45sdp"-->
+<!--            android:layout_height="@dimen/_45sdp"-->
+<!--            app:layout_anchor="@id/bottomAppBar"-->
+<!--            android:foreground="@drawable/center_icon_tab"-->
+<!--            app:borderWidth="0dp"-->
+<!--            app:backgroundTint="@android:color/black"/>-->
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:fabCradleMargin="@dimen/_5sdp"
+            app:fabCradleRoundedCornerRadius="5dp"
+            app:fabCradleVerticalOffset="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    style="@style/MyTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_46sdp"
+                    android:background="@color/clear"
+                    android:visibility="visible"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/clear"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/brand_pink"
+                    app:tabTextColor="@color/home_tab" />
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+<!--        <View-->
+<!--            android:id="@+id/indicatorView"-->
+<!--            android:layout_width="@dimen/_7sdp"-->
+<!--            android:layout_height="@dimen/_7sdp"-->
+<!--            android:background="@drawable/rounded_layout"-->
+<!--            android:backgroundTint="@color/red"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginBottom="@dimen/_35sdp"-->
+<!--            android:elevation="@dimen/_10sdp"-->
+<!--            android:visibility="gone"/>-->
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.whosin.app.ui.controller.ComplementryProfileViews.CmEventConfirmedEventsView
+        android:id="@+id/confiremedEventView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBarLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

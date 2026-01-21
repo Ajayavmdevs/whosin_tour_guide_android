@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:background="@drawable/package_shadow"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/_10sdp"
+    app:corner_radius="@dimen/_10sdp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/tvDiscount"
+            style="@style/txt11Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/pink_button_bg"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="50%"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/txt11SemiBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:text="Regular Package "
+            android:layout_marginTop="@dimen/_1sdp"
+            app:layout_constraintEnd_toStartOf="@id/tvQty"
+            app:layout_constraintStart_toEndOf="@id/tvDiscount"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvQty"
+            style="@style/txt12SemiBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:text="2"
+            android:layout_marginTop="@dimen/_1sdp"
+            app:layout_constraintEnd_toStartOf="@id/tvDiscountPrice"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDiscountPrice"
+            style="@style/txt12SemiBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="AED 200"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:textColor="@color/cart_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="@style/txt10RegularWhite70"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_weight="2"
+            android:maxLines="2"
+            android:text="Alcoholic Premium Package "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvDiscount"-->
+    <!--            style="@style/txt11Bold"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:background="@drawable/pink_button_bg"-->
+    <!--            android:gravity="center"-->
+    <!--            android:paddingHorizontal="@dimen/_8sdp"-->
+    <!--            android:paddingVertical="@dimen/_2sdp"-->
+    <!--            android:text="50%" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvName"-->
+    <!--            style="@style/txt12SemiBold"-->
+    <!--            android:layout_width="@dimen/_150sdp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:paddingStart="@dimen/_5sdp"-->
+    <!--            android:text="Regular Package " />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvQty"-->
+    <!--            style="@style/txt12Bold"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_marginStart="@dimen/_12sdp"-->
+    <!--            android:layout_marginEnd="@dimen/_5sdp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:text="2" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvDiscountPrice"-->
+    <!--            style="@style/txt12Bold"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:text="AED 200"-->
+    <!--            android:textColor="@color/cart_text" />-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDescription"-->
+    <!--        style="@style/txt10Regular"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="@dimen/_10sdp"-->
+    <!--        android:layout_marginTop="@dimen/_2sdp"-->
+    <!--        android:layout_weight="2"-->
+    <!--        android:maxLines="2"-->
+    <!--        android:text="Alcoholic Premium Package " />-->
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

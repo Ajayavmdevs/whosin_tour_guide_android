@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contactLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#232226"
+    android:layout_marginHorizontal="@dimen/_8sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivUserProfile"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/_7sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detailLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHeight_max="@dimen/_35sdp"
+        app:layout_constraintWidth_min="@dimen/_100sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/buttonsLayout"
+        app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvUserName"
+            style="@style/txt11SemiBoldWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvUserStatus"
+            style="@style/adminStatusTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="pending"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:fontFamily="@font/medium"
+            android:textColor="@color/pending_yellow" />
+
+        <TextView
+            style="@style/txt9Regular"
+            android:id="@+id/tvBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+            android:text="" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.whosin.app.ui.controller.UserOptionView
+            android:id="@+id/optionContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_26sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <CheckBox
+            android:id="@+id/ivCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/complete_icon_unselected"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btnInvite"
+            style="@style/txt11SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Invite"
+            android:textColor="@color/solid_blue"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNotEligible"
+            style="@style/txt8Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Not eligible"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="0dp"
+        android:layout_height="0.68dp"
+        android:background="@color/view_line_color"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@id/ivUserProfile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

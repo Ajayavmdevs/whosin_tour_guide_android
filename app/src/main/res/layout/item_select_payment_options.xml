@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/ticket_pdf_bg">
+
+    <ImageView
+        android:id="@+id/ivPayment"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:src="@drawable/icon_link_pay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/titleAndDesLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnSelectPayment"
+        app:layout_constraintStart_toEndOf="@+id/ivPayment"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/txt12Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfuitext_regular"
+            android:text="Pay with Card"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="@style/txt10RegularWhite70"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfuitext_regular"
+            android:text="Pay with cerdit or debit card" />
+
+        <TextView
+            android:id="@+id/tv_minimum_amout"
+            style="@style/txt8SemiBoldWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfuitext_regular"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            android:text="Min amount is 10 AED" />
+
+
+        <TextView
+            android:id="@+id/tv_learn_more"
+            style="@style/txt9SemiBoldWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfuitext_regular"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            android:text="Learn More" />
+
+
+    </LinearLayout>
+
+    <RadioButton
+        android:id="@+id/btnSelectPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:buttonTint="@color/white_70"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:padding="0dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.65dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleAndDesLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

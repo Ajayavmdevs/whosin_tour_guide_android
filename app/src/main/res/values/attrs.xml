@@ -1,0 +1,286 @@
+<resources>
+    <attr name="themeColorAttr" format="reference"/>
+    <attr name="appBackgroundColorAttr" format="reference"/>
+    <attr name="tabSelectedColorAttr" format="reference"/>
+    <attr name="tabUnSelectedColorAttr" format="reference"/>
+    <attr name="primaryTextColorAttr" format="reference"/>
+    <attr name="secondaryTextColorAttr" format="reference"/>
+    <attr name="gradientBackgroundAttr" format="reference"/>
+    <attr name="tabbarUnSelectIndicatorColorAttr" format="reference"/>
+    <array name="arrayweek">
+        <item>@string/sun</item>
+        <item>@string/mon</item>
+        <item>@string/tue</item>
+        <item>@string/wed</item>
+        <item>@string/thu</item>
+        <item>@string/fri</item>
+        <item>@string/sat</item>
+    </array>
+    <string-array name="switch_tabs">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
+    <declare-styleable name="PinLockView">
+        <attr name="pinLength" format="integer"/>
+        <attr name="keypadTextColor" format="color"/>
+        <attr name="keypadTextSize" format="dimension"/>
+        <attr name="keypadButtonSize" format="dimension"/>
+        <attr name="keypadVerticalSpacing" format="dimension"/>
+        <attr name="keypadHorizontalSpacing" format="dimension"/>
+        <attr name="keypadButtonBackgroundDrawable" format="integer"/>
+        <attr name="keypadDeleteButtonDrawable" format="integer"/>
+        <attr name="keypadDeleteButtonDisableDrawable" format="integer"/>
+        <attr name="keypadDeleteButtonSize" format="dimension"/>
+        <attr name="keypadShowDeleteButton" format="boolean"/>
+        <attr name="keypadDeleteButtonPressedColor" format="color"/>
+        <attr name="dotEmptyBackground" format="reference"/>
+        <attr name="dotFilledBackground" format="reference"/>
+        <attr name="dotDiameter" format="dimension"/>
+        <attr name="dotSpacing" format="dimension"/>
+        <attr name="indicatorItemType" format="enum">
+            <enum name="fixed" value="0"/>
+            <enum name="fill" value="1"/>
+            <enum name="fillWithAnimation" value="2"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ParallaxScroll">
+        <attr name="parallax_factor" format="float"/>
+        <attr name="alpha_factor" format="float"/>
+        <attr name="inner_parallax_factor" format="float"/>
+        <attr name="parallax_views_num" format="integer"/>
+        <attr name="circular_parallax" format="boolean"/>
+    </declare-styleable>
+    <attr name="corner_radius" format="dimension"/>
+    <attr name="top_left_corner_radius" format="dimension"/>
+    <attr name="top_right_corner_radius" format="dimension"/>
+    <attr name="bottom_right_corner_radius" format="dimension"/>
+    <attr name="bottom_left_corner_radius" format="dimension"/>
+    <declare-styleable name="RoundCornerFrameLayout">
+        <attr name="corner_radius"/>
+        <attr name="top_left_corner_radius"/>
+        <attr name="top_right_corner_radius"/>
+        <attr name="bottom_right_corner_radius"/>
+        <attr name="bottom_left_corner_radius"/>
+    </declare-styleable>
+    <declare-styleable name="RoundCornerLinearLayout">
+        <attr name="corner_radius"/>
+        <attr name="top_left_corner_radius"/>
+        <attr name="top_right_corner_radius"/>
+        <attr name="bottom_right_corner_radius"/>
+        <attr name="bottom_left_corner_radius"/>
+    </declare-styleable>
+    <declare-styleable name="RoundCornerRelativeLayout">
+        <attr name="corner_radius"/>
+        <attr name="top_left_corner_radius"/>
+        <attr name="top_right_corner_radius"/>
+        <attr name="bottom_right_corner_radius"/>
+        <attr name="bottom_left_corner_radius"/>
+    </declare-styleable>
+    <declare-styleable name="RoundCornerConstraintLayout">
+        <attr name="corner_radius"/>
+        <attr name="top_left_corner_radius"/>
+        <attr name="top_right_corner_radius"/>
+        <attr name="bottom_right_corner_radius"/>
+        <attr name="bottom_left_corner_radius"/>
+    </declare-styleable>
+    <declare-styleable name="TitleEditText">
+        <attr name="titleText" format="string"/>
+        <attr name="hintText" format="string"/>
+        <attr name="showDropDownArrow" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="UserImageStyle">
+        <attr name="ui_title" format="string"/>
+        <attr name="ui_subtitle" format="string"/>
+        <attr name="ui_imageUrl" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="UserInfoViewStyle">
+        <attr name="isAsyncInflate" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="NavBar">
+        <attr name="navTitle" format="string"/>
+        <attr name="showBackButton" format="boolean"/>
+        <attr name="showRightButton" format="boolean"/>
+        <attr name="showSaperator" format="boolean"/>
+        <attr name="showCartButton" format="boolean"/>
+        <attr name="showCartItem" format="boolean"/>
+        <attr name="showCenterButton" format="boolean"/>
+        <attr name="showLeftButton" format="boolean"/>
+        <attr name="showSerachButton" format="boolean"/>
+        <attr name="linear" format="boolean"/>
+        <attr name="navTitleColor" format="color"/>
+        <attr name="navBgColor" format="color"/>
+        <attr name="rightImage" format="reference"/>
+        <attr name="leftImage" format="reference"/>
+        <attr name="rightBtnTitle" format="string"/>
+        <attr name="caertItem" format="string"/>
+        <attr name="leftBtnTitle" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="WhoInStatusCustomRecylerView">
+        <attr name="ugTitle" format="string"/>
+        <attr name="ugColor" format="color"/>
+        <attr name="ugShowAddBtn" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="IconTitleHorizontal">
+        <attr name="ith_title" format="string"/>
+        <attr name="ith_titleColor" format="color"/>
+        <attr name="ith_titleSize" format="dimension"/>
+        <attr name="ith_icon" format="reference"/>
+        <attr name="ith_iconColor" format="color"/>
+        <attr name="ith_iconSize" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="IconButton">
+        <attr name="buttonTitle" format="string"/>
+        <attr name="buttonIcon" format="reference"/>
+        <attr name="buttonBg" format="reference"/>
+        <attr name="buttonTintColor" format="color"/>
+        <attr name="buttonBgColor" format="color"/>
+        <attr name="progressColor" format="color"/>
+        <attr name="buttonCorner" format="dimension"/>
+        <attr name="titleSize" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="FollowButton">
+        <attr name="followButtonTitle" format="string"/>
+        <attr name="followButtonBg" format="reference"/>
+        <attr name="followButtonTintColor" format="color"/>
+        <attr name="followButtonBgColor" format="color"/>
+        <attr name="followButtonCorner" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="VenueFollowButton">
+        <attr name="venueFollowButtonTitle" format="string"/>
+        <attr name="venueFollowButtonBg" format="reference"/>
+        <attr name="venueFollowButtonTintColor" format="color"/>
+        <attr name="venueFollowButtonBgColor" format="color"/>
+        <attr name="venueFollowButtonCorner" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="CustomButton">
+        <attr name="btnTitle" format="string"/>
+        <attr name="btnTitleColor" format="color"/>
+        <attr name="btnBgColor" format="color"/>
+        <attr name="btnCorner" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="CustomButtonText">
+        <attr name="btnTxtTitle" format="string"/>
+        <attr name="btnTxtTitleColor" format="color"/>
+        <attr name="btnTxtBgColor" format="color"/>
+        <attr name="btnTxtCorner" format="dimension"/>
+        <attr name="btnTxtTitleSize" format="dimension"/>
+        <attr name="btnTxtIconColor" format="color"/>
+        <attr name="btnTxtIcon" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="PromoterEventUserInviteView">
+        <attr name="eventTitleText" format="string"/>
+        <attr name="circleImageViewWidth" format="dimension"/>
+        <attr name="circleImageViewHeight" format="dimension"/>
+        <attr name="promoterTitleTextStyle" format="reference"/>
+        <attr name="tvNameTextStyle" format="reference"/>
+        <attr name="backgroundColor" format="color"/>
+        <attr name="subtitleTextColor" format="color"/>
+        <attr name="countTitleText" format="boolean"/>
+        <attr name="isCircleNotClickable" format="boolean"/>
+        <attr name="isSeeAllShow" format="boolean"/>
+        />
+    </declare-styleable>
+    <declare-styleable name="EmptyPlaceHolderView">
+        <attr name="emptyPlaceTxtTitle" format="string"/>
+        <attr name="emptyPlaceTxtSubTitle" format="string"/>
+        <attr name="emptyPlaceTxtTitleColor" format="color"/>
+        <attr name="emptyPlaceTxtSubTitleColor" format="color"/>
+        <attr name="emptyPlaceTxtTitleSize" format="dimension"/>
+        <attr name="emptyPlaceTxtIcon" format="reference"/>
+        <attr name="emptyPlaceTxtMarginTop" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="ComplementryProfileScoreView">
+        <attr name="scoreTitleText" format="string"/>
+        <attr name="scoreTitleTextColor" format="color"/>
+        <attr name="titleTextStyleBold" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="CmEventList">
+        <attr name="eventCmTitleText" format="string"/>
+        <attr name="eventCmTitleTextColor" format="color"/>
+        <attr name="eventCmTitleTextStyleBold" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="OnBoardTextInfoView">
+        <attr name="mainTitle" format="string"/>
+        <attr name="subTitle" format="string"/>
+        <attr name="mainTitleColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="RoundButton">
+        <attr name="centerImg" format="reference"/>
+        <attr name="imgMargin" format="dimension"/>
+        <attr name="btnDisabled" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="BadgeView">
+        <attr name="badgeTitle" format="string"/>
+        <attr name="badgeIcon" format="reference"/>
+        <attr name="badgeTintColor" format="color"/>
+        <attr name="badgeBgColor" format="color"/>
+        <attr name="badgeIconSize" format="dimension"/>
+        <attr name="badgeTextSize" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="StoriesProgressView">
+        <attr name="progressCount" format="integer|reference"/>
+    </declare-styleable>
+    <declare-styleable name="StoriesProgressView2">
+        <attr name="cornerRadius" format="dimension"/>
+        <!--  other attributes  -->
+    </declare-styleable>
+    <declare-styleable name="MessageView">
+        <attr name="messageTitle" format="string"/>
+        <attr name="subTitleBgColor" format="color"/>
+        <attr name="subTitleTxtBgColor" format="color"/>
+        <attr name="titleTxtBgColor" format="color"/>
+        <attr name="messageTitleTextStyle" format="reference"/>
+        <attr name="messageTitleTextStyleItalic" format="boolean"/>
+        <attr name="messageTitleTextStyleBold" format="boolean"/>
+        <attr name="messageTitleTextStyleSemiBold" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="FormField">
+        <attr name="formTitle" format="string" />
+        <attr name="formHintText" format="string" />
+        <attr name="showArrow" format="boolean" />
+        <attr name="isHideTitle" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="SocialField">
+        <attr name="socialFieldHintText" format="string"/>
+        <attr name="socialFieldIcon" format="reference"/>
+        <attr name="show_title" format="boolean"/>
+        <attr name="title_name" format="string"/>
+        <attr name="border_color" format="boolean"/>
+        <attr name="inputType">
+            <enum name="text" value="0"/>
+            <enum name="number" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="RequirementsField">
+        <attr name="subTitleText" format="string"/>
+        <attr name="requirementsFieldIcon" format="reference"/>
+        <attr name="show_main_title" format="boolean"/>
+        <attr name="main_title_name" format="string"/>
+    </declare-styleable>
+    <array name="initial_slider_values">
+        <item>0</item>
+        <item>100</item>
+    </array>
+    <array name="slider_values">
+        <item>16</item>
+        <item>60</item>
+    </array>
+
+    <declare-styleable name="DotsIndicator">
+        <attr name="dots_count" format="integer" />
+        <attr name="selected_dot_scale_factor" format="float" />
+        <attr name="selected_dot_resource" format="reference" />
+        <attr name="unselected_dot_resource" format="reference" />
+        <attr name="first_selected_dot_resource" format="reference" />
+        <attr name="first_unselected_dot_resource" format="reference" />
+        <attr name="dot_height" format="dimension" />
+        <attr name="dot_width" format="dimension" />
+        <attr name="first_dot_height" format="dimension" />
+        <attr name="first_dot_width" format="dimension" />
+        <attr name="margins_between_dots" format="dimension" />
+
+    </declare-styleable>
+    <declare-styleable name="PromotionalBanner">
+        <attr name="isAddSpace" format="boolean" />
+    </declare-styleable>
+</resources>

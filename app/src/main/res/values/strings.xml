@@ -1,0 +1,350 @@
+<resources>
+    <string name="app_name" formatted="false">WHOS’IN</string>
+
+
+    <string name="geoloc_api_key" formatted="false">AIzaSyCL-4fwbA4QXewihYTCj_8eRoXG4JKe9k0</string>
+    <string name="places_api_key" formatted="false">AIzaSyBBobqMx42keao-1la7gBEGqWcBYKnC60U</string>
+    <string name="google_map_api_key" formatted="false">AIzaSyChoUrQiPueRcaggmExPj-drFBv3Wz1pE4</string>
+    <string name="amplitude_api_key" formatted="false">9cf47a10efd1f2cfbac59d9ed62a345c</string>
+    <string name="oneSignal_api_key" formatted="false">91f4e93d-6787-4a21-abcb-04f5b8d71bc8</string>
+
+
+    <!--MainScreen-->
+    <string name="yesterday">Yesterday</string>
+    <string name="today">Today</string>
+    <string name="sec">sec</string>
+    <string name="min">min</string>
+    <string name="hr">hr</string>
+    <string name="path_border">border</string>
+    <string name="path_center">center</string>
+    <string name="service_message_code_failed">Request failed with code</string>
+    <string name="booking_success_text"><![CDATA[<b>Thank you for booking with us.</b> You can download Invoice Ticket(s).]]></string>
+
+
+    <string name="just_now">just now</string>
+    <string name="minute_ago">a minute ago</string>
+    <string name="minutes_ago">min ago</string>
+    <string name="hour_ago">an hour ago</string>
+    <string name="house_list">House list</string>
+    <string name="hours_ago">h ago</string>
+    <string name="month_ago">m ago</string>
+    <string name="months_ago">m ago</string>
+    <string name="day_ago">d ago</string>
+    <string name="no_name">No name</string>
+    <string name="couldnt_delete_realm">Couldn\'t delete from Realm</string>
+
+    <string name="zero_label">0%d</string>
+
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+
+    <string name="service_message_no_data_available">No data available.</string>
+    <string name="service_message_please_wait">Please wait…</string>
+    <string name="service_message_connection_error">Please check internet connection</string>
+    <string name="service_message_success">Success</string>
+    <string name="service_message_error">Error</string>
+    <string name="service_message_something_wrong">Something went wrong!</string>
+    <string name="service_message_unauthorized">Unauthorized, Token session is invalid</string>
+    <string name="service_message_body_empty">Content is empty</string>
+    <string name="service_message_invalid_object">Object is invalid</string>
+    <string name="error_invalidurl">The url is invalid.</string>
+    <string name="error_invalidresponse">Response is invalid.</string>
+    <string name="error_object_parsing">Object is not parsed.</string>
+    <string name="error_parsing">Response object parsing error.</string>
+    <string name="error_object_invalid">Object is invalid.</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="seekForward">Seek Forward</string>
+    <string name="seekBackward">Seek Backward</string>
+    <string name="degree_cencious">\u2103</string>
+    <string name="ok">OK</string>
+    <string name="rec">Record</string>
+    <string name="at">at</string>
+
+
+    <string name="welcome_to_whosin">Welcome to </string>
+    <string name="welcome_to_whosin_toptxt" formatted="false"> WhoisIN</string>
+    <string name="welcome_to_whosin_bottomtxt"> Sign up or Login to enjoy our best features</string>
+    <!--    <string name="refer_to_our_privacy_policy">Please refer to our <b><u>Privacy Policy.</u></b>\n<b><u>Terms &amp; Conditions</u></b> applies</string>-->
+    <string name="refer_to_our_privacy_policy">Please refer to our <b><u><a href="https://www.whosin.me/privacy-policy/">Privacy Policy.</a></u></b>\n<b><u><font color="#CCD6F6"><a href="https://www.whosin.me/terms-conditions/">Terms &amp; Conditions</a></font></u></b> applies</string>
+    <string name="contact_us"><b><u><a style="text-decoration:none;" href="https://www.whosin.me/privacy-policy/">Contact us</a></u></b></string>
+    <string name="promoter_privacy_policy">Check our disclaimer policy <b><u><a href="https://www.whosin.me/privacy-policy/"> here,</a></u></b> and proceed to apply for review</string>
+    <string name="terms">Check <b><u>Terms &amp; Conditions</u></b> regarding each offer</string>
+    <string name="enter_email_or_mobile_number">Enter email</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="forgot_your_password">forgot your password? </string>
+    <string name="Click_here"><br>Click here</br></string>
+    <string name="conform_password">Enter Your Confirm Password</string>
+
+    <string name="edtPhoneNumber">Please enter valid phone Number</string>
+    <string name="edtFirstname">First Name</string>
+    <string name="edtEmail">Enter your email</string>
+    <string name="edtLastname">Last Name</string>
+    <string name="enter_mobile_number">Enter your Number</string>
+
+
+    <string name="edtMale">Male</string>
+    <string name="edtFemale">Female</string>
+    <string name="edtPrefer">Prefer not to Say</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_your_confirm_password">Enter your confirm password</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="see_what_you_get"><u>See What You Get</u></string>
+    <string name="check_terms_and_conditions_regarding_each_offer">Check <b>terms and conditions</b>  regarding each offer</string>
+    <string name="enter_your_first_amount">Enter amount</string>
+    <string name="enter_your_people">Select number of people</string>
+    <string name="enter_your_first_claimcode">Enter claim code</string>
+    <string name="select_quantity">Please select items quantity to add cart</string>
+
+
+    <string name="resend_otp_timer_format">Resend OTP in %ds</string>
+    <string name="resend_otp">Didn\'t get a code? Resend</string>
+    <string name="title_activity_purches_sucess_dialog">PurchesSucessDialogActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="titleText">Test Title</string>
+    <string name="titleSubText">Test Sub Title</string>
+
+    <string name="delete_account">Delete Account</string>
+    <string name="deactivate">Deactivate Account</string>
+    <string name="suggested_users">Suggested friends</string>
+    <string name="suggested_venues">Suggested venue</string>
+    <string name="requested">Requested</string>
+    <string name="who_sin_sent_you_a_notification_to_your_other_phone_tap_on_notification_and_open_app_ntap_b_yes_b_to_continue"><![CDATA[WHO\'SIN sent you a notification to your other phone, Tap on notification and open app,\nTap YES to continue.]]></string>
+    <string name="collection">"WHOS’IN collects, processes, and shares your Contact List data internally for the following purposes:
+
+ <b>Data Collection :</b> We acquire your Contact List data to enhance your user experience by enabling connections with contacts who are also using WHOS’IN.\n\n
+
+ <b>Data Processing :</b> The Contact List data is utilized to identify and recommend contacts who are already WHOS’IN users.\n\n
+
+ <b>Data Sharing :</b> This data is exclusively used to deliver social connectivity features within the application.\n\n
+
+ <b>Data Privacy :</b> The Contact List data is not stored in our server databases, nor is it shared with any third-party services or used for advertising purposes.\n\n
+
+By continuing, you consent to the collection, processing, and sharing of your Contact List data as specified above."</string>
+    <string name="cancel_penalty">As you have canceled a previous event, you are required to pay 40 AED in accordence with the cancellation policy</string>
+    <string name="account_upgrade">Your account has been upgraded. Please restart the app for changes to take effect.</string>
+
+    <string name="home_tab_home">Home</string>
+    <string name="home_tab_chat">Chat</string>
+    <string name="home_tab_explore">Explore</string>
+    <string name="home_tab_wallet">Wallet</string>
+
+
+    <!-- ********** Home Menu Screen ********** -->
+    <string name="hey" formatted="false">Hey</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="settings">Settings</string>
+    <string name="claim_history">Claim History</string>
+    <string name="wallet">Wallet</string>
+    <string name="my_subscription">My Subscription</string>
+    <string name="invite_your_friends">Invite Your Friends</string>
+    <string name="setting_contact_us">Contact us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_condition">Terms &amp; Condition</string>
+    <string name="logout">Logout</string>
+
+    <!-- ********** Setting Screen ********** -->
+    <string name="have_control_over_your_account_and_settings_here_and_update_your_data">Have control over your account and settings\nhere, and update your data</string>
+    <string name="update_your_profile">Update Your Profile</string>
+    <string name="block_users_list">Block Users List</string>
+    <string name="reported_users_list">Reported Users List</string>
+    <string name="my_reviews">My Reviews</string>
+    <string name="change_currency">Change Currency</string>
+    <string name="change_language">Change Language</string>
+    <string name="two_factor_authentication">2 Factor Authentication</string>
+    <string name="private_account">Private Account</string>
+    <string name="allow_notification">Allow notification</string>
+    <string name="select_currency">Select Currency</string>
+    <string name="select_language">Select Language</string>
+
+
+    <!-- ********** Update Profile Screen ********** -->
+    <string name="update_profile">Update Profile</string>
+    <string name="basic_information">Basic information</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="bio">Bio</string>
+    <string name="write_about_you">Write about you.</string>
+    <string name="email">Email</string>
+    <string name="verify">Verify</string>
+    <string name="verified">Verified</string>
+    <string name="phone">Phone</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="select_dob">Select DOB</string>
+    <string name="nationality">Nationality</string>
+    <string name="select_nationality">Select Nationality</string>
+    <string name="gender">Gender</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="social_accounts">Social Accounts</string>
+    <string name="private_profiles_notice">*Private profiles are not allowed. Please ensure your profile is set to public before submitting.</string>
+    <string name="add_your_instagram_handle">Add your Instagram Handle</string>
+    <string name="add_your_tiktok_account_optional">Add your Tiktok account (Optional)</string>
+    <string name="add_your_youtube_channel_optional">Add your Youtube Channel (Optional)</string>
+    <string name="add_your_facebook_account_optional">Add your Facebook Account (Optional)</string>
+    <string name="update">Update</string>
+
+    <!-- ********** Contact US Profile Screen ********** -->
+    <string name="send_message">Send message</string>
+    <string name="inbox">Inbox</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="write_your_message">Write your message…</string>
+    <string name="submit">Submit</string>
+    <string name="share_your_thoughts">! Share your thoughts with us!</string>
+    <string name="message_here">Message here…</string>
+
+
+    <!-- ********** Rayna Ticket Detail Screens ********** -->
+    <string name="starting_from">Starting from</string>
+    <string name="rating_reviews">Rating &amp; Reviews</string>
+    <string name="write_review">Write a Review</string>
+    <string name="see_all">See All</string>
+    <string name="location">Location</string>
+    <string name="get_your_ticket_now">Get Your Ticket Now!</string>
+    <string name="login">Login</string>
+    <string name="reviews">Reviews</string>
+    <string name="see_more">… See More</string>
+    <string name="google_maps">Google Map</string>
+    <string name="waze">Waze</string>
+    <string name="open_in_maps">Open in Maps</string>
+    <string name="delete">Delete</string>
+    <string name="overview">📝 Overview</string>
+    <string name="inclusion">✅ Inclusion</string>
+    <string name="exclusion">❌ Exclusion</string>
+    <string name="important_info">⚠ Important Information</string>
+    <string name="useful_info">💡 Useful Information</string>
+    <string name="faq_details">❓ FAQ Details</string>
+    <string name="how_to_redeem">🎟 How To Redeem</string>
+    <string name="rayna_advantage">🏆 Rayna Tours Advantage</string>
+    <string name="thank_you">Thank you!!</string>
+    <string name="oh_snap">Oh Snap!!</string>
+    <string name="added_to_favorites"> has been added to your favorites.</string>
+    <string name="removed_from_favorites"> has been removed from your favorites.</string>
+
+
+    <!-- ********** My Wallet Screen ********** -->
+    <string name="my_wallet">My Wallet</string>
+    <string name="my_items">My Items</string>
+    <string name="history">History</string>
+    <string name="check_booking_status">Check booking status</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="paid">(Paid)</string>
+    <string name="final_amount">Final Amount</string>
+    <string name="discount">Discount</string>
+    <string name="total_amount">Total Amount</string>
+
+
+    <!-- ********** Notifications Screen ********** -->
+    <string name="notifications">Notifications</string>
+    <string name="delete_all">Delete All</string>
+    <string name="notification_normal">Normal</string>
+    <string name="notification_promoter">Promoter</string>
+    <string name="notification_complimentary">Complimentary</string>
+
+    <!-- ********** Cart ********** -->
+    <string name="my_cart">My Cart</string>
+    <string name="check_out">Check Out</string>
+    <string name="enter_promo_code">Enter promo code…</string>
+    <string name="apply">Apply</string>
+    <string name="invalid_promo_code">Invalid promo code</string>
+    <string name="your_total_savings">Your Total Savings</string>
+    <string name="promo_code">Promo Code</string>
+    <string name="added_to_cart">Added to Cart</string>
+    <string name="item_added_successfully">The item was successfully added to your cart.</string>
+    <string name="please_enter_promo_code">Please enter a promo code.</string>
+    <string name="updated_successfully">Updated successfully</string>
+    <string name="cart_updated_successfully">Your cart items updated successfully.</string>
+    <string name="choose_option">Choose an option</string>
+    <string name="remove_item">Remove Item</string>
+    <string name="item_removed">Item removed</string>
+    <string name="ticket_removed_successfully">You have removed ticket from cart successfully.</string>
+    <string name="session_expired">Session expired, please login again!</string>
+    <string name="tabby_payment_failed">Sorry, Tabby is unable to approve this purchase, please use an alternative payment method for your orders.</string>
+    <string name="option_removed_successfully">You have removed option from cart successfully.</string>
+    <string name="edit">Edit</string>
+    <string name="saved_with">\u0020\u0020saved with\u0020\u0020</string>
+    <string name="remove">Remove</string>
+    <string name="remove_item_message">Are you sure want to remove %1$s from cart?</string>
+
+
+    <!-- ********** Alert Dialog Title ********** -->
+    <string name="account_deactivation_notice">Your account will be deactivated, and will active upon next login</string>
+    <string name="verify_email_prompt">Do you want to verify email ?</string>
+    <string name="delete_account_confirmation">Are you sure you want to delete your account?</string>
+    <string name="data_temporary_deletion_notice">Your data will be available for 30 days and will be temporary deleted. Account will recovered after next login.</string>
+    <string name="data_permanent_deletion_notice">Your data will be deleted and cannot be recovered.</string>
+    <string name="logout_confirmation">Are you sure you want to Logout?</string>
+    <string name="delete_report_confirmation">Are you sure you want to delete this report?</string>
+    <string name="delete_review_confirmation">Are you sure you want to delete your review and ratings?</string>
+    <string name="confirm_currency">Confirm Currency</string>
+    <string name="confirm_currency_message">You have selected %s.\nDo you want to continue?</string>
+    <string name="switch_to_public_account">Switch to public account?</string>
+    <string name="switch_to_public_account_confirmation">Are you sure you want to switch to a public account?</string>
+    <string name="switch_to_private_account">Switch to private account?</string>
+    <string name="switch_to_private_account_confirmation">Are you sure you want to switch to a private account?</string>
+    <string name="enable_two_factor_auth_confirmation">Are you sure you want to enable Two Factor Authentication?</string>
+    <string name="disable_two_factor_auth_confirmation">Are you sure you want to disable Two Factor Authentication?</string>
+    <string name="email_not_verified">Your email is not verified! Please complete your profile!</string>
+    <string name="delete_order_history_confirm">Are you sure want to delete order history ?</string>
+    <string name="confirm_delete_notification">Are you sure want to delete Notification?</string>
+    <string name="confirm_delete_all_notification">Are you sure want to delete All Notification?</string>
+    <string name="confirm_accept_sub_admin">Are you sure want to accept sub admin request?</string>
+    <string name="confirm_reject_sub_admin">Are you sure want to reject sub admin request?</string>
+    <string name="login_to_review">You need to log in to give a rating \n or write a review!</string>
+    <string name="delete_review_confirm">Are you sure want to delete your review and ratings ?</string>
+
+
+    <!-- ********** Alert Dialog Buttons ********** -->
+    <string name="yes_deactivate">Yes, deactivate</string>
+    <string name="yes_delete">Yes,delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="temporary">Temporary</string>
+    <string name="permanently">Permanently</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
+    <!-- ********** Action Sheet ********** -->
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="choose_any_one">Choose Any One</string>
+    <string name="edit_review">Edit review</string>
+    <string name="delete_review">Delete review</string>
+
+
+    <!-- ********** Validation Error Messages ********** -->
+    <string name="error_first_name_required">Please enter first</string>
+    <string name="error_last_name_required">Please enter last name</string>
+    <string name="error_invalid_phone">Please enter valid phone</string>
+    <string name="error_email_required">Please enter an email</string>
+    <string name="error_email_invalid">Please enter a valid email</string>
+    <string name="error_subject_required">Please enter a subject</string>
+    <string name="error_message_required">Please enter a message</string>
+
+
+    <!-- ********** App Messages ********** -->
+    <string name="good_morning">Good morning</string>
+    <string name="good_afternoon">Good afternoon</string>
+    <string name="good_evening">Good evening</string>
+    <string name="good_night">Good night</string>
+
+    <string name="complete_profile">Complete Profile</string>
+    <string name="complete_profile_subtitle">To benefit from exclusive features and deals</string>
+
+
+    <!-- ********** Empty Place Holder Messages ********** -->
+
+</resources>

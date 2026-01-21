@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintRound"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:background="@color/jp_hotel_bodar"
+    android:padding="@dimen/_1sdp"
+    app:corner_radius="@dimen/_8sdp">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        android:id="@+id/detailLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/hotel_list_bg"
+        android:orientation="vertical"
+        app:corner_radius="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/hotel_room_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_155sdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/hotelInfoLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_7sdp"
+            app:layout_constraintTop_toBottomOf="@+id/hotel_room_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical">
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvHotelName"-->
+<!--                style="@style/txt13SemiBoldWhite"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:layout_marginEnd="@dimen/_5sdp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:fontFamily="@font/sfuitext_bold"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvHotelDescription"-->
+<!--                style="@style/txt10Regular"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_3sdp"-->
+<!--                android:visibility="visible" />-->
+
+<!--            <View-->
+<!--                android:id="@+id/view_line_1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0.4dp"-->
+<!--                android:layout_marginVertical="@dimen/_5sdp"-->
+<!--                android:background="@drawable/thin_light_gray_line" />-->
+
+            <TextView
+                android:id="@+id/tvHotelBoardName"
+                style="@style/txt12SemiBoldWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/sfuitext_bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hotelRoomRecycleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_jp_sub_hotel_room"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:focusable="false"
+                android:clickable="false"
+                android:descendantFocusability="blocksDescendants"
+                android:nestedScrollingEnabled="false" />
+
+            <View
+                android:id="@+id/view_line_2"
+                android:layout_width="match_parent"
+                android:layout_height="0.4dp"
+                android:layout_marginVertical="@dimen/_7sdp"
+                android:background="@drawable/thin_light_gray_line" />
+
+            <LinearLayout
+                android:id="@+id/hotelCheckInTimeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_3sdp">
+
+                <TextView
+                    android:id="@+id/tvHotelCheckIn"
+                    style="@style/txt10Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvHotelCheckOut"
+                    style="@style/txt10Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                android:id="@+id/btnRefundable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/brand_pink"
+                app:corner_radius="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvrefundable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfuitext_semibold"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:paddingVertical="@dimen/_4sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/card_color"
+            android:paddingVertical="@dimen/_8sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hotelInfoLinear"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvPriceTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:fontFamily="@font/sfuitext_semibold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:text="Price"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvHotelPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="end"
+                android:fontFamily="@font/sf_medium"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

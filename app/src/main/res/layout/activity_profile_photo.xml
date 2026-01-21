@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".ui.activites.Profile.ProfilePhotoActivity">
+
+    <com.whosin.app.ui.controller.NavBarWithBack
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftImage="@drawable/icon_next"
+        app:navBgColor="@color/transparent"
+        app:navTitle="Profile pic"
+        app:navTitleColor="@color/white"
+        app:showBackButton="true" />
+
+    <com.whosin.app.ui.controller.OnBoardTextInfoView
+        android:id="@+id/nameControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar"
+        app:mainTitle="Add a photo of\nyourself"
+        app:subTitle="Please add a photo on your profile so your friend can interact with you" />
+
+    <LinearLayout
+        android:id="@+id/linearProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameControl">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@drawable/profile_photo"
+            app:civ_border_color="@color/black" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivPicker"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/_minus28sdp"
+        android:layout_marginEnd="@dimen/_2sdp"
+        android:background="@drawable/photo_picker"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:textColor="@color/image_picker"
+        android:textSize="@dimen/_15sdp"
+        app:civ_border_color="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/linearProfile"
+        app:layout_constraintTop_toBottomOf="@id/linearProfile" />
+
+    <com.whosin.app.ui.controller.RoundButton
+        android:id="@+id/imageNext"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_55sdp"
+        app:centerImg="@drawable/icon_next"
+        app:imgMargin="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

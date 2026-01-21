@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bottom_bg_color"
+    android:isScrollContainer="false"
+    android:windowSoftInputMode="adjustResize"
+    app:top_left_corner_radius="@dimen/_20sdp"
+    app:top_right_corner_radius="@dimen/_20sdp"
+    tools:context=".ui.activites.raynaTicket.BottomSheets.SelectPaxTypeBottomSheet">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:background="@color/bottom_bg_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/userName"
+            style="@style/txt14SemiBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:text="Select Pax Type"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivClose"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/rayna_ticket_bottom_sheet_close_icon"
+            android:layout_height="@dimen/rayna_ticket_bottom_sheet_close_icon"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:src="@drawable/icon_close_btn"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.72dp"
+            android:background="@color/white_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dayRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintDone"
+        android:layout_marginBottom="@dimen/_30sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_days_selection"
+         android:paddingBottom="@dimen/_50sdp"
+        app:layout_constraintTop_toBottomOf="@+id/constraintHeader" />
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/mainbackground"
+    app:corner_radius="@dimen/_10sdp"
+    app:layout_constraintStart_toStartOf="parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:src="@drawable/icon_close"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+    <com.whosin.app.ui.controller.OnBoardTextInfoView
+        android:id="@+id/nameControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="@color/transparent"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:mainTitle="Alcoholic Premium Package"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subTitle="Friday brunch information text goes here in this box and section here in this box and section" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/nameControl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
+            android:id="@+id/tvDiscount"
+            style="@style/txt12Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pink_button_bg"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_50sdp"
+
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_2sdp"
+            android:text="50%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AED 350"
+            android:layout_marginTop="@dimen/_minus10sdp"
+            style="@style/txt20Bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AED 350"
+            android:textColor="@color/brand_pink"
+            style="@style/txt30Bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="you will be saving 70AED on this package"
+            style="@style/txt12Regular"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginVertical="@dimen/_20sdp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/package_plus"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                style="@style/txt18SemiBoldWhite"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/package_minus"/>
+
+
+    </LinearLayout>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="DONE"
+    android:background="@drawable/image_strock_border"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:paddingHorizontal="@dimen/_80sdp"
+    android:paddingVertical="@dimen/_6sdp"
+    android:layout_marginBottom="@dimen/_20sdp"
+    style="@style/txt14SemiBoldWhite"/>
+
+</LinearLayout>
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

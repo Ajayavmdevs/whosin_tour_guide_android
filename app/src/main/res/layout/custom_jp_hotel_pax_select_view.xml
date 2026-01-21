@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jp_hotel_background"
+    android:paddingHorizontal="@dimen/_6sdp"
+    android:layout_marginVertical="@dimen/_6sdp"
+    android:paddingVertical="@dimen/_6sdp">
+
+    <LinearLayout
+        android:id="@+id/linearPaxLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/counterLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvPaxTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_medium"
+            android:gravity="center_vertical"
+            android:text="Adults"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvPaxAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_medium"
+            android:gravity="center_vertical"
+            android:text="(10 yrs)"
+            android:textColor="@color/white_70"
+            android:textSize="@dimen/_8sdp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/counterLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/btnMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_3sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:background="@drawable/tour_option_icon_bg"
+                android:contentDescription="PLUS"
+                android:src="@drawable/icon_minus_without_bg" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvPaxCount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/sfuitext_regular"
+            android:gravity="center"
+            android:minWidth="@dimen/_15sdp"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp" />
+
+        <LinearLayout
+            android:id="@+id/btnPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_3sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:background="@drawable/tour_option_icon_bg"
+                android:contentDescription="PLUS"
+                android:src="@drawable/icon_plus_without_bg" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

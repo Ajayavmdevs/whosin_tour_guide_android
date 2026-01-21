@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/customTextView"
+        style="@style/txt11Regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_500"
+        android:paddingVertical="@dimen/_7sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white" />
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

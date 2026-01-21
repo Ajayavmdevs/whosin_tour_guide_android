@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/order_dialog_color"
+    android:layout_marginTop="@dimen/_12sdp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/eventInTitleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:clickable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/eventTitle"
+            style="@style/txt16Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="Events I’m IN" />
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:id="@+id/btnEventImInSeeAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@color/promoter_profile_btn_bg"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_18sdp"
+            android:paddingVertical="@dimen/_1sdp"
+            app:corner_radius="@dimen/_4sdp">
+
+            <TextView
+                android:id="@+id/tvForSeeAllBtn"
+                style="@style/txt11Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="See all" />
+
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/eventInLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventInTitleLayout">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventImInRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:visibility="visible"
+            android:nestedScrollingEnabled="false" />
+
+
+        <com.whosin.app.ui.controller.EmptyPlaceHolderView
+            android:id="@+id/emptyPlaceHolderView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:visibility="gone"
+            app:emptyPlaceTxtIcon="@drawable/all_bucketlist"
+            app:emptyPlaceTxtTitle="Oops! There are no events available\nwhere I am in"
+            app:emptyPlaceTxtTitleColor="@color/white"
+            app:emptyPlaceTxtTitleSize="14sp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

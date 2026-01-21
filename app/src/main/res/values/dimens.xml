@@ -1,0 +1,39 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="item_height">150dp</dimen>
+    <dimen name="info_size">@dimen/_13sdp</dimen>
+    <dimen name="navigationBar_height">@dimen/_50sdp</dimen>
+    <dimen name="swipeRefreshLayout_progress">@dimen/_70sdp</dimen>
+    <dimen name="chat_event_title">@dimen/_10sdp</dimen>
+    <dimen name="profile_tab_margin">@dimen/_5sdp</dimen>
+    <dimen name="tab_padding">@dimen/_5sdp</dimen>
+    <dimen name="border_width">@dimen/_2sdp</dimen>
+    <dimen name="promoter_notification_top">@dimen/_10sdp</dimen>
+    <dimen name="cancel_confermation_txt">@dimen/_9sdp</dimen>
+    <dimen name="not_interested">@dimen/_10sdp</dimen>
+    <dimen name="not_interested_padding">@dimen/_12sdp</dimen>
+    <dimen name="cancel_confermation_txt_padding">@dimen/_4sdp</dimen>
+    <dimen name="event_status_tag">@dimen/_5sdp</dimen>
+    <dimen name="one_plus_invite_image">@dimen/_35sdp</dimen>
+    <dimen name="larger_tab_icon_size">56dp</dimen>
+    <dimen name="one_plus_member">@dimen/_30sdp</dimen>
+    <dimen name="one_plus_member_name">4dp</dimen>
+    <dimen name="home_Cm_margin">@dimen/_20sdp</dimen>
+
+    <dimen name="rayna_ticket_bottom_sheet_close_icon">@dimen/_28sdp</dimen>
+
+    <dimen name="new_explore_top_height">@dimen/_15sdp</dimen>
+    <dimen name="new_explore_top_recycle_view_height">@dimen/_10sdp</dimen>
+
+    <dimen name="rayna_date_select_min_height">@dimen/_200sdp</dimen>
+
+    <dimen name="rayna_detail_gallery_height">@dimen/_298sdp</dimen>
+
+
+    <dimen name="rayna_more_info_title">@dimen/_11sdp</dimen>
+    <dimen name="rayna_more_info_subtitle">@dimen/_11sdp</dimen>
+
+
+
+
+</resources>

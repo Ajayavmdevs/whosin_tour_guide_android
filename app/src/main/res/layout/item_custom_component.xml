@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_10sdp"
+    app:corner_radius="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="center"
+         app:layout_constraintDimensionRatio="h,300:444" />
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/roundLinear"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@color/brand_pink"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_2sdp"
+        app:bottom_left_corner_radius="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:top_right_corner_radius="@dimen/_10sdp">
+
+
+        <TextView
+            android:id="@+id/tvPrice"
+            style="@style/txt12Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+             />
+
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+
+    <com.whosin.app.comman.ui.UserInfoView
+        android:id="@+id/venueContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_4sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/roundLinear"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/txt12SemiBold"
+            android:layout_width="match_parent"
+            android:text="fsdfsdfasdfa"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="@style/txt22Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:width="@dimen/_230sdp"
+            android:text="fasfasdf"
+            android:layout_marginBottom="@dimen/_10sdp" />
+
+        <TextView
+            android:id="@+id/tvView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View"
+            android:visibility="gone"
+            style="@style/txt12SemiBoldWhite"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:background="@drawable/light_blue_btn_bg" />
+
+    </LinearLayout>
+
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/titleLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_5sdp">
+
+        <TextView
+            android:id="@+id/userTitle"
+            style="@style/txt9SemiBoldWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Users invited" />
+
+        <TextView
+            android:id="@+id/textCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:text=""
+            android:layout_weight="1"
+            android:textSize="@dimen/_8sdp"
+            android:textColor="@color/white"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/tvSeeAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="see all"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:visibility="gone"
+            android:textColor="@color/date_red"
+            android:layout_marginEnd="@dimen/_10sdp"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventUsersRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/_5sdp"
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
+        android:layout_marginTop="@dimen/_3sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLinear"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

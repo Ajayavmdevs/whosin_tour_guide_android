@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/order_dialog_color"
+    tools:context=".ui.fragment.CmProfile.CmMyProfileFragment">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_10sdp">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/roundConstraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_360sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                        android:id="@+id/imageCarousel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        app:autoPlay="true"
+                        app:autoPlayDelay="4000"
+                        app:imageScaleType="centerCrop"
+                        app:indicatorColor="@color/white_40"
+                        app:indicatorMargin="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:showCaption="false"
+                        app:showIndicator="false"
+                        app:showNavigationButtons="false" />
+
+                    <ImageView
+                        android:id="@+id/cmImageCover"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/background_cover_image"
+                        android:visibility="gone" />
+
+                    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                        android:id="@+id/profileswitchBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_60sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/switch_green_bg"
+                        android:paddingHorizontal="@dimen/_3sdp"
+                        app:corner_radius="@dimen/_5sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            style="@style/txt10SemiBoldWhite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_4sdp"
+                            android:text="Switch to Personal" />
+
+                    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_180sdp"
+                        android:background="@drawable/bottom_to_top_shadow_for_profile"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cmProfileLinear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layoutImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/cmImageProfile"
+                                android:layout_width="@dimen/_65sdp"
+                                android:layout_height="@dimen/_65sdp"
+                                android:layout_gravity="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                                android:id="@+id/vipImage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_minus10sdp"
+                                android:background="@color/medium_orange"
+                                app:corner_radius="@dimen/_10sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cmImageProfile">
+
+                                <TextView
+                                    android:id="@+id/cmPromoterName"
+                                    style="@style/boldFontWhite"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingHorizontal="@dimen/_8sdp"
+                                    android:paddingVertical="@dimen/_2sdp"
+                                    android:text="Complimentary" />
+
+                            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/layoutImage"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/cmUserName"
+                                style="@style/txt15Bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
+                            <TextView
+                                android:id="@+id/cmDescription"
+                                style="@style/txt10Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout-->
+<!--                    android:id="@+id/roundConstraint"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_170sdp"-->
+<!--                    android:layout_marginHorizontal="@dimen/_15sdp"-->
+<!--                    app:corner_radius="@dimen/_10sdp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                    <org.imaginativeworld.whynotimagecarousel.ImageCarousel-->
+<!--                        android:id="@+id/imageCarousel"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:visibility="visible"-->
+<!--                        app:autoPlay="true"-->
+<!--                        app:autoPlayDelay="6000"-->
+<!--                        app:imageScaleType="centerCrop"-->
+<!--                        app:indicatorColor="@color/white_40"-->
+<!--                        app:indicatorMargin="0dp"-->
+<!--                        app:showCaption="false"-->
+<!--                        app:showIndicator="false"-->
+<!--                        app:showNavigationButtons="false" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/cmImageCover"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:scaleType="centerCrop"-->
+<!--                        android:src="@drawable/background_cover_image"-->
+<!--                        android:visibility="gone" />-->
+
+<!--                    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout-->
+<!--                        android:id="@+id/profileswitchBtn"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        android:background="@color/switch_green_bg"-->
+<!--                        android:paddingHorizontal="@dimen/_5sdp"-->
+<!--                        app:corner_radius="@dimen/_5sdp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                        <TextView-->
+<!--                            style="@style/txt10SemiBoldWhite"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:padding="@dimen/_4sdp"-->
+<!--                            android:text="Switch to Personal" />-->
+
+<!--                    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>-->
+
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_45sdp"-->
+<!--                        android:background="@drawable/bottom_to_top_shadow"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@id/roundConstraint" />-->
+
+<!--                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/cmProfileLinear"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/_10sdp"-->
+<!--                    android:layout_marginTop="@dimen/_minus30sdp"-->
+<!--                    android:layout_marginEnd="@dimen/_15sdp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/roundConstraint">-->
+
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/layoutImage"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                         app:layout_constraintStart_toStartOf="parent">-->
+
+<!--                        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                            android:id="@+id/cmImageProfile"-->
+<!--                            android:layout_width="91dp"-->
+<!--                            android:layout_height="85dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout-->
+<!--                            android:id="@+id/vipImage"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="@dimen/_minus10sdp"-->
+<!--                            android:background="@color/medium_orange"-->
+<!--                            app:corner_radius="@dimen/_10sdp"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toBottomOf="@+id/cmImageProfile">-->
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/cmPromoterName"-->
+<!--                                style="@style/txt11Bold"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:paddingHorizontal="@dimen/_8sdp"-->
+<!--                                android:paddingVertical="@dimen/_2sdp"-->
+<!--                                android:text="Complimentary" />-->
+
+<!--                        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>-->
+
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/linearLayout"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginTop="@dimen/_10sdp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/cmUserName"-->
+<!--                            style="@style/txt15Bold"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/cmDescription"-->
+<!--                            style="@style/txt10Regular"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginEnd="@dimen/_5sdp"-->
+<!--                            android:text="" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cmEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/edit_profile_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/roundConstraint">
+
+                    <TextView
+                        style="@style/txt10Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/_6sdp"
+                        android:text="Edit Profile"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eventListNameRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cmEditProfile" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profileScoreView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/eventListNameRecyclerView">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/txt14Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:text="Profile Score"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center_horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvName">
+
+                        <com.whosin.app.ui.controller.ComplementryProfileViews.ComplementryProfileScoreView
+                            android:id="@+id/profilePunctuality"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            app:layout_constraintEnd_toStartOf="@id/profileValue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:scoreTitleText="Punctuality" />
+
+                        <com.whosin.app.ui.controller.ComplementryProfileViews.ComplementryProfileScoreView
+                            android:id="@+id/profileActivity"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            app:layout_constraintEnd_toStartOf="@id/profileValue"
+                            app:layout_constraintStart_toEndOf="@id/profilePunctuality"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:scoreTitleText="Activity" />
+
+                        <com.whosin.app.ui.controller.ComplementryProfileViews.ComplementryProfileScoreView
+                            android:id="@+id/profileValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/profileActivity"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:scoreTitleText="Value" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ratingTitleLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profileScoreView">
+
+                    <TextView
+                        android:id="@+id/tvRate"
+                        style="@style/txt14Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Rating &amp; Reviews"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/rating"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                        android:id="@+id/rating"
+                        style="@style/Widget.MaterialRatingBar.RatingBar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:isIndicator="true"
+                        android:stepSize="1.0"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tvRate"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:mrb_progressBackgroundTint="@color/white"
+                        app:mrb_progressTint="@color/brand_pink"
+                        app:mrb_secondaryProgressTint="@color/brand_pink"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ratingReviewRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ratingTitleLayout"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_all_rating_list" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint"
+                    android:layout_width="3dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ratingReviewRecycler">
+
+                    <TextView
+                        android:id="@+id/tvSeeAll"
+                        style="@style/txt12Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="See All"
+                        android:textColor="@color/brand_pink"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eventListRecycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profileScoreView" />
+
+
+                <!--                <LinearLayout-->
+<!--                    android:id="@+id/eventInTitleLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="@dimen/_15sdp"-->
+<!--                    android:layout_marginTop="@dimen/_15sdp"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:visibility="visible"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/profileScoreView">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/eventTitle"-->
+<!--                        style="@style/txt14Bold"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="start"-->
+<!--                        android:text="Events I’m IN" />-->
+
+<!--                    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout-->
+<!--                        android:id="@+id/btnEventImInSeeAll"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:background="@color/promoter_profile_btn_bg"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:paddingHorizontal="@dimen/_18sdp"-->
+<!--                        android:paddingVertical="@dimen/_1sdp"-->
+<!--                        app:corner_radius="@dimen/_4sdp">-->
+
+<!--                        <TextView-->
+<!--                            style="@style/txt10Regular"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:text="see all" />-->
+
+<!--                    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/eventInLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/eventInTitleLayout">-->
+
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/eventImInRecycleView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:clipToPadding="false"-->
+<!--                        android:nestedScrollingEnabled="false" />-->
+
+
+<!--                    <com.whosin.app.ui.controller.EmptyPlaceHolderView-->
+<!--                        android:id="@+id/emptyPlaceHolderView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_10sdp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:visibility="gone"-->
+<!--                        app:emptyPlaceTxtIcon="@drawable/all_bucketlist"-->
+<!--                        app:emptyPlaceTxtTitle="Oops! There are no events available\nwhere I am in"-->
+<!--                        app:emptyPlaceTxtTitleColor="@color/white"-->
+<!--                        app:emptyPlaceTxtTitleSize="14sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/eventSpeciallyforyouLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="@dimen/_15sdp"-->
+<!--                    android:layout_marginTop="@dimen/_15sdp"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/eventInLayout">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/eventSpeciallyForYouTitle"-->
+<!--                        style="@style/txt14Bold"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="start"-->
+<!--                        android:text="Specially for you" />-->
+
+<!--                    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout-->
+<!--                        android:id="@+id/btnSpeciallyForYouSeeAll"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:background="@color/promoter_profile_btn_bg"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:paddingHorizontal="@dimen/_18sdp"-->
+<!--                        android:paddingVertical="@dimen/_1sdp"-->
+<!--                        app:corner_radius="@dimen/_4sdp">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvForSeeAllBtn"-->
+<!--                            style="@style/txt10Regular"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:text="see all" />-->
+
+<!--                    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/eventSpeciallyForYouRecycleViewLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/eventSpeciallyforyouLayout">-->
+
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/eventSpeciallyForYouRecycleView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:clipToPadding="false"-->
+<!--                        android:nestedScrollingEnabled="false" />-->
+
+
+<!--                    <com.whosin.app.ui.controller.EmptyPlaceHolderView-->
+<!--                        android:id="@+id/emptyPlaceHolderViewForSpeciallyForYou"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_10sdp"-->
+<!--                        android:gravity="center"-->
+<!--                        android:visibility="gone"-->
+<!--                        app:emptyPlaceTxtIcon="@drawable/all_bucketlist"-->
+<!--                        app:emptyPlaceTxtTitle="Oops! There are no events available\nwhere I am in"-->
+<!--                        app:emptyPlaceTxtTitleColor="@color/white"-->
+<!--                        app:emptyPlaceTxtTitleSize="14sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <com.whosin.app.ui.controller.ComplementryProfileViews.CmEventList-->
+<!--                    android:id="@+id/myEventList"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/_10sdp"-->
+<!--                    android:layout_marginBottom="@dimen/_20sdp"-->
+<!--                    android:clipToPadding="false"-->
+<!--                    android:nestedScrollingEnabled="false"-->
+<!--                    app:eventCmTitleText="My List"-->
+<!--                    app:eventCmTitleTextStyleBold="true"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/eventSpeciallyForYouRecycleViewLayout" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/headerBlurView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navigationBar_height"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginEnd="@dimen/_50sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/headerIv"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/headertitle"
+                    style="@style/txt15Bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:singleLine="true"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </eightbitlab.com.blurview.BlurView>
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/navigationBar_height"
+        android:padding="@dimen/_5sdp"
+        android:paddingStart="@dimen/_15sdp"
+        android:src="@drawable/icon_close_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/roundShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/white_10"
+        app:corner_radius="@dimen/_30sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivShare"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:padding="@dimen/_7sdp"
+            android:src="@drawable/img_share_profile"
+            app:tint="@color/white" />
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

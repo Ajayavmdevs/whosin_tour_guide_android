@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TransparentDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.8</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="OtpDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowFullscreen">true</item>
+
+    </style>
+
+    <!-- Regular Font-->
+
+    <style name="regularFontWhite">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="regularFontWhiteSF">
+        <item name="fontFamily">@font/sfuitext_regular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="regularFontWhiteSFMedium">
+        <item name="fontFamily">@font/sf_medium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="regularFontWhiteSFSemiBold">
+        <item name="fontFamily">@font/sfuitext_semibold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="regularFontWhite85">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/white_85</item>
+    </style>
+
+    <style name="regularFontWhite70">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/white_70</item>
+    </style>
+
+    <!--Regular Font Grey-->
+
+    <style name="regularFontGrey">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+
+    <!--SemiBold-->
+
+    <style name="semiBoldFontWhite85">
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/white_85</item>
+    </style>
+
+    <style name="semiBoldFontWhite">
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="semiBoldSFFont">
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="boldFontWhite">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="boldFontWhite75">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/white_75</item>
+    </style>
+
+    <!--    use this style only-->
+
+    <!-- REGULAR FONT -->
+    <style name="txt6Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_6sdp</item>
+    </style>
+
+    <style name="txt7Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_7sdp</item>
+    </style>
+
+    <style name="txt7RegularWhite70" parent="regularFontWhite70">
+        <item name="android:textSize">@dimen/_7sdp</item>
+    </style>
+
+    <style name="txt8Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_8sdp</item>
+    </style>
+
+    <style name="txt9Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
+
+    <style name="txt9RegularSF" parent="regularFontWhiteSF">
+        <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
+
+    <style name="txt9RegularWhite70" parent="regularFontWhite70">
+        <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
+
+    <style name="txt10Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt10RegularSF" parent="regularFontWhiteSF">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt11RegularSF" parent="regularFontWhiteSF">
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+    <style name="txt10RegularSFMedium" parent="regularFontWhiteSFMedium">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt10RegularSFSemiBold" parent="regularFontWhiteSFSemiBold">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt10RegularWhite70" parent="regularFontWhite70">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt10RegularWhite85" parent="regularFontWhite85">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt11Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_11sdp</item>
+
+    </style>
+
+    <style name="txt11RegularWhite85" parent="regularFontWhite85">
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+
+    <style name="txt12Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <style name="txt12RegularWhite85" parent="regularFontWhite85">
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <style name="txt7RegularWhite85" parent="regularFontWhite85">
+        <item name="android:textSize">@dimen/_7sdp</item>
+    </style>
+
+    <style name="txt8RegularWhite85" parent="regularFontWhite85">
+        <item name="android:textSize">@dimen/_8sdp</item>
+    </style>
+
+    <style name="txt8RegularWhite70" parent="regularFontWhite70">
+        <item name="android:textSize">@dimen/_8sdp</item>
+    </style>
+
+    <style name="txt11RegularWhite70" parent="regularFontWhite70">
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+    <style name="txt13Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_13sdp</item>
+    </style>
+
+    <style name="CalendarViewDateCustomText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="txt14Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_14sdp</item>
+    </style>
+
+    <style name="txt15Regular" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_15sdp</item>
+    </style>
+
+
+    <!--Regular Font Grey-->
+    <style name="RegularTextStyle">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ItalicTextStyle">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+
+    <style name="txt10RegularGrey" parent="regularFontGrey">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+
+    <!-- SEMI BOLD FONT -->
+
+    <style name="txt8SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_8sdp</item>
+    </style>
+
+    <style name="txt9SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
+
+    <style name="txt9SemiBoldWhite85" parent="regularFontWhite85">
+        <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
+
+    <style name="txt5SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_5sdp</item>
+    </style>
+
+    <style name="txt6SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_6sdp</item>
+    </style>
+
+    <style name="txt8SemiBoldWhiteSp" parent="semiBoldFontWhite">
+        <item name="android:textSize">7sp</item>
+    </style>
+
+    <style name="txt10SemiBoldWhite85" parent="semiBoldFontWhite85">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt10SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt11SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+    <style name="txt11SemiBold" parent="semiBoldFontWhite85">
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+
+    <style name="txt12SemiBold" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <style name="txt12SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <style name="txt13SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_13sdp</item>
+    </style>
+
+
+    <style name="txt14SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_14sdp</item>
+    </style>
+
+    <style name="txt15SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_15sdp</item>
+    </style>
+
+    <style name="txt16SemiBoldWhite">
+        <item name="fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+    <style name="txt18SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_18sdp</item>
+    </style>
+
+    <style name="txt17SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_17sdp</item>
+    </style>
+
+    <style name="txt20SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_20sdp</item>
+    </style>
+
+    <style name="txt25SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_25sdp</item>
+    </style>
+
+    <style name="txt30SemiBoldWhite" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_30sdp</item>
+    </style>
+
+    <!--BOLD FONT White75-->
+
+    <style name="txt17BoldWhite75" parent="boldFontWhite75">
+        <item name="android:textSize">@dimen/_17sdp</item>
+    </style>
+
+    <!-- BOLD FONT -->
+
+    <style name="txt9Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
+    <style name="txt10Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt11Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="txt12Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <style name="txt11BoldWhite75" parent="boldFontWhite75">
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+    <style name="txt13Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_13sdp</item>
+
+    </style>
+
+    <style name="txt14Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_14sdp</item>
+    </style>
+
+    <style name="txt15Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_15sdp</item>
+    </style>
+
+    <style name="txt16Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+    <style name="txt17Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_17sdp</item>
+    </style>
+
+    <style name="txt18Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_18sdp</item>
+    </style>
+
+    <style name="txt19Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_19sdp</item>
+    </style>
+
+    <style name="txt20Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_20sdp</item>
+    </style>
+
+    <style name="txt22Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_22sdp</item>
+    </style>
+
+    <style name="txt24SemiBold" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_24sdp</item>
+    </style>
+
+    <style name="txt24Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_23sdp</item>
+    </style>
+
+    <style name="txt25Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_24sdp</item>
+    </style>
+
+    <style name="txt30Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_30sdp</item>
+    </style>
+
+    <style name="txt40Bold" parent="boldFontWhite">
+        <item name="android:textSize">@dimen/_40sdp</item>
+    </style>
+
+    <!-- CUSTOM FONT -->
+
+    <style name="disclaimer_title_font" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="disclaimer_description_font" parent="regularFontWhite">
+        <item name="android:textSize">@dimen/_11sdp</item>
+        <item name="android:textColor">@color/grey_text</item>
+    </style>
+
+    <style name="venueAddressHeaderStyle" parent="regularFontWhite70">
+        <item name="android:textSize">@dimen/_8sdp</item>
+    </style>
+
+    <style name="venueTitleHeaderStyle" parent="semiBoldFontWhite">
+        <item name="android:textSize">@dimen/_13sdp</item>
+    </style>
+
+    <style name="subAdminTxt">
+        <item name="android:textSize">@dimen/_9sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/medium</item>
+    </style>
+
+    <style name="adminStatusTxt">
+        <item name="android:textSize">@dimen/_9sdp</item>
+        <item name="fontFamily">@font/medium</item>
+    </style>
+
+    <style name="authTitleText" parent="boldFontWhite">
+        <item name="android:textSize">22sp</item>
+        <item name="fontWeight">900</item>
+        <item name="android:textColor">@color/white_85</item>
+    </style>
+
+    <style name="onBoardTitle" parent="boldFontWhite">
+        <item name="android:textSize">15sp</item>
+        <item name="fontWeight">900</item>
+        <item name="android:textColor">@color/white_85</item>
+    </style>
+
+    <style name="authSubTitleText" parent="regularFontWhite">
+        <item name="android:textSize">12sp</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textColor">@color/white_85</item>
+    </style>
+
+    <style name="VenueTime" parent="regularFontWhite">
+        <item name="android:textColor">@color/grayColor</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <!--  use until this style only-->
+
+    <style name="buttonStyle" parent="txt11Regular">
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingBottom">@dimen/_4sdp</item>
+        <item name="android:paddingTop">@dimen/_4sdp</item>
+    </style>
+
+
+    <style name="MyTabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
+    </style>
+
+    <style name="MyTabTextAppearance" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/_9sdp</item>
+        <item name="android:fontFamily">@font/sfuitext_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="MyTabLayoutForPromoter" parent="Base.Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyTabTextAppearanceForPromoter</item>
+    </style>
+
+    <style name="MyTabTextAppearanceForPromoter" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/_8sdp</item>
+        <item name="android:fontFamily">@font/sfuitext_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="tabMode">fixed</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="MyProfileLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyProfileTextAppearance</item>
+        <item name="tabPaddingStart">0dp</item>
+        <item name="tabPaddingEnd">0dp</item>
+
+    </style>
+
+    <style name="MyProfileLayoutForPromoter" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyProfileTextAppearance</item>
+    </style>
+
+    <style name="MyProfileTextAppearance" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="textAllCaps">false</item>
+
+    </style>
+
+
+
+    <style name="MyWalletTabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyWalletTabTextAppearance</item>
+    </style>
+
+    <style name="MyWalletTabTextAppearance" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:fontFamily">@font/sfuitext_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="MyEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/img_input_bg</item>
+        <item name="android:fontFamily">@font/sfuitext_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">@dimen/_15sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="CommonEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">@dimen/_15sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="CommonEditDetail" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:paddingStart">@dimen/_7sdp</item>
+        <item name="android:paddingEnd">@dimen/_6sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="CommonEditDetailForRaynaTicket" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:paddingStart">@dimen/_7sdp</item>
+        <item name="android:paddingEnd">@dimen/_7sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="CountryPickerStyle">
+        <item name="ccp_textSize">@dimen/_12sdp</item>
+        <item name="ccp_defaultPhoneCode">1</item>
+        <item name="ccp_contentColor">@color/white_85</item>
+        <item name="ccpDialog_textColor">@color/white_85</item>
+        <item name="ccp_showArrow">false</item>
+        <item name="ccp_showFlag">true</item>
+    </style>
+
+    <style name="CountryPickerStyleForSignUp">
+        <item name="ccp_textSize">@dimen/_11sdp</item>
+        <item name="ccp_defaultPhoneCode">1</item>
+        <item name="ccp_contentColor">@color/white_85</item>
+        <item name="ccpDialog_textColor">@color/white_85</item>
+        <item name="ccp_showArrow">false</item>
+        <item name="ccp_showFlag">true</item>
+    </style>
+
+    <style name="GenderTextview" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@drawable/img_input_bg</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/white_50</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginHorizontal">@dimen/_35sdp</item>
+        <item name="android:paddingStart">@dimen/_15sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+    </style>
+
+<!--    <style name="CustomImageCarouselStyle" parent="CustomImageCarouselStyle">-->
+<!--        <item name="indicatorColor">@color/white_40</item>-->
+<!--    </style>-->
+
+<!--    <style name="CustomCarouselstyle" parent="CustomImageCarouselStyle">-->
+<!--        <item name="indicatorColor">@color/white_40</item>-->
+<!--    </style>-->
+
+
+    <style name="inputTextStyle">
+        <item name="android:layout_height">@dimen/_40sdp</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/img_input_bg</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+    </style>
+
+    <style name="chatInputStyle">
+        <item name="android:layout_height">@dimen/_35sdp</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@drawable/img_input_bg</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+    </style>
+
+    <style name="requirementInputStyle">
+        <item name="android:layout_height">@dimen/_30sdp</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@drawable/requirement_bg</item>
+        <item name="android:padding">@dimen/_8sdp</item>
+    </style>
+
+    <style name="GenderButton" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <style name="MyText" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@drawable/img_input_bg</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">@dimen/_15sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="MYBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
+    <style name="profileTabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/ProfileTabTextAppearance</item>
+    </style>
+
+    <style name="ProfileTabTextAppearance" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:fontFamily">@font/montserrat_semibold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">@color/white</item>
+        <item name="textAllCaps">false</item>
+
+    </style>
+
+    <style name="BucketEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_text_stroke</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">@dimen/_15sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="RequirementsEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_text_stroke</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/white_50</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">@dimen/_15sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+    </style>
+
+    <style name="BottomSheetDialogThemeNoFloating" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:state_expanded">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.8</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
+
+
+    <style name="CreateBucketEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/bucket_edit_color</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:backgroundTint">@color/bucket_edit_color</item>
+
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="CreateInviteEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColorHint">@color/bucket_edit_color</item>
+        <item name="android:textColor">@color/white_85</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:paddingEnd">@dimen/_15sdp</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="MySeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressBackgroundTint">@color/white</item>
+        <item name="android:progressTint">@color/white</item>
+        <item name="android:thumbTint">@color/white</item>
+        <item name="android:progressBarStyleLarge">@color/white</item>
+    </style>
+
+    <style name="AlerterText">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">@dimen/_9sdp</item>
+    </style>
+
+    <style name="AlerterTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
+    <style name="TransparentAlertDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@color/transparent1</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/black_20</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.TransparentForAppNotification" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/semi_transparent_black</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">@android:color/holo_blue_dark</item>
+        <item name="colorPrimary">@android:color/darker_gray</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+    </style>
+
+    <style name="CustomProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:progressTint">@color/brand_pink</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:padding">@dimen/_9sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:textColorHint">@color/white_70</item>
+        <item name="android:background">@drawable/contactus_edittext_bg</item>
+    </style>
+
+    <style name="ContactEditText">
+        <item name="android:paddingVertical">@dimen/_6sdp</item>
+        <item name="android:paddingHorizontal">@dimen/_15sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">@dimen/_13sdp</item>
+        <item name="android:textColorHint">@color/white_70</item>
+        <item name="android:background">@drawable/invitesheet_edittext_background</item>
+    </style>
+
+    <style name="DatePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/white
+        </item> <!-- Set the desired color for the "Cancel" button -->
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/white
+        </item> <!-- Set the desired color for the "OK" button -->
+    </style>
+
+    <style name="OrangeDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/brand_pink</item> <!-- Set the accent color to orange -->
+        <item name="colorOnPrimary">@color/brand_pink</item>
+        <item name="android:buttonTint">#FFA500</item>
+    </style>
+
+    <style name="ItalicFontWhite">
+        <item name="text_style">italic</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="text_size">@dimen/_7sdp</item>
+    </style>
+
+
+    <style name="CustomContextMenu" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="android:popupBackground">@android:color/transparent</item>
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- res/values/styles.xml -->
+    <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/popup_menu_bg</item>
+    </style>
+
+    <style name="CustomDatePickerTheme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <!-- Customize the styles as needed -->
+        <item name="colorPrimary">@color/brand_pink</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="materialCalendarStyle">@style/CustomMaterialCalendar</item>
+
+        <!-- Add more styling items as needed -->
+    </style>
+
+    <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/brand_pink</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="CustomMaterialCalendar" parent="Widget.MaterialComponents.MaterialCalendar">
+        <item name="materialCalendarDay">@style/CustomMaterialCalendarDay</item>
+    </style>
+
+    <style name="CustomMaterialCalendarDay" parent="Widget.MaterialComponents.MaterialCalendar.Day">
+        <!-- Add corner radius to day view -->
+        <item name="android:background">@drawable/custom_date_picker_background</item>
+    </style>
+
+
+    <style name="rayna_ticket_quantity_main_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/_6sdp</item>
+        <item name="android:background">@drawable/tour_option_spinner_stock_bg</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
+
+    <style name="rayna_ticket_main_price_style" parent="txt11SemiBoldWhite">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center</item>
+<!--        <item name="android:layout_marginStart">@dimen/_5sdp</item>-->
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
+
+    <style name="rayna_ticket_minus_buttons_style">
+        <item name="android:layout_width">@dimen/_18sdp</item>
+        <item name="android:layout_height">@dimen/_18sdp</item>
+        <item name="android:background">@drawable/tour_option_icon_bg</item>
+        <item name="android:src">@drawable/icon_minus_without_bg</item>
+        <item name="android:contentDescription">MINUS</item>
+
+    </style>
+
+    <style name="rayna_ticket_plus_buttons_style">
+        <item name="android:layout_width">@dimen/_18sdp</item>
+        <item name="android:layout_height">@dimen/_18sdp</item>
+        <item name="android:background">@drawable/tour_option_icon_bg</item>
+        <item name="android:src">@drawable/icon_plus_without_bg</item>
+        <item name="android:contentDescription">PLUS</item>
+
+    </style>
+
+
+    <style name="rayna_ticket_total_value_style" parent="txt12Regular">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">@dimen/_20sdp</item>
+
+    </style>
+
+    <style name="rayna_ticket_main_title_pax_style" parent="txt10SemiBoldWhite">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/sf_medium</item>
+    </style>
+
+    <style name="rayna_ticket_pax_age_style" parent="txt9SemiBoldWhite">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/sf_medium</item>
+        <item name="android:layout_marginStart">@dimen/_2sdp</item>
+        <item name="android:textColor">@color/white_70</item>
+    </style>
+
+    <style name="rayna_ticket_without_discount_style" parent="txt7Regular">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/sf_medium</item>
+        <item name="android:layout_marginEnd">@dimen/_2sdp</item>
+        <item name="android:textColor">@color/white_70</item>
+    </style>
+
+    <style name="rayna_ticket_price_style" parent="txt9SemiBoldWhite">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/sf_medium</item>
+        <item name="android:layout_marginStart">@dimen/_2sdp</item>
+    </style>
+
+    <style name="settingFontStyle">
+        <item name="android:textSize">@dimen/_13sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/sf_medium</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,202 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_13sdp">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:corner_radius="@dimen/_7sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/package_color">
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                android:id="@+id/roundLinear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@color/brand_pink"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:bottom_left_corner_radius="@dimen/_9sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:top_right_corner_radius="@dimen/_7sdp">
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/txt12Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_marginVertical="@dimen/_2sdp"
+                    android:text="AED 3450/hr"
+                    android:textColor="@color/white" />
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivMinus"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:background="@drawable/icon_minus" />
+
+                <TextView
+                    android:id="@+id/tvTotalHours"
+                    style="@style/txt14Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/venue_text" />
+
+                <ImageView
+                    android:id="@+id/ivPlus"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:src="@drawable/icon_plus" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/packageTitle"
+                style="@style/txt13Bold"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:text="Our Hourly Based Package "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/packagesDescription"
+                style="@style/txt10Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="Check our membership packages to enjoy lots of benefits and save on each claim Check our membership packages "
+                app:layout_constraintBottom_toTopOf="@id/durationLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packageTitle" />
+
+            <LinearLayout
+                android:id="@+id/durationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_minus2sdp"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packagesDescription">
+
+                <TextView
+                    android:id="@+id/tvDurationAvailable"
+                    style="@style/txt9SemiBoldWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingTop="@dimen/_minus6sdp"
+                    android:text="💡 Min. 4hr - Max. 8hrs (check availability)"
+                    android:textColor="@color/text_pink"
+                    android:textStyle="italic" />
+
+                <LinearLayout
+                    android:id="@+id/priceAndTimeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/txt10SemiBoldWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Duration : "
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/packageDuration"
+                            style="@style/txt10SemiBoldWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text=""
+                            android:textColor="@color/text_pink"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/txt10SemiBoldWhite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_6sdp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="-"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            style="@style/txt10SemiBoldWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Total : "
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/packageTotal"
+                            style="@style/txt13SemiBoldWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text=""
+                            android:textColor="@color/brand_pink"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

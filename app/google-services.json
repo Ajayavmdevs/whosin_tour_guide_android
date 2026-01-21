@@ -1,0 +1,115 @@
+{
+  "project_info": {
+    "project_number": "965402678086",
+    "firebase_url": "https://whosin-f3352-default-rtdb.firebaseio.com",
+    "project_id": "whosin-f3352",
+    "storage_bucket": "whosin-f3352.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965402678086:android:8bcff063d54d229bad4b47",
+        "android_client_info": {
+          "package_name": "com.whosin.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965402678086-5kr8kkngeqj4k7n3dfia02ootkiv7j4g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whosin.app",
+            "certificate_hash": "202457ac855c98330ca0ca8076e7cebb18510fb2"
+          }
+        },
+        {
+          "client_id": "965402678086-5uj99k9l8m68lu9nv0scnl67a18kgpfe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whosin.app",
+            "certificate_hash": "92df5789e37e3a9d9198f6dc499a45ddfd63059c"
+          }
+        },
+        {
+          "client_id": "965402678086-atvsnh1c0gj2jofqt55864sjsnonl8nv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgnE7wCx6izfxTrGNm5z4BvYJnVnpYaUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965402678086-6a0j9ve5thngjmiovedk7aoijf3g6p23.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "965402678086-217lin9e3pldsit740r2plqbscce57ee.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.whosin.me"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965402678086:android:61ef01175f6719edad4b47",
+        "android_client_info": {
+          "package_name": "com.whosin.me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965402678086-fbl3t372b97arqdgn4antvjvipbd1th1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whosin.me",
+            "certificate_hash": "7932650f1bcdb3f936fd91785b01adccbb92032c"
+          }
+        },
+        {
+          "client_id": "965402678086-p6mnfi17a0vee2vcn6unh2vuesq52n64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whosin.me",
+            "certificate_hash": "c593ef78857de146bdb1fdf68bb1de1a96edf4ed"
+          }
+        },
+        {
+          "client_id": "965402678086-atvsnh1c0gj2jofqt55864sjsnonl8nv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgnE7wCx6izfxTrGNm5z4BvYJnVnpYaUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965402678086-6a0j9ve5thngjmiovedk7aoijf3g6p23.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "965402678086-217lin9e3pldsit740r2plqbscce57ee.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.whosin.me"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

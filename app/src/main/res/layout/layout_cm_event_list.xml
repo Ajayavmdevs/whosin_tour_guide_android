@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/order_dialog_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Events I’m IN"
+        style="@style/txt15Bold"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:nestedScrollingEnabled="false"
+        app:layout_constraintTop_toBottomOf="@+id/tvEvents"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingEnd="@dimen/_10sdp"/>
+
+    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+        android:id="@+id/emptyPlaceHolderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        app:emptyPlaceTxtIcon="@drawable/all_bucketlist"
+        app:emptyPlaceTxtTitle="My Events looking a bit empty? Toss in some vouchers and kickstart those adventures!"
+        app:emptyPlaceTxtTitleColor="@color/white"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:emptyPlaceTxtTitleSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEvents" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

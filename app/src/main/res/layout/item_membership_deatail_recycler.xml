@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/mainLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:orientation="vertical"
+        app:corner_radius="@dimen/_10sdp"
+        android:background="@drawable/chat_bucket_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/txt12SemiBoldWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:text="WHOSIN REGULAR" />
+
+
+
+
+
+        <TextView
+            android:id="@+id/tvPrice"
+            style="@style/txt12Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:text="1MONTH FREE then AED 29.99/month" />
+
+        <TextView
+            android:id="@+id/tvSubTitle"
+            style="@style/txt11RegularWhite70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Check our membership packages to enjoy lots of benefits and save on each claim Check our membership packages" />
+
+
+        <TextView
+            android:id="@+id/tvFeature"
+            style="@style/txt12Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:gravity="end"
+            android:layout_gravity="end"
+            android:textColor="@color/light_pink"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:text="See What You Get" />
+
+
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    <TextView
+        android:id="@+id/getNowBtn"
+        style="@style/txt14SemiBoldWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_45sdp"
+        android:background="@drawable/dark_blue_btn_bg"
+        android:backgroundTint="@color/white"
+        android:paddingVertical="@dimen/_10sdp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/mainLinear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="BUY NOW " />
+</androidx.constraintlayout.widget.ConstraintLayout>

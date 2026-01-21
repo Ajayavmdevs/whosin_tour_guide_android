@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/_1sdp"
+    android:background="@color/card_color"
+    android:paddingHorizontal="@dimen/_8sdp"
+    android:paddingVertical="@dimen/_8sdp"
+    app:corner_radius="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/tvTitle"
+        android:layout_width="@dimen/_14sdp"
+        android:layout_height="@dimen/_14sdp"
+        android:src="@drawable/venue_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/tvTitleValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5ssp"
+        android:fontFamily="@font/sf_medium"
+        android:text="5 hours apx"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+<!--    <ImageView-->
+<!--        android:id="@+id/tvTitle"-->
+<!--        android:layout_width="@dimen/_14sdp"-->
+<!--        android:layout_height="@dimen/_14sdp"-->
+<!--        android:src="@drawable/venue_location"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/tvTitleValue"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:tint="@color/white"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvTitleValue"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/sf_medium"-->
+<!--        android:text="5 hours apx  "-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="@dimen/_10sdp"-->
+<!--        android:layout_marginStart="@dimen/_5ssp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/tvTitle"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activites.raynaTicket.RaynaViewTicketActivity">
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:blurOverlayColor="@color/white_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/headerLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/navigationBar_height"
+                            android:background="@color/ticket_pdf_bg"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvName"
+                                style="@style/txt16SemiBoldWhite"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_15sdp"
+                                android:text="Ticket"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/ivClose"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/ivClose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:src="@drawable/icon_left_back_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.58dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:background="@color/grayColor"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                            android:id="@+id/linear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:layout_marginBottom="@dimen/_15sdp"
+                            android:background="@color/features_bg"
+                            android:backgroundTint="@color/features_bg"
+                            android:orientation="vertical"
+                            app:corner_radius="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_13sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+                                    <TextView
+                                        android:id="@+id/tvBookingTitle"
+                                        style="@style/txt13SemiBoldWhite"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        android:text="dbsjfgdfyhygfg" />
+
+                                    <TextView
+                                        android:id="@+id/tvDescription"
+                                        style="@style/txt9Regular"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_5sdp"
+                                        android:maxLines="1"
+                                        android:layout_marginTop="@dimen/_2sdp"
+                                        app:layout_constraintTop_toBottomOf="@+id/tvBookingTitle"
+                                        android:text="" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <LinearLayout
+                                android:id="@+id/detailContanier"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                app:layout_constraintBottom_toTopOf="@+id/viewLine"
+                                app:layout_constraintTop_toBottomOf="@+id/venueContanier">
+
+                                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                                    android:id="@+id/imageConstraint"
+                                    android:layout_width="@dimen/_128sdp"
+                                    android:layout_height="@dimen/_90sdp"
+                                    app:corner_radius="@dimen/_10sdp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imgGallary"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:orientation="vertical">
+
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="@dimen/_12sdp"
+                                            android:layout_height="@dimen/_12sdp"
+                                            android:src="@drawable/icon_event_calender"
+                                            app:tint="@color/white" />
+
+                                        <TextView
+                                            android:id="@+id/txtDate"
+                                            style="@style/txt10RegularWhite70"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            android:text="2024-12-20" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_5sdp"
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:src="@drawable/icon_event_time"
+                                            app:tint="@color/white" />
+
+                                        <TextView
+                                            android:id="@+id/txtTime"
+                                            style="@style/txt10RegularWhite70"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_5sdp"
+                                            android:text="08:30:00" />
+
+                                    </LinearLayout>
+
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical"
+                                        android:maxLines="1"
+                                        android:layout_marginTop="@dimen/_5sdp"
+                                        android:layout_marginEnd="@dimen/_10sdp"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/txtType"
+                                            style="@style/txt9Regular"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Theme parks Tours" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:id="@+id/txtDepartureTime"
+                                        style="@style/txt10RegularWhite70"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_6sdp"
+                                        android:text="" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvOptionName"
+                                style="@style/txt12SemiBoldWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:text="Classical Dubai City Tour" />
+
+                            <TextView
+                                android:id="@+id/tvOptionDescription"
+                                style="@style/txt8RegularWhite70"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:text="Classical Dubai City Tour" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_8sdp"
+                                android:background="@color/ticket_des_bg">
+
+                                <TextView
+                                    android:id="@+id/tvGuest"
+                                    style="@style/txt11SemiBoldWhite"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:text="Guest Detail" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="@dimen/_3sdp">
+
+                                    <TextView
+                                        style="@style/txt9SemiBoldWhite"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        android:text="Paxes : " />
+
+
+                                    <TextView
+                                        android:id="@+id/tvTotalGuestName"
+                                        style="@style/txt9Regular"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        android:text="" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/tvGuestName"
+                                    style="@style/txt9Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_3sdp"
+                                    android:text="" />
+
+                            </LinearLayout>
+
+
+
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/totalAmoutLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/_10sdp">
+
+                                <TextView
+                                    android:id="@+id/totalAmoutTv"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Amount"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@id/totalAmoutAed"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/totalAmoutAed"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintStart_toEndOf="@id/totalAmoutTv"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:text=""
+                                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/discountLinear"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingVertical="@dimen/_2sdp"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                app:layout_constraintTop_toBottomOf="@+id/totalAmoutLayout">
+
+                                <TextView
+                                    android:id="@+id/discountTv"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Discount" />
+
+                                <TextView
+                                    android:id="@+id/discountAed"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/finalAmountLinear"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingVertical="@dimen/_2sdp"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                android:background="@color/ticket_final_amount_bg"
+                                app:layout_constraintTop_toBottomOf="@+id/discountLinear">
+
+                                <TextView
+                                    android:id="@+id/finalAmountTv"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Final Amount" />
+
+                                <TextView
+                                    android:id="@+id/finalAmountAed"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/tickeIdLinear"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingVertical="@dimen/_2sdp"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                app:layout_constraintTop_toBottomOf="@+id/finalAmountLinear">
+
+                                <TextView
+                                    style="@style/txt10Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2.0"
+                                    android:text="Ticket Id" />
+
+                                <TextView
+                                    android:id="@+id/tvTicketId"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text=""
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|end" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/bookingRefNoLinear"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingVertical="@dimen/_2sdp"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                app:layout_constraintTop_toBottomOf="@+id/finalAmountLinear">
+
+                                <TextView
+                                    style="@style/txt10Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2.0"
+                                    android:text="Booking Ref No" />
+
+                                <TextView
+                                    android:id="@+id/tvBookingrefId"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text=""
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|end" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/buttonLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:layout_marginHorizontal="@dimen/_8sdp"
+                                android:visibility="visible"
+                                android:layout_marginVertical="@dimen/_10sdp">
+
+
+                                <TextView
+                                    style="@style/txt12SemiBoldWhite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:text="Your order successfully placed." />
+
+
+                                <com.whosin.app.ui.controller.IconButton
+                                    android:id="@+id/btnDownloadTicket"
+                                    style="@style/txt14Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:visibility="visible"
+                                    app:buttonBgColor="@color/brand_pink"
+                                    app:buttonTintColor="@color/white"
+                                    android:layout_marginTop="@dimen/_8sdp"
+                                    app:buttonTitle="Ticket will be updated in 00 : 00" />
+
+
+                                <com.whosin.app.ui.controller.IconButton
+                                    android:id="@+id/btnCancelBooking"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    app:buttonBg="@drawable/white_stroke_bg"
+                                    app:buttonCorner="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    app:buttonTintColor="@color/white"
+                                    android:visibility="gone"
+                                    app:buttonTitle="Cancel Booking" />
+
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/cancellationPolicy"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_8sdp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:text="Cancellation Policy"
+                                        android:textSize="@dimen/_9sdp"
+                                        android:textStyle="italic"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                                    <ImageView
+                                        android:id="@+id/ivTime"
+                                        android:layout_width="@dimen/_14sdp"
+                                        android:layout_height="@dimen/_14sdp"
+                                        android:src="@drawable/icon_time_info"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </LinearLayout>
+
+                        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

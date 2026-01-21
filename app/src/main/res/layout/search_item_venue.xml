@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linear"
+    android:layout_width="@dimen/_218sdp"
+    android:layout_height="@dimen/_150sdp"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:orientation="vertical"
+    app:corner_radius="@dimen/_10sdp">
+
+
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/icon_venue_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:blurOverlayColor="@color/black_20"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.whosin.app.comman.ui.UserInfoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/venueContainer"
+                android:paddingVertical="@dimen/_3sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"/>
+
+<!--            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout-->
+<!--                android:id="@+id/roundLinear"-->
+<!--                android:layout_width="@dimen/_40sdp"-->
+<!--                android:layout_height="@dimen/_40sdp"-->
+<!--                android:layout_marginVertical="@dimen/_5sdp"-->
+<!--                android:layout_marginStart="@dimen/_10sdp"-->
+<!--                android:padding="@dimen/_4sdp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                    android:id="@+id/ivLogo"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/icon_font" />-->
+
+<!--            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginHorizontal="@dimen/_10sdp"-->
+<!--                android:layout_weight="6"-->
+<!--                android:gravity="center|left"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textName"-->
+<!--                    style="@style/txt12SemiBold"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center|left"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:text="Atelier M" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txtAddress"-->
+<!--                    style="@style/txt8RegularWhite70"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:text="7M Floor Dubai" />-->
+
+<!--            </LinearLayout>-->
+<!--            -->
+        </LinearLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

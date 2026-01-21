@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bottom_bg_color"
+    android:minHeight="@dimen/_520sdp"
+    app:top_left_corner_radius="@dimen/_20sdp"
+    app:top_right_corner_radius="@dimen/_20sdp"
+    android:isScrollContainer="true"
+    tools:context=".ui.activites.raynaTicket.BottomSheets.AddOnGuestTimeSheet">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/layoutView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_10sdp"
+        app:corner_radius="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/indicatorView"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_3sdp"
+            android:layout_gravity="center"
+            android:background="#767A7B"
+            android:elevation="@dimen/_10sdp"
+            android:visibility="visible" />
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    <TextView
+        android:id="@+id/tv_available_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:fontFamily="@font/sfuitext_bold"
+        android:text="Select Add-ons"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnDone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_available_date">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <LinearLayout
+                android:id="@+id/ivAddOnView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_1sdp">
+
+
+                <!-- Add-on Image -->
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                    android:id="@+id/roundImage"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    app:corner_radius="@dimen/_4sdp">
+                    <ImageView
+                        android:id="@+id/ivAddOnImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/card_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+                <!-- Right side content -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/addOnTitle"
+                            style="@style/rayna_ticket_main_title_pax_style"
+                            android:text="AddOns"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                    <!-- Description -->
+                    <TextView
+                        android:id="@+id/addOndDescription"
+                        style="@style/rayna_ticket_without_discount_style"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:maxLines="2"
+                        android:text="test"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hide_show_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/addQuantityAdult"
+                    style="@style/rayna_ticket_quantity_main_layout"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:visibility="visible">
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.90"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvAdultsTitle"
+                                    style="@style/rayna_ticket_main_title_pax_style"
+                                    android:text="Adults" />
+
+                                <TextView
+                                    android:id="@+id/adult_age"
+                                    style="@style/rayna_ticket_pax_age_style" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/adult_price_withoutDiscount"
+                                    style="@style/rayna_ticket_without_discount_style"
+                                    android:text="Aed 200" />
+
+                                <TextView
+                                    android:id="@+id/tv_adult_price"
+                                    style="@style/rayna_ticket_price_style"
+                                    android:text="AED 170" />
+
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/adultsPrice"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            style="@style/rayna_ticket_price_style" />
+
+                        <ImageView
+                            android:id="@+id/ivMinusAdult"
+                            style="@style/rayna_ticket_minus_buttons_style" />
+
+                        <TextView
+                            android:id="@+id/tv_total_adult"
+                            style="@style/rayna_ticket_total_value_style"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:text="0" />
+
+                        <ImageView
+                            android:id="@+id/ivPlusAdult"
+                            style="@style/rayna_ticket_plus_buttons_style" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/adult_description"
+                        style="@style/rayna_ticket_without_discount_style"
+                        android:text=""
+                        android:maxLines="3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/addQuantityChild"
+                    style="@style/rayna_ticket_quantity_main_layout"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:visibility="visible">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.90"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvChildTitle"
+                                    style="@style/rayna_ticket_main_title_pax_style"
+                                    android:text="Children" />
+
+                                <TextView
+                                    android:id="@+id/children_age"
+                                    style="@style/rayna_ticket_pax_age_style" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/child_price_withoutDiscount"
+                                    style="@style/rayna_ticket_without_discount_style"
+                                    android:text="AEd 200" />
+
+                                <TextView
+                                    android:id="@+id/tv_child_price"
+                                    style="@style/rayna_ticket_price_style"
+                                    android:text="AED 170" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/childPrice"
+                            style="@style/rayna_ticket_price_style"
+                            android:layout_marginEnd="@dimen/_10sdp" />
+
+                        <ImageView
+                            android:id="@+id/ivMinusChild"
+                            style="@style/rayna_ticket_minus_buttons_style" />
+
+                        <TextView
+                            android:id="@+id/tv_total_child"
+                            style="@style/rayna_ticket_total_value_style"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:text="0" />
+
+                        <ImageView
+                            android:id="@+id/ivPlusChild"
+                            style="@style/rayna_ticket_plus_buttons_style" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/child_description"
+                        style="@style/rayna_ticket_without_discount_style"
+                        android:text=""
+                        android:maxLines="3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/addQuantityInfants"
+                    style="@style/rayna_ticket_quantity_main_layout"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@+id/addQuantityChild">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.90"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvInfantsTitle"
+                                    style="@style/rayna_ticket_main_title_pax_style"
+                                    android:text="Infants" />
+
+                                <TextView
+                                    android:id="@+id/infant_age"
+                                    style="@style/rayna_ticket_pax_age_style" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/infant_price_withoutDiscount"
+                                    style="@style/rayna_ticket_without_discount_style"
+                                    android:text="AEd 200" />
+
+                                <TextView
+                                    android:id="@+id/tv_infant_price"
+                                    style="@style/rayna_ticket_price_style"
+                                    android:text="AED 170" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/infantsPrice"
+                            style="@style/rayna_ticket_main_price_style" />
+
+                        <ImageView
+                            android:id="@+id/ivMinusInfants"
+                            style="@style/rayna_ticket_minus_buttons_style" />
+
+                        <TextView
+                            android:id="@+id/tv_total_infants"
+                            style="@style/rayna_ticket_total_value_style"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:text="0" />
+
+                        <ImageView
+                            android:id="@+id/ivPlusInfants"
+                            style="@style/rayna_ticket_plus_buttons_style" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/infant_description"
+                        style="@style/rayna_ticket_without_discount_style"
+                        android:text="test"
+                        android:maxLines="3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_option_pickup_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/sfuitext_regular"
+                android:text="Available Timeslots"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/tv_available_time_slots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/sfuitext_regular"
+                android:text="Available Timeslots"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/time_slot_recycleview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="@dimen/_10sdp"
+                tools:listitem="@layout/rayna_time_slot_new_item" />
+
+
+            <com.whosin.app.ui.controller.EmptyPlaceHolderView
+                android:id="@+id/emptyPlaceHolderView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone"
+                app:emptyPlaceTxtIcon="@drawable/empty_event_image"
+                app:emptyPlaceTxtTitleColor="@color/white_2"
+                app:emptyPlaceTxtTitleSize="14sp" />
+
+            <View
+                android:id="@+id/view_line_1"
+                android:layout_width="match_parent"
+                android:layout_height="0.10dp"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white_70" />
+
+            <LinearLayout
+                android:id="@+id/layout_more_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfuitext_bold"
+                    android:text="More Info"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/sfuitext_bold"
+                    android:text="Add-on name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_description_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/sfuitext_bold"
+                    android:text="Add-on description"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_inclusion_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/sfuitext_bold"
+                    android:text="Inclusion"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_inclusion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_exclusion_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/sfuitext_bold"
+                    android:text="Exclusion"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_exclusion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_operation_days_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/sfuitext_bold"
+                    android:text="Operation days"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv_addon_operation_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressView"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/brand_pink"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/btnDone"
+        style="@style/txt12SemiBoldWhite"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginHorizontal="@dimen/_6sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:background="@drawable/not_select_btn_bg"
+        android:gravity="center"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

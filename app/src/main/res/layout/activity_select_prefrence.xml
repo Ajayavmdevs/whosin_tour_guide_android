@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".ui.activites.auth.SelectPrefrenceActivity">
+
+    <com.whosin.app.ui.controller.NavBarWithBack
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftImage="@drawable/icon_next"
+        app:navBgColor="@color/transparent"
+        app:navTitle="Select Preferences"
+        app:navTitleColor="@color/white"
+        app:rightBtnTitle=""
+        app:showBackButton="true" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.whosin.app.ui.controller.OnBoardTextInfoView
+                android:id="@+id/nameControl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scroll"
+                app:mainTitle=" Choose your favorite  preferences" />
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/txt10SemiBoldWhite85"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center"
+                android:text="Choose your favourite cuisines"
+                app:layout_constraintTop_toBottomOf="@id/nameControl" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tabRecyclerCuisines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintTop_toBottomOf="@id/text" />
+
+            <TextView
+                android:id="@+id/textfeatures"
+                style="@style/txt10SemiBoldWhite85"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:gravity="center"
+                android:text="Choose your favourite Features"
+                app:layout_constraintTop_toBottomOf="@id/tabRecyclerCuisines" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tabRecyclerFeatures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/textfeatures" />
+
+            <TextView
+                android:id="@+id/textMusic"
+                style="@style/txt10SemiBoldWhite85"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:gravity="center"
+                android:text="Choose your favourite Music"
+                app:layout_constraintTop_toBottomOf="@id/tabRecyclerFeatures" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tabRecyclerMusic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layout_constraintTop_toBottomOf="@id/textMusic" />
+
+            <com.whosin.app.ui.controller.RoundButton
+                android:id="@+id/imageNext"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_55sdp"
+                app:centerImg="@drawable/icon_next"
+                app:imgMargin="@dimen/_12sdp"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

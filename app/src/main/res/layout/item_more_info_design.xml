@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_4sdp"
+    android:paddingVertical="@dimen/_7sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/info_title"
+        style="@style/txt14SemiBoldWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/info_value"
+        style="@style/txt10Regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_85"
+        android:lineSpacingMultiplier="1.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_3sdp"
+        app:layout_constraintTop_toBottomOf="@+id/info_title"/>
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/cancellation_policy_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@color/ticket_non_ref_colour"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/_6sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_value"
+        app:corner_radius="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/btnCancellationPolicy"
+            style="@style/txt9SemiBoldWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingVertical="@dimen/_6sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:text="Non Refundable" />
+
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

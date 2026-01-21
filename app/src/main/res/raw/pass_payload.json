@@ -1,0 +1,47 @@
+{
+  "iss": "firebase-adminsdk-garoq@whosin-f3352.iam.gserviceaccount.com",
+  "aud": "google",
+  "typ": "savetowallet",
+  "iat": 1752212261,
+  "origins": ["https://yourdomain.com"],
+  "payload": {
+    "genericObjects": [
+      {
+        "id": "3388000000022338958.ticket_12345",
+        "classId": "3388000000022338958.ticket_class_1",
+        "state": "ACTIVE",
+        "heroImage": {
+          "sourceUri": {
+            "uri": "https://yourdomain.com/ticket-image.jpg"
+          },
+          "contentDescription": {
+            "defaultValue": {
+              "language": "en-US",
+              "value": "Event Ticket Image"
+            }
+          }
+        },
+        "textModulesData": [
+          {
+            "header": "Your Event Ticket",
+            "body": "Enjoy your entry to the event. Show this pass at the gate.",
+            "id": "text_module_1"
+          }
+        ],
+        "barcode": {
+          "type": "QR_CODE",
+          "value": "1234567890"
+        },
+        "linksModuleData": {
+          "uris": [
+            {
+              "uri": "https://yourdomain.com/ticket-details",
+              "description": "Ticket Info",
+              "id": "link_1"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

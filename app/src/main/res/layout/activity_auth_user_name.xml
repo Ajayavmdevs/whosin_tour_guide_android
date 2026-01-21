@@ -1,0 +1,200 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    android:isScrollContainer="false"
+    android:windowSoftInputMode="adjustResize"
+    tools:context=".ui.activites.auth.AuthUserNameActivity">
+
+    <com.whosin.app.ui.controller.NavBarWithBack
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftImage="@drawable/icon_left_back_arrow"
+        app:navBgColor="@color/transparent"
+        app:navTitle="Add your name"
+        app:navTitleColor="@color/white"
+        app:showBackButton="true"
+        app:showRightButton="false"
+        app:showSerachButton="false" />
+
+    <com.whosin.app.ui.controller.OnBoardTextInfoView
+        android:id="@+id/nameControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="@color/transparent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar"
+        app:mainTitle="What is Your \n Name?"
+        app:subTitle="Your name will displayed on your Profile" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/authTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is Your Name?"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvAuthSubTitleText"
+            style="@style/authSubTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Your name will displayed on your Profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/editFirstName"
+        style="@style/MyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_37sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:autofillHints="name"
+        android:hint="@string/edtFirstname"
+        android:inputType="text"
+        android:nextFocusForward="@+id/editLastName"
+        android:singleLine="true"
+        app:layout_constraintDimensionRatio="h,381:49"
+        app:layout_constraintTop_toBottomOf="@id/constraint" />
+
+    <EditText
+        android:id="@+id/editLastName"
+        style="@style/MyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_37sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:autofillHints="name"
+        android:hint="@string/edtLastname"
+        android:inputType="text"
+        android:singleLine="true"
+        app:layout_constraintDimensionRatio="h,381:49"
+        app:layout_constraintTop_toBottomOf="@id/editFirstName" />
+
+    <TextView
+        android:id="@+id/txt"
+        style="@style/txt12SemiBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:gravity="center"
+        android:text="Please specify your gender"
+        app:layout_constraintTop_toBottomOf="@id/editLastName" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/txt">
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:id="@+id/roundMale"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="end"
+            android:background="@drawable/img_skip_bg"
+            android:gravity="center"
+            app:corner_radius="@dimen/_30sdp"
+            app:layout_constraintDimensionRatio="h,14:49"
+            app:layout_constraintEnd_toStartOf="@id/linearFemale"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvMale"
+                style="@style/GenderButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Male" />
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:id="@+id/linearFemale"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:background="@drawable/img_skip_bg"
+            android:gravity="center"
+            app:corner_radius="@dimen/_30sdp"
+            app:layout_constraintDimensionRatio="h,13:49"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/roundMale"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvFemale"
+                style="@style/GenderButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="Female" />
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:id="@+id/linearPrefer"
+            android:layout_width="@dimen/_145sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/img_skip_bg"
+            app:corner_radius="@dimen/_30sdp"
+            app:layout_constraintDimensionRatio="h,381:49"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roundMale">
+
+            <TextView
+                android:id="@+id/tvPreferNotSay"
+                style="@style/GenderButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="Prefer not to Say" />
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.whosin.app.ui.controller.RoundButton
+        android:id="@+id/imageNext"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_75sdp"
+        app:btnDisabled="true"
+        app:centerImg="@drawable/icon_next"
+        app:imgMargin="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

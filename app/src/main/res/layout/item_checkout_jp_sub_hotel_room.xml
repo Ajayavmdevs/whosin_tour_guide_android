@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintRound"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:paddingHorizontal="@dimen/_10sdp"
+    app:corner_radius="@dimen/_8sdp">
+
+    <TextView
+        android:id="@+id/tvHotelName"
+        style="@style/txt11SemiBoldWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sfuitext_bold"/>
+
+    <TextView
+        android:id="@+id/tvHotelAdultChildCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:fontFamily="@font/sf_medium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp" />
+
+    <View
+        android:id="@+id/view_line_1"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/thin_light_gray_line" />
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bottom_bg_color"
+    tools:context=".ui.fragment.Contact.SendMessageFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            >
+            <TextView
+                android:id="@+id/tvThought"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/txt12SemiBoldWhite"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvEmail"
+                style="@style/txt13SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/invitesheet_edittext_background"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                >
+                <TextView
+                    android:id="@+id/etEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/contraintImage"
+                    style="@style/txt13Regular"
+                    android:textColor="@color/white_70"
+                    android:singleLine="true"
+                    android:text="@string/email" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/contraintImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/etEmail"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/editEmail"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:src="@drawable/edit_pencil"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:visibility="visible"
+                        android:id="@+id/emailVerify"
+                        style="@style/txt9SemiBoldWhite"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/pink_gradient_bg"
+                        android:backgroundTint="@color/brand_pink"
+                        android:gravity="center"
+                        android:text="@string/verify"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvSubject"
+                style="@style/txt13SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subject"
+
+
+                />
+
+            <EditText
+                android:id="@+id/etSubject"
+                style="@style/ContactEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:hint="@string/subject" />
+
+            <TextView
+                android:id="@+id/tvMsg"
+                style="@style/txt13SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message"
+                android:visibility="gone"
+                />
+
+            <EditText
+                android:id="@+id/edtMessage"
+                style="@style/ContactEditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="start"
+                android:hint="@string/write_your_message"
+                android:lines="6"
+                android:maxLines="15" />
+
+            <com.whosin.app.ui.controller.IconButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="@dimen/_85sdp"
+                android:layout_height="@dimen/_30sdp"
+                app:buttonTitle="@string/submit"
+                app:buttonTintColor="@color/white"
+                app:buttonBg="@color/brand_pink"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                app:progressColor="@color/white"
+                app:buttonCorner="@dimen/_15sdp"
+                android:layout_gravity="center_horizontal"
+
+                />
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

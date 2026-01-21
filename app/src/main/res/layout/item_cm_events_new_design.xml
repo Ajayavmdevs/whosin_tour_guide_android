@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_12sdp"
+    android:orientation="vertical">
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stroke_gradiant_line_pending"
+        android:backgroundTint="@color/red"
+        android:orientation="vertical"
+        android:padding="@dimen/_2sdp"
+        app:corner_radius="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/card_color"
+            android:orientation="vertical"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:corner_radius="@dimen/_12sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/venueContanier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="@dimen/_29sdp"
+                    android:layout_height="@dimen/_29sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:src="@color/red"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/interestConstraint"
+                    app:layout_constraintStart_toEndOf="@id/image"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/titleText"
+                        style="@style/txt12SemiBoldWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="Babel Dubai" />
+
+                    <TextView
+                        android:id="@+id/subTitleText"
+                        style="@style/txt9Regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="Sheikh zayed road, dubai address"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                    android:id="@+id/interestConstraint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green_medium"
+                    android:visibility="visible"
+                    app:bottom_left_corner_radius="@dimen/_5sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/newEventTv"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/interestedTv"
+                        style="@style/txt10SemiBoldWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:paddingVertical="@dimen/_2sdp" />
+
+
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                    android:id="@+id/newEventTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@color/red"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/remainingEventTv"
+                        style="@style/txt10SemiBoldWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:text="  New  " />
+
+
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/detailContanier"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140sdp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                app:layout_constraintBottom_toTopOf="@+id/viewLine"
+                app:layout_constraintTop_toBottomOf="@+id/venueContanier">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView"
+                        android:layout_width="@dimen/_110sdp"
+                        android:layout_height="@dimen/_110sdp"
+                        app:cardBackgroundColor="@color/transparent"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imageVenue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtDate"
+                            style="@style/txt13SemiBoldWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="2"
+                            android:text="Mon, 24/04/2024"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/txtTime"
+                            style="@style/txt13SemiBoldWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:maxLines="2"
+                            android:text="16:30 - 18:00 pm"
+                            android:textColor="@color/white" />
+
+                        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                            android:id="@+id/eventCategoriLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/green"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_4sdp"
+                            android:padding="@dimen/_1sdp"
+                            app:corner_radius="@dimen/_12sdp">
+
+                            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/card_color"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingVertical="0.90dp"
+                                app:cardCornerRadius="@dimen/_10sdp"
+                                app:corner_radius="@dimen/_12sdp">
+
+                                <TextView
+                                    android:id="@+id/eventCategori"
+                                    style="@style/txt9Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:paddingHorizontal="@dimen/_14sdp"
+                                    android:text="Brunch"
+                                    android:textColor="@color/green" />
+
+                            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+                        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/plusOneTv"
+                            style="@style/txt9SemiBoldWhite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:visibility="gone"
+                            android:text="Plus One Members" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/memberRecyclerView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="-6dp"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/limitedSeatslayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    style="@style/txt11Bold"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/red_color"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:visibility="gone"
+                    android:text="Event started (Limited seats are still available)"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:orientation="horizontal"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/detailContanier">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/forStatusConstraint"
+                    android:visibility="visible"
+                    android:layout_marginHorizontal="@dimen/_25sdp"
+                    android:background="@drawable/pink_stroke_bg">
+
+                    <TextView
+                        android:id="@+id/tvForStatus"
+                        style="@style/txt14Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Event is Full"
+                        android:textColor="@color/brand_pink"
+                        android:paddingVertical="@dimen/_2sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.whosin.app.ui.controller.ComplementryProfileViews.EventRemainingTimeView
+                    android:id="@+id/eventTimerView"
+                    android:layout_width="match_parent"
+                    android:visibility="visible"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

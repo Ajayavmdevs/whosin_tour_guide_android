@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/_6sdp"
+    android:layout_marginEnd="@dimen/_12ssp"
+    android:background="@color/card_color"
+    app:corner_radius="@dimen/_8sdp">
+
+
+    <LinearLayout
+        android:id="@+id/imagesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_125sdp"
+        android:background="@color/white_70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detailLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagesLayout">
+
+        <TextView
+            android:id="@+id/tvOptionTitle"
+            style="@style/txt12SemiBoldWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:ellipsize="end"
+            android:maxLines="2" />
+
+        <TextView
+            android:id="@+id/tvOptionDescription"
+            style="@style/txt9RegularSF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_2sdp"
+            android:maxLines="2" />
+
+        <include
+            android:id="@+id/ticketDays"
+            layout="@layout/tv_views_for_ticket" />
+
+        <include
+            android:id="@+id/ticketStartDate"
+            layout="@layout/tv_views_for_ticket" />
+
+        <include
+            android:id="@+id/tickeEndDate"
+            layout="@layout/tv_views_for_ticket" />
+
+        <include
+            android:id="@+id/totalSeats"
+            layout="@layout/tv_views_for_ticket" />
+
+
+    </LinearLayout>
+
+    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        android:id="@+id/btn_more_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:paddingHorizontal="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/detailLayout"
+        app:layout_constraintBottom_toTopOf="@+id/price_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:corner_radius="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/infoIcon"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:src="@drawable/venue_info"
+            android:rotation="180"
+            android:layout_marginTop="0.50dp"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/btn_more_info_view"
+            style="@style/txt9SemiBoldWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/_3sdp"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:text="More info" />
+
+    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_500"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_7sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_more_info">
+
+        <TextView
+            android:id="@+id/total"
+            style="@style/txt13SemiBoldWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Price"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvAED"
+                style="@style/txt12Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                style="@style/txt12SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

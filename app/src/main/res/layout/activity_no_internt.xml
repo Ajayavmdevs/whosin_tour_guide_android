@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackgroundColor"
+    tools:context=".ui.activites.NoInterntActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="false"
+            android:src="@drawable/icon_wifi_off" />
+
+        <TextView
+            style="@style/txt13Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="No internet connection !" />
+
+        <TextView
+            style="@style/txt11Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center"
+            android:lineSpacingExtra="1.5dp"
+            android:text="Your internet connection is down. Retry and continue using 7NIGHTS." />
+
+        <com.whosin.app.ui.controller.IconButton
+            android:id="@+id/btnRetry"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:buttonBgColor="@color/txtBook"
+
+            app:buttonTintColor="@color/white"
+            app:buttonTitle="Retry" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

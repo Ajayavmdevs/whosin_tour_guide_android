@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activites.auth.TwoFactorWaitingActivity">
+
+    <ImageView
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:scaleType="centerInside"
+        android:src="@drawable/plan_detail_logo"
+        app:tint="@color/white" />
+
+    <TextView
+        style="@style/txt25Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WHOS’IN"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"/>
+
+    <TextView
+        android:id="@+id/tvTwoStepVerificationTitle"
+        style="@style/txt15SemiBoldWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2-Step Verification"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"/>
+
+    <TextView
+        android:id="@+id/tvExtraStepTitle"
+        style="@style/txt12RegularWhite85"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is extra step to shows, it's really you trying to sign in."
+        android:layout_marginHorizontal="@dimen/_20sdp"/>
+
+    <TextView
+        android:id="@+id/txtPhoneNumber"
+        style="@style/txt14Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+961 81 350 078"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:background="@drawable/rounded_background"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_3sdp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp">
+
+        <com.whosin.app.ui.controller.RoundProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_120sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            style="@style/txt30Bold"
+            android:text="20"
+            android:id="@+id/txtTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/txtBottomTitle"
+        style="@style/txt15SemiBoldWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check your other phone"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"/>
+
+    <TextView
+        android:id="@+id/txtBottomSubtitle"
+        style="@style/txt12RegularWhite85"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/who_sin_sent_you_a_notification_to_your_other_phone_tap_on_notification_and_open_app_ntap_b_yes_b_to_continue"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_3sdp"/>
+
+
+    <com.whosin.app.ui.controller.IconButton
+        android:id="@+id/btnMoreOption"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        app:buttonTitle="More option"
+        app:buttonTintColor="@color/white"
+        app:buttonCorner="@dimen/_20sdp"
+        app:buttonBg="@color/green"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_30sdp"/>
+
+</LinearLayout>

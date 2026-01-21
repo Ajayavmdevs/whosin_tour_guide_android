@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".ui.activites.auth.AuthUserCountryActivity">
+
+    <com.whosin.app.ui.controller.NavBarWithBack
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftImage="@drawable/icon_next"
+        app:navBgColor="@color/transparent"
+        app:navTitle="About Yourself"
+        app:navTitleColor="@color/white"
+        app:showBackButton="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+
+            <com.whosin.app.ui.controller.OnBoardTextInfoView
+                android:id="@+id/nameControl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/navbar"
+                app:mainTitle="Tell us a bit about\n yourself"
+                app:subTitle="\nAdding your residence location will customize your content " />
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCode"
+                style="@style/MyEditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:gravity="center"
+                app:ccpDialog_background="@color/black"
+                app:ccpDialog_showPhoneCode="false"
+                app:ccpDialog_textColor="@color/white"
+                app:ccp_contentColor="@color/white"
+                app:ccp_showArrow="false"
+                app:ccp_showFlag="true"
+                app:ccp_showFullName="true"
+                app:ccp_showNameCode="false"
+                app:ccp_showPhoneCode="false"
+                app:ccp_textGravity="LEFT"
+                app:ccp_textSize="@dimen/_12sdp"
+                app:layout_constraintDimensionRatio="h,381:49"
+                app:layout_constraintTop_toBottomOf="@id/nameControl" />
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/txt10Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:gravity="center"
+                android:text="We want to celebrate your birthday with\n you this year"
+                app:layout_constraintTop_toBottomOf="@id/countryCode" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutbirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/text">
+
+                <TextView
+                    android:id="@+id/editTextDate"
+                    style="@style/MyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:text="Add your birthday"
+                    app:layout_constraintDimensionRatio="h,381:49"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/btnDate"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:src="@drawable/icon_calander"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="h,1:1"
+                    app:layout_constraintEnd_toEndOf="@id/editTextDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txt"
+                style="@style/txt10Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:gravity="center"
+                android:text="Please specify your gender"
+                app:layout_constraintTop_toBottomOf="@id/layoutbirth" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/txt">
+
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                    android:id="@+id/roundMale"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/img_skip_bg"
+                    android:gravity="center"
+                    app:corner_radius="@dimen/_30sdp"
+                    app:layout_constraintDimensionRatio="h,14:49"
+                    app:layout_constraintEnd_toStartOf="@id/linearFemale"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        style="@style/GenderButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text="Male" />
+
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                    android:id="@+id/linearFemale"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:background="@drawable/img_skip_bg"
+                    android:gravity="center"
+                    app:corner_radius="@dimen/_30sdp"
+                    app:layout_constraintDimensionRatio="h,13:49"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/roundMale"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        style="@style/GenderButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text="Female" />
+
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                    android:id="@+id/linearPrefer"
+                    android:layout_width="@dimen/_145sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/img_skip_bg"
+                    app:corner_radius="@dimen/_30sdp"
+                    app:layout_constraintDimensionRatio="h,381:49"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/roundMale">
+
+                    <TextView
+                        style="@style/GenderButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:text="Perfer not to Say" />
+
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.whosin.app.ui.controller.RoundButton
+                android:id="@+id/imageNext"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_55sdp"
+                app:btnDisabled="true"
+                app:centerImg="@drawable/icon_next"
+                app:imgMargin="@dimen/_8sdp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

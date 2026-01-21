@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activites.wallet.PurchaseVoucherDetailActivity">
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:blurOverlayColor="@color/white_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                            android:id="@+id/linear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_25sdp"
+                            android:background="@drawable/redeem_bg"
+                            android:orientation="vertical"
+                            app:corner_radius="@dimen/_12sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/imgUserLogo"
+                                    android:layout_width="@dimen/_36sdp"
+                                    android:layout_height="@dimen/_36sdp"
+                                    android:layout_gravity="center_vertical"
+                                    android:src="@drawable/icon_font"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:layout_marginVertical="@dimen/_5sdp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/imgUserLogo"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <TextView
+                                        android:id="@+id/tvTitle"
+                                        style="@style/txt12SemiBold"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Atelier M Restaurant, Lounge "
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/tvAddress"
+                                        style="@style/txt8RegularWhite70"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_5sdp"
+                                        android:maxLines="1"
+                                        android:text="Pier 7, 7 &amp; 7M Floor Dubai Marina"
+                                        android:textColor="@color/grey" />
+
+                                </LinearLayout>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                                android:id="@+id/layoutImage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                app:corner_radius="@dimen/_10sdp">
+
+                                <ImageView
+                                    android:id="@+id/ivCover"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_130sdp"
+                                    android:background="@drawable/icon_venue_image"
+                                    android:scaleType="center"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginVertical="@dimen/_10sdp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txtQuantity"
+                                    style="@style/txt14SemiBoldWhite"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:text="(4x)"
+                                    android:textColor="@color/text_pink" />
+
+                                <TextView
+                                    android:id="@+id/txtName"
+                                    style="@style/txt12SemiBold"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Friday Brunch Package"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/txt8RegularWhite70"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="start"
+                                    android:paddingVertical="3dp"
+                                    android:text="Paxes per voucher"
+                                    android:textColor="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/txtPerPaxes"
+                                    style="@style/txt12SemiBoldWhite"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:paddingVertical="3dp"
+                                    android:text="x"
+                                    android:textColor="@color/brand_pink" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txtDescription"
+                                style="@style/txt10Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginVertical="@dimen/_5sdp"
+                                android:maxLines="4"
+                                android:text="Embark on a journey of everyday savings and extraordinary experiences with our 12-Month Tourist Plan. From iconic attractions to hidden gems, our app is your gateway to a world of adventure! Enjoy fantastic offers and discounts."
+                                android:textColor="@color/grey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/txt10Regular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="start"
+                                    android:paddingVertical="3dp"
+                                    android:text="Ticket Holder"
+                                    android:textColor="@color/grey" />
+
+                                <TextView
+                                    style="@style/txt10Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="end"
+                                    android:paddingVertical="3dp"
+                                    android:text="Date"
+                                    android:textColor="@color/grey" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txtTicketHolder"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="start"
+                                    android:paddingVertical="3dp"
+                                    android:text="John Doe"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/txtDate"
+                                    style="@style/txt10Regular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="end"
+                                    android:paddingVertical="3dp"
+                                    android:text="22 Oct, 2022 at 8:00 Am"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_180sdp">
+
+                                <!--                                <eightbitlab.com.blurview.BlurView-->
+                                <!--                                    android:id="@+id/expriedView"-->
+                                <!--                                    android:layout_width="@dimen/_160sdp"-->
+                                <!--                                    android:layout_height="@dimen/_170sdp"-->
+                                <!--                                    app:layout_constraintStart_toStartOf="parent"-->
+                                <!--                                    app:layout_constraintEnd_toEndOf="parent"-->
+                                <!--                                    app:layout_constraintTop_toTopOf="parent"-->
+                                <!--                                    app:blurOverlayColor="@color/black_20"-->
+                                <!--                                    android:visibility="gone"-->
+                                <!--                                    app:layout_constraintBottom_toBottomOf="parent">-->
+
+                                <!--                                    <androidx.constraintlayout.widget.ConstraintLayout-->
+                                <!--                                        android:layout_width="match_parent"-->
+                                <!--                                        android:layout_height="match_parent">-->
+
+                                <!--                                        <TextView-->
+                                <!--                                            style="@style/txt12Bold"-->
+                                <!--                                            android:layout_width="wrap_content"-->
+                                <!--                                            android:layout_height="wrap_content"-->
+                                <!--                                            android:rotation="-53"-->
+                                <!--                                            android:text="Expired"-->
+                                <!--                                            android:textColor="@color/brand_pink"-->
+                                <!--                                            app:layout_constraintBottom_toBottomOf="parent"-->
+                                <!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+                                <!--                                            app:layout_constraintStart_toStartOf="parent"-->
+                                <!--                                            app:layout_constraintTop_toTopOf="parent" />-->
+
+                                <!--                                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+                                <!--                                </eightbitlab.com.blurview.BlurView>-->
+
+                                <ImageView
+                                    android:id="@+id/ivBarcode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_180sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginHorizontal="@dimen/_20sdp"
+                                    android:src="@drawable/image_barcode"
+                                    android:visibility="visible"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                                <ImageView
+                                    android:id="@+id/expriedImage"
+                                    android:layout_width="@dimen/_180sdp"
+                                    android:layout_height="@dimen/_172sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginHorizontal="@dimen/_20sdp"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:src="@drawable/icon_expried_code"
+                                    android:visibility="gone"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            <TextView
+                                style="@style/txt10Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:text="Scan the barcode"
+                                android:textColor="@color/black"
+                                android:visibility="visible" />
+
+                        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btnDownloadVoucher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:background="@drawable/invite_gradiunt_bg"
+                        android:backgroundTint="@color/text_pink"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_13sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layout">
+
+                        <TextView
+                            android:id="@+id/verifyTv"
+                            style="@style/txt11Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Download Voucher"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
