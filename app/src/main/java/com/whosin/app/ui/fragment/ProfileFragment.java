@@ -2,7 +2,6 @@ package com.whosin.app.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.king.image.imageviewer.ImageViewer;
-import com.king.image.imageviewer.loader.GlideImageLoader;
 import com.whosin.app.R;
 import com.whosin.app.comman.DiffAdapter;
 import com.whosin.app.comman.DiffIdentifier;
@@ -36,12 +31,8 @@ import com.whosin.app.databinding.UserImageListBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.CheckUserSession;
 import com.whosin.app.service.manager.SessionManager;
-import com.whosin.app.service.models.ComplimentaryProfileModel;
 import com.whosin.app.service.models.ContactListModel;
-import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.NotificationModel;
-import com.whosin.app.service.models.PromoterEventModel;
 import com.whosin.app.service.models.RatingModel;
 import com.whosin.app.service.models.UpdateStatusModel;
 import com.whosin.app.service.models.UserDetailModel;
@@ -49,7 +40,6 @@ import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.Profile.FollowingActivity;
 import com.whosin.app.ui.activites.Profile.FollowresActivity;
 import com.whosin.app.ui.activites.Profile.ProfileFullScreenImageActivity;
-import com.whosin.app.ui.activites.Profile.UpdateProfileActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.fragment.Profile.FeedFragment;
 
@@ -61,7 +51,6 @@ import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProfileFragment extends BaseActivity {
 
@@ -72,8 +61,6 @@ public class ProfileFragment extends BaseActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
 
     private CommanCallback<Integer> callback;
-
-    private ComplimentaryProfileModel complimentaryProfileModel = null;
 
     private ItemListAdapter<RatingModel> itemListAdapter = new ItemListAdapter<>();
 
@@ -135,23 +122,11 @@ public class ProfileFragment extends BaseActivity {
 
         binding.swipeRefreshLayout.setOnRefreshListener(() -> {
             binding.swipeRefreshLayout.setRefreshing(true);
-            if (SessionManager.shared.getUser().isRingMember()) {
-                requestPromoterEventListUser();
-                requestComplimentaryProfile(false);
-            } else {
-                CheckUserSession.checkSessionAndProceed(activity,this::requestUserProfile);
-            }
+            CheckUserSession.checkSessionAndProceed(activity,this::requestUserProfile);
         });
         binding.followingLayout.setOnClickListener(view -> startActivity(new Intent(activity, FollowingActivity.class).putExtra("id", SessionManager.shared.getUser().getId())));
 
         binding.followersLayout.setOnClickListener(view -> startActivity(new Intent(activity, FollowresActivity.class).putExtra("id", SessionManager.shared.getUser().getId())));
-
-        binding.editProfileLayout.setOnClickListener(v -> {
-            Utils.preventDoubleClick(v);
-            if (complimentaryProfileModel == null) return;
-            if (complimentaryProfileModel.getProfile() == null) return;
-            startActivity(new Intent(activity, UpdateProfileActivity.class));
-        });
 
 
         binding.ivShare.setOnClickListener(v -> {
@@ -175,11 +150,6 @@ public class ProfileFragment extends BaseActivity {
 
             @Override
             public void onClick(int i, @NonNull CarouselItem carouselItem) {
-                ImageViewer.load(complimentaryProfileModel.getProfile().getImages())
-                        .selection(i)
-                        .imageLoader(new GlideImageLoader())
-                        .indicator(true)
-                        .start(activity);
             }
 
             @Override
@@ -206,12 +176,7 @@ public class ProfileFragment extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (SessionManager.shared.getUser().isRingMember()) {
-            requestPromoterEventListUser();
-            CheckUserSession.checkSessionAndProceed(activity, () -> requestComplimentaryProfile(false));
-        } else {
-            CheckUserSession.checkSessionAndProceed(activity,this::requestUserProfile);
-        }
+        CheckUserSession.checkSessionAndProceed(activity,this::requestUserProfile);
 
 //        setWalletCount();
     }
@@ -219,12 +184,6 @@ public class ProfileFragment extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(UpdateStatusModel event) {
 //        setWalletCount();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(ComplimentaryProfileModel model) {
-        requestPromoterEventListUser();
-        requestComplimentaryProfile(false);
     }
 
 
@@ -286,78 +245,16 @@ public class ProfileFragment extends BaseActivity {
         List<CarouselItem> carouselItems = new ArrayList<>();
 
 
-        if (!complimentaryProfileModel.getProfile().getImages().isEmpty()) {
-            for (String imageLink : complimentaryProfileModel.getProfile().getImages()) {
-                carouselItems.add(new CarouselItem(imageLink, "Static Banner Title"));
-            }
-        } else {
-            carouselItems.add(new CarouselItem(R.drawable.app_icon));
-        }
+        carouselItems.add(new CarouselItem(R.drawable.app_icon));
 
         binding.imageCarousel.registerLifecycle(getLifecycle());
         binding.imageCarousel.setData(carouselItems);
     }
 
-    public void getAllEventsCount(List<PromoterEventModel> eventList) {
-        int acceptedEventsCount = (int) eventList.stream()
-                .filter(p -> p.getInvite().getInviteStatus().equals("in") && p.getInvite().getPromoterStatus().equals("accepted"))
-                .count();
-
-        int pendingEventsCount = (int) eventList.stream()
-                .filter(p -> (p.getInvite().getInviteStatus().equals("in") && p.getInvite().getPromoterStatus().equals("pending")) && !p.isEventFull())
-                .count();
-
-        int wishlistedEventsCount = (int) eventList.stream()
-                .filter(PromoterEventModel::isWishlisted)
-                .count();
-
-        int totalCount = acceptedEventsCount + pendingEventsCount + wishlistedEventsCount;
-        if (totalCount != 0) {
-            RatingModel model = new RatingModel("My Actions", totalCount);
-            tabList.remove(1);
-            tabList.add(1, model);
-            itemListAdapter.updateData(tabList);
-        }
-
-    }
-
-
-//    private void setWalletCount() {
-//        UpdateStatusModel statusModel = GetNotificationManager.shared.statusModel;
-//        if (statusModel != null) {
-//            binding.tabLayout.getTabAt(1).getOrCreateBadge().clearNumber();
-//            binding.tabLayout.getTabAt(1).getBadge().setBackgroundColor(getColor(R.color.red));
-//            binding.tabLayout.getTabAt(1).getBadge().setVisible((statusModel.isBucket() || statusModel.isOuting()));
-//
-//            binding.tabLayout.getTabAt(2).getOrCreateBadge().clearNumber();
-//            binding.tabLayout.getTabAt(2).getBadge().setBackgroundColor(getColor(R.color.red));
-//            binding.tabLayout.getTabAt(2).getBadge().setVisible((statusModel.isEvent()));
-//        }
-//    }
-
     // endregion
     // --------------------------------------
     // region Data/Service
     // --------------------------------------
-
-    private void requestPromoterEventListUser() {
-        DataService.shared(activity).requestPromoterEventListUser(new RestCallback<ContainerListModel<PromoterEventModel>>(this) {
-            @SuppressLint("NewApi")
-            @Override
-            public void result(ContainerListModel<PromoterEventModel> model, String error) {
-                hideProgress();
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (model.data != null && !model.data.isEmpty()) {
-                    getAllEventsCount(model.data);
-                }
-
-            }
-        });
-    }
 
     public void requestUserProfile() {
         SessionManager.shared.getCurrentUserProfile(this, (success, error) -> {
@@ -368,29 +265,6 @@ public class ProfileFragment extends BaseActivity {
                 return;
             }
             setupUserData(SessionManager.shared.getUser());
-        });
-    }
-
-
-    private void requestComplimentaryProfile(boolean isShowProgress) {
-        if (isShowProgress) {
-            showProgress();
-        }
-        DataService.shared(activity).requestComplimentaryProfile(new RestCallback<ContainerModel<ComplimentaryProfileModel>>(this) {
-            @Override
-            public void result(ContainerModel<ComplimentaryProfileModel> model, String error) {
-                hideProgress();
-                binding.swipeRefreshLayout.setRefreshing(false);
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    return;
-                }
-                if (model.getData() != null) {
-                    SessionManager.shared.saveCmUserData(model.getData());
-                    complimentaryProfileModel = model.getData();
-                    EventBus.getDefault().post(new NotificationModel());
-                    setupUserData(model.getData().getProfile());
-                }
-            }
         });
     }
 

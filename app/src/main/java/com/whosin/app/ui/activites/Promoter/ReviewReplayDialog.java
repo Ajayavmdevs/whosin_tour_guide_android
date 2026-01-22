@@ -17,10 +17,8 @@ import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.databinding.FragmentReviewReplayDialogBinding;
 import com.whosin.app.service.DataService;
-import com.whosin.app.service.models.ComplimentaryProfileModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.MessageEvent;
-import com.whosin.app.service.models.PromoterCirclesModel;
 import com.whosin.app.service.models.ReviewReplayModel;
 import com.whosin.app.service.rest.RestCallback;
 
@@ -112,7 +110,6 @@ public class ReviewReplayDialog extends DialogFragment {
                     Toast.makeText( requireActivity(), error, Toast.LENGTH_SHORT ).show();
                     return;
                 }
-                EventBus.getDefault().post(isPromoter ? new PromoterCirclesModel() : new ComplimentaryProfileModel());
                 EventBus.getDefault().post(new MessageEvent());
                 dismiss();
             }

@@ -288,10 +288,6 @@ public class ChatMessageActivity extends BaseActivity {
                 binding.tvTitle.setText(chatModel.getTitle());
                 Graphics.loadImageWithFirstLetter(chatModel.getImage(), binding.iconImg, chatModel.getTitle());
 
-                if (chatModel.isComplementry()) {
-                    requestPromoterEventDetail(chatModel.getChatId());
-                }
-
             }
         }
 
@@ -838,56 +834,6 @@ public class ChatMessageActivity extends BaseActivity {
                         break;
                 }
                 EventBus.getDefault().post(userDetailModel);
-            }
-        });
-    }
-
-    private void requestPromoterEventDetail(String eventId) {
-        DataService.shared(activity).requestPromoterEventDetailUser(eventId, new RestCallback<ContainerModel<PromoterEventModel>>(this) {
-            @Override
-            public void result(ContainerModel<PromoterEventModel> model, String error) {
-                hideProgress();
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (model.getData() != null) {
-                    promoterEventModel = model.getData();
-                    binding.tvAdaminCanSendMessage.setVisibility(View.VISIBLE);
-                    binding.btnCamera.setVisibility(View.GONE);
-                    binding.editTextMessage.setVisibility(View.GONE);
-                    binding.recordButton.setVisibility(View.GONE);
-                    binding.eventDetailLayout.setVisibility(View.VISIBLE);
-
-                    if (promoterEventModel.getInvite().getPromoterStatus().equals("accepted") && promoterEventModel.getInvite().getInviteStatus().equals("in")) {
-                        binding.btnViewTicket.setVisibility(View.VISIBLE);
-                    } else {
-                        binding.btnViewTicket.setVisibility(View.GONE);
-                    }
-
-                    if (promoterEventModel.getVenueType().equals("custom")) {
-                        if (promoterEventModel.getCustomVenue() != null) {
-                            binding.eventName.setText(promoterEventModel.getCustomVenue().getName());
-                            if (!TextUtils.isEmpty(promoterEventModel.getImage())) {
-                                Graphics.loadImageWithFirstLetter(promoterEventModel.getImage(), binding.eventCoverImage, promoterEventModel.getCustomVenue().getName());
-                            } else {
-                                Graphics.loadImageWithFirstLetter(promoterEventModel.getCustomVenue().getImage(), binding.eventCoverImage, promoterEventModel.getCustomVenue().getName());
-                            }
-                        }
-                    } else {
-                        if (promoterEventModel.getVenue() != null) {
-                            if (!TextUtils.isEmpty(promoterEventModel.getImage())) {
-                                Graphics.loadImageWithFirstLetter(promoterEventModel.getImage(), binding.eventCoverImage, promoterEventModel.getVenue().getName());
-                            } else {
-                                Graphics.loadImageWithFirstLetter(promoterEventModel.getVenue().getCover(), binding.eventCoverImage, promoterEventModel.getVenue().getName());
-                            }
-                            binding.eventName.setText(promoterEventModel.getVenue().getName());
-                        }
-                    }
-                } else {
-                    binding.eventDetailLayout.setVisibility(View.GONE);
-                }
-
             }
         });
     }

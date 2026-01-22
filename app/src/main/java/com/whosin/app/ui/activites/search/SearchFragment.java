@@ -53,7 +53,6 @@ import com.whosin.app.databinding.ItemLayoutEmptyHolderBinding;
 import com.whosin.app.databinding.ItemRecentSearchBinding;
 import com.whosin.app.databinding.ItemRecentSearchTabBinding;
 import com.whosin.app.databinding.ItemRecentSearchUserBinding;
-import com.whosin.app.databinding.ItemSearchVenueBinding;
 import com.whosin.app.databinding.ItemTicketRecyclerBinding;
 import com.whosin.app.databinding.TicketShimmerPlaceholderBinding;
 import com.whosin.app.service.DataService;
@@ -61,24 +60,15 @@ import com.whosin.app.service.manager.LogManager;
 import com.whosin.app.service.manager.RaynaTicketManager;
 import com.whosin.app.service.manager.SearchSuggestionStore;
 import com.whosin.app.service.manager.SessionManager;
-import com.whosin.app.service.models.ActivityDetailModel;
 import com.whosin.app.service.models.BannerModel;
 import com.whosin.app.service.models.CommanSearchModel;
-import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.EventModel;
 import com.whosin.app.service.models.FollowUnfollowModel;
 import com.whosin.app.service.models.HomeBlockModel;
 import com.whosin.app.service.models.HomeObjectModel;
-import com.whosin.app.service.models.InviteFriendModel;
-import com.whosin.app.service.models.OffersModel;
 import com.whosin.app.service.models.RatingModel;
-import com.whosin.app.service.models.SearchEventModel;
 import com.whosin.app.service.models.SearchHistoryModel;
-import com.whosin.app.service.models.UserDetailModel;
-import com.whosin.app.service.models.VenueObjectModel;
-import com.whosin.app.service.models.VideoComponentModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
@@ -91,7 +81,6 @@ import com.whosin.app.ui.fragment.comman.BaseFragment;
 import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Type;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -100,7 +89,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import retrofit2.Call;
 
@@ -1016,8 +1004,6 @@ public class SearchFragment extends BaseFragment {
             switch (AppConstants.SearchResultType.valueOf( viewType )) {
                 case TICKET:
                     return new TicketBlockHolder( UiUtils.getViewBy( parent, R.layout.item_all_serach_ticket ) );
-                case VENUE:
-                    return new VenueBlockHolder( UiUtils.getViewBy( parent, R.layout.item_search_venue ) );
                 case HOME_AD:
                     return new HomeAdHolder(UiUtils.getViewBy(parent, R.layout.item_home_ad_view));
             }
@@ -1048,17 +1034,7 @@ public class SearchFragment extends BaseFragment {
         public int getItemViewType(int position) {
             if (getItem(position) instanceof RaynaTicketDetailModel) {
                 return AppConstants.SearchResultType.TICKET.getValue();
-            } else if (getItem(position) instanceof VenueObjectModel) {
-                return AppConstants.SearchResultType.VENUE.getValue();
-            } else if (getItem(position) instanceof ContactListModel) {
-                return AppConstants.SearchResultType.USER.getValue();
-            } else if (getItem(position) instanceof OffersModel) {
-                return AppConstants.SearchResultType.OFFER.getValue();
-            } else if (getItem(position) instanceof SearchEventModel) {
-                return AppConstants.SearchResultType.EVENT.getValue();
-            } else if (getItem(position) instanceof ActivityDetailModel) {
-                return AppConstants.SearchResultType.ACTIVITY.getValue();
-            }else if (getItem(position) instanceof BannerModel) {
+            } else if (getItem(position) instanceof BannerModel) {
                 return AppConstants.SearchResultType.HOME_AD.getValue();
             }
             return AppConstants.SearchResultType.NONE.getValue();
@@ -1071,54 +1047,6 @@ public class SearchFragment extends BaseFragment {
             int screenHeight = displayMetrics.heightPixels;
             float scaleFactor = 0.06f;
             return (int) (screenHeight * scaleFactor);
-        }
-
-
-        public class VenueBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemSearchVenueBinding binding;
-
-            public VenueBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = ItemSearchVenueBinding.bind( itemView );
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(VenueObjectModel model) {
-
-                binding.venueContainer.setVenueDetail(model, data -> {
-                    if (data){
-                        SearchHistoryModel.addRecord( model.getId(), "venue", model.getName(), model.getAddress(), model.getLogo(), "" ,model,null);
-                    }
-                });
-
-                binding.tvDiscription.setText( TextUtils.join( ", ", model.getCuisine() ) );
-                DecimalFormat decimalFormat = new DecimalFormat( "#.##" );
-                binding.tvDistance.setText( decimalFormat.format( model.getDistance() ) + " Km" );
-
-                binding.getRoot().setOnClickListener( view -> {
-                    SearchHistoryModel.addRecord( model.getId(), "venue", model.getName(), model.getAddress(), model.getLogo(), "" ,model,null);
-                } );
-
-                binding.btnFollowing.setText(model.isIsFollowing() ? "Following" : "Follow");
-
-                binding.btnFollowing.setOnClickListener( view -> {
-                    reqOfferFollowUnFollow( model.getId(), (success, error) -> {
-                        if (success) {
-                            Alerter.create( activity ).setTitle( "Thank you!" ).setText( "For following " + model.getName() ).setTextAppearance( R.style.AlerterText ).setTitleAppearance( R.style.AlerterTitle ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                            model.setIsFollowing( true );
-                            notifyDataSetChanged();
-                        } else {
-                            Alerter.create( activity ).setTitle( "Oh Snap!" ).setTitleAppearance( R.style.AlerterTitle ).setTextAppearance( R.style.AlerterText ).setText( "You have unfollowed " + model.getName() ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                            model.setIsFollowing( false );
-                            binding.btnFollowing.setText( "Follow" );
-                            notifyDataSetChanged();
-                        }
-                    } );
-                } );
-
-            }
-
         }
 
         public class TicketBlockHolder extends RecyclerView.ViewHolder {

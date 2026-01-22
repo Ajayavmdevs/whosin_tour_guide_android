@@ -8,7 +8,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -63,7 +62,6 @@ public class MyItemPassengerDetailView extends ConstraintLayout {
     public MyItemPassengerDetailView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, 0);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.offer_info_view_loader, this, true);
 
         AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(context);
         asyncLayoutInflater.inflate(R.layout.home_block_ticket_view, this, (view, resid, parent) -> {

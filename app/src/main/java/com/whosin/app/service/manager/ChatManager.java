@@ -317,11 +317,7 @@ public class ChatManager {
         String tmpId = SessionManager.shared.isPromoterSubAdmin() ? SessionManager.shared.getPromoterId() : SessionManager.shared.getUser().getId();
         object.addProperty("userId", tmpId);
 //        object.addProperty("userId", SessionManager.shared.getUser().getId());
-        if (SessionManager.shared.isPromoterSubAdmin() || SessionManager.shared.getPromoterProfileUser() != null) {
-            object.addProperty("userName", SessionManager.shared.getPromoterProfileUser().getProfile().getFullName());
-        } else {
-            object.addProperty("userName", SessionManager.shared.getUser().getFullName());
-        }
+        object.addProperty("userName", SessionManager.shared.getUser().getFullName());
 
 //        object.addProperty("userName", SessionManager.shared.getUser().getFullName());
         object.addProperty("chatType", chatType);

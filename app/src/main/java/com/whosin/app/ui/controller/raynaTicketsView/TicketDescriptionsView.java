@@ -38,7 +38,6 @@ public class TicketDescriptionsView extends ConstraintLayout {
     public TicketDescriptionsView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, 0);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.offer_info_view_loader, this, true);
 
         AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(context);
         asyncLayoutInflater.inflate(R.layout.ticket_description_view, this, (view, resid, parent) -> {

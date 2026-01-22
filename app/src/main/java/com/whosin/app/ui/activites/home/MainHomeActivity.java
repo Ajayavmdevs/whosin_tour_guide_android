@@ -58,7 +58,6 @@ import com.whosin.app.service.manager.AppSettingManager;
 import com.whosin.app.service.manager.BlockUserManager;
 import com.whosin.app.service.manager.ChatManager;
 import com.whosin.app.service.manager.CheckUserSession;
-import com.whosin.app.service.manager.DialogManager;
 import com.whosin.app.service.manager.GetNotificationManager;
 import com.whosin.app.service.manager.LocationManager;
 import com.whosin.app.service.manager.RaynaTicketManager;
@@ -66,15 +65,11 @@ import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.AppSettingModel;
 import com.whosin.app.service.models.ChatMessageModel;
 import com.whosin.app.service.models.ChatModel;
-import com.whosin.app.service.models.ComplimentaryProfileModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.InAppListUserModel;
 import com.whosin.app.service.models.InAppNotificationModel;
 import com.whosin.app.service.models.LoginRequestModel;
 import com.whosin.app.service.models.MyWalletModel;
-import com.whosin.app.service.models.NotificationModel;
-import com.whosin.app.service.models.PromoterCirclesModel;
-import com.whosin.app.service.models.PromoterEventModel;
 import com.whosin.app.service.models.UpdateStatusModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.myCartModels.MyCartMainModel;
@@ -775,17 +770,6 @@ public class MainHomeActivity extends BaseActivity {
         setWalletCount();
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(ComplimentaryProfileModel event) {
-        SessionManager.shared.getCurrentUserProfile((success, error) ->{
-            if (success){
-//                binding.mainImg.setForeground(getResources().getDrawable(R.drawable.center_icon_slected, null));
-
-            }
-        });
-
-    }
-
     // endregion
     // --------------------------------------
     // region Adapter
@@ -875,44 +859,6 @@ public class MainHomeActivity extends BaseActivity {
         String id = jsonObject.has("id") ? jsonObject.get("id").getAsString() : "";
 
         switch (type) {
-            case "join-my-ring":
-                EventBus.getDefault().post(new NotificationModel());
-                EventBus.getDefault().post(new ComplimentaryProfileModel());
-                EventBus.getDefault().post(new PromoterCirclesModel());
-                break;
-
-            case "plusone-accepted":
-            case "add-to-plusone":
-                if (SessionManager.shared.getUser().isRingMember()) {
-                    EventBus.getDefault().post(new ComplimentaryProfileModel());
-                } else {
-                    EventBus.getDefault().post(new PromoterEventModel());
-                }
-                break;
-
-            case "plusone-remove":
-            case "circle-remove":
-            case "ring-remove":
-            case "plusone-leave":
-            case "cm-leave-ring":
-                if (!SessionManager.shared.getUser().isPromoter() && !SessionManager.shared.isSubAdmin()) {
-                    DialogManager.getInstance(context).showRestartAppDialog("remove");
-                }
-                break;
-
-            case "promoter-request":
-            case "promoter-request-accepted":
-                DialogManager.getInstance(context).showRestartAppDialog("promoter");
-                break;
-
-            case "promoter-subadmin-remove":
-                DialogManager.getInstance(context).showRestartAppDialog("subadmin-remove");
-                break;
-
-            case "ring-accepted":
-            case "ring-request-accepted":
-                DialogManager.getInstance(context).showRestartAppDialog("complimentary");
-                break;
             case "ticket":
                 EventBus.getDefault().post(new MyWalletModel());
                 break;

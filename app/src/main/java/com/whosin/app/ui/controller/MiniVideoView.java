@@ -81,7 +81,6 @@ public class MiniVideoView extends ConstraintLayout {
     public MiniVideoView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.offer_info_view_loader, this, true);
 
         AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(context);
         asyncLayoutInflater.inflate(R.layout.mini_video_component_layout, this, (view, resid, parent) -> {

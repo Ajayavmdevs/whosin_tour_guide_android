@@ -128,22 +128,9 @@ public class ChatMessageModel extends RealmObject implements DiffIdentifier,Mode
         this.type = type;
         this.chatId = chatModel.getChatId();
         this.members = (RealmList<String>) members;
-
-        if (SessionManager.shared.isSubAdmin()){
-            this.author = SessionManager.shared.getSubAdminUser().getPromoterId();
-        } else if (SessionManager.shared.isPromoterSubAdmin()) {
-            this.author = SessionManager.shared.getPromoterId();
-        } else {
-            this.author = SessionManager.shared.getUser().getId();
-        }
-
-        if (SessionManager.shared.isPromoterSubAdmin() && SessionManager.shared.getPromoterProfileUser() != null) {
-            this.authorName = SessionManager.shared.getPromoterProfileUser().getProfile().getFullName();
-            this.authorImage = SessionManager.shared.getPromoterProfileUser().getProfile().getImage();
-        } else {
-            this.authorName = SessionManager.shared.getUser().getFullName();
-            this.authorImage = SessionManager.shared.getUser().getImage();
-        }
+        this.author = SessionManager.shared.getUser().getId();
+        this.authorName = SessionManager.shared.getUser().getFullName();
+        this.authorImage = SessionManager.shared.getUser().getImage();
 
         this.date = String.valueOf(timestamp);
         this.chatType = chatModel.getChatType();
@@ -172,22 +159,9 @@ public class ChatMessageModel extends RealmObject implements DiffIdentifier,Mode
         this.type = type;
         this.chatId = chatModel.getChatId();
         this.members = (RealmList<String>) members;
-
-        if (SessionManager.shared.isSubAdmin()){
-            this.author = SessionManager.shared.getSubAdminUser().getPromoterId();
-        } else if (SessionManager.shared.isPromoterSubAdmin()) {
-            this.author = SessionManager.shared.getPromoterId();
-        } else {
-            this.author = SessionManager.shared.getUser().getId();
-        }
-
-        if (SessionManager.shared.isPromoterSubAdmin() && SessionManager.shared.getPromoterProfileUser() != null) {
-            this.authorName = SessionManager.shared.getPromoterProfileUser().getProfile().getFullName();
-            this.authorImage = SessionManager.shared.getPromoterProfileUser().getProfile().getImage();
-        } else {
-            this.authorName = SessionManager.shared.getUser().getFullName();
-            this.authorImage = SessionManager.shared.getUser().getImage();
-        }
+        this.author = SessionManager.shared.getUser().getId();
+        this.authorName = SessionManager.shared.getUser().getFullName();
+        this.authorImage = SessionManager.shared.getUser().getImage();
 
         this.date = String.valueOf(timestamp);
         this.chatType = chatModel.getChatType();
@@ -221,22 +195,9 @@ public class ChatMessageModel extends RealmObject implements DiffIdentifier,Mode
         this.type = type;
         this.chatId = chatModel.getChatId();
         this.members = (RealmList<String>) members;
-
-        if (SessionManager.shared.isSubAdmin()){
-            this.author = SessionManager.shared.getSubAdminUser().getPromoterId();
-        } else if (SessionManager.shared.isPromoterSubAdmin()) {
-            this.author = SessionManager.shared.getPromoterId();
-        } else {
-            this.author = SessionManager.shared.getUser().getId();
-        }
-
-        if (SessionManager.shared.isPromoterSubAdmin() && SessionManager.shared.getPromoterProfileUser() != null) {
-            this.authorName = SessionManager.shared.getPromoterProfileUser().getProfile().getFullName();
-            this.authorImage = SessionManager.shared.getPromoterProfileUser().getProfile().getImage();
-        } else {
-            this.authorName = SessionManager.shared.getUser().getFullName();
-            this.authorImage = SessionManager.shared.getUser().getImage();
-        }
+        this.author = SessionManager.shared.getUser().getId();
+        this.authorName = SessionManager.shared.getUser().getFullName();
+        this.authorImage = SessionManager.shared.getUser().getImage();
 
         this.date = String.valueOf(timestamp);
         this.chatType = chatModel.getChatType();

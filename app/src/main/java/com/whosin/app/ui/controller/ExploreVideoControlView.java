@@ -80,7 +80,6 @@ public class ExploreVideoControlView extends ConstraintLayout {
     public ExploreVideoControlView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.offer_info_view_loader, this, true);
 
         AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(context);
         asyncLayoutInflater.inflate(R.layout.explore_video_component, this, (view, resid, parent) -> {

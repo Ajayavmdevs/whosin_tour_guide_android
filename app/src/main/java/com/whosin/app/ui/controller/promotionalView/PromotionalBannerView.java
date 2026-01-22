@@ -87,7 +87,6 @@ public class PromotionalBannerView extends ConstraintLayout {
         isNotSetSpace = a.getBoolean(R.styleable.PromotionalBanner_isAddSpace,false);
 
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.offer_info_view_loader, this, true);
 
         AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(context);
         asyncLayoutInflater.inflate(R.layout.promotional_banner_view, this, (view, resid, parent) -> {

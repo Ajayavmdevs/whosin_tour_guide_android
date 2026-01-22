@@ -61,7 +61,6 @@ public class UserInfoView extends LinearLayout {
             View view = LayoutInflater.from(context).inflate(R.layout.layout_user_info_item, this);
             binding = LayoutUserInfoItemBinding.bind(view);
         } else {
-            LayoutInflater.from(context).inflate(R.layout.offer_info_view_loader, this, true);
             AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(context);
             asyncLayoutInflater.inflate(R.layout.layout_user_info_item, this, (view, resid, parent) -> {
                 binding = LayoutUserInfoItemBinding.bind(view);

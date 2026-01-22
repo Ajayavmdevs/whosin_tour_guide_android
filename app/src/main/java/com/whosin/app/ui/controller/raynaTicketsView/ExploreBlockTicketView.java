@@ -67,7 +67,6 @@ public class ExploreBlockTicketView extends ConstraintLayout {
     public ExploreBlockTicketView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, 0);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.offer_info_view_loader, this, true);
 
         AsyncLayoutInflater asyncLayoutInflater = new AsyncLayoutInflater(context);
         asyncLayoutInflater.inflate(R.layout.home_block_ticket_view, this, (view, resid, parent) -> {

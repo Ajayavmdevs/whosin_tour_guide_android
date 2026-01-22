@@ -55,7 +55,6 @@ import com.whosin.app.service.manager.RaynaTicketManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.BannerModel;
 import com.whosin.app.service.models.CategoriesModel;
-import com.whosin.app.service.models.ComplimentaryProfileModel;
 import com.whosin.app.service.models.ContactUsBlockModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.HomeBlockModel;
@@ -294,12 +293,6 @@ public class HomeFragment extends BaseFragment {
     public void onMessageEvent(MessageEvent event) {
         reqHomeBlocks(false);
     }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(ComplimentaryProfileModel model) {
-        SessionManager.shared.getCurrentUserProfile((success1, error1) -> {
-        });
-     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(RaynaTicketDetailModel model) {

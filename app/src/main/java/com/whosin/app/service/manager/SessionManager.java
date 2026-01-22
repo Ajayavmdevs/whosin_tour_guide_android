@@ -3,11 +3,9 @@ package com.whosin.app.service.manager;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,29 +18,22 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.onesignal.OneSignal;
 import com.whosin.app.R;
-import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.IPInfoTask;
 import com.whosin.app.comman.Preferences;
 import com.whosin.app.comman.SaveJsonInBackground;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.interfaces.BooleanResult;
-import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.Repository.ChatRepository;
-import com.whosin.app.service.models.ComplimentaryProfileModel;
 import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerModel;
 
 import com.whosin.app.service.models.HomeObjectModel;
 import com.whosin.app.service.models.MyUserFeedModel;
-import com.whosin.app.service.models.PackageModel;
-import com.whosin.app.service.models.PromoterProfileModel;
 import com.whosin.app.service.models.RoleAcessModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.UserTokenModel;
-import com.whosin.app.service.models.VenueObjectModel;
 import com.whosin.app.service.models.VenueRecommendedModel;
-import com.whosin.app.service.models.VoucherModel;
 import com.whosin.app.service.models.myCartModels.MyCartMainModel;
 import com.whosin.app.service.models.newExploreModels.ExploreObjectModel;
 import com.whosin.app.service.rest.RestCallback;
@@ -53,7 +44,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class SessionManager {
 
@@ -66,7 +56,6 @@ public class SessionManager {
     private Context context;
     private UserDetailModel userObjectModel;
     private UserTokenModel userTokenModel;
-    private ComplimentaryProfileModel complimentaryProfileModel;
     private ContactListModel contactListModel;
     private List<ContactListModel> followingList = new ArrayList<>();
 
@@ -79,10 +68,6 @@ public class SessionManager {
     private HomeObjectModel searchHomeObjectModel;
 
     private ExploreObjectModel exploreObjectModel;
-
-    private VenueObjectModel venueModel;
-
-    private PromoterProfileModel promoterProfileModel;
 
 
     // --------------------------------------
@@ -143,14 +128,6 @@ public class SessionManager {
         Preferences.shared.setString("LoginUserDetail", json);
     }
 
-    public void saveCmUserData(@NonNull ComplimentaryProfileModel model) {
-        if (context != null) {
-            complimentaryProfileModel = model;
-            String json = new Gson().toJson( userObjectModel );
-            Preferences.shared.setString( "ComplimentaryUserDetail", json );
-        }
-    }
-
     public void saveSubAdminUserData(@NonNull UserTokenModel model,Context context) {
         if (context != null) {
             userTokenModel = model;
@@ -185,20 +162,6 @@ public class SessionManager {
                 && "promoter-subadmin".equals(getUser().getRoleAcessModelList().get(0).getType()))
                 ? getUser().getRoleAcessModelList().get(0).getTypeId()
                 : "";
-    }
-
-
-    public ComplimentaryProfileModel getCmUserProfile() {
-        if (complimentaryProfileModel == null) {
-            String json = Preferences.shared.getString( "ComplimentaryUserDetail" );
-            if (!TextUtils.isEmpty( json )) {
-                complimentaryProfileModel = new Gson().fromJson( json, ComplimentaryProfileModel.class );
-            }
-        }
-        if (complimentaryProfileModel == null) {
-            return new ComplimentaryProfileModel();
-        }
-        return complimentaryProfileModel;
     }
 
     public String getToken() {
@@ -439,27 +402,6 @@ public class SessionManager {
         }
     }
 
-    public void savePromoterUserData(@NonNull PromoterProfileModel model,Context context) {
-        if (context != null) {
-            promoterProfileModel = model;
-            String json = new Gson().toJson( promoterProfileModel );
-            Preferences.shared.setString( "PromoterUserDetail", json );
-        }
-    }
-
-    public PromoterProfileModel getPromoterProfileUser() {
-        if (promoterProfileModel == null) {
-            String json = Preferences.shared.getString( "PromoterUserDetail" );
-            if (!TextUtils.isEmpty( json )) {
-                promoterProfileModel = new Gson().fromJson( json, PromoterProfileModel.class );
-            }
-        }
-        if (promoterProfileModel == null) {
-            return null;
-        }
-        return promoterProfileModel;
-    }
-
     public String isUserOrSubAdmin(){
         return isPromoterSubAdmin() ? getPromoterId() : getUser().getId();
     }
@@ -493,25 +435,6 @@ public class SessionManager {
     // --------------------------------------
     // region Data/Services
     // --------------------------------------
-
-    public void requestGetToken(Context context, @NonNull RestCallback<String> callback) {
-        DataService.shared( context ).requestGetToken(new RestCallback<ContainerModel<String>>(null) {
-            @Override
-            public void result(ContainerModel<String> model, String error) {
-                if (!Utils.isNullOrEmpty( error )) {
-                    callback.result( null, error );
-                    return;
-                }
-                if (model == null) {
-                    callback.result( null, SessionManager.this.context.getString( R.string.service_message_something_wrong ) );
-                    return;
-                }
-
-                callback.result( model.getData(),  null );
-
-            }
-        } );
-    }
 
 
     public void requestCheckSession(Activity activity,@NonNull BooleanResult callbackForUseSessionExpire) {

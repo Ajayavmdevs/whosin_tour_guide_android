@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
-
 import com.google.gson.Gson;
 import com.tapadoo.alerter.Alerter;
 import com.whosin.app.R;
@@ -22,10 +20,8 @@ import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.databinding.LayoutUserFollowOptionBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.Repository.ContactRepository;
-import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.ChatModel;
 import com.whosin.app.service.models.CommonModel;
-import com.whosin.app.service.models.ComplimentaryProfileModel;
 import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.FollowUnfollowModel;
@@ -262,8 +258,6 @@ public class UserOptionView extends LinearLayout {
                     userName = contactListModel.getFullName();
                     contactListModel.setFollow(model.getData().getStatus());
                 }
-
-                if (SessionManager.shared.getUser().isRingMember()) EventBus.getDefault().post(new ComplimentaryProfileModel());
 
 
                 switch (model.getData().getStatus()) {
