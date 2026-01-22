@@ -146,11 +146,6 @@
             android:name=".ui.activites.auth.TwoFactorAuthActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activites.home.activity.BuyPackagePlanActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".ui.activites.Profile.FollowRequestActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -160,10 +155,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activites.venue.MenuActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.venue.SmallVenueComponentSeeAllActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -222,10 +213,6 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.venue.TouristPlanActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activites.Profile.ChangePhoneNumberActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -258,23 +245,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.home.activity.ActivityListDetail"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.venue.ui.SubscriptionPlanActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activites.venue.ui.PaymentActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activites.venue.VenueGalleryActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.venue.MemberShipDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -362,10 +337,6 @@
                 <data android:host="explore.whosin.me" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activites.venue.MemberPackagesActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.fragment.ProfileFragment"
             android:exported="false"

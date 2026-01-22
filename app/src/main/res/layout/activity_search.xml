@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bottom_bg_color"
+    android:orientation="vertical"
     tools:context=".ui.activites.search.SearchFragment">
 
     <LinearLayout
@@ -131,7 +132,7 @@
     <LinearLayout
         android:id="@+id/recentSearchLinear"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/bottom_bg_color"
         android:orientation="vertical"
         android:visibility="gone"
@@ -199,12 +200,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchHomeRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/bottom_bg_color"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@id/searchLayout" />
 
     <com.whosin.app.ui.controller.EmptyPlaceHolderView
@@ -222,4 +224,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

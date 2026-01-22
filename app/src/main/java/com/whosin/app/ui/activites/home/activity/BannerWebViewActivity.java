@@ -1,8 +1,5 @@
 package com.whosin.app.ui.activites.home.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
@@ -11,8 +8,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.whosin.app.R;
 import com.whosin.app.databinding.ActivityBannerWebViewBinding;
-import com.whosin.app.databinding.ActivityListDetailBinding;
-import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 
 public class BannerWebViewActivity extends BaseActivity {

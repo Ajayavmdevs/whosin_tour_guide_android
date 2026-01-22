@@ -98,6 +98,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -142,7 +143,7 @@ public class SearchFragment extends BaseFragment {
         binding.edtSearch.setHint(getValue("where_do_you_want_to_go"));
         binding.emptyPlaceHolderView.setEmptyPlaceTxtTitle(getValue("empty_search"));
 
-        binding.searchHomeRecycleView.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.VERTICAL, false ) );
+        binding.searchHomeRecycleView.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false ) );
         searchHomeBlockAdapter = new SearchHomeBlockAdapter<>();
         binding.searchHomeRecycleView.setAdapter( searchHomeBlockAdapter );
 
@@ -161,8 +162,6 @@ public class SearchFragment extends BaseFragment {
                 filterData(searchHomeObjectModel.getBlocks());
             }
         }
-
-        requestSearchGetHomeBlock();
 
         binding.searchResultRecycleView.setLayoutManager( new LinearLayoutManager( requireActivity(), LinearLayoutManager.VERTICAL, false ) );
 
@@ -380,7 +379,7 @@ public class SearchFragment extends BaseFragment {
 
     @Override
     public void populateData(boolean getDataFromServer) {
-
+        requestSearchGetHomeBlock();
     }
 
 
@@ -670,21 +669,14 @@ public class SearchFragment extends BaseFragment {
 
 
             AppExecutors.get().mainThread().execute(() -> {
-                if (!searchHomeBlocks.isEmpty() && !binding.edtSearch.hasFocus()) {
+                if (!searchHomeBlocks.isEmpty()  ) {
 
-                    if (searchHomeBlocks != null && !searchHomeBlocks.isEmpty()) {
-                        HomeBlockModel completeProfileBanner = new HomeBlockModel();
-                        completeProfileBanner.setType(AppConstants.ADTYPE);
+                    HomeBlockModel completeProfileBanner = new HomeBlockModel();
+                    completeProfileBanner.setType(AppConstants.ADTYPE);
 
-                        int insertIndex;
-                        if (searchHomeBlocks.size() > 5) {
-                            insertIndex = 5;
-                        } else {
-                            insertIndex = searchHomeBlocks.size();
-                        }
+                    int insertIndex = Math.min(searchHomeBlocks.size(), 5);
 
-                        searchHomeBlocks.add(insertIndex, completeProfileBanner);
-                    }
+                    searchHomeBlocks.add(insertIndex, completeProfileBanner);
 
 
                     if (binding.tvCancel.getVisibility() == View.GONE){
@@ -912,12 +904,10 @@ public class SearchFragment extends BaseFragment {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-            switch (AppConstants.HomeBlockType.valueOf(viewType)) {
-                case TICKET:
-                    return new TicketHolder(UiUtils.getViewBy(parent, R.layout.item_ticket_recycler));
-                default:
-                    return new EmptyHolder(UiUtils.getViewBy(parent, R.layout.item_layout_empty_holder));
+            if (Objects.requireNonNull(AppConstants.HomeBlockType.valueOf(viewType)) == AppConstants.HomeBlockType.TICKET) {
+                return new TicketHolder(UiUtils.getViewBy(parent, R.layout.item_ticket_recycler));
             }
+            return new EmptyHolder(UiUtils.getViewBy(parent, R.layout.item_layout_empty_holder));
 
         }
 
@@ -929,6 +919,11 @@ public class SearchFragment extends BaseFragment {
                 viewHolder.binding.userTitle.setText(model.getTitle());
                 viewHolder.binding.description.setText(model.getDescription());
                 viewHolder.setupData(model.getTicketList(),model.getType());
+            } else {
+                EmptyHolder emptyHolder = (EmptyHolder) holder;
+                ViewGroup.LayoutParams layoutParams = emptyHolder.itemView.getLayoutParams();
+                layoutParams.height = 0;
+                emptyHolder.itemView.setLayoutParams(layoutParams);
             }
 
 
