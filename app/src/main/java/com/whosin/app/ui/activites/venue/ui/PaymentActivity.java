@@ -14,8 +14,6 @@ import com.whosin.app.databinding.ActivityPaymentBinding;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.MemberShipPackageModel;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.activites.venue.MemberShipDetailsActivity;
-import com.whosin.app.ui.fragment.PackagePlan.PlanDetailFragment;
 
 public class PaymentActivity extends BaseActivity {
 
@@ -78,11 +76,6 @@ public class PaymentActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
-                if (url.equals("https://whosin.me/v1/subscription/success")) {
-                    startActivity(new Intent(activity, MemberShipDetailsActivity.class).putExtra("showDialog",true));
-                    activity.finish();
-                    return true;
-                }
                 return false;
             }
         });

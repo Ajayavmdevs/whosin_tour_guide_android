@@ -1,12 +1,8 @@
 package com.whosin.app.ui.fragment.wallet;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,23 +27,16 @@ import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.FragmentMyItemsBinding;
 import com.whosin.app.databinding.ItemMyTicketsBinding;
 import com.whosin.app.databinding.ItemWalletPackageBinding;
-import com.whosin.app.databinding.MyItemActivityRecyclerBinding;
-import com.whosin.app.databinding.MyItemRecyclerBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.RaynaTicketManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.HomeTicketsModel;
-import com.whosin.app.service.models.ItemModel;
 import com.whosin.app.service.models.MyWalletModel;
 import com.whosin.app.service.models.PackageModel;
 import com.whosin.app.service.models.rayna.RaynaTourDetailModel;
 import com.whosin.app.service.models.rayna.TourOptionDetailModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.venue.VenueTimingDialog;
-import com.whosin.app.ui.activites.wallet.PurchaseVoucherDetailActivity;
-import com.whosin.app.ui.activites.wallet.RedeemActivity;
 import com.whosin.app.ui.activites.wallet.WalletTicketDetailActivity;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
 
@@ -55,12 +44,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 

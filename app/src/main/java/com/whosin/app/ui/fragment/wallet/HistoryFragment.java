@@ -2,7 +2,6 @@ package com.whosin.app.ui.fragment.wallet;
 
 import static android.view.View.VISIBLE;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.Html;
 import android.text.TextUtils;
@@ -24,30 +23,22 @@ import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.FragmentHistoryBinding;
-import com.whosin.app.databinding.GiftActivityRecyclerBinding;
-import com.whosin.app.databinding.HistoryRecyclerBinding;
 import com.whosin.app.databinding.ItemMyTicketsBinding;
-import com.whosin.app.databinding.ItemWalletPackageBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.RaynaTicketManager;
 import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.HomeTicketsModel;
-import com.whosin.app.service.models.ItemModel;
 import com.whosin.app.service.models.MyWalletModel;
 import com.whosin.app.service.models.NotificationModel;
-import com.whosin.app.service.models.PackageModel;
 import com.whosin.app.service.models.rayna.RaynaTourDetailModel;
 import com.whosin.app.service.models.rayna.TourOptionDetailModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.venue.VenueTimingDialog;
 import com.whosin.app.ui.activites.wallet.WalletTicketDetailActivity;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

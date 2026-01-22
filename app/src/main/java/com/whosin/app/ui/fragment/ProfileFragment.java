@@ -35,7 +35,6 @@ import com.whosin.app.databinding.ItemMainProfileTabDesignBinding;
 import com.whosin.app.databinding.UserImageListBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.CheckUserSession;
-import com.whosin.app.service.manager.ComplementaryProfileManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.ComplimentaryProfileModel;
 import com.whosin.app.service.models.ContactListModel;
@@ -387,7 +386,6 @@ public class ProfileFragment extends BaseActivity {
                 }
                 if (model.getData() != null) {
                     SessionManager.shared.saveCmUserData(model.getData());
-                    ComplementaryProfileManager.shared.complimentaryProfileModel = model.getData();
                     complimentaryProfileModel = model.getData();
                     EventBus.getDefault().post(new NotificationModel());
                     setupUserData(model.getData().getProfile());

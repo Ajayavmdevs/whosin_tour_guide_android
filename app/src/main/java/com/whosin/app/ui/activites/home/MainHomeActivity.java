@@ -58,7 +58,6 @@ import com.whosin.app.service.manager.AppSettingManager;
 import com.whosin.app.service.manager.BlockUserManager;
 import com.whosin.app.service.manager.ChatManager;
 import com.whosin.app.service.manager.CheckUserSession;
-import com.whosin.app.service.manager.ComplementaryProfileManager;
 import com.whosin.app.service.manager.DialogManager;
 import com.whosin.app.service.manager.GetNotificationManager;
 import com.whosin.app.service.manager.LocationManager;
@@ -203,19 +202,6 @@ public class MainHomeActivity extends BaseActivity {
                 requestNextPermission();
             }
         }, 1000);
-
-        runOnUiThread(() -> ComplementaryProfileManager.shared.complimentaryProfileModel = SessionManager.shared.getCmUserProfile());
-
-        ComplementaryProfileManager.shared.setProfileCallBack = data -> {
-            if (data) {
-                ImageView imgView = new ImageView(MainHomeActivity.this);
-                imgView.setImageResource(R.drawable.icon_profile_fill);
-                imgView.setPadding(0, 15, 0, 15);
-                binding.tabLayout.getTabAt(2).setCustomView(imgView);
-                binding.tabLayout.getTabAt(2).select();
-                binding.viewPager.setCurrentItem(2);
-            }
-        };
 
         RaynaTicketManager.shared.walletRedirectCallBack = data -> {
           if (data) {

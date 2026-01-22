@@ -18,7 +18,6 @@ import com.whosin.app.ui.activites.Profile.FollowresActivity;
 import com.whosin.app.ui.activites.auth.AuthenticationActivity;
 import com.whosin.app.ui.activites.home.privacy.PrivacyPolicyActivity;
 import com.whosin.app.ui.activites.setting.SettingActivity;
-import com.whosin.app.ui.activites.venue.ui.SubscriptionPlanActivity;
 import com.whosin.app.ui.activites.wallet.WalletActivity;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
 
@@ -87,8 +86,6 @@ public class HomeMenuFragment extends BaseFragment {
         binding.ilFriend.setOnClickListener( view -> Utils.openShareDialog( requireActivity() ));
 
         binding.ilBundle.setVisibility(SessionManager.shared.getUser().isMembershipActive() ? View.VISIBLE : View.GONE);
-
-        binding.ilBundle.setOnClickListener( view -> startActivity( new Intent( requireActivity(), SubscriptionPlanActivity.class )));
 
         binding.avmdevsLlcTv.setOnClickListener(v -> {
             String url = "https://avmdevs.com/";
