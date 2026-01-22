@@ -62,8 +62,6 @@ import com.whosin.app.service.manager.ComplementaryProfileManager;
 import com.whosin.app.service.manager.DialogManager;
 import com.whosin.app.service.manager.GetNotificationManager;
 import com.whosin.app.service.manager.LocationManager;
-import com.whosin.app.service.manager.PromoterProfileManager;
-import com.whosin.app.service.manager.PromotionalBannerManager;
 import com.whosin.app.service.manager.RaynaTicketManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.AppSettingModel;
@@ -83,24 +81,13 @@ import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.myCartModels.MyCartMainModel;
 import com.whosin.app.service.models.rayna.RaynaCheckReviewModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.Notification.NotificaionActivity;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
-import com.whosin.app.ui.activites.Promoter.ComplementaryEventDetailActivity;
-import com.whosin.app.ui.activites.Promoter.PromoterActivity;
 import com.whosin.app.ui.activites.auth.AuthenticationActivity;
 import com.whosin.app.ui.activites.auth.TwoFactorAuthActivity;
-import com.whosin.app.ui.activites.bucket.MyInvitationActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.home.Chat.ChatMessageActivity;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
-import com.whosin.app.ui.activites.offers.VoucherDetailScreenActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.search.SearchFragment;
-import com.whosin.app.ui.activites.venue.Bucket.BucketListDetailActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 import com.whosin.app.ui.activites.wallet.MyWalletActivity;
 import com.whosin.app.ui.activites.wallet.WalletActivity;
 import com.whosin.app.ui.fragment.HomeFragment;
@@ -115,7 +102,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -200,7 +186,6 @@ public class MainHomeActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         AppSettingManager.shared.setContext(activity);
         BlockUserManager.shared.requestBlockUserList(activity);
-        PromotionalBannerManager.shared.requestPromotionalBanner(activity);
         ChatManager.shared.connect();
         ChatManager.shared.syncChatMessages(SessionManager.shared.getUser().isPromoter());
         LocationManager.shared.requestLocation(activity);
@@ -221,13 +206,6 @@ public class MainHomeActivity extends BaseActivity {
 
         runOnUiThread(() -> ComplementaryProfileManager.shared.complimentaryProfileModel = SessionManager.shared.getCmUserProfile());
 
-        if (SessionManager.shared.getUser().isRingMember()) {
-            binding.confiremedEventView.setVisibility(View.VISIBLE);
-            binding.confiremedEventView.setUpData(activity);
-        } else {
-            binding.confiremedEventView.setVisibility(View.GONE);
-        }
-
         ComplementaryProfileManager.shared.setProfileCallBack = data -> {
             if (data) {
                 ImageView imgView = new ImageView(MainHomeActivity.this);
@@ -239,18 +217,6 @@ public class MainHomeActivity extends BaseActivity {
             }
         };
 
-        PromoterProfileManager.shared.setProfileCallBack = data -> {
-            if (data) {
-                binding.bottomAppBar.setVisibility(View.VISIBLE);
-                ImageView imgView = new ImageView(MainHomeActivity.this);
-                imgView.setImageResource(R.drawable.icon_profile_without_fill);
-                imgView.setPadding(0, 15, 0, 15);
-                binding.tabLayout.getTabAt(2).setCustomView(imgView);
-                binding.tabLayout.getTabAt(0).select();
-                binding.viewPager.setCurrentItem(0);
-            }
-        };
-
         RaynaTicketManager.shared.walletRedirectCallBack = data -> {
           if (data) {
               if (binding.tabLayout.getTabCount() > 0) {
@@ -258,11 +224,6 @@ public class MainHomeActivity extends BaseActivity {
               }
           }
         };
-
-        if (SessionManager.shared.getUser().isPromoter()){
-            PromoterProfileManager.shared.requestPromoterVenues(this);
-            PromoterProfileManager.shared.requestSubAdminList(this);
-        }
 
 
         AdManger.shared.requestAdList(activity, (data, position) -> {
@@ -347,14 +308,6 @@ public class MainHomeActivity extends BaseActivity {
                 tab.view.getChildAt(0).setLayoutParams(params);
                 if (tab.getId() == 3) {
                     GetNotificationManager.shared.requestUpdatesCount("wallet");
-                }
-
-                if (SessionManager.shared.getUser().isRingMember()){
-                    if (tab.getId() == 0) {
-                        binding.confiremedEventView.setVisibility(View.VISIBLE);
-                    } else {
-                        binding.confiremedEventView.setVisibility(View.GONE);
-                    }
                 }
 
 
@@ -666,16 +619,7 @@ public class MainHomeActivity extends BaseActivity {
     }
 
     private void handleDeepLink() {
-        if (Preferences.shared.isExist("venueId_deeplink")) {
-            String venueId = Preferences.shared.getString("venueId_deeplink");
-            if (!TextUtils.isEmpty(venueId)) {
-                new Handler().postDelayed(() -> {
-                    Preferences.shared.setString("venueId_deeplink", "");
-                    Preferences.shared.removeKey("venueId_deeplink");
-                    startActivity(new Intent(this, VenueActivity.class).putExtra("venueId", venueId));
-                }, 500);
-            }
-        } else if (Preferences.shared.isExist("userId_deeplink")) {
+        if (Preferences.shared.isExist("userId_deeplink")) {
             String userId = Preferences.shared.getString("userId_deeplink");
             if (!TextUtils.isEmpty(userId)) {
                 new Handler().postDelayed(() -> {
@@ -684,33 +628,7 @@ public class MainHomeActivity extends BaseActivity {
                     startActivity(new Intent(activity, OtherUserProfileActivity.class).putExtra("friendId", userId));
                 }, 500);
             }
-        } else if (Preferences.shared.isExist("offerId_deeplink")) {
-            String offerId = Preferences.shared.getString("offerId_deeplink");
-            if (!TextUtils.isEmpty(offerId)) {
-                new Handler().postDelayed(() -> {
-                    Preferences.shared.setString("offerId_deeplink", "");
-                    Preferences.shared.removeKey("offerId_deeplink");
-                    OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                    dialog.offerId = offerId;
-                    dialog.show( getSupportFragmentManager(), "" );
-                }, 500);
-            }
-        }else if (Preferences.shared.isExist("promoterEventId_deeplink")) {
-            String userId = Preferences.shared.getString("promoterEventId_deeplink");
-            if (!TextUtils.isEmpty(userId)) {
-                if (SessionManager.shared.getUser().isRingMember() || SessionManager.shared.getUser().isPromoter()){
-                    new Handler().postDelayed(() -> {
-                        Preferences.shared.setString("promoterEventId_deeplink", "");
-                        Preferences.shared.removeKey("promoterEventId_deeplink");
-                        String type  = SessionManager.shared.getUser().isPromoter() ? "Promoter" : "complementary";
-                        startActivity(new Intent(activity, ComplementaryEventDetailActivity.class)
-                                .putExtra("type", type)
-                                .putExtra("eventId", userId));
-                    }, 500);
-                }
-
-            }
-        }else if (Preferences.shared.isExist("raynaTicket_deeplink")) {
+        } else if (Preferences.shared.isExist("raynaTicket_deeplink")) {
             String ticketID = Preferences.shared.getString("raynaTicket_deeplink");
             if (!TextUtils.isEmpty(ticketID)){
                 new Handler().postDelayed(() -> {
@@ -873,7 +791,6 @@ public class MainHomeActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(ComplimentaryProfileModel event) {
-        binding.confiremedEventView.setUpData(activity);
         SessionManager.shared.getCurrentUserProfile((success, error) ->{
             if (success){
 //                binding.mainImg.setForeground(getResources().getDrawable(R.drawable.center_icon_slected, null));
@@ -917,151 +834,6 @@ public class MainHomeActivity extends BaseActivity {
 
     // endregion
     // --------------------------------------
-
-    private void handleNotification() {
-
-        if (Preferences.shared.isExist("push_notification_msg")) {
-            String msgData = Preferences.shared.getString("push_notification_msg");
-            if (!TextUtils.isEmpty(msgData)) {
-                ChatMessageModel model = new Gson().fromJson(msgData, ChatMessageModel.class);
-                ChatModel chatModel = new ChatModel();
-                chatModel.setChatId(model.getChatId());
-                chatModel.setChatType(model.getChatType());
-                if (model.getChatType().equals("friend")) {
-                    chatModel.setImage(model.getAuthorImage());
-                    chatModel.setTitle(model.getAuthorName());
-                    chatModel.setMembers(model.getMembers());
-                } else if (model.getChatType().equals("bucket")) {
-                    chatModel.setMembers(model.getMembers());
-                }else if (model.getChatType().equals("promoter_event")) {
-                    chatModel.setImage(model.getAuthorImage());
-                    chatModel.setTitle(model.getAuthorName());
-                    chatModel.setComplementry(true);
-                }
-                Intent intent = new Intent(this, ChatMessageActivity.class);
-                intent.putExtra("chatModel", new Gson().toJson(chatModel));
-                intent.putExtra("type", chatModel.getChatType());
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                Preferences.shared.removeKey("push_notification_msg");
-            }
-        }
-        else if (Preferences.shared.isExist("push_notification_data")) {
-            String msgData = Preferences.shared.getString("push_notification_data");
-            if (!TextUtils.isEmpty(msgData)) {
-                Preferences.shared.removeKey("push_notification_data");
-                JsonObject jsonObject = new Gson().fromJson(msgData, JsonObject.class);
-                if (jsonObject != null && jsonObject.has("type") && jsonObject.has("id")) {
-                    String type = jsonObject.get("type").getAsString();
-                    String id = jsonObject.get("id").getAsString();
-                    if (type == null && type.isEmpty()) {
-                        return;
-                    }
-                    if (id == null && id.isEmpty()){
-                        return;
-                    }
-                    if (Objects.equals(type, "bucket")) {
-                        Intent intent = new Intent(this, BucketListDetailActivity.class);
-                        intent.putExtra("bucketId", id);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else if (Objects.equals(type, "event")) {
-                        Intent intent = new Intent(this, EventDetailsActivity.class);
-                        intent.putExtra("eventId", id);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else if (Objects.equals(type, "outing")) {
-                        Intent intent = new Intent(this, MyInvitationActivity.class);
-                        intent.putExtra("id", id);
-                        intent.putExtra("notificationType", "notification");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else if (Objects.equals(type, "activity")) {
-                        Intent intent = new Intent(this, ActivityListDetail.class);
-                        intent.putExtra("activityId", id);
-                        intent.putExtra("notificationType", "notification");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else if (Objects.equals(type, "deal")) {
-                        Intent intent = new Intent(this, VoucherDetailScreenActivity.class);
-                        intent.putExtra("id", id);
-                        intent.putExtra("notificationType", "notification");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else if (Objects.equals(type, "offer")) {
-                        OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                        dialog.offerId = id;
-                        dialog.show(getSupportFragmentManager(), "");
-                    } else if (Objects.equals(type, "follow")) {
-                        Intent intent = new Intent(this, OtherUserProfileActivity.class);
-                        intent.putExtra("friendId", id);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else if (Objects.equals(type, "invite")) {
-                        Intent intent = new Intent(this, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", id);
-                        intent.putExtra("type","Promoter");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    }else if (Objects.equals(type, "promoter-event")) {
-                        Intent intent = new Intent(this, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", id);
-                        intent.putExtra("type","complementary");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    }else if (Objects.equals(type, "add-to-ring")) {
-                        if (SessionManager.shared.getUser().isRingMember()) {
-                            Intent intent = new Intent(this, NotificaionActivity.class);
-                            intent.putExtra("id", id);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        } else {
-                            Intent intent = new Intent(this, PromoterActivity.class);
-                            intent.putExtra("isPromoter", false);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
-
-                    }else if (Objects.equals(type, "join-my-ring")) {
-                        if (SessionManager.shared.getUser().isPromoter()){
-//                            Intent intent = new Intent(this, PromoterMyProfile.class);
-//                            intent.putExtra("promoterUserId", id);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            startActivity(intent);
-                            binding.tabLayout.setVisibility(View.GONE);
-                            binding.tabLayout.getTabAt(2).select();
-                            binding.viewPager.setCurrentItem(2);
-                        }
-
-                    } else if (Objects.equals(type,"add-to-plusone")) {
-                        Intent intent = new Intent(this, NotificaionActivity.class);
-                        intent.putExtra("isPromoter", false);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    } else if (Objects.equals(type,"plusone-accepted")) {
-                        binding.tabLayout.setVisibility(View.GONE);
-                        binding.tabLayout.getTabAt(2).select();
-                        binding.viewPager.setCurrentItem(2);
-                    }
-                    else if (Objects.equals(type, "review-ticket")) {
-                        if (!TextUtils.isEmpty(id)) {
-                            Activity activity = ActivityTrackerManager.getInstance().getCurrentActivity();
-                            if (activity != null && !activity.isFinishing() && !AppSettingManager.shared.isAlreadyOpenReviewSheet) {
-                                FragmentManager fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
-                                RaynaTicketReviewDialog bottomSheet = new RaynaTicketReviewDialog();
-                                bottomSheet.ticketID = id;
-                                bottomSheet.ticketName = "";
-                                bottomSheet.type = "ticket";
-                                bottomSheet.activity = activity;
-                                bottomSheet.show(fragmentManager, "");
-                                AppSettingManager.shared.isAlreadyOpenReviewSheet = true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     private void requestNextPermission() {
         if (currentPermissionIndex < REQUIRED_PERMISSIONS.length) {
@@ -1214,60 +986,6 @@ public class MainHomeActivity extends BaseActivity {
 
             Intent intent = null;
             switch (type) {
-                case "bucket":
-                    intent = new Intent(context, BucketListDetailActivity.class);
-                    intent.putExtra("bucketId", id);
-                    break;
-                case "venue":
-                    intent = new Intent(context, VenueActivity.class);
-                    intent.putExtra("venueId", id);
-                    break;
-                case "event":
-                    intent = new Intent(context, EventDetailsActivity.class);
-                    intent.putExtra("eventId", id);
-                    break;
-                case "outing":
-                    intent = new Intent(context, MyInvitationActivity.class);
-                    intent.putExtra("id", id);
-                    intent.putExtra("notificationType", "notification");
-                    break;
-                case "activity":
-                    intent = new Intent(context, ActivityListDetail.class);
-                    intent.putExtra("activityId", id);
-                    intent.putExtra("notificationType", "notification");
-                    break;
-                case "deal":
-                    intent = new Intent(context, VoucherDetailScreenActivity.class);
-                    intent.putExtra("id", id);
-                    intent.putExtra("notificationType", "notification");
-                    break;
-                case "offer":
-                    intent = new Intent(context, OfferDetailActivity.class);
-                    intent.putExtra("offerId", id);
-                    break;
-                case "follow":
-                    intent = new Intent(context, OtherUserProfileActivity.class);
-                    intent.putExtra("friendId", id);
-                    break;
-                case "invite":
-                    intent = new Intent(context, ComplementaryEventDetailActivity.class);
-                    intent.putExtra("eventId", id);
-                    intent.putExtra("type", "Promoter");
-                    break;
-                case "promoter-event":
-                    intent = new Intent(context, ComplementaryEventDetailActivity.class);
-                    intent.putExtra("eventId", id);
-                    intent.putExtra("type", "complementary");
-                    break;
-                case "add-to-ring":
-                    if (SessionManager.shared.getUser().isRingMember()) {
-                        intent = new Intent(context, NotificaionActivity.class);
-                        intent.putExtra("id", id);
-                    } else {
-                        intent = new Intent(context, PromoterActivity.class);
-                        intent.putExtra("isPromoter", false);
-                    }
-                    break;
                 case "ticket":
                     intent = new Intent(context, RaynaTicketDetailActivity.class);
                     intent.putExtra("ticketId", id);
@@ -1286,10 +1004,6 @@ public class MainHomeActivity extends BaseActivity {
                             AppSettingManager.shared.isAlreadyOpenReviewSheet = true;
                         }
                     }
-                    return;
-                case "ring-accepted":
-                case "ring-request-accepted":
-                    DialogManager.getInstance(context).showRestartAppDialog("complimentary");
                     return;
                 case "ticket-booking":
                     if (binding.tabLayout.getTabCount() > 0) {

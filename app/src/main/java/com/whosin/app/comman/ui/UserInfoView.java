@@ -21,20 +21,16 @@ import com.whosin.app.databinding.LayoutUserInfoItemBinding;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.HomeObjectModel;
 import com.whosin.app.service.models.StorySeenEventModel;
-import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.VenueObjectModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.ui.activites.Story.StoryViewActivity;
-import com.whosin.app.ui.activites.raynaTicket.RaynaParticipantDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -89,18 +85,6 @@ public class UserInfoView extends LinearLayout {
         return false;
     }
 
-    private void openVenueDetail(VenueObjectModel venueObjectModel) {
-        if (!isOpenVenue) {return;}
-        if (callback != null){
-            callback.onReceive(true);
-        }
-        Intent intent = new Intent(Graphics.context, VenueActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("venueId", venueObjectModel.getId());
-        Graphics.context.startActivity(intent);
-    }
-
     private void openStory(VenueObjectModel venueObjectModel) {
         if (isOpenStory) {
             HomeObjectModel homeObjectModel = SessionManager.shared.geHomeBlockData();
@@ -142,8 +126,6 @@ public class UserInfoView extends LinearLayout {
         }
         setStoryOnLogo(venueObjectModel);
 
-//        binding.venueTitleContainer.setOnClickListener(v -> openVenueDetail(venueObjectModel));
-
         binding.venueTitleContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,16 +135,9 @@ public class UserInfoView extends LinearLayout {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("ticketId", venueObjectModel.getId());
                     Graphics.context.startActivity(intent);
-                }else {
-                    openVenueDetail(venueObjectModel);
                 }
             }
         });
-
-//        binding.roundLinear.setOnClickListener(v -> {
-//            if (hasStory(venueObjectModel)) openStory(venueObjectModel);
-//            else openVenueDetail(venueObjectModel);
-//        });
 
         binding.roundLinear.setOnClickListener(v -> {
             if (hasStory(venueObjectModel)) {
@@ -174,8 +149,6 @@ public class UserInfoView extends LinearLayout {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("ticketId", venueObjectModel.getId());
                     Graphics.context.startActivity(intent);
-                }else {
-                    openVenueDetail(venueObjectModel);
                 }
 
             }
@@ -221,8 +194,6 @@ public class UserInfoView extends LinearLayout {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("ticketId", venueObjectModel.getId());
                     Graphics.context.startActivity(intent);
-                }else {
-                    openVenueDetail(venueDetail);
                 }
 
             }

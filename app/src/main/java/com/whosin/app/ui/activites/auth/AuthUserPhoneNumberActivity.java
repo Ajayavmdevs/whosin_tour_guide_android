@@ -27,7 +27,6 @@ import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.SubAdminPromoter.SubAdminPromoterActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.home.MainHomeActivity;
 import java.security.SecureRandom;
@@ -245,29 +244,22 @@ public class AuthUserPhoneNumberActivity extends BaseActivity {
                     bottomSheet.isManagePromoter = model.getData().isManagePromoter();
                     bottomSheet.callback = data -> {
                         if (!data) {
-                            if (!Utils.isNullOrEmpty(Preferences.shared.getString("loginType")) && Preferences.shared.getString("loginType").equals("sub-admin")) {
-                                Intent intent = new Intent(AuthUserPhoneNumberActivity.this, SubAdminPromoterActivity.class);
+                            if (isGuestLogin){
+                                Intent closeIntent = new Intent();
+                                setResult(RESULT_OK, closeIntent);
+                                finish();
+                                return;
+                            }
+                            if (SessionManager.shared.getUser().getFirstName().isEmpty()) {
+                                Intent intent = new Intent(AuthUserPhoneNumberActivity.this, AuthUserNameActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
-                                Utils.hideKeyboard(activity);
                             } else {
-                                if (isGuestLogin){
-                                    Intent closeIntent = new Intent();
-                                    setResult(RESULT_OK, closeIntent);
-                                    finish();
-                                    return;
-                                }
-                                if (SessionManager.shared.getUser().getFirstName().isEmpty()) {
-                                    Intent intent = new Intent(AuthUserPhoneNumberActivity.this, AuthUserNameActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
-                                } else {
-                                    GetNotificationManager.shared.requestActivityUpdatesCount();
-                                    Utils.saveLastOneMonthSyncDate();
-                                    Intent intent = new Intent(AuthUserPhoneNumberActivity.this, MainHomeActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
-                                }
+                                GetNotificationManager.shared.requestActivityUpdatesCount();
+                                Utils.saveLastOneMonthSyncDate();
+                                Intent intent = new Intent(AuthUserPhoneNumberActivity.this, MainHomeActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
                             }
 
                         } else {

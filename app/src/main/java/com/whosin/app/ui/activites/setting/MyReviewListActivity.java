@@ -24,14 +24,9 @@ import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.CurrentUserRatingModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.CmProfile.CmPublicProfileActivity;
-import com.whosin.app.ui.activites.PromoterPublic.PromoterPublicProfileActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
 import com.whosin.app.ui.activites.home.activity.WriteReviewActivity;
-import com.whosin.app.ui.activites.home.event.EventOrganizerDetailsActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 
 import java.util.ArrayList;
 
@@ -183,23 +178,8 @@ public class MyReviewListActivity extends BaseActivity {
 
 
             viewHolder.mBinding.getRoot().setOnClickListener(v -> {
-                if (model.getType().equals("venues")) {
-                    startActivity(new Intent(activity, VenueActivity.class).putExtra("venueId", model.getItemId()));
-                } else if (model.getType().equals("ticket")) {
+                if (model.getType().equals("ticket")) {
                     startActivity(new Intent(activity, RaynaTicketDetailActivity.class).putExtra("ticketId", model.getItemId()));
-                } else if (model.getType().equals("events_organizers")) {
-                    startActivity(new Intent(activity, EventOrganizerDetailsActivity.class).putExtra("org_id", model.getItemId()).putExtra("type", "events_organizers").putExtra("name", model.getTitle()).putExtra("image", model.getImage()));
-                } else if (model.getType().equals("complimentary")) {
-                    startActivity(new Intent(activity, CmPublicProfileActivity.class)
-                            .putExtra("isFromSubAdmin", true)
-                            .putExtra("promoterUserId", model.getItemId()));
-                } else if (model.getType().equals("promoter")) {
-                    startActivity(new Intent(activity, PromoterPublicProfileActivity.class)
-                            .putExtra("isFromOtherUserProfile", true)
-                            .putExtra("isPromoterProfilePublic", true).putExtra("id", model.getItemId()));
-                } else if (model.getType().equals("activities")) {
-                    startActivity(new Intent(activity, ActivityListDetail.class).putExtra("activityId", model.getItemId()));
-
                 }
             });
 

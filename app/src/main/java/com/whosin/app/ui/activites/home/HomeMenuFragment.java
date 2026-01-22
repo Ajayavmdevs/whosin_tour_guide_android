@@ -17,7 +17,6 @@ import com.whosin.app.ui.activites.Profile.FollowingActivity;
 import com.whosin.app.ui.activites.Profile.FollowresActivity;
 import com.whosin.app.ui.activites.auth.AuthenticationActivity;
 import com.whosin.app.ui.activites.home.privacy.PrivacyPolicyActivity;
-import com.whosin.app.ui.activites.offers.ClaimHistoryActivity;
 import com.whosin.app.ui.activites.setting.SettingActivity;
 import com.whosin.app.ui.activites.venue.ui.SubscriptionPlanActivity;
 import com.whosin.app.ui.activites.wallet.WalletActivity;
@@ -73,7 +72,7 @@ public class HomeMenuFragment extends BaseFragment {
 
         binding.ilSettings.setOnClickListener( view -> startActivity( new Intent( requireActivity(), SettingActivity.class ) ));
 
-        binding.ilClaimHistory.setOnClickListener( view -> startActivity( new Intent( requireActivity(), ClaimHistoryActivity.class ) ));
+//        binding.ilClaimHistory.setOnClickListener( view -> startActivity( new Intent( requireActivity(), ClaimHistoryActivity.class ) ));
 
         binding.ilFollowing.setOnClickListener( view -> startActivity( new Intent( requireActivity(), FollowingActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ));
 

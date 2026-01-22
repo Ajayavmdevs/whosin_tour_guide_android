@@ -21,11 +21,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -47,22 +45,16 @@ import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.interfaces.BooleanResult;
 import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.comman.ui.UiUtils;
-import com.whosin.app.comman.ui.roundcornerlayout.CornerType;
 import com.whosin.app.databinding.ActivitySearchBinding;
-import com.whosin.app.databinding.AllSearchOfferItemBinding;
 import com.whosin.app.databinding.AllSearchVenueDesginItemBinding;
-import com.whosin.app.databinding.CategoryListItemBinding;
-import com.whosin.app.databinding.IteamSearchEventBinding;
 import com.whosin.app.databinding.ItemAllSerachTicketBinding;
 import com.whosin.app.databinding.ItemHomeAdViewBinding;
 import com.whosin.app.databinding.ItemLayoutEmptyHolderBinding;
 import com.whosin.app.databinding.ItemRecentSearchBinding;
 import com.whosin.app.databinding.ItemRecentSearchTabBinding;
 import com.whosin.app.databinding.ItemRecentSearchUserBinding;
-import com.whosin.app.databinding.ItemSearchActivityBinding;
 import com.whosin.app.databinding.ItemSearchVenueBinding;
 import com.whosin.app.databinding.ItemTicketRecyclerBinding;
-import com.whosin.app.databinding.SearchUserItemBinding;
 import com.whosin.app.databinding.TicketShimmerPlaceholderBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.LogManager;
@@ -71,7 +63,6 @@ import com.whosin.app.service.manager.SearchSuggestionStore;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.ActivityDetailModel;
 import com.whosin.app.service.models.BannerModel;
-import com.whosin.app.service.models.ChatModel;
 import com.whosin.app.service.models.CommanSearchModel;
 import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerListModel;
@@ -82,7 +73,6 @@ import com.whosin.app.service.models.HomeBlockModel;
 import com.whosin.app.service.models.HomeObjectModel;
 import com.whosin.app.service.models.InviteFriendModel;
 import com.whosin.app.service.models.OffersModel;
-import com.whosin.app.service.models.PackageModel;
 import com.whosin.app.service.models.RatingModel;
 import com.whosin.app.service.models.SearchEventModel;
 import com.whosin.app.service.models.SearchHistoryModel;
@@ -91,20 +81,9 @@ import com.whosin.app.service.models.VenueObjectModel;
 import com.whosin.app.service.models.VideoComponentModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.CmProfile.CmPublicProfileActivity;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
-import com.whosin.app.ui.activites.PromoterPublic.PromoterPublicProfileActivity;
-import com.whosin.app.ui.activites.home.Chat.ChatMessageActivity;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
-import com.whosin.app.ui.activites.home.event.EventOrganizerDetailsActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketListActivity;
-import com.whosin.app.ui.activites.venue.Bucket.BucketListBottomSheet;
-import com.whosin.app.ui.activites.venue.VenueShareActivity;
-import com.whosin.app.ui.activites.venue.VenueTimingDialog;
-import com.whosin.app.ui.adapter.OfferPackagesAdapter;
 import com.whosin.app.ui.adapter.raynaTicketAdapter.RaynaTicketImageAdapter;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
 
@@ -113,20 +92,15 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.TimeZone;
 import java.util.stream.Collectors;
 
-import io.realm.RealmList;
 import retrofit2.Call;
 
 public class SearchFragment extends BaseFragment {
@@ -676,61 +650,8 @@ public class SearchFragment extends BaseFragment {
             searchHomeBlocks.removeIf(model -> removeTypes.contains(model.getType()));
             searchHomeBlocks.removeIf(model -> {
                 switch (model.getType()) {
-                    case "video":
-                        List<VideoComponentModel> videoList = model.getVideos().stream().filter(m -> {
-                            if (TextUtils.isEmpty(m.getVenueId())) {
-                                return false;
-                            } else {
-                                Optional<VenueObjectModel> venueObjectModel = SessionManager.shared.geHomeBlockData().getVenues().stream().filter(p -> p.getId().equals(m.getVenueId())).findFirst();
-                                venueObjectModel.ifPresent(m::setVenue);
-                                return true;
-                            }
-                        }).collect(Collectors.toList());
-                        return videoList.isEmpty();
-                    case "activity":
-                        List<ActivityDetailModel> activityList = searchHomeObjectModel.getActivities().stream().filter(p -> model.getActivities() != null && model.getActivities().contains(p.getId())).collect(Collectors.toList());
-                        model.activityList = activityList;
-                        return activityList.isEmpty();
-                    case "deal":
-                        return (model.getDeals() == null || model.getDeals().isEmpty());
-                    case "custom-offer":
-                        return ((model.getCustomOffers() == null || model.getCustomOffers().isEmpty()) || (searchHomeObjectModel.getOffers().stream().filter(p -> model.getOffers() != null && model.getOffers().contains(p.getId())).collect(Collectors.toList()).isEmpty()));
-                    case "custom-venue":
-                        return (model.getCustomVenues() == null || model.getCustomVenues().isEmpty());
-                    case "event":
-                        List<EventModel> events = searchHomeObjectModel.getEvents().stream().filter(p -> model.getEvents().contains(p.getId()) && p.getCustomVenue() != null ).collect(Collectors.toList());
-                        model.eventList = events;
-                        return events.isEmpty();
-                    case "stories":
-                        return (model.getStories() == null || model.getStories().isEmpty());
-                    case "suggested-venues":
-                        return (model.getSuggestedVenue() == null || model.getSuggestedVenue().isEmpty());
-                    case "categories":
-                        return (model.getCategories() == null || model.getCategories().isEmpty());
-                    case "my-outing":
-                        if(model.getMyOuting().isEmpty()) { return true; }
-                        List<InviteFriendModel> filterData = model.getMyOuting().stream().filter(p -> p.getVenue() != null && p.getUser() != null).collect(Collectors.toList());
-                        return filterData.isEmpty();
-                    case "venue":
-                        if (model.getVenues().isEmpty()) { return true; }
-                        List<VenueObjectModel> venues = new ArrayList<>();
-                        model.getVenues().forEach( p -> {
-                            Optional<VenueObjectModel> venue = searchHomeObjectModel.getVenues().stream().filter(v -> v.getId().equalsIgnoreCase(p)).findFirst();
-                            venue.ifPresent(venues::add);
-                        });
-                        model.venueList = venues;
-                        return venues.isEmpty();
                     case "custom-components":
                         return (model.getCustomComponentModelList() == null || model.getCustomComponentModelList().isEmpty());
-                    case "offer":
-                        if (model.getOffers().isEmpty()) { return true; }
-                        List<OffersModel> offers = new ArrayList<>(); //homeObjectModel.getOffers().stream().filter(p -> model.getOffers() != null && model.getOffers().contains(p.getId())).collect(Collectors.toList());
-                        model.getOffers().forEach(p -> {
-                            Optional<OffersModel> offer = searchHomeObjectModel.getOffers().stream().filter(v -> v.getId().equalsIgnoreCase(p)).findFirst();
-                            offer.ifPresent(offers::add);
-                        });
-                        model.offerList = offers;
-                        return offers.isEmpty();
                     case "ticket":
                         if (model.getTickets() == null || model.getTickets().isEmpty()) { return true; }
                         List<RaynaTicketDetailModel> tmpTicket = new ArrayList<>();
@@ -940,32 +861,6 @@ public class SearchFragment extends BaseFragment {
         });
     }
 
-    private void reqRecommendation(String id, VenueObjectModel venueModel) {
-        showProgress();
-        DataService.shared(requireActivity()).requestFeedRecommandation(id, "venue", new RestCallback<ContainerModel<UserDetailModel>>(this) {
-            @Override
-            public void result(ContainerModel<UserDetailModel> model, String error) {
-                hideProgress();
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(requireActivity(), R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (model.message.equals( "recommendation added successfully!" )) {
-                    venueModel.setRecommendation(true);
-                    Alerter.create(requireActivity()).setTitle("Thank you!").setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("for recommended " + venueModel.getName() + "to your friends!").setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
-                } else {
-                    venueModel.setRecommendation(false);
-                    Alerter.create(requireActivity()).setTitle("Oh Snap!!").setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("you have removed recommendation of " + venueModel.getName()).setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
-                }
-
-                searchResultAdapter.notifyDataSetChanged();
-                allSearchResultAdapter.notifyDataSetChanged();
-
-            }
-        });
-    }
-
     private void requestSearchGetHomeBlock() {
         if (searchHomeBlockAdapter.getData() == null && searchHomeBlockAdapter.getData().isEmpty()){
             showProgress();
@@ -1128,14 +1023,6 @@ public class SearchFragment extends BaseFragment {
                     return new TicketBlockHolder( UiUtils.getViewBy( parent, R.layout.item_all_serach_ticket ) );
                 case VENUE:
                     return new VenueBlockHolder( UiUtils.getViewBy( parent, R.layout.item_search_venue ) );
-                case OFFER:
-                    return new OfferBlockHolder( UiUtils.getViewBy( parent, R.layout.category_list_item ) );
-                case USER:
-                    return new UserBlockHolder( UiUtils.getViewBy( parent, R.layout.search_user_item ) );
-                case EVENT:
-                    return new EventBlockHolder( UiUtils.getViewBy( parent, R.layout.iteam_search_event ) );
-                case ACTIVITY:
-                    return new ActivityBlockHolder( UiUtils.getViewBy( parent, R.layout.item_search_activity ) );
                 case HOME_AD:
                     return new HomeAdHolder(UiUtils.getViewBy(parent, R.layout.item_home_ad_view));
             }
@@ -1145,27 +1032,7 @@ public class SearchFragment extends BaseFragment {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             boolean isLastItem = position == getItemCount() - 1;
 
-            if (getItem( position ) instanceof VenueObjectModel) {
-                VenueObjectModel model = (VenueObjectModel) getItem( position );
-                VenueBlockHolder venueBlockHolder = (VenueBlockHolder) holder;
-                venueBlockHolder.setupData( model );
-            } else if (getItem( position ) instanceof ContactListModel) {
-                ContactListModel model = (ContactListModel) getItem( position );
-                UserBlockHolder userBlockHolder = (UserBlockHolder) holder;
-                userBlockHolder.setupData( model );
-            } else if (getItem( position ) instanceof OffersModel) {
-                OffersModel model = (OffersModel) getItem( position );
-                OfferBlockHolder offerBlockHolder = (OfferBlockHolder) holder;
-                offerBlockHolder.setupData( model );
-            } else if (getItem( position ) instanceof SearchEventModel) {
-                SearchEventModel model = (SearchEventModel) getItem( position );
-                EventBlockHolder eventBlockHolder = (EventBlockHolder) holder;
-                eventBlockHolder.setupData( model );
-            } else if (getItem( position ) instanceof ActivityDetailModel) {
-                ActivityDetailModel model = (ActivityDetailModel) getItem( position );
-                ActivityBlockHolder activityBlockHolder = (ActivityBlockHolder) holder;
-                activityBlockHolder.setupData( model );
-            }else if (getItem( position ) instanceof RaynaTicketDetailModel) {
+            if (getItem( position ) instanceof RaynaTicketDetailModel) {
                 RaynaTicketDetailModel model = (RaynaTicketDetailModel) getItem( position );
                 TicketBlockHolder ticketBlockHolder = (TicketBlockHolder) holder;
                 ticketBlockHolder.setupData( model );
@@ -1236,7 +1103,6 @@ public class SearchFragment extends BaseFragment {
 
                 binding.getRoot().setOnClickListener( view -> {
                     SearchHistoryModel.addRecord( model.getId(), "venue", model.getName(), model.getAddress(), model.getLogo(), "" ,model,null);
-                    Graphics.openVenueDetail(activity,  model.getId() );
                 } );
 
                 binding.btnFollowing.setText(model.isIsFollowing() ? "Following" : "Follow");
@@ -1256,305 +1122,6 @@ public class SearchFragment extends BaseFragment {
                     } );
                 } );
 
-            }
-
-        }
-
-        public class OfferBlockHolder extends RecyclerView.ViewHolder {
-
-            private final CategoryListItemBinding binding;
-            private final OfferPackagesAdapter<PackageModel> packageAdapter = new OfferPackagesAdapter<>();
-
-
-            public OfferBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = CategoryListItemBinding.bind( itemView );
-                binding.venueSubRecycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
-                binding.venueSubRecycler.setAdapter(packageAdapter);
-            }
-
-            public void setupData(OffersModel model) {
-                float cornerRadius = activity.getResources().getDimensionPixelSize(com.intuit.sdp.R.dimen._8sdp);
-                binding.constraint.setCornerRadius(cornerRadius, CornerType.ALL);
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                int marginHorizontal = getResources().getDimensionPixelSize(com.intuit.sdp.R.dimen._8sdp);
-                int marginTop = getResources().getDimensionPixelSize(com.intuit.sdp.R.dimen._15sdp);
-                layoutParams.setMargins(marginHorizontal, marginTop, marginHorizontal, 0);
-                binding.constraint.setLayoutParams(layoutParams);
-
-                if (model.getVenue() != null) {
-                    binding.venueContainer.setVenueDetail(model.getVenue(), data -> {
-                        if (data){
-                            SearchHistoryModel.addRecord( model.getId(), "offer", model.getTitle(), model.getDescription(), model.getImage(), model.getVenue().getId(),null,null );
-                        }
-                    });
-                }
-
-                binding.txtTitle.setText( model.getTitle() );
-                binding.tvDescription.setText( model.getDescription() );
-
-                binding.offerInfoView.setOfferDetail(model, activity, getParentFragmentManager());
-                binding.offerButtonView.setupButtons(model, activity, getParentFragmentManager());
-
-                itemView.setOnClickListener( v -> {
-                    SearchHistoryModel.addRecord( model.getId(), "offer", model.getTitle(), model.getDescription(), model.getImage(), model.getVenue().getId(),null,null );
-                    OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                    dialog.offerId = model.getId();
-                    dialog.show(getParentFragmentManager(), "");
-                } );
-
-                if (!model.getPackages().isEmpty()) {
-                    packageAdapter.updateData(model.getPackages());
-                    binding.venueSubRecycler.setVisibility(View.VISIBLE);
-                } else {
-                    binding.venueSubRecycler.setVisibility(View.GONE);
-                }
-
-                binding.venueSubRecycler.setVisibility( View.GONE );
-                binding.tvLastDate.setVisibility( View.GONE );
-
-                binding.iconMenu.setOnClickListener( view -> {
-                    Utils.preventDoubleClick( view );
-                    ArrayList<String> data = new ArrayList<>();
-                    data.add( "Add To BucketList" );
-                    data.add(model.getVenue().isIsFollowing() ? "UnFollow" : "Follow");
-                    data.add( "Share Venue" );
-                    data.add( "Share Offer" );
-
-                    data.add(model.getVenue().isRecommendation() ? "Remove recommendation" : "Add recommendation");
-                    Graphics.showActionSheet( activity, getString(R.string.app_name), data, (data1, position1) -> {
-                        switch (position1) {
-                            case 0:
-                                BucketListBottomSheet dialog = new BucketListBottomSheet();
-                                dialog.offerId = model.getId();
-                                dialog.show( getParentFragmentManager(), "" );
-                                break;
-                            case 1:
-                                reqOfferFollowUnFollow( model.getVenue().getId(), (success, error) -> {
-                                    if (success) {
-                                        Alerter.create( activity ).setTitle( "Thank you!" ).setText( "For following " + model.getVenue().getName() ).setTextAppearance( R.style.AlerterText ).setTitleAppearance( R.style.AlerterTitle ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                                        model.getVenue().setIsFollowing( true );
-                                        notifyDataSetChanged();
-                                    } else {
-                                        Alerter.create( activity ).setTitle( "Oh Snap!" ).setTitleAppearance( R.style.AlerterTitle ).setTextAppearance( R.style.AlerterText ).setText( "You have unfollowed " + model.getVenue().getName() ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                                        model.getVenue().setIsFollowing( false );
-                                        notifyDataSetChanged();
-                                    }
-                                } );
-                                break;
-                            case 2:
-                                startActivity( new Intent( activity, VenueShareActivity.class ).putExtra( "venue", new Gson().toJson( model.getVenue() ) )
-                                        .putExtra( "type", "venue" ) );
-                                break;
-                            case 3:
-                                startActivity( new Intent( activity, VenueShareActivity.class ).putExtra( "offer", new Gson().toJson( model ) )
-                                        .putExtra( "type", "offer" ) );
-                                break;
-                            case 4:
-                                reqRecommendation(model.getVenue().getId(),model.getVenue());
-                                break;
-                        }
-
-                    } );
-                } );
-            }
-        }
-
-        public class UserBlockHolder extends RecyclerView.ViewHolder {
-            private final SearchUserItemBinding binding;
-
-            public UserBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = SearchUserItemBinding.bind( itemView );
-
-            }
-
-            public void setupData(ContactListModel model) {
-                binding.tvUserName.setText( model.getFullName() );
-                Graphics.loadImageWithFirstLetter( model.getImage(), binding.ivUserProfile, model.getFullName() );
-
-                binding.getRoot().setOnClickListener( view -> {
-                    if (!Utils.isUser( model.getId() )) {
-                        SearchHistoryModel.addRecord( model.getId(), "user", model.getFullName(), "", model.getImage(), "" ,null,model);
-                        if (SessionManager.shared.getUser().isRingMember() && model.isPromoter()) {
-                            startActivity(new Intent(activity, PromoterPublicProfileActivity.class)
-                                    .putExtra("isFromOtherUserProfile", true)
-                                    .putExtra("isPromoterProfilePublic", true).putExtra("id", model.getId()));
-                        } else if (SessionManager.shared.getUser().isPromoter() && model.isRingMember()) {
-                            startActivity(new Intent(activity, CmPublicProfileActivity.class)
-                                    .putExtra("isFromOtherUserProfile", true)
-                                    .putExtra("promoterUserId", model.getId()));
-                        } else {
-                            startActivity(new Intent(activity, OtherUserProfileActivity.class).putExtra("friendId", model.getId()));
-                        }
-//                        startActivity( new Intent( activity, OtherUserProfileActivity.class ).putExtra( "friendId", model.getId() ) );
-                    }
-
-                } );
-
-                if (model.isSynced()) {
-                    binding.optionContainer.setVisibility(model.isSynced() ? View.VISIBLE : View.GONE);
-                    binding.optionContainer.setupView(model, activity, data -> {
-                        searchResultAdapter.notifyDataSetChanged();
-                        allSearchResultAdapter.notifyDataSetChanged();
-                    });
-                }
-
-                if (Utils.isUser( model.getId() )) {
-                    binding.optionContainer.setVisibility( View.GONE );
-                }
-                binding.optionContainer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        openChat(model);
-                    }
-                });
-
-            }
-
-
-            private void openChat(ContactListModel listModel){
-                ChatModel chatModel = new ChatModel();
-                chatModel.setImage( listModel.getImage() );
-                chatModel.setTitle( listModel.getFullName() );
-                chatModel.setChatType( "friend" );
-                RealmList<String> idList = new RealmList<>();
-                idList.add( SessionManager.shared.getUser().getId());
-                idList.add( listModel.getId());
-                chatModel.setMembers(idList);
-                Collections.sort(idList);
-                String joinedString = String.join(",", idList);
-                chatModel.setChatId(joinedString);
-
-                Intent intent = new Intent(activity, ChatMessageActivity.class);
-                intent.putExtra("chatModel", new Gson().toJson(chatModel));
-                intent.putExtra("isChatId", true);
-                intent.putExtra( "type","friend" );
-                startActivity(intent);
-            }
-
-        }
-
-        public class EventBlockHolder extends RecyclerView.ViewHolder {
-            private final IteamSearchEventBinding binding;
-
-            public EventBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = IteamSearchEventBinding.bind( itemView );
-            }
-
-            public void setupData(SearchEventModel model) {
-
-                binding.eventTitle.setText( model.getTitle() );
-                binding.tvDescription.setText( model.getDescription() );
-                if (model.getVenue() != null) {
-//                    Graphics.applyBlurEffect(activity, binding.blurView);
-                    binding.venueContainer.setVenueDetail(model.getVenue(), new CommanCallback<Boolean>() {
-                        @Override
-                        public void onReceive(Boolean data) {
-                            if (data){
-                                SearchHistoryModel.addRecord( model.getId(), "event", model.getOrgData().getName(), model.getOrgData().getWebsite(), model.getOrgData().getLogo(), "",null ,null);
-                            }
-                        }
-                    });
-                }
-                Graphics.loadImage( model.getImage(), binding.ivCover );
-
-                binding.endTime.setText( Utils.convertMainDateFormat( model.getEventTime() ) );
-                binding.startTime.setText( Utils.convertMainTimeFormat( model.getReservationTime() ) + " - " + Utils.convertTimeFormat( model.getEventTime() ) );
-
-//                Graphics.applyBlurEffect(activity, binding.venueBlurView);
-                if (model.getOrgData() != null) {
-                    Graphics.loadRoundImage(model.getOrgData().getLogo(), binding.imgOrg);
-                    binding.tvOrgName.setText(model.getOrgData().getName());
-                    binding.tvWebsite.setText(model.getOrgData().getWebsite() != null ? model.getOrgData().getWebsite() : "");
-                    binding.tvWebsite.setVisibility(model.getOrgData().getWebsite() != null ? View.VISIBLE : View.GONE);
-                }
-
-                binding.linearEvent.setOnClickListener(v -> {
-                    if (model.getOrgData() != null) {
-                        startActivity(new Intent(activity, EventOrganizerDetailsActivity.class).putExtra("org_id", model.getOrgId()).putExtra("type", "events_organizers").putExtra("name", model.getOrgData().getName()).putExtra("webSite", model.getOrgData().getWebsite()).putExtra("image", model.getOrgData().getLogo()));
-                    }
-                });
-
-                if (model.getEventTime() != null) {
-                    Utils.setTimer( model.getEventTime(), binding.countTimer );
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                    try {
-                        Date givenDate = dateFormat.parse(model.getEventTime());
-                        Date currentDate = new Date();
-                        if (givenDate.before(currentDate)) {
-                            binding.layoutTimer.setVisibility(View.INVISIBLE);
-                        } else  if (givenDate.after(currentDate)) {
-                            binding.layoutTimer.setVisibility(View.VISIBLE);
-                        } else {
-                            binding.layoutTimer.setVisibility(View.INVISIBLE);
-                        }
-
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                itemView.setOnClickListener( v -> {
-                    SearchHistoryModel.addRecord( model.getId(), "event", model.getOrgData().getName(), model.getOrgData().getWebsite(), model.getOrgData().getLogo(), "",null ,null);
-
-                    Intent intent = new Intent( activity, EventDetailsActivity.class );
-                    intent.putExtra( "eventId", model.getId() );
-                    intent.putExtra( "name", model.getOrgData().getName() );
-                    intent.putExtra( "address", model.getOrgData().getWebsite() );
-                    intent.putExtra( "image", model.getOrgData().getLogo() );
-                    intent.putExtra( "venueName", model.getVenue().getName() );
-                    intent.putExtra( "venueAddress", model.getVenue().getAddress() );
-                    intent.putExtra( "venueImage", model.getVenue().getLogo() );
-                    startActivity( intent );
-                } );
-
-
-            }
-
-        }
-
-        public class ActivityBlockHolder extends RecyclerView.ViewHolder {
-
-            private final ItemSearchActivityBinding binding;
-
-            public ActivityBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = ItemSearchActivityBinding.bind( itemView );
-
-            }
-
-            public void setupData(ActivityDetailModel model) {
-                binding.tvName.setText( model.getName() );
-                binding.tvPrice.setText( String.valueOf( model.getPrice() ) );
-
-                if (model.getProvider() != null) {
-                    binding.tvTitle.setText( model.getProvider().getName() );
-                    binding.tvAddress.setText( model.getProvider().getAddress() );
-                    Graphics.loadRoundImage( model.getProvider().getLogo(), binding.iconImg );
-                }
-
-                Graphics.loadImage( model.getGalleries().get( 0 ), binding.ivCover );
-//                Graphics.applyBlurEffect( activity, binding.blurView );
-
-                binding.tvStartTime.setText( Utils.convertMainDateFormat( model.getStartDate() ) );
-                binding.tvEndDate.setText( Utils.convertMainDateFormat( model.getEndDate() ) );
-
-                itemView.setOnClickListener( view -> {
-
-                    SearchHistoryModel.addRecord( model.getId(), "activity", model.getName(), model.getDescription(), model.getGalleries().get( 0 ), "",null,null );
-
-                    Intent intent = new Intent( activity, ActivityListDetail.class );
-                    intent.putExtra( "activityId", model.getId() ).putExtra( "type", "activities" )
-                            .putExtra( "name", model.getName() )
-                            .putExtra( "image", model.getProvider().getLogo() )
-                            .putExtra( "title", model.getProvider().getName() )
-                            .putExtra( "address", model.getProvider().getAddress()
-                            );
-                    startActivity( intent );
-                } );
             }
 
         }
@@ -1780,42 +1347,17 @@ public class SearchFragment extends BaseFragment {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             switch (AppConstants.SearchResultType.valueOf( viewType )) {
-                case VENUE:
-                    return new AllSearchVenueBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
-                case OFFER:
-                    return new AllSearchOfferBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
-                case USER:
-                    return new AllSearchUserBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
-                case EVENT:
-                    return new AllSearchEventBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
-                case ACTIVITY:
-                    return new AllSearchActivityBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
                 case TICKET:
                     return new AllSearchTicketBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
 
             }
-            return new AllSearchVenueBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
+            return new AllSearchTicketBlockHolder( UiUtils.getViewBy( parent, R.layout.all_search_venue_desgin_item ) );
         }
 
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             CommanSearchModel commanSearchModel = (CommanSearchModel) getItem( position );
 
-            if (commanSearchModel.getBlockType() == AppConstants.SearchResultType.VENUE) {
-                AllSearchVenueBlockHolder venueBlockHolder = (AllSearchVenueBlockHolder) holder;
-                venueBlockHolder.setupData( commanSearchModel );
-            } else if (commanSearchModel.getBlockType() == AppConstants.SearchResultType.OFFER) {
-                AllSearchOfferBlockHolder allSearchOfferBlockHolder = (AllSearchOfferBlockHolder) holder;
-                allSearchOfferBlockHolder.setupData( commanSearchModel );
-            } else if (commanSearchModel.getBlockType() == AppConstants.SearchResultType.USER) {
-                AllSearchUserBlockHolder allSearchOfferBlockHolder = (AllSearchUserBlockHolder) holder;
-                allSearchOfferBlockHolder.setupData( commanSearchModel );
-            } else if (commanSearchModel.getBlockType() == AppConstants.SearchResultType.EVENT) {
-                AllSearchEventBlockHolder allSearchOfferBlockHolder = (AllSearchEventBlockHolder) holder;
-                allSearchOfferBlockHolder.setupData( commanSearchModel );
-            } else if (commanSearchModel.getBlockType() == AppConstants.SearchResultType.ACTIVITY) {
-                AllSearchActivityBlockHolder allSearchOfferBlockHolder = (AllSearchActivityBlockHolder) holder;
-                allSearchOfferBlockHolder.setupData( commanSearchModel );
-            }else if (commanSearchModel.getBlockType() == AppConstants.SearchResultType.TICKET) {
+            if (commanSearchModel.getBlockType() == AppConstants.SearchResultType.TICKET) {
                 AllSearchTicketBlockHolder allSearchTicketBlockHolder = (AllSearchTicketBlockHolder) holder;
                 allSearchTicketBlockHolder.setupData( commanSearchModel );
             }
@@ -1839,108 +1381,6 @@ public class SearchFragment extends BaseFragment {
 
         }
 
-        public class AllSearchVenueBlockHolder extends RecyclerView.ViewHolder {
-            private final AllSearchVenueDesginItemBinding binding;
-
-            private final AllVenueSearchAdapter<VenueObjectModel> adapter = new AllVenueSearchAdapter<>();
-
-            public AllSearchVenueBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = AllSearchVenueDesginItemBinding.bind( itemView );
-                binding.allVenueRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.HORIZONTAL, false ) );
-                binding.allVenueRecycler.setAdapter( adapter );
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(CommanSearchModel model) {
-                adapter.updateData( model.getVenues() );
-                binding.txtTitle.setText( model.getType().substring( 0, 1 ).toUpperCase() + model.getType().substring( 1 ) );
-                binding.txtSeeAll.setOnClickListener( view -> setTabTitle( commanSearch, model.getType() ) );
-
-            }
-        }
-
-        public class AllSearchOfferBlockHolder extends RecyclerView.ViewHolder {
-            private final AllSearchVenueDesginItemBinding binding;
-            private final AllOfferSearchAdapter<OffersModel> adapter = new AllOfferSearchAdapter<>();
-
-            public AllSearchOfferBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = AllSearchVenueDesginItemBinding.bind( itemView );
-                binding.allVenueRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.HORIZONTAL, false ) );
-                binding.allVenueRecycler.setAdapter( adapter );
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(CommanSearchModel model) {
-                adapter.updateData( model.getOffers() );
-                binding.txtTitle.setText( model.getType().substring( 0, 1 ).toUpperCase() + model.getType().substring( 1 ) );
-                binding.txtSeeAll.setOnClickListener( view -> setTabTitle( commanSearch, model.getType() ) );
-
-            }
-        }
-
-        public class AllSearchUserBlockHolder extends RecyclerView.ViewHolder {
-            private final AllSearchVenueDesginItemBinding binding;
-
-            private final AllSeachUserAdapter<ContactListModel> adapter = new AllSeachUserAdapter<>();
-
-            public AllSearchUserBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = AllSearchVenueDesginItemBinding.bind( itemView );
-                binding.allVenueRecycler.setLayoutManager( new GridLayoutManager( activity, 4, LinearLayoutManager.HORIZONTAL, false ) );
-                binding.allVenueRecycler.setAdapter( adapter );
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(CommanSearchModel model) {
-                adapter.updateData( model.getUsers() );
-                binding.txtTitle.setText( model.getType().substring( 0, 1 ).toUpperCase() + model.getType().substring( 1 ) );
-                binding.txtSeeAll.setOnClickListener( view -> setTabTitle( commanSearch, model.getType() ) );
-
-            }
-        }
-
-        public class AllSearchEventBlockHolder extends RecyclerView.ViewHolder {
-            private final AllSearchVenueDesginItemBinding binding;
-            private final AllSearchEventAdapter<SearchEventModel> adapter = new AllSearchEventAdapter<>();
-
-            public AllSearchEventBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = AllSearchVenueDesginItemBinding.bind( itemView );
-                binding.allVenueRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.HORIZONTAL, false ) );
-                binding.allVenueRecycler.setAdapter( adapter );
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(CommanSearchModel model) {
-                adapter.updateData( model.getEvents() );
-                binding.txtTitle.setText( model.getType().substring( 0, 1 ).toUpperCase() + model.getType().substring( 1 ) );
-                binding.txtSeeAll.setOnClickListener( view -> setTabTitle( commanSearch, model.getType() ) );
-
-            }
-        }
-
-        public class AllSearchActivityBlockHolder extends RecyclerView.ViewHolder {
-            private final AllSearchVenueDesginItemBinding binding;
-            private final AllSearchActivityAdapter<ActivityDetailModel> adapter = new AllSearchActivityAdapter<>();
-
-            public AllSearchActivityBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = AllSearchVenueDesginItemBinding.bind( itemView );
-                binding.allVenueRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.HORIZONTAL, false ) );
-                binding.allVenueRecycler.setAdapter( adapter );
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(CommanSearchModel model) {
-                adapter.updateData( model.getActivity() );
-                binding.txtTitle.setText( model.getType().substring( 0, 1 ).toUpperCase() + model.getType().substring( 1 ) );
-                binding.txtSeeAll.setOnClickListener( view -> setTabTitle( commanSearch, model.getType() ) );
-
-            }
-        }
-
         public class AllSearchTicketBlockHolder extends RecyclerView.ViewHolder {
 
             private final AllSearchVenueDesginItemBinding binding;
@@ -1962,473 +1402,6 @@ public class SearchFragment extends BaseFragment {
             }
         }
 
-    }
-
-    public class AllVenueSearchAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy( parent, R.layout.item_search_venue );
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            double space = getItemCount() > 1 ? 0.85 : 0.94;
-            params.width = (int) (Graphics.getScreenWidth( activity ) * space);
-            view.setLayoutParams( params );
-            return new ViewHolder( view );
-
-        }
-
-        @SuppressLint("DefaultLocale")
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            VenueObjectModel model = (VenueObjectModel) getItem( position );
-
-            viewHolder.binding.venueContainer.setVenueDetail(model, new CommanCallback<Boolean>() {
-                @Override
-                public void onReceive(Boolean data) {
-                    if (data){
-                        SearchHistoryModel.addRecord( model.getId(), "venue", model.getName(), model.getAddress(), model.getCover(), "" ,model,null);
-                    }
-                }
-            });
-
-            DecimalFormat decimalFormat = new DecimalFormat( "#.##" );
-            viewHolder.binding.tvDistance.setText( decimalFormat.format( model.getDistance() ) + " Km" );
-
-            viewHolder.binding.tvDiscription.setText( TextUtils.join( ", ", model.getCuisine() ) );
-
-            viewHolder.binding.btnFollowing.setText(model.isIsFollowing() ? "Following" : "Follow");
-
-
-            viewHolder.binding.btnFollowing.setOnClickListener( view -> {
-                reqOfferFollowUnFollow( model.getId(), (success, error) -> {
-                    if (success) {
-                        Alerter.create( activity ).setTitle( "Thank you!" ).setText( "For following " + model.getName() ).setTextAppearance( R.style.AlerterText ).setTitleAppearance( R.style.AlerterTitle ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                        model.setIsFollowing( true );
-                        notifyDataSetChanged();
-                    } else {
-                        Alerter.create( activity ).setTitle( "Oh Snap!" ).setTitleAppearance( R.style.AlerterTitle ).setTextAppearance( R.style.AlerterText ).setText( "You have unfollowed " + model.getName() ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                        model.setIsFollowing( false );
-                        notifyDataSetChanged();
-                    }
-                } );
-            } );
-
-
-            viewHolder.binding.getRoot().setOnClickListener( view -> {
-                SearchHistoryModel.addRecord( model.getId(), "venue", model.getName(), model.getAddress(), model.getCover(), "" ,model,null);
-                Graphics.openVenueDetail(activity,  model.getId() );
-            } );
-
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            private final ItemSearchVenueBinding binding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = ItemSearchVenueBinding.bind( itemView );
-            }
-
-
-        }
-
-
-    }
-
-    public class AllOfferSearchAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy( parent, R.layout.all_search_offer_item );
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            double space = getItemCount() > 1 ? 0.85 : 0.94;
-            params.width = (int) (Graphics.getScreenWidth( activity ) * space);
-            view.setLayoutParams( params );
-            return new ViewHolder( view );
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            OffersModel model = (OffersModel) getItem( position );
-            viewHolder.binding.venueContainer.setVenueDetail(model.getVenue(), new CommanCallback<Boolean>() {
-                @Override
-                public void onReceive(Boolean data) {
-                    if (data){
-                        SearchHistoryModel.addRecord( model.getId(), "offer", model.getTitle(), model.getDescription(), model.getImage(), model.getVenue().getId(),null,null );
-                    }
-                }
-            });
-            Graphics.loadImage( model.getImage(), viewHolder.binding.imgCover );
-
-
-            viewHolder.binding.txtTitle.setText( model.getTitle() );
-            viewHolder.binding.tvDescription.setText( model.getDescription() );
-            viewHolder.binding.txtDays.setText( model.getDays() );
-
-            if (TextUtils.isEmpty(model.getStartTime())) {
-                viewHolder.binding.startDate.setText("Ongoing");
-                viewHolder.binding.dateTitleFrom.setVisibility(View.GONE);
-                viewHolder.binding.tillDateLayout.setVisibility(View.GONE);
-            } else {
-                viewHolder.binding.dateTitleFrom.setVisibility(View.VISIBLE);
-                viewHolder.binding.tillDateLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.startDate.setText(Utils.convertMainDateFormat(model.getStartTime()));
-                viewHolder.binding.endDate.setText(Utils.convertMainDateFormat(model.getEndTime()));
-            }
-
-            viewHolder.binding.offerButtonView.setupButtons(model, activity, getParentFragmentManager());
-
-            viewHolder.binding.txtOfferTime.setText(model.getOfferTiming());
-            viewHolder.binding.btnTimeInfo.setVisibility(model.isShowTimeInfo() ? View.GONE : View.VISIBLE);
-            viewHolder.binding.layoutTimeInfo.setOnClickListener(v -> {
-                if (!model.isShowTimeInfo()) {
-                    if (model == null) {
-                        return;
-                    }
-                    if (model.getVenue() == null) {
-                        return;
-                    }
-                    VenueTimingDialog dialog = new VenueTimingDialog(model.getVenue().getTiming(), activity);
-                    dialog.show(getParentFragmentManager(), "1");
-                }
-            });
-
-            viewHolder.binding.tvLastDate.setVisibility( View.GONE );
-
-            viewHolder.binding.getRoot().setOnClickListener( v -> {
-                SearchHistoryModel.addRecord( model.getId(), "offer", model.getTitle(), model.getDescription(), model.getImage(), model.getVenue().getId(),null,null );
-                OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                dialog.offerId = model.getId();
-                dialog.show(getParentFragmentManager(), "");
-
-            } );
-
-            viewHolder.binding.btnMenu.setOnClickListener( view -> {
-                Utils.preventDoubleClick( view );
-                ArrayList<String> data = new ArrayList<>();
-                data.add( "Add To BucketList" );
-                data.add(model.getVenue().isIsFollowing() ? "UnFollow" : "Follow");
-                data.add( "Share Venue" );
-                data.add( "Share Offer" );
-                data.add(model.getVenue().isRecommendation() ? "Remove recommendation" : "Add recommendation");
-                Graphics.showActionSheet( activity, model.getVenue().getName(), data, (data1, position1) -> {
-                    switch (position1) {
-                        case 0:
-                            BucketListBottomSheet dialog = new BucketListBottomSheet();
-                            dialog.offerId = model.getId();
-                            dialog.show( getParentFragmentManager(), "" );
-                            break;
-                        case 1:
-                            reqOfferFollowUnFollow( model.getVenue().getId(), (success, error) -> {
-                                if (success) {
-                                    Alerter.create( activity ).setTitle( "Thank you!" ).setText( "For following " + model.getVenue().getName() ).setTextAppearance( R.style.AlerterText ).setTitleAppearance( R.style.AlerterTitle ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                                    model.getVenue().setIsFollowing( true );
-                                    notifyDataSetChanged();
-                                } else {
-                                    Alerter.create( activity ).setTitle( "Oh Snap!" ).setTitleAppearance( R.style.AlerterTitle ).setTextAppearance( R.style.AlerterText ).setText( "You have unfollowed " + model.getVenue().getName() ).setBackgroundColorRes( R.color.AlerterSuccessBg ).hideIcon().show();
-                                    model.getVenue().setIsFollowing( false );
-                                    notifyDataSetChanged();
-                                }
-                            } );
-                            break;
-                        case 2:
-                            startActivity( new Intent( activity, VenueShareActivity.class ).putExtra( "venue", new Gson().toJson( model.getVenue() ) )
-                                    .putExtra( "type", "venue" ) );
-                            break;
-                        case 3:
-                            startActivity( new Intent( activity, VenueShareActivity.class ).putExtra( "offer", new Gson().toJson( model) )
-                                    .putExtra( "type", "offer" ) );
-                            break;
-                        case 4:
-                            reqRecommendation(model.getVenue().getId(),model.getVenue());
-                            break;
-                    }
-
-                } );
-            } );
-
-
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            private final AllSearchOfferItemBinding binding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = AllSearchOfferItemBinding.bind( itemView );
-            }
-        }
-    }
-
-    public class AllSeachUserAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy( parent, R.layout.search_user_item );
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            double space = getItemCount() > 1 ? 0.85 : 0.94;
-            params.width = (int) (Graphics.getScreenWidth( activity ) * space);
-            view.setLayoutParams( params );
-            return new ViewHolder( view );
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            ContactListModel listModel = (ContactListModel) getItem( position );
-
-            viewHolder.vBinding.tvUserName.setText( listModel.getFullName() );
-            Graphics.loadImageWithFirstLetter( listModel.getImage(), viewHolder.vBinding.ivUserProfile, listModel.getFullName() );
-
-            viewHolder.vBinding.getRoot().setOnClickListener( view -> {
-                if (!Utils.isUser( listModel.getId() )) {
-                    SearchHistoryModel.addRecord( listModel.getId(), "user", listModel.getFullName(), "", listModel.getImage(), "",null,listModel );
-                    if (SessionManager.shared.getUser().isRingMember() && listModel.isPromoter()) {
-                        startActivity(new Intent(activity, PromoterPublicProfileActivity.class)
-                                .putExtra("isFromOtherUserProfile", true)
-                                .putExtra("isPromoterProfilePublic", true).putExtra("id", listModel.getId()));
-                    } else if (SessionManager.shared.getUser().isPromoter() && listModel.isRingMember()) {
-                        startActivity(new Intent(activity, CmPublicProfileActivity.class)
-                                .putExtra("isFromOtherUserProfile", true)
-                                .putExtra("promoterUserId", listModel.getId()));
-                    } else {
-                        startActivity(new Intent(activity, OtherUserProfileActivity.class).putExtra("friendId", listModel.getId()));
-                    }
-//                    startActivity( new Intent( activity, OtherUserProfileActivity.class ).putExtra( "friendId", listModel.getId() ) );
-                }
-            } );
-
-            if (listModel.isSynced()) {
-                viewHolder.vBinding.optionContainer.setVisibility(listModel.isSynced() ? View.VISIBLE : View.GONE);
-                viewHolder.vBinding.optionContainer.setupView(listModel, activity, data -> {
-                    searchResultAdapter.notifyDataSetChanged();
-                    allSearchResultAdapter.notifyDataSetChanged();
-                });
-            }
-
-
-            if (Utils.isUser( listModel.getId() )) {
-                viewHolder.vBinding.optionContainer.setVisibility( View.GONE );
-            }
-
-        }
-
-        private void openChat(ContactListModel listModel){
-            ChatModel chatModel = new ChatModel();
-            chatModel.setImage( listModel.getImage() );
-            chatModel.setTitle( listModel.getFullName() );
-            chatModel.setChatType( "friend" );
-            RealmList<String> idList = new RealmList<>();
-            idList.add( SessionManager.shared.getUser().getId());
-            idList.add( listModel.getId());
-            chatModel.setMembers(idList);
-            Collections.sort(idList);
-            String joinedString = String.join(",", idList);
-            chatModel.setChatId(joinedString);
-
-            Intent intent = new Intent(activity, ChatMessageActivity.class);
-            intent.putExtra("chatModel", new Gson().toJson(chatModel));
-            intent.putExtra("isChatId", true);
-            intent.putExtra( "type","friend" );
-            startActivity(intent);
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            private final SearchUserItemBinding vBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                vBinding = SearchUserItemBinding.bind( itemView );
-            }
-        }
-
-    }
-
-    public class AllSearchEventAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy( parent, R.layout.iteam_search_event );
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            double space = getItemCount() > 1 ? 0.85 : 0.94;
-            params.width = (int) (Graphics.getScreenWidth( activity ) * space);
-            view.setLayoutParams( params );
-            return new ViewHolder( view );
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-            ViewHolder viewHolder = (ViewHolder) holder;
-            SearchEventModel model = (SearchEventModel) getItem( position );
-            viewHolder.binding.eventTitle.setText( model.getTitle() );
-            viewHolder.binding.tvDescription.setText( model.getDescription() );
-
-            if (model.getVenue() != null) {
-//                Graphics.applyBlurEffect(activity, viewHolder.binding.blurView);
-                viewHolder.binding.venueContainer.setVenueDetail(model.getVenue(), new CommanCallback<Boolean>() {
-                    @Override
-                    public void onReceive(Boolean data) {
-                        if (data){
-                            SearchHistoryModel.addRecord( model.getId(), "event", model.getOrgData().getName(), model.getOrgData().getWebsite(), model.getOrgData().getLogo(), "",null ,null);
-                        }
-                    }
-                });
-            }
-
-//            Graphics.applyBlurEffect(activity, viewHolder.binding.venueBlurView);
-            Graphics.loadImage( model.getImage(), viewHolder.binding.ivCover );
-            viewHolder.binding.tvLastDate.setVisibility( View.GONE );
-            String startTime, endTime;
-
-
-            if (model.getOrgData() != null) {
-                Graphics.loadImageWithFirstLetter(model.getOrgData().getLogo(), viewHolder.binding.imgOrg, model.getOrgData().getName());
-                viewHolder.binding.tvOrgName.setText(model.getOrgData().getName());
-                viewHolder.binding.tvWebsite.setText(model.getOrgData().getWebsite() != null ? model.getOrgData().getWebsite() : "");
-                viewHolder.binding.tvWebsite.setVisibility(model.getOrgData().getWebsite() != null ? View.VISIBLE : View.GONE);
-            }
-
-            viewHolder.binding.linearEvent.setOnClickListener(v -> {
-                if (model.getOrgData() != null) {
-                    startActivity(new Intent(activity, EventOrganizerDetailsActivity.class).putExtra("org_id", model.getOrgId()).putExtra("type", "events_organizers").putExtra("name", model.getOrgData().getName()).putExtra("webSite", model.getOrgData().getWebsite()).putExtra("image", model.getOrgData().getLogo()));
-                }
-            });
-
-            if (model.getEventTime() != null) {
-                Utils.setTimer( model.getEventTime(), viewHolder.binding.countTimer );
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                try {
-                    Date givenDate = dateFormat.parse(model.getEventTime());
-                    Date currentDate = new Date();
-                    if (givenDate.before(currentDate)) {
-                        viewHolder.binding.layoutTimer.setVisibility(View.INVISIBLE);
-                    } else  if (givenDate.after(currentDate)) {
-                        viewHolder.binding.layoutTimer.setVisibility(View.VISIBLE);
-                    } else {
-                        viewHolder.binding.layoutTimer.setVisibility(View.INVISIBLE);
-                    }
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            viewHolder.itemView.setOnClickListener( view -> {
-                SearchHistoryModel.addRecord( model.getId(), "event", model.getOrgData().getName(), model.getOrgData().getWebsite(), model.getOrgData().getLogo(), "",null ,null);
-                startActivity( new Intent( activity, EventDetailsActivity.class )
-                        .putExtra( "name", model.getTitle() )
-                        .putExtra( "eventId", model.getId() )
-                        .putExtra( "image", model.getImage())
-
-                        .putExtra( "address",model.getDescription() )
-                );
-            } );
-
-            try {
-                startTime = Utils.formatDate( Utils.stringToDate( model.getReservationTime(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), "HH:mm" );
-                endTime = Utils.formatDate( Utils.stringToDate( model.getEventTime(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" ), "HH:mm" );
-
-                SimpleDateFormat inputFormat = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US );
-                inputFormat.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
-                Date date = inputFormat.parse( model.getEventTime() );
-
-                // Format the Date object into the desired output format
-                SimpleDateFormat outputFormat = new SimpleDateFormat( "EEE, dd MMM yyyy", Locale.US );
-                String formattedDate = outputFormat.format( date );
-
-                viewHolder.binding.endTime.setText( formattedDate );
-                viewHolder.binding.startTime.setText( startTime + " " + endTime );
-
-
-            } catch (Exception e) {
-                throw new RuntimeException( e );
-            }
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            private final IteamSearchEventBinding binding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = IteamSearchEventBinding.bind( itemView );
-            }
-        }
-    }
-
-    public class AllSearchActivityAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = UiUtils.getViewBy( parent, R.layout.item_search_activity );
-            ViewGroup.LayoutParams params = view.getLayoutParams();
-            double space = getItemCount() > 1 ? 0.85 : 0.94;
-            params.width = (int) (Graphics.getScreenWidth( activity ) * space);
-            view.setLayoutParams( params );
-            return new ViewHolder( view );
-
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-            ViewHolder viewHolder = (ViewHolder) holder;
-            ActivityDetailModel model = (ActivityDetailModel) getItem( position );
-            viewHolder.binding.tvName.setText( model.getName() );
-            viewHolder.binding.tvAddress.setText( model.getDescription() );
-            viewHolder.binding.tvPrice.setText( String.valueOf( model.getPrice() ) );
-
-
-            if (model.getProvider() != null) {
-                viewHolder.binding.tvTitle.setText( model.getProvider().getName() );
-                viewHolder.binding.tvAddress.setText( model.getProvider().getAddress() );
-                Graphics.loadRoundImage( model.getProvider().getLogo(), viewHolder.binding.iconImg );
-
-            }
-
-            Graphics.loadImage( model.getGalleries().get( 0 ), viewHolder.binding.ivCover );
-//            Graphics.applyBlurEffect( activity, viewHolder.binding.blurView );
-            viewHolder.binding.tvLastDate.setVisibility( View.GONE );
-
-            viewHolder.binding.tvStartTime.setText( Utils.convertMainDateFormat( model.getStartDate() ) );
-            viewHolder.binding.tvEndDate.setText( Utils.convertMainDateFormat( model.getEndDate() ) );
-
-
-            viewHolder.itemView.setOnClickListener( view -> {
-                SearchHistoryModel.addRecord( model.getId(), "activity", model.getName(), model.getDescription(), model.getGalleries().get( 0 ), "" ,null,null);
-                Intent intent = new Intent( activity, ActivityListDetail.class );
-                intent.putExtra( "activityId", model.getId() )
-                        .putExtra( "type", "activities" )
-                        .putExtra( "name", model.getName() )
-                        .putExtra( "image", model.getProvider().getLogo() )
-                        .putExtra( "title", model.getProvider().getName() )
-                        .putExtra( "address", model.getProvider().getAddress()
-                        );
-                startActivity( intent );
-            } );
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            private final ItemSearchActivityBinding binding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                binding = ItemSearchActivityBinding.bind( itemView );
-            }
-        }
     }
 
     public class AllSearchTicketAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
@@ -2658,33 +1631,7 @@ public class SearchFragment extends BaseFragment {
 
                 viewHolder.binding.constraintRecent.setOnClickListener( v -> {
                     Utils.preventDoubleClick(v);
-                    if (model.getType().equals( "offer" )) {
-                        OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                        dialog.offerId = model.getId();
-                        dialog.show(getParentFragmentManager(), "");
-                        //startActivity(new Intent(activity, OfferDetailActivity.class).putExtra("offerId",  model.getId()));
-                    } else if (model.getType().equals( "venue" )) {
-                        Graphics.openVenueDetail(activity,  model.getId() );
-                    } else if (model.getType().equals( "event" )) {
-                        startActivity( new Intent( activity, EventDetailsActivity.class )
-                                .putExtra( "name", model.getTitle() )
-                                .putExtra( "eventId", model.getId() )
-                                .putExtra( "image", model.getImage() )
-                                .putExtra( "address", result )
-
-                        );
-                    } else if (model.getType().equals( "activity" )) {
-                        startActivity( new Intent( activity, ActivityListDetail.class )
-                                .putExtra( "activityId", model.getId() )
-                                .putExtra( "type", "activities" )
-                                .putExtra( "name", model.getTitle() )
-                                .putExtra( "image", model.getImage() )
-                                .putExtra( "title", model.getTitle() )
-                                .putExtra( "address", result )
-
-                        );
-//                        activity.overridePendingTransition( R.anim.slide_up, R.anim.fade_out );
-                    } else if (model.getType().equals( "user" )) {
+                    if (model.getType().equals( "user" )) {
                         startActivity( new Intent( activity, OtherUserProfileActivity.class ) );
                     } else if (model.getType().equals("ticket")) {
                         startActivity(new Intent(activity, RaynaTicketDetailActivity.class).putExtra("ticketId",model.getId()));
@@ -2705,18 +1652,7 @@ public class SearchFragment extends BaseFragment {
 
                 viewHolder.binding.constraintRecent.setOnClickListener( v -> {
                     if (model.getContactListModel() == null){return ;}
-                    if (SessionManager.shared.getUser().isRingMember() && model.getContactListModel().isPromoter()) {
-                        startActivity(new Intent(activity, PromoterPublicProfileActivity.class)
-                                .putExtra("isFromOtherUserProfile", true)
-                                .putExtra("isPromoterProfilePublic", true).putExtra("id", model.getContactListModel().getId()));
-                    } else if (SessionManager.shared.getUser().isPromoter() && model.getContactListModel().isRingMember()) {
-                        startActivity(new Intent(activity, CmPublicProfileActivity.class)
-                                .putExtra("isFromOtherUserProfile", true)
-                                .putExtra("promoterUserId", model.getContactListModel().getId()));
-                    } else {
-                        startActivity(new Intent(activity, OtherUserProfileActivity.class).putExtra("friendId", model.getContactListModel().getId()));
-                    }
-//                    startActivity( new Intent( activity, OtherUserProfileActivity.class ).putExtra( "friendId", model.getId() ) );
+                    startActivity(new Intent(activity, OtherUserProfileActivity.class).putExtra("friendId", model.getContactListModel().getId()));
                 } );
 
                 viewHolder.binding.ivClear.setOnClickListener( v -> {

@@ -22,9 +22,7 @@ import com.whosin.app.service.manager.AppSettingManager;
 import com.whosin.app.service.manager.RaynaTicketManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.fragment.CmProfile.CmNotificationFragment;
 import com.whosin.app.ui.fragment.Notification.NotificationFragment;
-import com.whosin.app.ui.fragment.Promoter.PromoterNotificationsFragment;
 
 public class NotificaionActivity extends BaseActivity {
 
@@ -175,15 +173,9 @@ public class NotificaionActivity extends BaseActivity {
                 case Home:
                     return new NotificationFragment(callback,isNotificationListPresent);
                 default:
-                    if (SessionManager.shared.getUser().isPromoter()) {
-                        return new PromoterNotificationsFragment(true);
-
-                    } else if (SessionManager.shared.getUser().isRingMember()) {
-                        return new CmNotificationFragment(true);
-                    }
+                    return new NotificationFragment(callback,isNotificationListPresent);
 
             }
-            return new NotificationFragment(callback,isNotificationListPresent);
         }
 
         @Override

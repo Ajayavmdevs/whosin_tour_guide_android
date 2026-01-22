@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.tapadoo.alerter.Alerter;
 import com.whosin.app.R;
@@ -26,11 +25,9 @@ import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.ActivityListDetailBinding;
-import com.whosin.app.databinding.ItemActivityFeaturesBinding;
 import com.whosin.app.databinding.ItemRatingReviewRecyclerBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.SessionManager;
-import com.whosin.app.service.models.ActivityAvailableFeatureModel;
 import com.whosin.app.service.models.ActivityDetailModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.CurrentUserRatingModel;
@@ -38,19 +35,11 @@ import com.whosin.app.service.models.MessageEvent;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.activites.home.event.EventOrganizerDetailsActivity;
-import com.whosin.app.ui.activites.venue.Bucket.BucketListBottomSheet;
-import com.whosin.app.ui.activites.venue.VenueBuyNowActivity;
 import com.whosin.app.ui.fragment.reviewSheet.UserFullReviewSheet;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +52,6 @@ public class ActivityListDetail extends BaseActivity {
     private ActivityDetailModel activityModel;
     private String activityId = "", type = "";
     private String  name;
-     private AvailableFeatureAdapter featureAdapter = new AvailableFeatureAdapter<>();
     private RatingReviewAdapter<CurrentUserRatingModel> reviewAdapter = new RatingReviewAdapter();
 
 
@@ -103,12 +91,9 @@ public class ActivityListDetail extends BaseActivity {
 
         binding.btnBucketList.setOnClickListener(view -> {
             Utils.preventDoubleClick( view );
-            BucketListBottomSheet dialog = new BucketListBottomSheet();
-            dialog.activityId = activityId;
-            dialog.show(getSupportFragmentManager(), "");
         });
         binding.btnBuyNow.setOnClickListener(view -> {
-            startActivity(new Intent(activity, YourOrderActivity.class).putExtra("activityModel", new Gson().toJson(activityModel)));
+
         });
 
         binding.linearReview.setOnClickListener(view -> {
@@ -246,9 +231,6 @@ Utils.preventDoubleClick( view );
         binding.tvEndDate.setText(Utils.convertMainDateFormat(activityModel.getEndDate()));
 
         binding.availableFeatureRecycler.setLayoutManager(new GridLayoutManager(activity, 2, LinearLayoutManager.VERTICAL, false));
-        binding.availableFeatureRecycler.setAdapter(featureAdapter);
-
-        featureAdapter.updateData(activityModel.getAvilableFeatures());
 
         if (activityModel.getDiscount().equals("0")) {
             binding.tvAED.setVisibility(View.GONE);
@@ -373,36 +355,6 @@ Utils.preventDoubleClick( view );
     // --------------------------------------
     // region Adapter
     // --------------------------------------
-
-
-    public class AvailableFeatureAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(UiUtils.getViewBy(parent, R.layout.item_activity_features));
-
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            ActivityAvailableFeatureModel model = (ActivityAvailableFeatureModel) getItem(position);
-            viewHolder.binding.tvName.setText(model.getFeature());
-            Glide.with(activity).load(model.getIcon()).into(viewHolder.binding.ivLogo);
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            private ItemActivityFeaturesBinding binding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                binding = ItemActivityFeaturesBinding.bind(itemView);
-            }
-        }
-    }
 
     public class RatingReviewAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
 

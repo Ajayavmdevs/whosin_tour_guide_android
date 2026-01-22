@@ -23,14 +23,11 @@ import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.MessageEvent;
 import com.whosin.app.service.models.OffersModel;
 import com.whosin.app.service.models.StoryObjectModel;
-import com.whosin.app.service.models.StorySeenEventModel;
 import com.whosin.app.service.models.VenueObjectModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.storyViewer.StoriesProgressView;
 import com.whosin.app.ui.activites.Story.OnSwipeTouchListener;
-import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 import com.whosin.app.ui.activites.venue.VenueShareActivity;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
 
@@ -194,10 +191,6 @@ public class StoryFragment extends BaseFragment {
 
         binding.constrain.setOnClickListener(v -> {
             if (model == null) { return; }
-            Intent intent = new Intent(context, VenueActivity.class);
-            intent.putExtra("venueId", model.getId());
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
         });
 
         binding.storiesProgress.setStoriesListener(new StoriesProgressView.StoriesListener() {
@@ -270,17 +263,11 @@ public class StoryFragment extends BaseFragment {
 
         binding.ivOfferNext.setOnClickListener(v -> {
             if (TextUtils.isEmpty(offerID)) { return; }
-            OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-            dialog.offerId = offerID;
-            dialog.show(getChildFragmentManager(), "");
         });
 
 
         binding.offerLayout.setOnClickListener(v -> {
            if (TextUtils.isEmpty(offerID)) { return; }
-            OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-            dialog.offerId = offerID;
-            dialog.show(getChildFragmentManager(), "");
         });
 
 

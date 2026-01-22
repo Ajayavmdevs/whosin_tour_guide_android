@@ -352,12 +352,6 @@
                     android:text="Suggested Friends"
                     android:visibility="gone" />
 
-                <com.whosin.app.ui.controller.SuggestedUserView
-                    android:id="@+id/suggestedUserView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false" />
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

@@ -12,28 +12,20 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.whosin.app.R;
 import com.whosin.app.comman.AppExecutors;
-import com.whosin.app.comman.DiffAdapter;
-import com.whosin.app.comman.DiffIdentifier;
 import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.Preferences;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.interfaces.CommanCallback;
-import com.whosin.app.comman.ui.UiUtils;
-import com.whosin.app.comman.ui.roundcornerlayout.CornerType;
 import com.whosin.app.databinding.ActivityVenueShareBinding;
-import com.whosin.app.databinding.InviteContactFreindItemBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.ChatManager;
 import com.whosin.app.service.manager.SessionManager;
@@ -59,7 +51,6 @@ import java.util.stream.Collectors;
 public class VenueShareActivity extends BaseActivity {
 
     private ActivityVenueShareBinding binding;
-    private ContactsAdapter<ContactListModel> followersListAdaptere;
     private String searchQuery = "";
     private String eventId = "";
     private Runnable runnable = () -> searchData();
@@ -130,11 +121,9 @@ public class VenueShareActivity extends BaseActivity {
 
         requestLinkCreate();
 
-        followersListAdaptere = new ContactsAdapter();
         Utils.setSelectedStatus( Utils.setType.NONE );
         binding.contactRecycler.setLayoutManager( new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false ) );
 
-        binding.contactRecycler.setAdapter( followersListAdaptere );
 
         followerList = SessionManager.shared.getFollowingData();
         if (!followerList.isEmpty()) {
@@ -235,17 +224,6 @@ public class VenueShareActivity extends BaseActivity {
         }
         if (type.equalsIgnoreCase("promoterEvent")){
             followerList.removeIf(p -> !p.isRingMember());
-        }
-        if (!TextUtils.isEmpty( searchQuery ) && followerList != null) {
-            List<ContactListModel> searchList = new ArrayList<>();
-            for (ContactListModel model : followerList) {
-                if (model.getFullName().toLowerCase().contains( searchQuery.toLowerCase() )) {
-                    searchList.add( model );
-                }
-            }
-            followersListAdaptere.updateData( searchList );
-        } else {
-            followersListAdaptere.updateData( followerList );
         }
     }
 
@@ -612,87 +590,6 @@ public class VenueShareActivity extends BaseActivity {
     // --------------------------------------
     // region Adapter
     // --------------------------------------
-    public class ContactsAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder( UiUtils.getViewBy( parent, R.layout.invite_contact_freind_item ) );
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ContactListModel listModel = (ContactListModel) getItem( position );
-            ViewHolder viewHolder = (ViewHolder) holder;
-            viewHolder.vBinding.tvUserName.setText( listModel.getFullName() );
-            Graphics.loadImageWithFirstLetter( listModel.getImage(), viewHolder.vBinding.ivUserProfile, listModel.getFullName() );
-
-            viewHolder.vBinding.ivCheck.setVisibility( View.VISIBLE );
-            viewHolder.vBinding.optionContainer.setVisibility( View.GONE );
-            viewHolder.vBinding.tvContactBookName.setVisibility( View.GONE );
-
-            viewHolder.vBinding.ivCheck.setOnCheckedChangeListener( null );
-            viewHolder.vBinding.ivCheck.setChecked( selectedContacts.contains( listModel ) );
-
-            viewHolder.vBinding.ivCheck.setOnCheckedChangeListener( (buttonView, isChecked1) -> {
-                if (selectedContacts.contains( listModel )) {
-                    selectedContacts.remove( listModel );
-                } else {
-                    if (type.equalsIgnoreCase("plusOneAdd")) selectedContacts.clear();
-                    selectedContacts.add( listModel );
-                }
-                isAnyCheckBoxSelected();
-                notifyDataSetChanged();
-            } );
-
-            viewHolder.vBinding.getRoot().setOnClickListener( v -> {
-                if (selectedContacts.contains( listModel )) {
-                    selectedContacts.remove( listModel );
-                } else {
-                    if (type.equalsIgnoreCase("plusOneAdd")) selectedContacts.clear();
-                    selectedContacts.add( listModel );
-                }
-                isAnyCheckBoxSelected();
-                notifyDataSetChanged();
-            } );
-
-
-            viewHolder.vBinding.constrain.setCornerRadius(0, CornerType.ALL);
-            boolean isFirstCell = false;
-            boolean isLastCell = getItemCount() - 1 == position;
-
-            if (position == 0) {
-                isFirstCell = true;
-            }
-
-            float cornerRadius = activity.getResources().getDimensionPixelSize(com.intuit.sdp.R.dimen._10sdp);
-            if (isFirstCell) {
-                viewHolder.vBinding.constrain.setCornerRadius(cornerRadius, CornerType.TOP_LEFT);
-                viewHolder.vBinding.constrain.setCornerRadius(cornerRadius, CornerType.TOP_RIGHT);
-            }
-            if (isLastCell) {
-                viewHolder.vBinding.constrain.setCornerRadius(cornerRadius, CornerType.BOTTOM_RIGHT);
-                viewHolder.vBinding.constrain.setCornerRadius(cornerRadius, CornerType.BOTTOM_LEFT);
-            }
-            viewHolder.vBinding.view.setVisibility(isLastCell ? View.GONE : View.VISIBLE);
-
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            public final InviteContactFreindItemBinding vBinding;
-
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                vBinding = InviteContactFreindItemBinding.bind( itemView );
-            }
-        }
-
-        private void isAnyCheckBoxSelected() {
-            binding.sendBtnContainer.setVisibility( !selectedContacts.isEmpty() ? View.VISIBLE : View.GONE );
-            binding.shareBtnLayout.setVisibility( !selectedContacts.isEmpty() ? View.GONE : View.VISIBLE );
-        }
-
-
-    }
 
 
 }

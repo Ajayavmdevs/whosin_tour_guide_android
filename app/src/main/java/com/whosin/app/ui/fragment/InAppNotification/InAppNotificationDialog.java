@@ -33,11 +33,7 @@ import com.whosin.app.service.models.InAppNotificationModel;
 import com.whosin.app.service.models.NotificationModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 import com.whosin.app.ui.activites.wallet.WalletActivity;
 
 
@@ -288,15 +284,6 @@ public class InAppNotificationDialog extends BaseActivity {
         if (view == null || view.getAction().isEmpty()) return;
         Intent intent = null;
         switch (view.getAction()) {
-            case "venue":
-                intent = new Intent(context, VenueActivity.class);
-                intent.putExtra("venueId", view.getData());
-                break;
-            case "offer":
-                intent = new Intent(context, OfferDetailActivity.class);
-                intent.putExtra("offerId", view.getData());
-                break;
-
             case "link":
                 try {
                     Uri webpage = Uri.parse(view.getData());
@@ -308,14 +295,6 @@ public class InAppNotificationDialog extends BaseActivity {
                     e.printStackTrace();
                 }
                 return;
-            case "event":
-                intent = new Intent(context, EventDetailsActivity.class);
-                intent.putExtra("eventId", view.getData());
-                break;
-            case "activity":
-                intent = new Intent(context, ActivityListDetail.class);
-                intent.putExtra("activityId", view.getData());
-                break;
             case "ticket":
                 intent = new Intent(context, RaynaTicketDetailActivity.class);
                 intent.putExtra("ticketId", view.getData());

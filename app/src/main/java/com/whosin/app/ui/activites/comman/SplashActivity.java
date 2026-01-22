@@ -22,9 +22,7 @@ import androidx.core.content.ContextCompat;
 
 import com.whosin.app.R;
 import com.whosin.app.comman.Preferences;
-import com.whosin.app.comman.Utils;
 import com.whosin.app.service.manager.SessionManager;
-import com.whosin.app.ui.activites.SubAdminPromoter.SubAdminPromoterActivity;
 import com.whosin.app.ui.activites.auth.AuthUserNameActivity;
 import com.whosin.app.ui.activites.auth.AuthenticationActivity;
 import com.whosin.app.ui.activites.home.MainHomeActivity;
@@ -147,9 +145,7 @@ public class SplashActivity extends BaseActivity {
         if (!SessionManager.shared.getToken().isEmpty()) {
             if (!SessionManager.shared.getUser().isGuest() && TextUtils.isEmpty(SessionManager.shared.getUser().getFirstName())){
                 startActivity(new Intent(this, AuthUserNameActivity.class));
-            } else if (!Utils.isNullOrEmpty(Preferences.shared.getString("loginType")) && Preferences.shared.getString("loginType").equals("sub-admin")) {
-                startActivity(new Intent(this, SubAdminPromoterActivity.class));
-            }else {
+            } else {
                 startActivity(new Intent(this, MainHomeActivity.class));
             }
         } else {

@@ -104,13 +104,4 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <com.whosin.app.ui.controller.ComplementryProfileViews.CmEventConfirmedEventsView
-        android:id="@+id/confiremedEventView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBarLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

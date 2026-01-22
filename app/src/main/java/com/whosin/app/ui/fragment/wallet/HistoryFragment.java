@@ -41,9 +41,6 @@ import com.whosin.app.service.models.rayna.RaynaTourDetailModel;
 import com.whosin.app.service.models.rayna.TourOptionDetailModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
-import com.whosin.app.ui.activites.offers.VoucherDetailScreenActivity;
 import com.whosin.app.ui.activites.venue.VenueTimingDialog;
 import com.whosin.app.ui.activites.wallet.WalletTicketDetailActivity;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
@@ -102,14 +99,10 @@ public class HistoryFragment extends BaseFragment {
 
 
     private void filterData(List<MyWalletModel> data){
-        List<MyWalletModel> filteredList =
-                data.stream().filter(model -> (model.getType().equals("deal") && model.getDeal() != null) ||
-                        (model.getType().equals("activity") && model.getActivity() != null) ||
-                        (model.getType().equals("offer") && model.getOffer() != null) || (model.getType().equals("ticket") && model.getTicket() != null) ||
-                        (model.getType().equals("big-bus") && model.getOctoTicket() != null) ||
-                        (model.getType().equals("hero-balloon") && model.getOctoTicket() != null) ||
-                        (model.getType().equals("juniper-hotel") && model.getJuniperHotel() != null) ||
-                        (model.getType().equals("whosin-ticket") && model.getWhosinTicket() != null)||  (model.getType().equals("travel-desk") && model.getTraveldeskTicket() != null) || (model.getEvent() != null)).sorted(Comparator.comparing(MyWalletModel::getCreatedAt)).collect(Collectors.toList());
+        List<MyWalletModel> filteredList = data.stream()
+                .filter(this::isValidWalletItem)
+                .sorted(Comparator.comparing(MyWalletModel::getCreatedAt))
+                .collect(Collectors.toList());
         Comparator<MyWalletModel> dateComparator = Comparator.comparing(MyWalletModel::getCreatedAt).reversed();
         filteredList.sort(dateComparator);
 
@@ -121,6 +114,35 @@ public class HistoryFragment extends BaseFragment {
         }
 
     }
+
+    private boolean isValidWalletItem(MyWalletModel model) {
+        if (model == null) return false;
+
+        String type = model.getType();
+        if (type == null) return model.getEvent() != null;
+
+        switch (type) {
+            case "ticket":
+                return model.getTicket() != null;
+
+            case "big-bus":
+            case "hero-balloon":
+                return model.getOctoTicket() != null;
+
+            case "juniper-hotel":
+                return model.getJuniperHotel() != null;
+
+            case "whosin-ticket":
+                return model.getWhosinTicket() != null;
+
+            case "travel-desk":
+                return model.getTraveldeskTicket() != null;
+
+            default:
+                return model.getEvent() != null;
+        }
+    }
+
 
     private void openActionSheet(MyWalletModel model) {
         ArrayList<String> data = new ArrayList<>();
@@ -245,14 +267,6 @@ public class HistoryFragment extends BaseFragment {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             switch (AppConstants.OrderListType.valueOf( viewType )) {
-                case OFFER:
-                    return new OfferBlockHolder( UiUtils.getViewBy( parent, R.layout.history_recycler ) );
-                case ACTIVITY:
-                    return new ActivityBlockHolder( UiUtils.getViewBy( parent, R.layout.gift_activity_recycler ) );
-                case DEAL:
-                    return new DealBlockHolder( UiUtils.getViewBy( parent, R.layout.history_recycler ) );
-                case EVENT:
-                    return new EventBlockHolder( UiUtils.getViewBy( parent, R.layout.history_recycler ) );
                 case TICKET:
                     return new TicketBlockHolder( UiUtils.getViewBy( parent, R.layout.item_my_tickets ) );
                 case WHOSIN_TICKET:
@@ -271,27 +285,7 @@ public class HistoryFragment extends BaseFragment {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             MyWalletModel model = (MyWalletModel) getItem( position );
             boolean isLastItem = position == getItemCount() - 1;
-            if (model.getOrderListType() == AppConstants.OrderListType.OFFER) {
-                OfferBlockHolder viewHolder = (OfferBlockHolder) holder;
-                viewHolder.mBinding.iconMenu.setVisibility(View.VISIBLE);
-                viewHolder.mBinding.iconMenu.setOnClickListener(v -> openActionSheet(model));
-                viewHolder.setupData( model );
-            } else if (model.getOrderListType() == AppConstants.OrderListType.ACTIVITY) {
-                ActivityBlockHolder viewHolder = (ActivityBlockHolder) holder;
-                viewHolder.mBinding.iconMenu.setVisibility(View.VISIBLE);
-                viewHolder.mBinding.iconMenu.setOnClickListener(v -> openActionSheet(model));
-                viewHolder.setupData( model );
-            } else if (model.getOrderListType() == AppConstants.OrderListType.DEAL) {
-                DealBlockHolder viewHolder = (DealBlockHolder) holder;
-                viewHolder.mBinding.iconMenu.setVisibility(View.VISIBLE);
-                viewHolder.mBinding.iconMenu.setOnClickListener(v -> openActionSheet(model));
-                viewHolder.setupData( model );
-            } else if (model.getOrderListType() == AppConstants.OrderListType.EVENT) {
-                EventBlockHolder viewHolder = (EventBlockHolder) holder;
-                viewHolder.mBinding.iconMenu.setVisibility(View.VISIBLE);
-                viewHolder.mBinding.iconMenu.setOnClickListener(v -> openActionSheet(model));
-                viewHolder.setupData( model );
-            }else if (model.getOrderListType() == AppConstants.OrderListType.TICKET) {
+            if (model.getOrderListType() == AppConstants.OrderListType.TICKET) {
                 TicketBlockHolder viewHolder = (TicketBlockHolder) holder;
                 viewHolder.mBinding.iconMenu.setVisibility(View.VISIBLE);
                 viewHolder.mBinding.iconMenu.setOnClickListener(v -> openActionSheet(model));
@@ -331,460 +325,6 @@ public class HistoryFragment extends BaseFragment {
         public int getItemViewType(int position) {
             MyWalletModel model = (MyWalletModel) getItem( position );
             return model.getOrderListType().getValue();
-        }
-
-        public class OfferBlockHolder extends RecyclerView.ViewHolder {
-            private final HistoryRecyclerBinding mBinding;
-            private final PackageAdapter<PackageModel> packageAdapter = new PackageAdapter<>();
-
-            public OfferBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                mBinding = HistoryRecyclerBinding.bind( itemView );
-                mBinding.packageRecycler.setLayoutManager( new LinearLayoutManager( context, LinearLayoutManager.VERTICAL, false ) );
-                mBinding.packageRecycler.setAdapter( packageAdapter );
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(MyWalletModel model) {
-
-                if (model != null) {
-                    if (model.getOffer().getVenue() != null) {
-                        mBinding.venueContainer.setVenueDetail(model.getOffer().getVenue());
-                    } else {
-                        mBinding.venueContainer.setVisibility(View.GONE);
-                    }
-                    mBinding.btnTimeInfo.setVisibility(View.VISIBLE);
-                    Graphics.loadImage(model.getOffer().getImage(), mBinding.imgCover);
-                    mBinding.txtTitle.setText(model.getOffer().getTitle());
-                    mBinding.tvDescription.setText(model.getOffer().getDescription());
-                    mBinding.tvDescription.post(() -> {
-                        int lineCount = mBinding.tvDescription.getLineCount();
-                        if (lineCount > 2) {
-                            Utils.makeTextViewResizable(mBinding.tvDescription, 3, 3, ".. See More", true);
-                        }
-                    });
-                    mBinding.txtDays.setText(model.getOffer().getDays());
-                    mBinding.tvTypes.setText(model.getType());
-
-                    mBinding.btnTimeInfo.setVisibility(model.getOffer().isShowTimeInfo() ? View.GONE : View.VISIBLE);
-                    mBinding.layoutTimeInfo.setOnClickListener(v -> {
-                        if (!model.getOffer().isShowTimeInfo()) {
-                            if (model == null) {
-                                return;
-                            }
-                            if (model.getOffer().getVenue() == null) {
-                                return;
-                            }
-                            VenueTimingDialog dialog = new VenueTimingDialog(model.getOffer().getVenue().getTiming(), getActivity());
-                            dialog.show(getChildFragmentManager(), "1");
-                        }
-                    });
-
-                    setPackageAdapter(model);
-
-                    setDate(model);
-
-                    setListeners(model);
-
-//                    if (model.getGiftTo() != null) {
-//                        mBinding.layoutGifedBy.setVisibility(View.VISIBLE);
-//                        mBinding.tvGiftBy.setText("Gift to : ");
-//                        Graphics.loadImageWithFirstLetter(model.getGiftTo().getImage(), mBinding.ivUserProfile, model.getGiftTo().getFirstName());
-//                        mBinding.tvUserName.setText(model.getGiftTo().getFullName());
-//                    } else {
-//                        mBinding.layoutGifedBy.setVisibility(View.GONE);
-//                    }
-                }
-
-            }
-
-            private void setListeners(MyWalletModel model){
-
-                mBinding.getRoot().setOnClickListener(v -> {
-                   // Utils.requestvenueOfferDetail(requireActivity(), model.getOfferId());
-                    OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                    dialog.offerId = model.getOfferId();
-                    dialog.show(getChildFragmentManager(), "");
-                });
-
-//                mBinding.layoutGifedBy.setOnClickListener(view -> {
-//                    startActivity(new Intent(requireActivity(), OtherUserProfileActivity.class).putExtra("friendId", model.getGiftTo().getId()));
-//                });
-            }
-
-            private void setPackageAdapter(MyWalletModel model){
-                if (model.getItems() != null && !model.getItems().isEmpty()){
-                    List<PackageModel> packageModelList = model.getItems().stream()
-                            .flatMap(model1 -> model.getOffer().getPackages().stream()
-                                    .filter(model2 -> model2.getId().equals(model1.getPackageId()))
-                                     .peek(model2 -> {
-                                        model2.setQty(model1.getUsedQty());
-                                        model2.setPrice(model1.getPrice());
-                                     })
-                            )
-                            .collect(Collectors.toList());
-
-                    List<String> list = model.getItems()
-                            .stream()
-                            .filter(model1 -> model1.getGiftMessage() != null)
-                            .flatMap(model1 -> model1.getGiftMessage().stream())
-                            .filter(s -> s != null && !s.isEmpty())
-                            .collect(Collectors.toList());
-
-                    String finalText = String.join("\n", list);
-
-//                    if (!finalText.isEmpty()) {
-//                        mBinding.messageLayout.setVisibility(View.VISIBLE);
-//                        mBinding.tvGiftMessage.setText(finalText);
-//                    }else {
-//                        mBinding.messageLayout.setVisibility(View.GONE);
-//                    }
-
-                    if (!packageModelList.isEmpty()) {
-                        packageAdapter.updateData(packageModelList);
-                    }
-                }else {
-                    mBinding.packageRecycler.setVisibility(View.GONE);
-                }
-            }
-
-            private void setDate(MyWalletModel model) {
-
-                 if (TextUtils.isEmpty(model.getOffer().getStartTime())) {
-                    mBinding.startDate.setText("Ongoing");
-                    mBinding.tillDateLayout.setVisibility(View.GONE);
-
-                } else {
-                    mBinding.tillDateLayout.setVisibility(View.VISIBLE);
-                    mBinding.startDate.setText("From Date : "+Utils.convertMainDateFormat(model.getOffer().getStartTime()));
-                    mBinding.endDate.setText("Till Date : "+Utils.convertMainDateFormat(model.getOffer().getEndTime()));
-                }
-                mBinding.txtTime.setText(model.getOffer().getOfferTiming());
-                mBinding.tvDate.setText(Utils.convertDateFormat(model.getOffer().getEndTime(),AppConstants.DATEFORMAT_SHORT,AppConstants.DATEFORMAT_DD_MM_YYYY));
-
-            }
-
-
-        }
-
-        public class EventBlockHolder extends RecyclerView.ViewHolder {
-            private final HistoryRecyclerBinding mBinding;
-            private final PackageAdapter<PackageModel> packageAdapter = new PackageAdapter<>();
-
-            public EventBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                mBinding = HistoryRecyclerBinding.bind( itemView );
-                mBinding.packageRecycler.setLayoutManager( new LinearLayoutManager( context, LinearLayoutManager.VERTICAL, false ) );
-                mBinding.packageRecycler.setAdapter( packageAdapter );
-            }
-
-            public void setupData(MyWalletModel model) {
-
-                if (model != null) {
-                    setListeners(model);
-
-                    mBinding.tvTypes.setText(model.getType());
-
-
-                    if (model.getEvent().getVenue() != null) {
-                        mBinding.venueContainer.setVenueDetail(model.getEvent().getVenue());
-                    } else {
-                        mBinding.venueContainer.setVisibility(View.GONE);
-                    }
-
-                    if (model.getEvent().getImage() != null) {
-                        Graphics.loadImage(model.getEvent().getImage(), mBinding.imgCover);
-                    }
-
-                    mBinding.txtTitle.setText(model.getEvent().getTitle());
-                    mBinding.tvDescription.setText(model.getEvent().getDescription());
-
-                    try {
-                        Date day = Utils.stringToDate(model.getEvent().getEventTime(), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                        String date = Utils.formatDate(day, "E");
-                        mBinding.txtDays.setText(date);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    mBinding.startDate.setText(String.format("Reservation Date : %s", Utils.convertMainDateFormat(model.getEvent().getReservationTime())));
-                    mBinding.endDate.setText(String.format("Event Date : %s", Utils.convertMainDateFormat(model.getEvent().getEventTime())));
-                    mBinding.txtTime.setText(String.format("%s - %s", Utils.convertMainTimeFormat(model.getEvent().getReservationTime()), Utils.convertMainTimeFormat(model.getEvent().getEventTime())));
-                    mBinding.tvDate.setText(Utils.convertDateFormat(model.getEvent().getEventTime(), AppConstants.DATEFORMAT_SHORT, AppConstants.DATEFORMAT_DD_MM_YYYY));
-
-
-                    if (!model.getItems().isEmpty()) {
-                        List<PackageModel> packageModelList = model.getItems().stream()
-                                .flatMap(model1 -> model.getEvent().getPackages().stream()
-                                        .filter(model2 -> model2.getId().equals(model1.getPackageId()))
-                                        .peek(model2 -> {
-                                            model2.setQty(model1.getUsedQty());
-                                            model2.setPrice(model1.getPrice());
-                                        })
-                                )
-                                .collect(Collectors.toList());
-
-                        List<String> list = model.getItems()
-                                .stream()
-                                .filter(model1 -> model1.getGiftMessage() != null)
-                                .flatMap(model1 -> model1.getGiftMessage().stream())
-                                .filter(s -> s != null && !s.isEmpty())
-                                .collect(Collectors.toList());
-
-//                         if (!list.isEmpty()) {
-//                            String finalText = String.join("\n", list);
-//
-//                            if (!finalText.isEmpty()) {
-//                                mBinding.messageLayout.setVisibility(View.VISIBLE);
-//                                mBinding.tvGiftMessage.setText(finalText);
-//                            } else {
-//                                mBinding.messageLayout.setVisibility(View.GONE);
-//                            }
-//                        }
-//                        else {
-//                            mBinding.messageLayout.setVisibility(View.GONE);
-//                        }
-
-                        if (!packageModelList.isEmpty()) {
-                            packageAdapter.updateData(packageModelList);
-                        }
-                    } else {
-                        mBinding.packageRecycler.setVisibility(View.GONE);
-                    }
-
-//                    if (model.getGiftTo() != null) {
-//                        mBinding.layoutGifedBy.setVisibility(View.VISIBLE);
-//                        mBinding.tvGiftBy.setText("Gift To : ");
-//                        Graphics.loadImageWithFirstLetter(model.getGiftTo().getImage(), mBinding.ivUserProfile, model.getGiftTo().getFirstName());
-//                        mBinding.tvUserName.setText(model.getGiftTo().getFullName());
-//                    } else {
-//                        mBinding.layoutGifedBy.setVisibility(View.GONE);
-//                    }
-                }
-
-            }
-
-            private void setListeners(MyWalletModel model){
-
-                mBinding.getRoot().setOnClickListener( view -> {
-                    Intent intent = new Intent(requireActivity(), EventDetailsActivity.class);
-                    intent.putExtra("eventId", model.getEventId());
-                    if (model.getEvent().getEventsOrganizer()!= null) {
-                        intent.putExtra("name",  model.getEvent().getEventsOrganizer().getName());
-                        intent.putExtra("address",model.getEvent().getEventsOrganizer().getWebsite());
-                        intent.putExtra("image", model.getEvent().getEventsOrganizer().getLogo());
-                    }
-                    startActivity(intent);
-                } );
-
-//                mBinding.layoutGifedBy.setOnClickListener( view -> {
-//                    startActivity(new Intent( requireActivity(), OtherUserProfileActivity.class).putExtra("friendId", model.getGiftTo().getId()));
-//                } );
-
-            }
-
-        }
-
-        public class ActivityBlockHolder extends RecyclerView.ViewHolder {
-            private final GiftActivityRecyclerBinding mBinding;
-
-            public ActivityBlockHolder(@NonNull View itemView) {
-                super( itemView );
-                mBinding = GiftActivityRecyclerBinding.bind( itemView );
-            }
-
-            @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            private void setupData(MyWalletModel model) {
-
-                setListeners(model);
-                mBinding.btnRedeem.setVisibility( View.GONE );
-
-                if (model.getActivity().getProvider() != null) {
-                    Graphics.loadRoundImage(model.getActivity().getProvider().getLogo(), mBinding.iconImg);
-                    mBinding.tvTitle.setText(model.getActivity().getProvider().getName());
-                    mBinding.tvAddress.setText(model.getActivity().getProvider().getAddress());
-                }
-
-                if (!model.getActivity().getGalleries().isEmpty()) {
-                    Graphics.loadImage(model.getActivity().getGalleries().get(0), mBinding.imgGallary);
-                }
-
-                mBinding.txtName.setText(model.getActivity().getName());
-                mBinding.txtDescription.setText(model.getActivity().getDescription());
-
-                if (model.getItems() != null && !model.getItems().isEmpty()){
-                    int roundedDiscountValue = (int) Math.round(model.getItems().get(0).getPrice());
-//                    mBinding.tvDiscountPrice.setText(String.format("AED %d",roundedDiscountValue));
-                    Utils.setStyledText(getActivity(),mBinding.tvDiscountPrice,String.valueOf(roundedDiscountValue));
-                    mBinding.txtTime.setText(Utils.convertTimeFormat(model.getItems().get(0).getTime()));
-                    int item = model.getItems().stream().mapToInt( ItemModel::getUsedQty ).sum();
-                    mBinding.tvQty.setText( String.valueOf(item));
-
-//                    if (model.getItems().get(0) != null && !model.getItems().get(0).getGiftMessage().isEmpty() && !model.getItems().get(0).getGiftMessage().equals(Arrays.asList(""))) {
-//                        mBinding.tvGiftMessage.setText("Message : " + model.getItems().get(0).getGiftMessage().get(0));
-//                        mBinding.messageLayout.setVisibility(View.VISIBLE);
-//
-//                    }else {
-//                        mBinding.messageLayout.setVisibility(View.GONE);
-//                    }
-
-                    String detectedFormat = Utils.detectDateFormat(model.getItems().get(0).getDate());
-                    if (detectedFormat != null) {
-                        String formattedDate = Utils.convertDateFormat(model.getItems().get(0).getDate(), detectedFormat, "E, dd MMM yyyy");
-                        mBinding.txtDate.setText(formattedDate);
-                    } else {
-                        mBinding.txtDate.setText("");
-                    }
-
-                }else {
-                     mBinding.tvQty.setVisibility(View.GONE);
-                     mBinding.tvDiscountPrice.setVisibility(View.GONE);
-                     mBinding.txtDate.setText("");
-                     mBinding.txtTime.setText("");
-                }
-
-
-//                if (model.getGiftTo() != null){
-//                    mBinding.layoutGifedBy.setVisibility(View.VISIBLE);
-//                    mBinding.tvGiftBy.setText("Gift To : ");
-//                    Graphics.loadImageWithFirstLetter(model.getGiftTo().getImage(), mBinding.ivUserProfile,model.getGiftTo().getFirstName());
-//                    mBinding.tvUserName.setText(model.getGiftTo().getFullName());
-//                }else {
-//                    mBinding.layoutGifedBy.setVisibility( View.GONE );
-//                }
-
-            }
-
-            private void setListeners(MyWalletModel model){
-
-//                mBinding.layoutGifedBy.setOnClickListener( view -> {
-//                    startActivity(new Intent( requireActivity(), OtherUserProfileActivity.class).putExtra("friendId", model.getGiftTo().getId()));
-//                } );
-
-                mBinding.getRoot().setOnClickListener( v -> {
-                    if (model == null) { return; }
-                    if (model.getActivity() == null) { return; }
-                    Intent intent = new Intent( requireActivity(), ActivityListDetail.class );
-                    intent.putExtra( "activityId", model.getActivity().getId() );
-                    intent.putExtra( "name", model.getActivity().getName() );
-                    intent.putExtra( "image", model.getActivity().getProvider().getLogo() );
-                    intent.putExtra( "title", model.getActivity().getProvider().getName() );
-                    intent.putExtra( "address", model.getActivity().getProvider().getAddress() );
-                    startActivity( intent );
-                } );
-
-            }
-        }
-
-        public class DealBlockHolder extends RecyclerView.ViewHolder {
-            private final HistoryRecyclerBinding mBinding;
-            private final PackageAdapter<PackageModel> packageAdapter = new PackageAdapter<>();
-
-            public DealBlockHolder(@NonNull View itemView) {
-                super(itemView);
-                mBinding = HistoryRecyclerBinding.bind(itemView);
-                mBinding.packageRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-                mBinding.packageRecycler.setAdapter(packageAdapter);
-            }
-
-            @SuppressLint("SetTextI18n")
-            public void setupData(MyWalletModel model) {
-
-                setListeners(model);
-                mBinding.btnTimeInfo.setVisibility(View.GONE);
-
-                mBinding.txtTitle.setVisibility(View.GONE);
-                mBinding.tvDescription.setVisibility(View.GONE);
-
-                if (model.getDeal().getVenue() != null) {
-                    mBinding.venueContainer.setVenueDetail(model.getDeal().getVenue());
-                } else {
-                    mBinding.venueContainer.setVisibility(View.VISIBLE);
-                }
-
-                Graphics.loadImage(model.getDeal().getImage(), mBinding.imgCover);
-
-
-                mBinding.txtDays.setText(model.getDeal().getDays());
-                mBinding.tvTypes.setText(model.getType());
-
-                mBinding.startDate.setText(String.format("From Date : %s", Utils.convertDateFormat(model.getDeal().getStartDate(), AppConstants.DATEFORMAT_SHORT, AppConstants.DATEFORMT_MM_DATE)));
-                mBinding.endDate.setText(String.format("Till Date : %s", Utils.convertDateFormat(model.getDeal().getEndDate(), AppConstants.DATEFORMAT_SHORT, AppConstants.DATEFORMT_MM_DATE)));
-                mBinding.tvDate.setText(Utils.convertDateFormat(model.getDeal().getEndDate(), AppConstants.DATEFORMAT_SHORT, AppConstants.DATEFORMAT_DD_MM_YYYY));
-                mBinding.txtTime.setText(String.format("%s - %s", Utils.convertTimeFormat(model.getDeal().getStartTime()), Utils.convertTimeFormat(model.getDeal().getEndTime())));
-
-                setPackageAdapter(model);
-
-//                if (model.getGiftTo() != null) {
-//                    mBinding.layoutGifedBy.setVisibility(View.VISIBLE);
-//                    mBinding.tvGiftBy.setText("Gift To : ");
-//                    Graphics.loadImageWithFirstLetter(model.getGiftTo().getImage(), mBinding.ivUserProfile, model.getGiftTo().getFirstName());
-//                    mBinding.tvUserName.setText(model.getGiftTo().getFullName());
-//                } else {
-//                    mBinding.layoutGifedBy.setVisibility(View.GONE);
-//                }
-
-
-                if (model.getItems() != null  && !model.getItems().isEmpty()) {
-                    List<String> list = model.getItems()
-                            .stream()
-                            .filter(model1 -> model1.getGiftMessage() != null)
-                            .flatMap(model1 -> model1.getGiftMessage().stream())
-                            .filter(s -> s != null && !s.isEmpty())
-                            .collect(Collectors.toList());
-
-//                    if (!list.isEmpty()) {
-//                        String finalText = String.join("\n", list);
-//
-//                        if (!finalText.isEmpty()) {
-//                            mBinding.messageLayout.setVisibility(View.VISIBLE);
-//                            mBinding.tvGiftMessage.setText(finalText);
-//                        } else {
-//                            mBinding.messageLayout.setVisibility(View.GONE);
-//                        }
-//                    }
-//                    else {
-//                        mBinding.messageLayout.setVisibility(View.GONE);
-//                    }
-
-                }
-
-
-            }
-
-
-            private void setListeners(MyWalletModel model) {
-
-//                mBinding.layoutGifedBy.setOnClickListener(view -> {
-//                    startActivity(new Intent(requireActivity(), OtherUserProfileActivity.class).putExtra("friendId", model.getGiftTo().getId()));
-//                });
-
-                mBinding.getRoot().setOnClickListener(v -> {
-                    startActivity(new Intent(requireActivity(), VoucherDetailScreenActivity.class).putExtra("id", model.getDeal().getId()));
-
-                });
-            }
-
-            private void setPackageAdapter(MyWalletModel model) {
-                List<PackageModel> list = new ArrayList<>();
-                PackageModel packageModel = new PackageModel();
-                if (model.getDeal() != null) {
-                    packageModel.setTitle(model.getDeal().getTitle());
-                    packageModel.setAmount(String.valueOf(model.getDeal().getDiscountedPrice()));
-                    packageModel.setDiscount(String.valueOf(model.getDeal().getDiscountValue()));
-                    packageModel.setDescription(model.getDeal().getDescription());
-                }
-                if (!model.getItems().isEmpty()) {
-                    packageModel.setQty(model.getItems().get(0).getUsedQty());
-                    packageModel.setPrice(model.getItems().get(0).getPrice());
-                }
-
-                list.add(packageModel);
-                if (list != null && !list.isEmpty()) {
-                    packageAdapter.updateData(list);
-                }
-            }
-
         }
 
         public class TicketBlockHolder extends RecyclerView.ViewHolder {
@@ -1400,52 +940,6 @@ public class HistoryFragment extends BaseFragment {
             }
         }
 
-    }
-
-    private class PackageAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder( UiUtils.getViewBy( parent, R.layout.item_wallet_package ) );
-        }
-
-        @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            PackageModel model = (PackageModel) getItem( position );
-            viewHolder.mBinding.tvName.setText( Utils.notNullString( model.getTitle() ) );
-
-
-            if (!TextUtils.isEmpty( model.getDescription().trim() )) {
-                viewHolder.mBinding.tvDescription.setText( Utils.notNullString( model.getDescription() ) );
-                viewHolder.mBinding.tvDescription.setVisibility( View.VISIBLE );
-            } else {
-                viewHolder.mBinding.tvDescription.setVisibility( View.GONE );
-            }
-
-            String modifiedString = model.getDiscount().contains( "%" ) ? model.getDiscount() : model.getDiscount() + "%";
-            if (model.getDiscount().equals("0")) {
-                viewHolder.mBinding.tvDiscount.setVisibility(View.GONE);
-            } else {
-                viewHolder.mBinding.tvDiscount.setVisibility(View.VISIBLE);
-                viewHolder.mBinding.tvDiscount.setText(Utils.notNullString(modifiedString));
-            }
-
-            int roundedDiscountValue = (int) Math.round(model.getPrice());
-            Utils.setStyledText(getActivity(),viewHolder.mBinding.tvDiscountPrice,String.valueOf(roundedDiscountValue));
-
-            viewHolder.mBinding.tvQty.setText( String.valueOf( model.getQty() ) );
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            private final ItemWalletPackageBinding mBinding;
-            public ViewHolder(@NonNull View itemView) {
-                super( itemView );
-                mBinding = ItemWalletPackageBinding.bind( itemView );
-            }
-        }
     }
 
     // endregion

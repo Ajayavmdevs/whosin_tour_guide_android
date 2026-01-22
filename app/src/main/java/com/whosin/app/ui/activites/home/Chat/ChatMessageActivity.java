@@ -94,7 +94,6 @@ import com.whosin.app.service.manager.AppSettingManager;
 import com.whosin.app.service.manager.BlockUserManager;
 import com.whosin.app.service.manager.ChatManager;
 import com.whosin.app.service.manager.CheckUserSession;
-import com.whosin.app.service.manager.PromoterProfileManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.BucketEventListModel;
 import com.whosin.app.service.models.BucketListModel;
@@ -111,16 +110,12 @@ import com.whosin.app.service.models.PromoterEventModel;
 import com.whosin.app.service.models.TypingEventModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.VenueObjectModel;
-import com.whosin.app.service.models.YachtClubModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.CmProfile.EventPdfDownloadActivity;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
 import com.whosin.app.ui.activites.Profile.ProfileFullScreenImageActivity;
-import com.whosin.app.ui.activites.Promoter.ComplementaryEventDetailActivity;
 import com.whosin.app.ui.activites.Story.StoryViewActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.reportedUser.ReportedUseSuccessDialog;
 import com.whosin.app.ui.activites.venue.VenueShareActivity;
@@ -316,16 +311,10 @@ public class ChatMessageActivity extends BaseActivity {
 
         binding.btnViewTicket.setOnClickListener(view -> {
             Utils.preventDoubleClick(view);
-            if (promoterEventModel == null) return;
-            startActivity(new Intent(activity, EventPdfDownloadActivity.class).putExtra("eventModel", new Gson().toJson(promoterEventModel)));
         });
 
         binding.eventDetailLayout.setOnClickListener(v -> {
             Utils.preventDoubleClick(v);
-            Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-            intent.putExtra("eventId", chatModel.getChatId());
-            intent.putExtra("type", "complementary");
-            activity.startActivity(intent);
         });
 
         binding.btnCamera.setOnClickListener(view1 -> {
@@ -337,10 +326,6 @@ public class ChatMessageActivity extends BaseActivity {
         binding.constraintHeader.setOnClickListener(view -> {
             if (chatModel.isPromoter()) {
                 if (SessionManager.shared.isSubAdmin()) return;
-                Intent intent = new Intent(this, ComplementaryEventDetailActivity.class);
-                intent.putExtra("eventId", chatModel.getChatId());
-                intent.putExtra("type", "Promoter");
-                startActivity(intent);
             } else {
                 String chatModelString = new Gson().toJson(chatModel);
                 // startActivity(new Intent(activity, ChatProfileActivity.class).putExtra("chatModel", chatModelString));
@@ -1632,7 +1617,6 @@ public class ChatMessageActivity extends BaseActivity {
 
                 mBinding.getRoot().setOnClickListener(v -> {
                     Utils.preventDoubleClick(v);
-                    Graphics.openVenueDetail(ChatMessageActivity.this, model.getId());
                 });
 
             }
@@ -1659,7 +1643,6 @@ public class ChatMessageActivity extends BaseActivity {
 
                 mBinding.getRoot().setOnClickListener(v -> {
                     Utils.preventDoubleClick(v);
-                    Graphics.openVenueDetail(ChatMessageActivity.this, model.getId());
                 });
 
             }
@@ -1770,7 +1753,6 @@ public class ChatMessageActivity extends BaseActivity {
                     if (model == null) {
                         return;
                     }
-                    Graphics.openVenueDetail(ChatMessageActivity.this, model.getId());
                 });
                 mBinding.getRoot().setOnClickListener(v -> {
                     Utils.preventDoubleClick(v);
@@ -1814,7 +1796,6 @@ public class ChatMessageActivity extends BaseActivity {
                     if (model == null) {
                         return;
                     }
-                    Graphics.openVenueDetail(ChatMessageActivity.this, model.getId());
                 });
                 mBinding.getRoot().setOnClickListener(v -> {
                     Utils.preventDoubleClick(v);
@@ -1904,9 +1885,6 @@ public class ChatMessageActivity extends BaseActivity {
 //                } );
 
                 binding.getRoot().setOnClickListener(v -> {
-                    OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                    dialog.offerId = offerModel.getId();
-                    dialog.show(getSupportFragmentManager(), "");
                 });
 
                 binding.layoutSend.setOnClickListener(v -> {
@@ -1961,9 +1939,6 @@ public class ChatMessageActivity extends BaseActivity {
 //                } );
 
                 binding.getRoot().setOnClickListener(v -> {
-                    OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-                    dialog.offerId = offerModel.getId();
-                    dialog.show(getSupportFragmentManager(), "");
                 });
 
                 binding.layoutSend.setOnClickListener(v -> {
@@ -1998,17 +1973,6 @@ public class ChatMessageActivity extends BaseActivity {
 
                 binding.getRoot().setOnClickListener(view -> {
                     Utils.preventDoubleClick(view);
-                    if (SessionManager.shared.getUser().isRingMember()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "complementary");
-                        activity.startActivity(intent);
-                    } else if (SessionManager.shared.getUser().isPromoter()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "Promoter");
-                        activity.startActivity(intent);
-                    }
                 });
 
                 binding.layoutSend.setOnClickListener(v -> {
@@ -2043,17 +2007,6 @@ public class ChatMessageActivity extends BaseActivity {
 
                 binding.getRoot().setOnClickListener(view -> {
                     Utils.preventDoubleClick(view);
-                    if (SessionManager.shared.getUser().isRingMember()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "complementary");
-                        activity.startActivity(intent);
-                    } else if (SessionManager.shared.getUser().isPromoter()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "Promoter");
-                        activity.startActivity(intent);
-                    }
                 });
 
             }
@@ -2082,17 +2035,6 @@ public class ChatMessageActivity extends BaseActivity {
 
                 binding.getRoot().setOnClickListener(view -> {
                     Utils.preventDoubleClick(view);
-                    if (SessionManager.shared.getUser().isRingMember()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "complementary");
-                        activity.startActivity(intent);
-                    } else if (SessionManager.shared.getUser().isPromoter()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "Promoter");
-                        activity.startActivity(intent);
-                    }
                 });
 
             }
@@ -2122,17 +2064,6 @@ public class ChatMessageActivity extends BaseActivity {
 
                 binding.getRoot().setOnClickListener(view -> {
                     Utils.preventDoubleClick(view);
-                    if (SessionManager.shared.getUser().isRingMember()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "complementary");
-                        activity.startActivity(intent);
-                    } else if (SessionManager.shared.getUser().isPromoter()) {
-                        Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                        intent.putExtra("eventId", promoterEventModel.getEventId());
-                        intent.putExtra("type", "Promoter");
-                        activity.startActivity(intent);
-                    }
                 });
 
             }
@@ -2619,17 +2550,7 @@ public class ChatMessageActivity extends BaseActivity {
     }
 
     public void updateReplyByTextView(TextView textView, String replyById) {
-        if (!TextUtils.isEmpty(replyById)) {
-            UserDetailModel replyByUserModel = PromoterProfileManager.shared.getSubAdmin(replyById);
-            if (replyByUserModel != null) {
-                textView.setVisibility(View.VISIBLE);
-                textView.setText("~ " + replyByUserModel.getFullName());
-            } else {
-                textView.setVisibility(View.GONE);
-            }
-        } else {
-            textView.setVisibility(View.GONE);
-        }
+        textView.setVisibility(View.GONE);
     }
 
     // endregion

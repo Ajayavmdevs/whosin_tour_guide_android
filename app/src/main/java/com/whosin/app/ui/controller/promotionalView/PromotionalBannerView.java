@@ -50,11 +50,7 @@ import com.whosin.app.service.manager.PromotionalBannerManager;
 import com.whosin.app.service.models.BannerModel;
 import com.whosin.app.service.models.PromotionalBannerModels.PromotionalListModel;
 import com.whosin.app.service.models.PromotionalBannerModels.PromotionalMainModel;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -325,15 +321,6 @@ public class PromotionalBannerView extends ConstraintLayout {
         if (view == null || view.getType().isEmpty()) return;
         Intent intent = null;
         switch (view.getType()) {
-            case "venue":
-                intent = new Intent(context, VenueActivity.class);
-                intent.putExtra("venueId", view.getTypeId());
-                break;
-            case "offer":
-                intent = new Intent(context, OfferDetailActivity.class);
-                intent.putExtra("offerId", view.getTypeId());
-                break;
-
             case "link":
                 try {
                     Uri webpage = Uri.parse(view.getTypeId());
@@ -345,14 +332,6 @@ public class PromotionalBannerView extends ConstraintLayout {
                     e.printStackTrace();
                 }
                 return;
-            case "event":
-                intent = new Intent(context, EventDetailsActivity.class);
-                intent.putExtra("eventId", view.getTypeId());
-                break;
-            case "activity":
-                intent = new Intent(context, ActivityListDetail.class);
-                intent.putExtra("activityId", view.getTypeId());
-                break;
             case "ticket":
                 intent = new Intent(context, RaynaTicketDetailActivity.class);
                 intent.putExtra("ticketId", view.getTypeId());

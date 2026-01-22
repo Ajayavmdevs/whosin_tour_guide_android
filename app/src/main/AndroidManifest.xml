@@ -134,78 +134,10 @@
             android:name=".ui.activites.raynaTicket.RaynaTicketListActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.EventGalleryViewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.CmProfile.MyGroupAllUserActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.CmProfile.EventPdfDownloadActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent" />
-        <activity
-            android:name=".ui.activites.SubAdminPromoter.SubAdminPromoterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.CmProfile.EventImInActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.PromoterPublic.PromoterPublicProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.CmProfile.CmPublicProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.CmProfile.CmProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.ComplementaryEventDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.CirclesUserDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.CirclesDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.PromoterCreateEventActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.PromoterVenuesActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.MyRingDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" /> <!-- <activity -->
         <!-- android:name=".ui.activites.Promoter.PromoterMyProfile" -->
         <!-- android:exported="false" -->
         <!-- android:screenOrientation="portrait" -->
         <!-- android:windowSoftInputMode="adjustPan" /> -->
-        <activity
-            android:name=".ui.activites.Promoter.CompleteYoutProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activites.Promoter.ApplicationRejectedActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.Promoter.PromoterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activites.auth.TwoFactorWaitingActivity"
             android:exported="false"
@@ -259,14 +191,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.bucket.EventListActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.home.event.EventBuyNowActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activites.wallet.RedeemActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -285,47 +209,6 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.TransparentForAppNotification" />
-        <activity
-            android:name=".ui.activites.offers.VoucherDetailScreenActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.bucket.MyInvitationActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.bucket.OutingListActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.offers.OfferDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.offers.ClaimHistoryActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.offers.ClaimBrunchActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent" />
-        <activity
-            android:name=".ui.activites.offers.ClaimSuccessActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent" />
-        <activity
-            android:name=".ui.activites.venue.VenueBuyNowActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.offers.ClaimOfferActivity"
-            android:exported="false"
-            android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent"
-            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.activites.Profile.OtherUserProfileActivity"
             android:exported="false"
@@ -367,23 +250,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.home.event.EventOrganizerDetailsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.home.event.EventDetailsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activites.home.activity.SeeAllRatingReviewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activites.home.activity.BannerWebViewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.home.SeeAllDetalisActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -399,23 +270,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.venue.Bucket.BucketListDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activites.venue.VenueGalleryActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.venue.ui.MyCartActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.category.CategoryActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.venue.ui.BuyNowActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -432,10 +287,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activites.venue.SelectMemberPackageActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.venue.VenueActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -513,10 +364,6 @@
         </activity>
         <activity
             android:name=".ui.activites.venue.MemberPackagesActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.home.activity.YourOrderActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

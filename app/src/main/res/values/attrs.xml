@@ -167,19 +167,6 @@
         <attr name="btnTxtIconColor" format="color"/>
         <attr name="btnTxtIcon" format="reference"/>
     </declare-styleable>
-    <declare-styleable name="PromoterEventUserInviteView">
-        <attr name="eventTitleText" format="string"/>
-        <attr name="circleImageViewWidth" format="dimension"/>
-        <attr name="circleImageViewHeight" format="dimension"/>
-        <attr name="promoterTitleTextStyle" format="reference"/>
-        <attr name="tvNameTextStyle" format="reference"/>
-        <attr name="backgroundColor" format="color"/>
-        <attr name="subtitleTextColor" format="color"/>
-        <attr name="countTitleText" format="boolean"/>
-        <attr name="isCircleNotClickable" format="boolean"/>
-        <attr name="isSeeAllShow" format="boolean"/>
-        />
-    </declare-styleable>
     <declare-styleable name="EmptyPlaceHolderView">
         <attr name="emptyPlaceTxtTitle" format="string"/>
         <attr name="emptyPlaceTxtSubTitle" format="string"/>

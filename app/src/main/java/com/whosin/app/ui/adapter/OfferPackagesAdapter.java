@@ -1,8 +1,6 @@
 package com.whosin.app.ui.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +18,6 @@ import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.ItemSubVenueBinding;
 import com.whosin.app.service.models.PackageModel;
-import com.whosin.app.ui.activites.offers.OfferDetailBottomSheet;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 
 public class OfferPackagesAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
@@ -80,11 +74,6 @@ public class OfferPackagesAdapter<T extends DiffIdentifier> extends DiffAdapter<
 
 
         viewHolder.mBinding.getRoot().setOnClickListener(view -> {
-            if (TextUtils.isEmpty(offerId)) return;
-            OfferDetailBottomSheet dialog = new OfferDetailBottomSheet();
-            dialog.offerId = offerId;
-            dialog.venue = true;
-            dialog.show(fragmentManager, "");
         });
 
     }

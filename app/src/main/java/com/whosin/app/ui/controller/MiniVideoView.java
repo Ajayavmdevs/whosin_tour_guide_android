@@ -39,18 +39,10 @@ import com.whosin.app.comman.Utils;
 import com.whosin.app.comman.VideoCache;
 import com.whosin.app.comman.interfaces.CommanCallback;
 import com.whosin.app.databinding.MiniVideoComponentLayoutBinding;
-import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.models.AdListModel;
-import com.whosin.app.ui.activites.Promoter.ComplementaryEventDetailActivity;
-import com.whosin.app.ui.activites.category.CategoryActivity;
 import com.whosin.app.ui.activites.home.MainHomeActivity;
-import com.whosin.app.ui.activites.home.activity.ActivityListDetail;
-import com.whosin.app.ui.activites.home.event.EventDetailsActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailActivity;
-import com.whosin.app.ui.activites.offers.VoucherDetailScreenActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.app.ui.activites.raynaTicket.RaynaVideoFullScreenPreviewActivity;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -177,34 +169,8 @@ public class MiniVideoView extends ConstraintLayout {
             if (model != null){
                 trackEventWithModel("ad_click",model);
                 switch (model.getType()) {
-                    case "venue":
-                        activity.startActivity(new Intent(activity, VenueActivity.class).putExtra("venueId", model.getTypeId()));
-                        break;
                     case "ticket":
                         activity.startActivity(new Intent(activity, RaynaTicketDetailActivity.class).putExtra("ticketId", model.getTypeId()));
-                        break;
-                    case "event":
-                        activity.startActivity(new Intent(activity, EventDetailsActivity.class).putExtra("eventId", model.getTypeId()));
-                        break;
-                    case "activity":
-                        activity.startActivity(new Intent(activity, ActivityListDetail.class).putExtra("activityId", model.getTypeId()));
-                        break;
-                    case "deal":
-                        activity.startActivity(new Intent(activity, VoucherDetailScreenActivity.class).putExtra("id", model.getTypeId()));
-                        break;
-                    case "offer":
-                        activity.startActivity(new Intent(activity, OfferDetailActivity.class).putExtra("offerId", model.getTypeId()));
-                        break;
-                    case "category":
-                        activity.startActivity(new Intent(activity, CategoryActivity.class).putExtra("categoryId", model.getTypeId()));
-                        break;
-                    case "promoter-event":
-                        if (SessionManager.shared.getUser().isRingMember()){
-                            Intent intent = new Intent(activity, ComplementaryEventDetailActivity.class);
-                            intent.putExtra("eventId", model.getTypeId());
-                            intent.putExtra("type","complementary");
-                            activity.startActivity(intent);
-                        }
                         break;
                 }
             }

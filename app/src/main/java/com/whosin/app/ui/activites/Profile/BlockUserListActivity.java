@@ -1,12 +1,9 @@
 package com.whosin.app.ui.activites.Profile;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -25,10 +22,8 @@ import com.whosin.app.service.manager.BlockUserManager;
 import com.whosin.app.service.models.CommonModel;
 import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.InviteFriendModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.rest.RestCallback;
-import com.whosin.app.ui.activites.bucket.OutingListActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 
 import java.util.List;

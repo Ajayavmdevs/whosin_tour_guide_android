@@ -4,28 +4,19 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 
 import com.whosin.app.R;
-import com.whosin.app.comman.AppConstants;
 import com.whosin.app.comman.Utils;
 import com.whosin.app.databinding.LayoutSocialFieldBinding;
-import com.whosin.app.service.manager.PromoterProfileManager;
 import com.whosin.app.service.models.VenueObjectModel;
-import com.whosin.app.ui.fragment.PromoterCreateEvent.PromoterEventInfoFragment;
-import com.whosin.app.ui.fragment.PromoterCreateEvent.SelectEventDateBottomSheet;
-import com.whosin.app.ui.fragment.home.SelectDateTimeBottomSheet;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,8 +33,6 @@ public class CustomSocialField extends ConstraintLayout {
     public boolean isCustomVenue = false;
 
     private boolean isEditTextEdittable = true;
-
-    private PromoterEventInfoFragment fragment;
 
     public boolean isOpenCalender= false;
 
@@ -104,26 +93,9 @@ public class CustomSocialField extends ConstraintLayout {
             Utils.preventDoubleClick(v);
             if (!isEditTextEdittable) {
                 if (isOpenCalender) {
-                    if (PromoterProfileManager.shared.isEventEdit) {
-                        String date = Utils.changeDateFormat(binding.editGetSocialInformation.getText().toString(), AppConstants.DATEFORMT_EEE_d_MMM_yyyy, AppConstants.DATEFORMAT_SHORT);
-                        String time = PromoterProfileManager.shared.promoterEventObject.get("startTime").getAsString();
-                        if (Utils.isPastEvent(date, time)) {
-                            Toast.makeText(context, "You can't change the date. Event has already started.", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        openCalenderDialog();
-                    }
-
+                    openCalenderDialog();
                 } else if (isOpenTime) {
-                    if (PromoterProfileManager.shared.isEventEdit) {
-                        String date = Utils.changeDateFormat(binding.editGetSocialInformation.getText().toString(), AppConstants.DATEFORMT_EEE_d_MMM_yyyy, AppConstants.DATEFORMAT_SHORT);
-                        String time = PromoterProfileManager.shared.promoterEventObject.get("startTime").getAsString();
-                        if (Utils.isPastEvent(date, time)) {
-                            Toast.makeText(context, "You can't change the time. Event has already started.", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        openTimeDialog();
-                    }
+                    openTimeDialog();
                 }
             }
         });
@@ -133,26 +105,10 @@ public class CustomSocialField extends ConstraintLayout {
             Utils.preventDoubleClick(v);
             if (!isEditTextEdittable) {
                 if (isOpenCalender) {
-                    if (PromoterProfileManager.shared.isEventEdit && PromoterProfileManager.shared.promoterEventModel.getStatus().equals("in-progress")) {
-                        String date = Utils.changeDateFormat(binding.editGetSocialInformation.getText().toString(), AppConstants.DATEFORMT_EEE_d_MMM_yyyy, AppConstants.DATEFORMAT_SHORT);
-                        String time = PromoterProfileManager.shared.promoterEventObject.get("startTime").getAsString();
-                        if (Utils.isPastEvent(date, time)) {
-                            Toast.makeText(context, "You can't change the date. Event has already started.", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        openCalenderDialog();
-                    }
+                    openCalenderDialog();
 
                 } else if (isOpenTime) {
-                    if (PromoterProfileManager.shared.isEventEdit && PromoterProfileManager.shared.promoterEventModel.getStatus().equals("in-progress")) {
-                        String date = Utils.changeDateFormat(binding.editGetSocialInformation.getText().toString(), AppConstants.DATEFORMT_EEE_d_MMM_yyyy, AppConstants.DATEFORMAT_SHORT);
-                        String time = PromoterProfileManager.shared.promoterEventObject.get("startTime").getAsString();
-                        if (Utils.isPastEvent(date, time)) {
-                            Toast.makeText(context, "You can't change the time. Event has already started.", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        openTimeDialog();
-                    }
+                    openTimeDialog();
                 }
             }
 
@@ -190,66 +146,12 @@ public class CustomSocialField extends ConstraintLayout {
         binding.title.setText(text);
     }
 
-    public void setUpdata(boolean isEditable, PromoterEventInfoFragment fragment) {
-
-        this.isEditTextEdittable = isEditable;
-        this.fragment = fragment;
-
-
-        if (!isEditable) {
-            binding.editGetSocialInformation.setFocusable(false);
-            binding.editGetSocialInformation.setClickable(true);
-            binding.editGetSocialInformation.setCursorVisible(false);
-        }
-
-
-        binding.editGetSocialInformation.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (fragment != null){
-                    fragment.checkIfDataIsFilled();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-
-    }
-
     // endregion
     // --------------------------------------
     // region Private
     // --------------------------------------
 
     private void openCalenderDialog() {
-        SelectEventDateBottomSheet selectDateTimeDialog = new SelectEventDateBottomSheet();
-        if (isCustomVenue){
-            selectDateTimeDialog.isCustomVenue = isCustomVenue;
-        }else {
-            if (venueObjectModel != null){
-                selectDateTimeDialog.venueObjectModel = venueObjectModel;
-            }
-        }
-        if (!TextUtils.isEmpty(binding.editGetSocialInformation.getText())){
-            selectDateTimeDialog.AlreadTSelectedDate = binding.editGetSocialInformation.getText().toString();
-        }
-        selectDateTimeDialog.callback = data -> {
-            if (!Utils.isNullOrEmpty(data)) {
-                binding.editGetSocialInformation.setText(data);
-            }
-        };
-        if (manager != null) {
-            selectDateTimeDialog.show(manager, "1");
-        }
     }
 
 
@@ -277,11 +179,6 @@ public class CustomSocialField extends ConstraintLayout {
 
                 String formattedTimes = String.format("from %s till %s", fromTime, tillTime);
                 binding.editGetSocialInformation.setText(formattedTimes);
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    PromoterProfileManager.shared.promoterEventObject.addProperty("startTime", Utils.convertTo24HourFormat(fromTime));
-                    PromoterProfileManager.shared.promoterEventObject.addProperty("endTime", Utils.convertTo24HourFormat(tillTime));
-                }
 
             }, minTillCalendar.get(Calendar.HOUR_OF_DAY), minTillCalendar.get(Calendar.MINUTE), false);
 

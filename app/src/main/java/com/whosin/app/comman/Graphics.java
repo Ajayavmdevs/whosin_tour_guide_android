@@ -1,6 +1,5 @@
 package com.whosin.app.comman;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -27,7 +26,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +64,6 @@ import com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout;
 import com.whosin.app.service.models.OffersModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.VenueObjectModel;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 import com.whosin.app.ui.activites.venue.VenueShareActivity;
 
 import java.util.ArrayList;
@@ -976,15 +973,6 @@ public class Graphics {
                 .setTextColor(context.getColor(R.color.black)).setTextGravity(Gravity.CENTER).setTextTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD)).setSelectedTextColor(Color.WHITE).setMenuColor(Color.WHITE)
                 .setOnMenuItemClickListener(onMenuItemClickListener).setAutoDismiss(true).build();
         powerMenu.showAsDropDown(view);
-    }
-
-
-    public static void openVenueDetail(Activity activity, String venueId) {
-        Intent intent = new Intent(Graphics.context, VenueActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("venueId", venueId);
-        activity.startActivity(intent);
-//        activity.overridePendingTransition(R.anim.slide_up, R.anim.fade_out);
     }
 
     public static void openShareDialog(Activity activity, VenueObjectModel venueObjectModel, UserDetailModel userDetailModel, OffersModel offersModel, String type) {

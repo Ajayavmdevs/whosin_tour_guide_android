@@ -2,7 +2,6 @@ package com.whosin.app.comman;
 
 import static android.net.NetworkCapabilities.TRANSPORT_CELLULAR;
 import static android.net.NetworkCapabilities.TRANSPORT_WIFI;
-import static com.whosin.app.comman.AppConstants.DATEFORMAT_ISO8601UTC;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,7 +10,6 @@ import android.app.DatePickerDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,7 +32,6 @@ import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -48,7 +45,6 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
-import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -57,14 +53,11 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
 import android.util.TypedValue;
-import android.view.PixelCopy;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -96,7 +89,6 @@ import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.AppSettingManager;
 import com.whosin.app.service.manager.SessionManager;
 import com.whosin.app.service.manager.TranslationManager;
-import com.whosin.app.service.models.AppSettingModel;
 import com.whosin.app.service.models.ContainerModel;
 import com.whosin.app.service.models.CurrencyModel;
 import com.whosin.app.service.models.OffersModel;
@@ -106,10 +98,6 @@ import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.VenueObjectModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.Profile.OtherUserProfileActivity;
-import com.whosin.app.ui.activites.offers.ClaimBrunchActivity;
-import com.whosin.app.ui.activites.offers.ClaimOfferActivity;
-import com.whosin.app.ui.activites.offers.OfferDetailActivity;
-import com.whosin.app.ui.fragment.ProfileFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -260,15 +248,6 @@ public class Utils {
 //        } );
 //        inviteFriendDialog.show( fragmentManager, "1" );
 //    }
-
-    public static void openClaimScreen(SpecialOfferModel specialOfferModel, VenueObjectModel venueObjectModel, Activity activity) {
-        if (!Utils.isValidActivity(activity)) { return; }
-        if (specialOfferModel.getType().equals("total")) {
-            activity.startActivity(new Intent(activity, ClaimOfferActivity.class).putExtra("specialOfferModel", new Gson().toJson(specialOfferModel)).putExtra("venueModel", new Gson().toJson(venueObjectModel)));
-        } else {
-            activity.startActivity(new Intent(activity, ClaimBrunchActivity.class).putExtra("specialOfferModel", new Gson().toJson(specialOfferModel)).putExtra("venueModel", new Gson().toJson(venueObjectModel)));
-        }
-    }
 
     public static String followButtonTitle(String status) {
         switch (status) {

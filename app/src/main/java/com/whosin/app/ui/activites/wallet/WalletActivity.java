@@ -9,7 +9,6 @@ import com.whosin.app.R;
 import com.whosin.app.databinding.ActivityWalletBinding;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.adapter.ViewPagerAdapter;
-import com.whosin.app.ui.fragment.wallet.GiftsFragment;
 import com.whosin.app.ui.fragment.wallet.HistoryFragment;
 import com.whosin.app.ui.fragment.wallet.MyItemsFragment;
 

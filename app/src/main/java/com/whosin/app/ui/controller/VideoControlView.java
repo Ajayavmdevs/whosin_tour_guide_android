@@ -224,10 +224,6 @@ public class VideoControlView extends ConstraintLayout {
             VideoComponentModel videoModel = videos.get(currentVideoIndex);
             if (!TextUtils.isEmpty(videoModel.getTicketId())){
                 activity.startActivity(new Intent(activity, RaynaTicketDetailActivity.class).putExtra("ticketId",videoModel.getTicketId()));
-            }else {
-                if (videoModel.getVenue() != null) {
-                    Graphics.openVenueDetail(activity, videoModel.getVenue().getId());
-                }
             }
 
         });

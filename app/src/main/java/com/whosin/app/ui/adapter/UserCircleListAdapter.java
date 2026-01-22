@@ -15,7 +15,6 @@ import com.whosin.app.comman.Graphics;
 import com.whosin.app.comman.ui.UiUtils;
 import com.whosin.app.databinding.ItemImageSlideRecyclerBinding;
 import com.whosin.app.service.models.PromoterCirclesModel;
-import com.whosin.app.ui.activites.venue.VenueActivity;
 
 public class UserCircleListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
 

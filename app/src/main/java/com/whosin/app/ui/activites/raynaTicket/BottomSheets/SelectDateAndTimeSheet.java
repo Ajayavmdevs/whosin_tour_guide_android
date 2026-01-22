@@ -1,7 +1,6 @@
 package com.whosin.app.ui.activites.raynaTicket.BottomSheets;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,28 +36,21 @@ import com.whosin.app.databinding.RaynaDateSelectItemBinding;
 import com.whosin.app.databinding.RaynaTimeSlotNewItemBinding;
 import com.whosin.app.service.DataService;
 import com.whosin.app.service.manager.RaynaTicketManager;
-import com.whosin.app.service.manager.TranslationManager;
 import com.whosin.app.service.models.ContainerListModel;
-import com.whosin.app.service.models.TimeSlotModel;
 import com.whosin.app.service.models.rayna.RaynaOprationDaysModel;
-import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.models.rayna.RaynaTimeSlotModel;
 import com.whosin.app.service.models.rayna.TourOptionsModel;
-import com.whosin.app.service.models.whosinTicketModel.RaynaWhosinModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.commonBottomSheets.ChatOptionsBottomSheet;
-import com.whosin.app.ui.fragment.PromoterCreateEvent.SelectEventDateBottomSheet;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.TimeZone;
 
 import retrofit2.Call;
 

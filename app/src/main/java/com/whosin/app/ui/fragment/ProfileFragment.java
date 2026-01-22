@@ -51,11 +51,7 @@ import com.whosin.app.ui.activites.Profile.FollowingActivity;
 import com.whosin.app.ui.activites.Profile.FollowresActivity;
 import com.whosin.app.ui.activites.Profile.ProfileFullScreenImageActivity;
 import com.whosin.app.ui.activites.Profile.UpdateProfileActivity;
-import com.whosin.app.ui.activites.Promoter.PromoterActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
-import com.whosin.app.ui.activites.home.event.MutualFriendFragment;
-import com.whosin.app.ui.fragment.CmProfile.CmTmpProfileFragment;
-import com.whosin.app.ui.fragment.CmProfile.MyActionFragment;
 import com.whosin.app.ui.fragment.Profile.FeedFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -104,8 +100,6 @@ public class ProfileFragment extends BaseActivity {
             tabList.add(new RatingModel("My Actions", 0));
             tabList.add(new RatingModel("Feed", 0));
 
-            fragmentList.add(0, new CmTmpProfileFragment());
-            fragmentList.add(new MyActionFragment());
             fragmentList.add(new FeedFragment());
         } else {
             tabList.add(new RatingModel("Feed"));
@@ -157,13 +151,7 @@ public class ProfileFragment extends BaseActivity {
             Utils.preventDoubleClick(v);
             if (complimentaryProfileModel == null) return;
             if (complimentaryProfileModel.getProfile() == null) return;
-            if (SessionManager.shared.getUser().isRingMember()) {
-                startActivity(new Intent(activity, PromoterActivity.class).putExtra("isPromoter", false)
-                        .putExtra("isEditProfile", true)
-                        .putExtra("userProfileModel", new Gson().toJson(complimentaryProfileModel.getProfile())));
-            } else {
-                startActivity(new Intent(activity, UpdateProfileActivity.class));
-            }
+            startActivity(new Intent(activity, UpdateProfileActivity.class));
         });
 
 
@@ -489,12 +477,6 @@ public class ProfileFragment extends BaseActivity {
             Graphics.loadImageWithFirstLetter(model.getImage(), viewHolder.vBinding.civPlayers, Utils.notNullString(model.getFirstName()));
             viewHolder.itemView.setOnClickListener(view -> {
                 Utils.preventDoubleClick(view);
-                if (SessionManager.shared.getUser() == null) {
-                    return;
-                }
-                MutualFriendFragment mutualFriendFragment = new MutualFriendFragment();
-                mutualFriendFragment.mutualFriendsList = SessionManager.shared.getUser();
-                mutualFriendFragment.show(getSupportFragmentManager(), "");
             });
         }
 

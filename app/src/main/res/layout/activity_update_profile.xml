@@ -599,7 +599,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_title_social"
+                    app:layout_constraintTop_toBottomOf="@id/tv_social_account_title"
                     app:socialFieldHintText="@string/add_your_instagram_handle"
                     app:socialFieldIcon="@drawable/instagram_icon" />
 

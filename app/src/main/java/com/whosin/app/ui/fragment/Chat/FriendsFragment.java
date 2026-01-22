@@ -42,7 +42,6 @@ import com.whosin.app.service.models.VenueObjectModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.home.Chat.ChatMessageActivity;
-import com.whosin.app.ui.activites.venue.Bucket.ContactShareBottomSheet;
 import com.whosin.app.ui.fragment.comman.BaseFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -130,31 +129,6 @@ public class FriendsFragment extends BaseFragment {
     public void setListeners() {
         binding.addChatFriend.setOnClickListener(view -> {
             Utils.preventDoubleClick( view );
-            ContactShareBottomSheet contactDialog = new ContactShareBottomSheet();
-            contactDialog.myWallet = true;
-            contactDialog.setShareListener(data -> {
-                if (!data.isEmpty()) {
-                    ContactListModel model = data.get(0);
-                    ChatModel chatModel = new ChatModel();
-                    chatModel.setImage(model.getImage());
-                    chatModel.setTitle(model.getFullName());
-                    chatModel.setChatType("friend");
-                    RealmList<String> idList = new RealmList<>();
-                    idList.add(SessionManager.shared.getUser().getId());
-                    idList.add(model.getId());
-                    chatModel.setMembers(idList);
-                    Collections.sort(idList);
-                    String joinedString = String.join(",", idList);
-                    chatModel.setChatId(joinedString);
-
-                    if(!model.getId().equals( SessionManager.shared.getUser().getId()) ){
-                        startActivity( new Intent(requireActivity(),ChatMessageActivity.class)
-                                .putExtra("chatModel", new Gson().toJson(chatModel)) );
-                    }
-
-                }
-            });
-            contactDialog.show(getChildFragmentManager(), "1");
         });
 
         binding.edtSearch.addTextChangedListener(new TextWatcher() {

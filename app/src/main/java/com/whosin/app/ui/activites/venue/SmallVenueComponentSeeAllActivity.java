@@ -130,7 +130,6 @@ public class SmallVenueComponentSeeAllActivity extends BaseActivity {
                 viewHolder.mBinding.txtAddress.setText( model.getAddress() );
                 Graphics.loadRoundImage(model.getLogo(), viewHolder.mBinding.image);
 
-                viewHolder.mBinding.getRoot().setOnClickListener( v -> Graphics.openVenueDetail( activity, model.getId() ) );
                 if (hasStory( model.getId() )) {
                     Graphics.setStoryRing( model.getId(), viewHolder.mBinding.roundLinear );
                 }
