@@ -147,51 +147,57 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/divider_with_text_layout"
+        android:id="@+id/addOnLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/_9sdp"
-        android:layout_marginRight="@dimen/_9sdp"
-        android:visibility="gone"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:visibility="gone">
 
-        <!-- Left divider -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="@color/tour_option" />
-
-        <!-- Center text -->
-        <TextView
-            style="@style/txt12SemiBold"
-            android:layout_width="wrap_content"
+        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:text="Add-ons"
-            android:textAlignment="center" />
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:background="@drawable/tour_option_spinner_stock_bg"
+            app:corner_radius="@dimen/_6sdp">
 
-        <!-- Right divider -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="@color/tour_option" />
+            <LinearLayout
+                android:id="@+id/divider_with_text_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/txt12SemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:text="Add-Ons" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/tour_option"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_add_ons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
     </LinearLayout>
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_add_ons"
-        android:layout_marginRight="@dimen/_9sdp"
-        android:layout_marginLeft="@dimen/_9sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <View
         android:layout_width="match_parent"

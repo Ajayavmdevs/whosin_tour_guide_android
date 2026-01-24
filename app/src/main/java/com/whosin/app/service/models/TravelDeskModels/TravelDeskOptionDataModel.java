@@ -173,6 +173,38 @@ public class TravelDeskOptionDataModel implements DiffIdentifier, ModelProtocol 
     @Expose
     public String infantDescription = "";
 
+    @SerializedName("discount")
+    @Expose
+    private Integer discount;
+
+    @SerializedName("discountType")
+    @Expose
+    private String discountType = "";
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public String getDiscountType() {
+        return discountType;
+    }
+
+    public void setDiscountType(String discountType) {
+        this.discountType = discountType;
+    }
+
+    public String getDiscountText() {
+        if (discount == null || discount <= 0) return "";
+
+        return "flat".equalsIgnoreCase(discountType)
+                ? discount + " OFF"
+                : discount + "% OFF";
+    }
+
 
     public String getAdultTitle() {
         return Utils.isNullOrEmpty(adultTitle) ? "Adult" : adultTitle;
@@ -599,7 +631,7 @@ public class TravelDeskOptionDataModel implements DiffIdentifier, ModelProtocol 
 
 
     public String getStartDate(){
-      return getStringSafe(TravelDeskPriceModel::getDateStart);
+        return getStringSafe(TravelDeskPriceModel::getDateStart);
     }
 
     public String getEndDate(){
@@ -686,5 +718,15 @@ public class TravelDeskOptionDataModel implements DiffIdentifier, ModelProtocol 
 
     public void setRooms(List<JpHotelRoomModel> rooms) {
         this.rooms = rooms;
+    }
+
+    private boolean isExpanded = true;
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
     }
 }

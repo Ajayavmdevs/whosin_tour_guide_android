@@ -409,6 +409,39 @@ public class TourOptionsModel implements DiffIdentifier, ModelProtocol {
     @Expose
     private Integer order;
 
+    @SerializedName("discount")
+    @Expose
+    private Integer discount;
+
+    @SerializedName("discountType")
+    @Expose
+    private String discountType = "";
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public String getDiscountType() {
+        return discountType;
+    }
+
+    public void setDiscountType(String discountType) {
+        this.discountType = discountType;
+    }
+
+    public String getDiscountText() {
+        if (discount == null || discount <= 0) return "";
+
+        return "flat".equalsIgnoreCase(discountType)
+                ? discount + " OFF"
+                : discount + "% OFF";
+    }
+
+
     public Integer getOrder() {
         return order;
     }
@@ -1378,12 +1411,12 @@ public class TourOptionsModel implements DiffIdentifier, ModelProtocol {
                                         )
                                 );
                             } else {
-                              availableAddon.setAvailabilityTime(this.availabilityTime);
-                          }
+                                availableAddon.setAvailabilityTime(this.availabilityTime);
+                            }
                         } else {
                             availableAddon.setAvailabilityTime(cartAddon.getTimeSlot());
                         }
-                        
+
                         boolean exists = false;
                         for (TourOptionsModel m : RaynaTicketManager.shared.selectedAddonModels) {
                             if (m.get_id().equals(availableAddon.get_id())) {
@@ -1673,5 +1706,15 @@ public class TourOptionsModel implements DiffIdentifier, ModelProtocol {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    private boolean isExpanded = true;
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
     }
 }

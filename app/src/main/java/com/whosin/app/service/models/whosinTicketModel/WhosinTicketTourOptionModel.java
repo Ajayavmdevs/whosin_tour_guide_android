@@ -352,6 +352,14 @@ public class WhosinTicketTourOptionModel implements DiffIdentifier, ModelProtoco
     @Expose
     public String infantDescription = "";
 
+    @SerializedName("discount")
+    @Expose
+    private Integer discount;
+
+    @SerializedName("discountType")
+    @Expose
+    private String discountType = "";
+
     private int tmpAdultValue = 0;
     private int tmpChildValue = 0;
     private int tmpInfantValue = 0;
@@ -364,6 +372,29 @@ public class WhosinTicketTourOptionModel implements DiffIdentifier, ModelProtoco
     public int whosinTypeTicketSlotPosition = -1;
     private boolean isFirestTimeUpdate = true;
 
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public String getDiscountType() {
+        return discountType;
+    }
+
+    public void setDiscountType(String discountType) {
+        this.discountType = discountType;
+    }
+
+    public String getDiscountText() {
+        if (discount == null || discount <= 0) return "";
+
+        return "flat".equalsIgnoreCase(discountType)
+                ? discount + " OFF"
+                : discount + "% OFF";
+    }
 
     public String getUnit() {
         return Utils.notNullString(unit);
@@ -1358,5 +1389,14 @@ public class WhosinTicketTourOptionModel implements DiffIdentifier, ModelProtoco
         return null;
     }
 
+    private boolean isExpanded = true;
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
 
 }

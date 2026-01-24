@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -34,6 +35,7 @@ import com.whosin.app.service.models.BigBusModels.BigBusOptionsItemModel;
 import com.whosin.app.service.models.BigBusModels.BigBusPricingFromItemModel;
 import com.whosin.app.service.models.BigBusModels.BigBusUnitsItemModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
+import com.whosin.app.service.models.whosinTicketModel.WhosinTicketTourOptionModel;
 import com.whosin.app.ui.activites.Profile.ProfileFullScreenImageActivity;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 import com.whosin.app.ui.activites.raynaTicket.BottomSheets.RaynaMoreInfoBottomSheet;
@@ -68,7 +70,9 @@ public class BigBusTourOptionActivity extends BaseActivity {
         binding.constraintHeader.tvTitle.setText(getValue("tour_options"));
         binding.tvNext.setText(getValue("next"));
 
-        ((SimpleItemAnimator) Objects.requireNonNull(binding.tourOptionRecyclerView.getItemAnimator())).setSupportsChangeAnimations(false);
+        DefaultItemAnimator animator = new DefaultItemAnimator();
+        animator.setSupportsChangeAnimations(false);
+        binding.tourOptionRecyclerView.setItemAnimator(animator);
         binding.tourOptionRecyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         binding.tourOptionRecyclerView.setAdapter(ticketTourOptionListAdapter);
 
@@ -212,6 +216,9 @@ public class BigBusTourOptionActivity extends BaseActivity {
     // --------------------------------------
 
     private class TicketTourOptionListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
+
+        private boolean isInitialStateApplied = false;
+
         @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -226,10 +233,25 @@ public class BigBusTourOptionActivity extends BaseActivity {
             boolean isLastItem = position == getItemCount() - 1;
             if (model == null) return;
 
+            if (!isInitialStateApplied) {
+                for (int i = 0; i < getItemCount(); i++) {
+                    BigBusOptionsItemModel m = (BigBusOptionsItemModel) getItem(i);
+                    if (m != null) {
+                        m.setExpanded(i == 0);
+                    }
+                }
+                isInitialStateApplied = true;
+            }
+
             viewHolder.binding.selectTourDateLayout.setHint(getValue("date_time_placeHolder"));
             viewHolder.binding.tourTimeSlotTv.setHint(getValue("time_slot"));
-            viewHolder.binding.btnMoreInfoView.setText(getValue("more_info"));
+            viewHolder.binding.btnMoreInfoView.setText(getValue("Inclusions & Details"));
             viewHolder.binding.tvSelectPickUp.setHint(getValue("select_pickup_location"));
+
+            viewHolder.binding.horizontalContainer.setOnClickListener(v -> {
+                model.setExpanded(!model.isExpanded());
+                notifyItemChanged(position);
+            });
 
             Utils.updateNoteText(model.getMinNumOfPeople(),model.getMaxNumOfPeople(),viewHolder.binding.tvNote,model.getNotes());
 
@@ -253,20 +275,20 @@ public class BigBusTourOptionActivity extends BaseActivity {
                 viewHolder.binding.tourTimeSlotTv.setText(slotText);
             }
 
-            if (!model.isDescriptionProcessed()){
-                if (!TextUtils.isEmpty(model.getShortDescription())) {
-                    viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
-                    Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getShortDescription()), 1, "... " + getValue("see_more"), v -> {
-                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
-                        bottomSheet.title = getValue("description");
-                        bottomSheet.formattedDescription = model.getShortDescription();
-                        bottomSheet.show(getSupportFragmentManager(),"");
-                    });
-                } else {
-                    viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
-                }
-                model.setDescriptionProcessed(true);
-            }
+//            if (!model.isDescriptionProcessed()){
+//                if (!TextUtils.isEmpty(model.getShortDescription())) {
+//                    viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
+//                    Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getShortDescription()), 1, "... " + getValue("see_more"), v -> {
+//                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
+//                        bottomSheet.title = getValue("description");
+//                        bottomSheet.formattedDescription = model.getShortDescription();
+//                        bottomSheet.show(getSupportFragmentManager(),"");
+//                    });
+//                } else {
+//                    viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
+//                }
+//                model.setDescriptionProcessed(true);
+//            }
 
 
             if (model.isPickupAvailable() && model.isPickupRequired()) {
@@ -282,13 +304,16 @@ public class BigBusTourOptionActivity extends BaseActivity {
 
             viewHolder.loadOptionImage(model);
 
-
-            RaynaTicketDetailModel raynaTicketDetailModel = RaynaTicketManager.shared.raynaTicketDetailModel;
-            if (raynaTicketDetailModel.getDiscount() != 0){
+            if (model.getDiscount() != null && model.getDiscount() > 0){
                 viewHolder.binding.discountTagLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.tvDiscountTag.setText(raynaTicketDetailModel.getDiscount() + " %");
+                if ("flat".equalsIgnoreCase(model.getDiscountType())) {
+                    Utils.setStyledText(activity, viewHolder.binding.tvDiscountTag, model.getDiscountText());
+                } else {
+                    viewHolder.binding.tvDiscountTag.setText(model.getDiscountText());
+                }
             }else {
                 viewHolder.binding.discountTagLayout.setVisibility(View.GONE);
+                viewHolder.binding.tvDiscountTag.setText("");
             }
 
             viewHolder.updatePaxBg(model);
@@ -299,6 +324,7 @@ public class BigBusTourOptionActivity extends BaseActivity {
             } else {
                 Utils.setBottomMargin(holder.itemView, 0);
             }
+            applyExpandState(viewHolder, model);
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
@@ -736,8 +762,8 @@ public class BigBusTourOptionActivity extends BaseActivity {
 
 
                 int drawableRes = !TextUtils.isEmpty(model.getTourOptionSelectDate())
-                        ? R.drawable.selected_tour_option_people_stock_bg
-                        : R.drawable.tour_option_spinner_stock_bg;
+                        ? R.drawable.ticket_date_selected_bg
+                        : R.drawable.ticket_date_selection_bg;
                 binding.dateTimeLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
 
             }
@@ -752,6 +778,24 @@ public class BigBusTourOptionActivity extends BaseActivity {
                 model.setFirestTimeUpdate(true);
             }
 
+        }
+
+        private void applyExpandState(ViewHolder holder, BigBusOptionsItemModel model) {
+
+            View content = holder.binding.hideShowLayout;
+
+            if (model.isExpanded()) {
+                content.setVisibility(View.VISIBLE);
+                content.setAlpha(1f);
+            } else {
+                content.setAlpha(0f);
+                content.setVisibility(View.GONE);
+            }
+
+            // Arrow (instant)
+            holder.binding.expandedArrow.setRotation(
+                    model.isExpanded() ? 90f : 360f
+            );
         }
 
     }

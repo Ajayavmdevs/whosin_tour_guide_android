@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -57,6 +58,7 @@ import com.whosin.app.ui.activites.raynaTicket.BottomSheets.CancellationPolicyBo
 import com.whosin.app.ui.activites.raynaTicket.BottomSheets.RaynaMoreInfoBottomSheet;
 import com.whosin.app.ui.activites.raynaTicket.BottomSheets.ReadMoreBottomSheet;
 import com.whosin.app.ui.activites.raynaTicket.BottomSheets.SelectDateAndTimeSheet;
+import com.whosin.app.ui.activites.whosinTicket.WhosinTicketTourOptionActivity;
 
 
 import java.lang.reflect.Field;
@@ -100,7 +102,8 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
         binding.constraintHeader.tvTitle.setText(getValue("tour_options"));
         binding.tvNext.setText(getValue("next"));
 
-        ((SimpleItemAnimator) Objects.requireNonNull(binding.tourOptionRecyclerView.getItemAnimator())).setSupportsChangeAnimations(false);
+        DefaultItemAnimator animator = new DefaultItemAnimator();
+        animator.setSupportsChangeAnimations(false);
         binding.tourOptionRecyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         binding.tourOptionRecyclerView.setAdapter(ticketTourOptionListAdapter);
 
@@ -303,7 +306,7 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
             }
         }
 
-         updateButtonColor();
+        updateButtonColor();
     }
 
     private void processTourPolicies(final int index) {
@@ -413,10 +416,12 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
                 }
 
                 if (model.data != null && !model.data.isEmpty()) {
-                    model.data.sort(Comparator.comparing(
-                            TourOptionsModel::getOrder,
-                            Comparator.nullsLast(Comparator.reverseOrder())
-                    ));
+                    model.data.sort(
+                            Comparator.comparing(
+                                    TourOptionsModel::getOrder,
+                                    Comparator.nullsLast(Integer::compareTo)
+                            )
+                    );
                     originalTourOptionsList.clear();
                     originalTourOptionsList.addAll(model.data);
 
@@ -451,7 +456,7 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
                 if (!Utils.isNullOrEmpty(error) || model == null) {
                     String tmpError = "";
                     if (error.contains("You cannot book this tour on selected date due to cutoff time.")){
-                       tmpError = error + " for " + tourOptionsModel.getOptionDetail().getOptionName();
+                        tmpError = error + " for " + tourOptionsModel.getOptionDetail().getOptionName();
                     }else {
                         tmpError = error;
                     }
@@ -496,16 +501,16 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
                 }
 
                 if (!timeSlotList.isEmpty()) {
-                   if (tourOptionsModel.getRaynaTimeSlotModel() != null){
-                       boolean isAnyMatch = timeSlotList.stream().anyMatch(p ->
-                               p.getTourOptionId() == tourOptionsModel.getTourOptionId() &&
-                                       p.getTimeSlotId().equals(tourOptionsModel.getRaynaTimeSlotModel().getTimeSlotId())
-                       );
+                    if (tourOptionsModel.getRaynaTimeSlotModel() != null){
+                        boolean isAnyMatch = timeSlotList.stream().anyMatch(p ->
+                                p.getTourOptionId() == tourOptionsModel.getTourOptionId() &&
+                                        p.getTimeSlotId().equals(tourOptionsModel.getRaynaTimeSlotModel().getTimeSlotId())
+                        );
 
-                       callback.onReceive(isAnyMatch);
-                   }else {
-                       callback.onReceive(false);
-                   }
+                        callback.onReceive(isAnyMatch);
+                    }else {
+                        callback.onReceive(false);
+                    }
                 }else{
                     callback.onReceive(false);
                 }
@@ -521,6 +526,8 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
 
     private class TicketTourOptionListAdapter<T extends DiffIdentifier> extends DiffAdapter<T, RecyclerView.ViewHolder> {
 
+        private boolean isInitialStateApplied = false;
+
         @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -535,9 +542,24 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
             boolean isLastItem = position == getItemCount() - 1;
             if (model == null) return;
 
+            if (!isInitialStateApplied) {
+                for (int i = 0; i < getItemCount(); i++) {
+                    TourOptionsModel m = (TourOptionsModel) getItem(i);
+                    if (m != null) {
+                        m.setExpanded(i == 0);
+                    }
+                }
+                isInitialStateApplied = true;
+            }
+
             viewHolder.binding.selectTourDateLayout.setHint(getValue("date_time_placeHolder"));
             viewHolder.binding.tourTimeSlotTv.setHint(getValue("time_slot"));
-            viewHolder.binding.btnMoreInfoView.setText(getValue("more_info"));
+            viewHolder.binding.btnMoreInfoView.setText(getValue("Inclusions & Details"));
+
+            viewHolder.binding.horizontalContainer.setOnClickListener(v -> {
+                model.setExpanded(!model.isExpanded());
+                notifyItemChanged(position);
+            });
 
             viewHolder.setUpAdultChildData(model);
 
@@ -546,7 +568,7 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
             Utils.updateNoteText(RaynaTicketManager.shared.raynaTicketDetailModel.getTmpMinPax(),RaynaTicketManager.shared.raynaTicketDetailModel.getTmpMaxPax(),viewHolder.binding.tvNote,model.getNotes());
 
             viewHolder.binding.tvOptionName.setText(model.getOptionDetail().getOptionName());
-            viewHolder.binding.tvOptionDescription.setText(model.getOptionDetail().getOptionDescription());
+//            viewHolder.binding.tvOptionDescription.setText(model.getOptionDetail().getOptionDescription());
 
             viewHolder.binding.selectTourDateLayout.setText(model.getTourOptionSelectDate());
             if (model.getRaynaTimeSlotModel() == null && !TextUtils.isEmpty(model.getTourOptionSelectDate()) && !TextUtils.isEmpty(model.getSlotText())) {
@@ -567,20 +589,20 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
                 }
             }
 
-            if (model.getOptionDetail() != null && !TextUtils.isEmpty(model.getOptionDetail().getOptionDescription())) {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
-                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getOptionDetail().getOptionDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
-                        bottomSheet.title = getValue("description");
-                        bottomSheet.formattedDescription = model.getOptionDetail().getOptionDescription();
-                        bottomSheet.show(getSupportFragmentManager(),"");
-                    }
-                });
-            } else {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
-            }
+//            if (model.getOptionDetail() != null && !TextUtils.isEmpty(model.getOptionDetail().getOptionDescription())) {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
+//                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getOptionDetail().getOptionDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
+//                        bottomSheet.title = getValue("description");
+//                        bottomSheet.formattedDescription = model.getOptionDetail().getOptionDescription();
+//                        bottomSheet.show(getSupportFragmentManager(),"");
+//                    }
+//                });
+//            } else {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
+//            }
 
 
             viewHolder.loadOptionImage(model.getOptionDetail());
@@ -652,14 +674,16 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
                 model.setSelectedTransferId(model.getTransferId());
             }
 
-
-            RaynaTicketDetailModel raynaTicketDetailModel = RaynaTicketManager.shared.raynaTicketDetailModel;
-
-            if (raynaTicketDetailModel != null && raynaTicketDetailModel.getDiscount() != 0){
+            if (model.getDiscount() != null && model.getDiscount() > 0){
                 viewHolder.binding.discountTagLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.tvDiscountTag.setText(raynaTicketDetailModel.getDiscount() + " %");
+                if ("flat".equalsIgnoreCase(model.getDiscountType())) {
+                    Utils.setStyledText(activity, viewHolder.binding.tvDiscountTag, model.getDiscountText());
+                } else {
+                    viewHolder.binding.tvDiscountTag.setText(model.getDiscountText());
+                }
             }else {
                 viewHolder.binding.discountTagLayout.setVisibility(View.GONE);
+                viewHolder.binding.tvDiscountTag.setText("");
             }
 
 
@@ -671,6 +695,7 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
             } else {
                 Utils.setBottomMargin(holder.itemView, 0);
             }
+            applyExpandState(viewHolder, model);
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
@@ -928,7 +953,7 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
                                 positionsOfAdapter.add(String.valueOf(getAdapterPosition()));
                                 RaynaTicketManager.shared.selectedTourModel.add(model);
                             }
-                            
+
                             boolean isDateChanged = !TextUtils.equals(oldDate, data.getTourOptionSelectDate());
                             boolean isSlotChanged = false;
                             if (model.getIsSlot() && data.getRaynaTimeSlotModel() != null) {
@@ -1046,8 +1071,8 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
 
 
                 int drawableRes = !TextUtils.isEmpty(model.getTourOptionSelectDate())
-                        ? R.drawable.selected_tour_option_people_stock_bg
-                        : R.drawable.tour_option_spinner_stock_bg;
+                        ? R.drawable.ticket_date_selected_bg
+                        : R.drawable.ticket_date_selection_bg;
                 binding.dateTimeLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
 
             }
@@ -1062,6 +1087,24 @@ public class RaynaTicketTourOptionActivity extends BaseActivity {
 
             }
 
+        }
+
+        private void applyExpandState(ViewHolder holder, TourOptionsModel model) {
+
+            View content = holder.binding.hideShowLayout;
+
+            if (model.isExpanded()) {
+                content.setVisibility(View.VISIBLE);
+                content.setAlpha(1f);
+            } else {
+                content.setAlpha(0f);
+                content.setVisibility(View.GONE);
+            }
+
+            // Arrow (instant)
+            holder.binding.expandedArrow.setRotation(
+                    model.isExpanded() ? 90f : 360f
+            );
         }
 
     }

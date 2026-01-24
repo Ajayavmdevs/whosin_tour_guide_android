@@ -63,22 +63,9 @@
                         android:text="AddOns"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/infoIcon"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="0dp"
                         android:layout_marginEnd="@dimen/_5sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    <ImageView
-                        android:id="@+id/infoIcon"
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"
-                        android:src="@drawable/venue_info"
-                        android:rotation="180"
-                        android:layout_gravity="top"
-                        app:tint="@color/white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginBottom="@dimen/_10sdp"
                         app:layout_constraintBottom_toBottomOf="parent"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -95,12 +82,12 @@
                     android:visibility="visible" />
 
                 <!-- Separator -->
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_marginTop="@dimen/_6sdp"-->
-<!--                    android:layout_marginBottom="@dimen/_6sdp"-->
-<!--                    android:background="@color/white_30" />-->
+                <!--                <View-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="1dp"-->
+                <!--                    android:layout_marginTop="@dimen/_6sdp"-->
+                <!--                    android:layout_marginBottom="@dimen/_6sdp"-->
+                <!--                    android:background="@color/white_30" />-->
 
                 <!-- Price -->
                 <!-- Price + Add-On button row -->

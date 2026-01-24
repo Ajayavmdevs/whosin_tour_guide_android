@@ -182,6 +182,38 @@ public class BigBusOptionsItemModel implements DiffIdentifier, ModelProtocol {
 	@Expose
 	public String infantDescription = "";
 
+	@SerializedName("discount")
+	@Expose
+	private Integer discount;
+
+	@SerializedName("discountType")
+	@Expose
+	private String discountType = "";
+
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	public String getDiscountType() {
+		return discountType;
+	}
+
+	public void setDiscountType(String discountType) {
+		this.discountType = discountType;
+	}
+
+	public String getDiscountText() {
+		if (discount == null || discount <= 0) return "";
+
+		return "flat".equalsIgnoreCase(discountType)
+				? discount + " OFF"
+				: discount + "% OFF";
+	}
+
 	public String getUnit() {
 		return Utils.notNullString(unit);
 	}
@@ -475,7 +507,7 @@ public class BigBusOptionsItemModel implements DiffIdentifier, ModelProtocol {
 	}
 
 
- 	// --------------------------------------
+	// --------------------------------------
 	// region Pax ( age and allow ) Methods
 	// --------------------------------------
 
@@ -805,7 +837,7 @@ public class BigBusOptionsItemModel implements DiffIdentifier, ModelProtocol {
 		// Pick Up
 		if (!TextUtils.isEmpty(model.getPickup())){
 			Optional<BigBusPickupPointsModel> pickUp = pickupPoints.stream().filter(p -> p.getName().equalsIgnoreCase(model.getPickup())).findFirst();
-            pickUp.ifPresent(bigBusPickupPointsModel -> this.pickupPointsModel = bigBusPickupPointsModel);
+			pickUp.ifPresent(bigBusPickupPointsModel -> this.pickupPointsModel = bigBusPickupPointsModel);
 		}
 
 		// Time
@@ -834,6 +866,15 @@ public class BigBusOptionsItemModel implements DiffIdentifier, ModelProtocol {
 		this.timeModel = octaTimeModel;
 	}
 
+	private boolean isExpanded = true;
+
+	public boolean isExpanded() {
+		return isExpanded;
+	}
+
+	public void setExpanded(boolean expanded) {
+		isExpanded = expanded;
+	}
 
 
 	// endregion

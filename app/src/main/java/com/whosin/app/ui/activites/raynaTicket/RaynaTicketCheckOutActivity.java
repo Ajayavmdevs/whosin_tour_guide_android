@@ -1779,7 +1779,7 @@ public class RaynaTicketCheckOutActivity extends BaseActivity {
             TourOptionsModel model = (TourOptionsModel) getItem(position);
             if (model == null) return;
 
-            viewHolder.binding.btnMoreInfoView.setText(getValue("more_info"));
+            viewHolder.binding.btnMoreInfoView.setText(getValue("Inclusions & Details"));
             viewHolder.binding.totalAmoutTv.setText(getValue("Ticket Amount"));
             viewHolder.binding.discountTv.setText(getValue("discount"));
             viewHolder.binding.finalAmountTv.setText(getValue("final_amount"));
@@ -1789,7 +1789,7 @@ public class RaynaTicketCheckOutActivity extends BaseActivity {
             if (!TextUtils.isEmpty(model.getTourOptionSelectDate())) viewHolder.binding.tvTourDate.setText(model.getTourOptionSelectDate());
 
 //            if (TextUtils.isEmpty(raynaTicketDetailModel.getCity())){
-                viewHolder.binding.locationLayout.setVisibility(GONE);
+            viewHolder.binding.locationLayout.setVisibility(GONE);
 //            }else {
 //                viewHolder.binding.tvAddress.setText(raynaTicketDetailModel.getCity());
 //                viewHolder.binding.locationLayout.setVisibility(VISIBLE);
@@ -1872,8 +1872,7 @@ public class RaynaTicketCheckOutActivity extends BaseActivity {
 
             viewHolder.binding.cancellationPolicyLayout.setVisibility(GONE);
             viewHolder.binding.addOnLiner.setVisibility(View.GONE);
-            viewHolder.binding.dividerWithTextLayout.setVisibility(View.GONE);
-            viewHolder.binding.recyclerViewAddOns.setVisibility(View.GONE);
+            viewHolder.binding.addOnLayout.setVisibility(View.GONE);
 
             if (model.getAddons() != null && !model.getAddons().isEmpty()) {
 
@@ -1898,23 +1897,20 @@ public class RaynaTicketCheckOutActivity extends BaseActivity {
                 if (!matchedAddons.isEmpty()) {
                     Utils.setStyledText(activity,viewHolder.binding.finalAmountAed,Utils.roundFloatValue(getWhosinTotal(model) + addOnPrice));
                     viewHolder.addOnAdapter.updateData(matchedAddons);
-                    viewHolder.binding.dividerWithTextLayout.setVisibility(View.VISIBLE);
                     viewHolder.binding.addOnLiner.setVisibility(View.VISIBLE);
                     Utils.setStyledText(activity,viewHolder.binding.addonaed,Utils.roundFloatValue(addOnPrice));
-                    viewHolder.binding.recyclerViewAddOns.setVisibility(View.VISIBLE);
+                    viewHolder.binding.addOnLayout.setVisibility(View.VISIBLE);
                 } else {
                     Utils.setStyledText(activity,viewHolder.binding.finalAmountAed,Utils.roundFloatValue(getWhosinTotal(model)));
                     viewHolder.addOnAdapter.updateData(new ArrayList<>());
-                    viewHolder.binding.dividerWithTextLayout.setVisibility(View.GONE);
                     viewHolder.binding.addOnLiner.setVisibility(View.GONE);
-                    viewHolder.binding.recyclerViewAddOns.setVisibility(View.GONE);
+                    viewHolder.binding.addOnLayout.setVisibility(View.GONE);
                 }
 
             } else {
                 viewHolder.addOnAdapter.isReadOnly = true;
                 viewHolder.binding.addOnLiner.setVisibility(GONE);
-                viewHolder.binding.dividerWithTextLayout.setVisibility(View.GONE);
-                viewHolder.binding.recyclerViewAddOns.setVisibility(View.GONE);
+                viewHolder.binding.addOnLayout.setVisibility(View.GONE);
                 Utils.setStyledText(activity,viewHolder.binding.finalAmountAed,Utils.roundFloatValue(getWhosinTotal(model)));
             }
 
@@ -1962,7 +1958,7 @@ public class RaynaTicketCheckOutActivity extends BaseActivity {
             WhosinTicketTourOptionModel model = (WhosinTicketTourOptionModel) getItem(position);
             if (model == null) return;
 
-            viewHolder.binding.btnMoreInfoView.setText(getValue("more_info"));
+            viewHolder.binding.btnMoreInfoView.setText(getValue("Inclusions & Details"));
             viewHolder.binding.totalAmoutTv.setText(getValue("Ticket Amount"));
             viewHolder.binding.discountTv.setText(getValue("discount"));
             viewHolder.binding.finalAmountTv.setText(getValue("final_amount"));
@@ -2079,7 +2075,7 @@ public class RaynaTicketCheckOutActivity extends BaseActivity {
             TravelDeskOptionDataModel model = (TravelDeskOptionDataModel) getItem(position);
             if (model == null) return;
 
-            viewHolder.binding.btnMoreInfoView.setText(getValue("more_info"));
+            viewHolder.binding.btnMoreInfoView.setText(getValue("Inclusions & Details"));
             viewHolder.binding.totalAmoutTv.setText(getValue("Ticket Amount"));
             viewHolder.binding.discountTv.setText(getValue("discount"));
             viewHolder.binding.finalAmountTv.setText(getValue("final_amount"));
@@ -2200,7 +2196,7 @@ public class RaynaTicketCheckOutActivity extends BaseActivity {
             BigBusOptionsItemModel model = (BigBusOptionsItemModel) getItem(position);
             if (model == null) return;
 
-            viewHolder.binding.btnMoreInfoView.setText(getValue("more_info"));
+            viewHolder.binding.btnMoreInfoView.setText(getValue("Inclusions & Details"));
             viewHolder.binding.totalAmoutTv.setText(getValue("Ticket Amount"));
             viewHolder.binding.discountTv.setText(getValue("discount"));
             viewHolder.binding.finalAmountTv.setText(getValue("final_amount"));

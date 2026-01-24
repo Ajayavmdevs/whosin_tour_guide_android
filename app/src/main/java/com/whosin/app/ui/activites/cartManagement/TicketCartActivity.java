@@ -1183,8 +1183,7 @@ public class TicketCartActivity extends BaseActivity {
 //            Utils.setStyledText(activity,viewHolder.mBinding.tvPrice,Utils.roundFloatValue(model.getWhosinTotal()));
             Utils.setStyledText(activity,viewHolder.mBinding.tvPrice,Utils.roundFloatValue(Utils.convertIntoCurrenctCurrency(model.getWhosinTotal())));
             if (!model.getAddons().isEmpty()) {
-                viewHolder.mBinding.recyclerViewAddOns.setVisibility(View.VISIBLE);
-                viewHolder.mBinding.dividerWithTextLayout.setVisibility(View.VISIBLE);
+                viewHolder.mBinding.addOnLayout.setVisibility(View.VISIBLE);
                 CartAddOnAdapter<MyCartTourDetailsModel> adapter = new CartAddOnAdapter<>();
                 viewHolder.mBinding.recyclerViewAddOns.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
                 viewHolder.mBinding.recyclerViewAddOns.setAdapter(adapter);
@@ -1199,8 +1198,7 @@ public class TicketCartActivity extends BaseActivity {
                 Utils.setStyledText(activity,viewHolder.mBinding.tvAddonAmountAED,Utils.roundFloatValue(Utils.convertIntoCurrenctCurrency(totalAddonPrice)));
                 adapter.updateData(model.getAddons());
             } else {
-                viewHolder.mBinding.recyclerViewAddOns.setVisibility(View.GONE);
-                viewHolder.mBinding.dividerWithTextLayout.setVisibility(View.GONE);
+                viewHolder.mBinding.addOnLayout.setVisibility(View.GONE);
                 viewHolder.mBinding.addOnAmountView.setVisibility(View.GONE);
             }
 

@@ -24,91 +24,442 @@
             android:id="@+id/horizontalContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_7sdp">
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tvOptionName"
-                style="@style/txt13SemiBoldWhite"
+            <!-- Title + Description -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
                 android:layout_weight="1"
-                android:fontFamily="@font/sfuitext_bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvOptionDescription"
-            style="@style/txt10Regular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_7sdp"
-            android:layout_marginVertical="@dimen/_3sdp"
-            android:visibility="gone" />
-
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
-            android:id="@+id/roundImage"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_133sdp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_4sdp"
-            app:corner_radius="@dimen/_8sdp">
-
-
-            <ImageView
-                android:id="@+id/ticket_option_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
-                android:id="@+id/discount_tag_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:background="@color/ticket_discount_lable_bg"
-                app:bottom_left_corner_radius="@dimen/_8sdp"
-                app:bottom_right_corner_radius="@dimen/_8sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_discount_tag"
+                    android:id="@+id/tvOptionName"
                     style="@style/txt13SemiBoldWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_8sdp"
-                    android:paddingVertical="@dimen/_2sdp"
-                    android:text="5 %" />
+                    android:fontFamily="@font/sfuitext_bold"
+                    android:layout_marginTop="@dimen/_5sdp" />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                <TextView
+                    android:id="@+id/tvOptionDescription"
+                    style="@style/txt10Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:text="Select Guests → Date &amp; Time → Options &amp; Addons" />
 
+            </LinearLayout>
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            <!-- Right Arrow -->
+            <ImageView
+                android:id="@+id/expandedArrow"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:src="@drawable/icon_left_btn"
+                android:rotation="90" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/hide_show_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:visibility="visible">
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                android:id="@+id/roundImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_133sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:corner_radius="@dimen/_8sdp">
+
+
+                <ImageView
+                    android:id="@+id/ticket_option_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                    android:id="@+id/discount_tag_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@color/ticket_discount_lable_bg"
+                    app:bottom_left_corner_radius="@dimen/_8sdp"
+                    app:bottom_right_corner_radius="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_discount_tag"
+                        style="@style/txt13SemiBoldWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_8sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:text="5 %" />
+
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/tour_option_spinner_stock_bg"
+                app:corner_radius="@dimen/_6sdp">
+
+                <LinearLayout
+                    android:id="@+id/select_spinner_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tour_option_spinner_stock_bg">
+
+                    <Spinner
+                        android:id="@+id/spinnerOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:spinnerMode="dropdown" />
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/select_pickup_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:background="@drawable/tour_option_spinner_stock_bg">
+
+                    <TextView
+                        android:id="@+id/tvSelectPickUp"
+                        style="@style/txt10SemiBoldWhite"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:gravity="center_vertical"
+                        android:hint="Select pickup"
+                        android:paddingHorizontal="@dimen/_6sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/dropDownIcon"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:minHeight="@dimen/_30sdp"
+                        android:paddingVertical="@dimen/_6sdp"
+                        app:layout_goneMarginEnd="0dp"/>
+
+                    <ImageView
+                        android:id="@+id/dropDownIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white"
+                        android:src="@drawable/icon_drop_down_with_below_arrow" />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/addQuantityAdult"
+                    style="@style/rayna_ticket_quantity_main_layout"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:visibility="gone">
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.90"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvAdultsTitle"
+                                    style="@style/rayna_ticket_main_title_pax_style"
+                                    android:text="Adults" />
+
+                                <TextView
+                                    android:id="@+id/adult_age"
+                                    style="@style/rayna_ticket_pax_age_style" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/adult_price_withoutDiscount"
+                                    style="@style/rayna_ticket_without_discount_style"
+                                    android:text="AEd 200" />
+
+                                <TextView
+                                    android:id="@+id/tv_adult_price"
+                                    style="@style/rayna_ticket_price_style"
+                                    android:text="AED 170" />
+
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/adultsPrice"
+                            style="@style/rayna_ticket_main_price_style" />
+
+                        <ImageView
+                            android:id="@+id/ivMinusAdult"
+                            style="@style/rayna_ticket_minus_buttons_style" />
+
+                        <TextView
+                            android:id="@+id/tv_total_adult"
+                            style="@style/rayna_ticket_total_value_style"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:text="0" />
+
+                        <ImageView
+                            android:id="@+id/ivPlusAdult"
+                            style="@style/rayna_ticket_plus_buttons_style" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/adult_description"
+                        style="@style/rayna_ticket_without_discount_style"
+                        android:text=""
+                        android:maxLines="3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/addQuantityChild"
+                    style="@style/rayna_ticket_quantity_main_layout"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:visibility="gone">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.90"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvChildTitle"
+                                    style="@style/rayna_ticket_main_title_pax_style"
+                                    android:text="Children" />
+
+                                <TextView
+                                    android:id="@+id/children_age"
+                                    style="@style/rayna_ticket_pax_age_style" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/child_price_withoutDiscount"
+                                    style="@style/rayna_ticket_without_discount_style"
+                                    android:text="AEd 200" />
+
+                                <TextView
+                                    android:id="@+id/tv_child_price"
+                                    style="@style/rayna_ticket_price_style"
+                                    android:text="AED 170" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/childPrice"
+                            style="@style/rayna_ticket_main_price_style" />
+
+                        <ImageView
+                            android:id="@+id/ivMinusChild"
+                            style="@style/rayna_ticket_minus_buttons_style" />
+
+                        <TextView
+                            android:id="@+id/tv_total_child"
+                            style="@style/rayna_ticket_total_value_style"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:text="0" />
+
+                        <ImageView
+                            android:id="@+id/ivPlusChild"
+                            style="@style/rayna_ticket_plus_buttons_style" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/child_description"
+                        style="@style/rayna_ticket_without_discount_style"
+                        android:text=""
+                        android:maxLines="3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/addQuantityInfants"
+                    style="@style/rayna_ticket_quantity_main_layout"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/addQuantityChild">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.90"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tvInfantsTitle"
+                                    style="@style/rayna_ticket_main_title_pax_style"
+                                    android:text="Infants" />
+
+                                <TextView
+                                    android:id="@+id/infant_age"
+                                    style="@style/rayna_ticket_pax_age_style" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/infant_price_withoutDiscount"
+                                    style="@style/rayna_ticket_without_discount_style"
+                                    android:text="AEd 200" />
+
+                                <TextView
+                                    android:id="@+id/tv_infant_price"
+                                    style="@style/rayna_ticket_price_style"
+                                    android:text="AED 170" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/infantsPrice"
+                            style="@style/rayna_ticket_main_price_style" />
+
+                        <ImageView
+                            android:id="@+id/ivMinusInfants"
+                            style="@style/rayna_ticket_minus_buttons_style" />
+
+                        <TextView
+                            android:id="@+id/tv_total_infants"
+                            style="@style/rayna_ticket_total_value_style"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:text="0" />
+
+                        <ImageView
+                            android:id="@+id/ivPlusInfants"
+                            style="@style/rayna_ticket_plus_buttons_style" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/infant_description"
+                        style="@style/rayna_ticket_without_discount_style"
+                        android:text="test"
+                        android:maxLines="3"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/date_time_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_3sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
                 android:minHeight="@dimen/_33sdp"
                 android:background="@drawable/tour_option_spinner_stock_bg"
                 android:orientation="horizontal">
@@ -177,391 +528,18 @@
 
                 </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/select_spinner_layout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_weight="1"
-                android:background="@drawable/tour_option_spinner_stock_bg">
-
-                <Spinner
-                    android:id="@+id/spinnerOptions"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/select_pickup_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                android:background="@drawable/tour_option_spinner_stock_bg">
-
-                <TextView
-                    android:id="@+id/tvSelectPickUp"
-                    style="@style/txt10SemiBoldWhite"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:gravity="center_vertical"
-                    android:hint="Select pickup"
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/dropDownIcon"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:minHeight="@dimen/_30sdp"
-                    android:paddingVertical="@dimen/_6sdp"
-                    app:layout_goneMarginEnd="0dp"/>
-
                 <ImageView
-                    android:id="@+id/dropDownIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/ivDropDown"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:rotation="360"
+                    android:src="@drawable/icon_left_btn"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white"
-                    android:src="@drawable/icon_drop_down_with_below_arrow" />
-
-
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <LinearLayout
-                android:id="@+id/addQuantityAdult"
-                style="@style/rayna_ticket_quantity_main_layout"
-                android:paddingHorizontal="@dimen/_7sdp"
-                android:paddingVertical="@dimen/_5sdp"
-                android:visibility="gone">
-                <LinearLayout
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.90"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tvAdultsTitle"
-                                style="@style/rayna_ticket_main_title_pax_style"
-                                android:text="Adults" />
-
-                            <TextView
-                                android:id="@+id/adult_age"
-                                style="@style/rayna_ticket_pax_age_style" />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/adult_price_withoutDiscount"
-                                style="@style/rayna_ticket_without_discount_style"
-                                android:text="AEd 200" />
-
-                            <TextView
-                                android:id="@+id/tv_adult_price"
-                                style="@style/rayna_ticket_price_style"
-                                android:text="AED 170" />
-
-
-                        </LinearLayout>
-
-
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/adultsPrice"
-                        style="@style/rayna_ticket_main_price_style" />
-
-                    <ImageView
-                        android:id="@+id/ivMinusAdult"
-                        style="@style/rayna_ticket_minus_buttons_style" />
-
-                    <TextView
-                        android:id="@+id/tv_total_adult"
-                        style="@style/rayna_ticket_total_value_style"
-                        android:layout_marginHorizontal="@dimen/_5sdp"
-                        android:text="0" />
-
-                    <ImageView
-                        android:id="@+id/ivPlusAdult"
-                        style="@style/rayna_ticket_plus_buttons_style" />
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/adult_description"
-                    style="@style/rayna_ticket_without_discount_style"
-                    android:text=""
-                    android:maxLines="3"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:visibility="gone"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/addQuantityChild"
-                style="@style/rayna_ticket_quantity_main_layout"
-                android:paddingHorizontal="@dimen/_7sdp"
-                android:paddingVertical="@dimen/_5sdp"
-                android:visibility="gone">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.90"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tvChildTitle"
-                                style="@style/rayna_ticket_main_title_pax_style"
-                                android:text="Children" />
-
-                            <TextView
-                                android:id="@+id/children_age"
-                                style="@style/rayna_ticket_pax_age_style" />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/child_price_withoutDiscount"
-                                style="@style/rayna_ticket_without_discount_style"
-                                android:text="AEd 200" />
-
-                            <TextView
-                                android:id="@+id/tv_child_price"
-                                style="@style/rayna_ticket_price_style"
-                                android:text="AED 170" />
-
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/childPrice"
-                        style="@style/rayna_ticket_main_price_style" />
-
-                    <ImageView
-                        android:id="@+id/ivMinusChild"
-                        style="@style/rayna_ticket_minus_buttons_style" />
-
-                    <TextView
-                        android:id="@+id/tv_total_child"
-                        style="@style/rayna_ticket_total_value_style"
-                        android:layout_marginHorizontal="@dimen/_5sdp"
-                        android:text="0" />
-
-                    <ImageView
-                        android:id="@+id/ivPlusChild"
-                        style="@style/rayna_ticket_plus_buttons_style" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/child_description"
-                    style="@style/rayna_ticket_without_discount_style"
-                    android:text=""
-                    android:maxLines="3"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:visibility="gone"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/addQuantityInfants"
-                style="@style/rayna_ticket_quantity_main_layout"
-                android:paddingHorizontal="@dimen/_7sdp"
-                android:paddingVertical="@dimen/_5sdp"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@+id/addQuantityChild">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.90"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tvInfantsTitle"
-                                style="@style/rayna_ticket_main_title_pax_style"
-                                android:text="Infants" />
-
-                            <TextView
-                                android:id="@+id/infant_age"
-                                style="@style/rayna_ticket_pax_age_style" />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/infant_price_withoutDiscount"
-                                style="@style/rayna_ticket_without_discount_style"
-                                android:text="AEd 200" />
-
-                            <TextView
-                                android:id="@+id/tv_infant_price"
-                                style="@style/rayna_ticket_price_style"
-                                android:text="AED 170" />
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/infantsPrice"
-                        style="@style/rayna_ticket_main_price_style" />
-
-                    <ImageView
-                        android:id="@+id/ivMinusInfants"
-                        style="@style/rayna_ticket_minus_buttons_style" />
-
-                    <TextView
-                        android:id="@+id/tv_total_infants"
-                        style="@style/rayna_ticket_total_value_style"
-                        android:layout_marginHorizontal="@dimen/_5sdp"
-                        android:text="0" />
-
-                    <ImageView
-                        android:id="@+id/ivPlusInfants"
-                        style="@style/rayna_ticket_plus_buttons_style" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/infant_description"
-                    style="@style/rayna_ticket_without_discount_style"
-                    android:text="test"
-                    android:maxLines="3"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:visibility="gone"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/addOnLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_7sdp"
-                android:paddingVertical="@dimen/_5sdp"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@+id/addQuantityInfants">
-
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:layout_marginTop="@dimen/_6sdp"-->
-<!--                    android:background="@color/tour_option"/>-->
-
-                <LinearLayout
-                    android:id="@+id/divider_with_text_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:gravity="center_vertical">
-
-                    <!-- Left divider -->
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="1"
-                        android:background="@color/tour_option" />
-
-                    <!-- Center text -->
-                    <TextView
-                        style="@style/txt12SemiBold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:text="Customize your ticket"
-                        android:textAlignment="center" />
-
-                    <!-- Right divider -->
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="1"
-                        android:background="@color/tour_option" />
-
-                </LinearLayout>
-
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_add_ons"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvNote"
@@ -573,42 +551,92 @@
                 android:textSize="@dimen/_10sdp"
                 android:visibility="gone" />
 
-        </LinearLayout>
-
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
-            android:id="@+id/btn_more_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:background="@color/gray"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_weight="0.65"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            app:corner_radius="@dimen/_10sdp">
-
-            <ImageView
-                android:id="@+id/infoIcon"
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_10sdp"
-                android:src="@drawable/venue_info"
-                android:rotation="180"
-                android:layout_marginTop="0.50dp"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/btn_more_info_view"
-                style="@style/txt9SemiBoldWhite"
-                android:layout_width="wrap_content"
+            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                android:id="@+id/btn_more_info"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_weight="0.65"
+                android:layout_marginVertical="@dimen/_10sdp"
+                app:corner_radius="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/infoIcon"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/venue_info"
+                    android:rotation="180"
+                    android:layout_marginTop="0.50dp"
+                    app:tint="@color/gray" />
+
+                <TextView
+                    android:id="@+id/btn_more_info_view"
+                    style="@style/txt9SemiBoldWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:textColor="@color/gray"
+                    android:text="More info" />
+
+            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addOnLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingVertical="@dimen/_5sdp"
-                android:gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:text="More info" />
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/addQuantityInfants">
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:background="@drawable/tour_option_spinner_stock_bg"
+                    app:corner_radius="@dimen/_6sdp">
 
+                    <LinearLayout
+                        android:id="@+id/divider_with_text_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            style="@style/txt12SemiBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:text="Customize your ticket" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="@color/tour_option"/>
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_add_ons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 

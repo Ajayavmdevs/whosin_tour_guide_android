@@ -102,7 +102,7 @@ public class EditCartOptionActivity extends BaseActivity {
     private final WhosinTicketTourOptionListAdapter<TourOptionsModel> whosinTicketTourOptionListAdapter = new WhosinTicketTourOptionListAdapter<>();
 
     private final TravelDeskTicketTourOptionListAdapter<TravelDeskOptionDataModel> travelDeskTicketTourOptionListAdapter = new TravelDeskTicketTourOptionListAdapter<>();
-    
+
     private final WhosinCustomTourOptionListForAdapter<WhosinTicketTourOptionModel> whosinCustomTourOptionListForAdapter = new WhosinCustomTourOptionListForAdapter<>();
 
     private final BigBusTourOptionListAdapter<BigBusOptionsItemModel> bigBusTourOptionListAdapter = new BigBusTourOptionListAdapter<>();
@@ -357,7 +357,7 @@ public class EditCartOptionActivity extends BaseActivity {
     private void updateLangValue(ItemRaynaTicketOptionViewBinding binding){
         binding.selectTourDateLayout.setHint(getValue("date_time_placeHolder"));
         binding.tourTimeSlotTv.setHint(getValue("time_slot"));
-        binding.btnMoreInfoView.setText(getValue("more_info"));
+        binding.btnMoreInfoView.setText(getValue("Inclusions & Details"));
         binding.tvAdultsTitle.setText(getValue("adults_title"));
         binding.tvChildTitle.setText(getValue("children_title"));
         binding.tvInfantsTitle.setText(getValue("infant_title"));
@@ -573,7 +573,7 @@ public class EditCartOptionActivity extends BaseActivity {
                 adultAmount += q.updateAdultPrices();
                 childAmount += q.updateChildPrices();
                 infantAmount += q.updateInfantPrices();
-                
+
             }
 
             float total = adultAmount + childAmount + infantAmount;
@@ -803,28 +803,28 @@ public class EditCartOptionActivity extends BaseActivity {
         });
 
         if (myCartItemsModel.getTourDetails().size() > 1) {
-           if (raynaTicketDetailModel.getBookingType().equals("whosin")){
-               Set<String> filteredOptionIds = myCartItemsModel.getTourDetails().stream().map(MyCartTourDetailsModel::getOptionId).filter(id -> !id.equals(tourOptionId)).collect(Collectors.toSet());
-               List<TourOptionsModel> matchedTourOptions = raynaTicketDetailModel.getOptionData().stream().filter(option -> filteredOptionIds.contains(option.get_id())).collect(Collectors.toList());
-               matchedTourOptions.forEach( q -> {
-                   Optional<MyCartTourDetailsModel> tmpMpdel = myCartItemsModel.getTourDetails().stream().filter(p -> p.getOptionId().equals(q.get_id())).findFirst();
-                   tmpMpdel.ifPresent(model -> q.updateValueForCart(model, false));
-               });
-               matchedTourOptions.forEach( q -> {
-                   totalAmount.set(totalAmount.get() + getWithoutDiscountPrice(q));
-                   discountAmount.set(discountAmount.get() + getWhosinTotal(q));
-                   finalAmount.set(finalAmount.get() + getWhosinTotal(q));
-               });
-           }else {
-               Set<String> filteredOptionIds = myCartItemsModel.getTourDetails().stream().map(MyCartTourDetailsModel::getOptionId).filter(id -> !id.equals(tourOptionId)).collect(Collectors.toSet());
-               List<TourOptionsModel> matchedTourOptions = originalTourOptionsList.stream().filter(option -> filteredOptionIds.contains(option.getTourOptionId().toString())).collect(Collectors.toList());
-               List<TourOptionsModel> tmpList = mapTheDataForOtherTourList(matchedTourOptions);
-               tmpList.forEach( q -> {
-                   totalAmount.set(totalAmount.get() + getWithoutDiscountPrice(q));
-                   discountAmount.set(discountAmount.get() + getWhosinTotal(q));
-                   finalAmount.set(finalAmount.get() + getWhosinTotal(q));
-               });
-           }
+            if (raynaTicketDetailModel.getBookingType().equals("whosin")){
+                Set<String> filteredOptionIds = myCartItemsModel.getTourDetails().stream().map(MyCartTourDetailsModel::getOptionId).filter(id -> !id.equals(tourOptionId)).collect(Collectors.toSet());
+                List<TourOptionsModel> matchedTourOptions = raynaTicketDetailModel.getOptionData().stream().filter(option -> filteredOptionIds.contains(option.get_id())).collect(Collectors.toList());
+                matchedTourOptions.forEach( q -> {
+                    Optional<MyCartTourDetailsModel> tmpMpdel = myCartItemsModel.getTourDetails().stream().filter(p -> p.getOptionId().equals(q.get_id())).findFirst();
+                    tmpMpdel.ifPresent(model -> q.updateValueForCart(model, false));
+                });
+                matchedTourOptions.forEach( q -> {
+                    totalAmount.set(totalAmount.get() + getWithoutDiscountPrice(q));
+                    discountAmount.set(discountAmount.get() + getWhosinTotal(q));
+                    finalAmount.set(finalAmount.get() + getWhosinTotal(q));
+                });
+            }else {
+                Set<String> filteredOptionIds = myCartItemsModel.getTourDetails().stream().map(MyCartTourDetailsModel::getOptionId).filter(id -> !id.equals(tourOptionId)).collect(Collectors.toSet());
+                List<TourOptionsModel> matchedTourOptions = originalTourOptionsList.stream().filter(option -> filteredOptionIds.contains(option.getTourOptionId().toString())).collect(Collectors.toList());
+                List<TourOptionsModel> tmpList = mapTheDataForOtherTourList(matchedTourOptions);
+                tmpList.forEach( q -> {
+                    totalAmount.set(totalAmount.get() + getWithoutDiscountPrice(q));
+                    discountAmount.set(discountAmount.get() + getWhosinTotal(q));
+                    finalAmount.set(finalAmount.get() + getWhosinTotal(q));
+                });
+            }
         }
 
 
@@ -2123,26 +2123,26 @@ public class EditCartOptionActivity extends BaseActivity {
             viewHolder.setOnClickListeners(model);
 
             viewHolder.binding.tvOptionName.setText(model.getOptionDetail().getOptionName());
-            viewHolder.binding.tvOptionDescription.setText(model.getOptionDetail().getOptionDescription());
+//            viewHolder.binding.tvOptionDescription.setText(model.getOptionDetail().getOptionDescription());
 
             viewHolder.binding.selectTourDateLayout.setText(model.getTourOptionSelectDate());
-                if (model.getRaynaTimeSlotModel() == null && !TextUtils.isEmpty(model.getTourOptionSelectDate()) && !TextUtils.isEmpty(model.getSlotText())) {
+            if (model.getRaynaTimeSlotModel() == null && !TextUtils.isEmpty(model.getTourOptionSelectDate()) && !TextUtils.isEmpty(model.getSlotText())) {
+                viewHolder.binding.viewLine1.setVisibility(View.VISIBLE);
+                viewHolder.binding.timeSlotLayout.setVisibility(View.VISIBLE);
+                viewHolder.binding.tourTimeSlotTv.setText(model.getSlotText());
+            }else if (model.getRaynaTimeSlotModel() != null){
+                viewHolder.binding.viewLine1.setVisibility(View.VISIBLE);
+                viewHolder.binding.timeSlotLayout.setVisibility(View.VISIBLE);
+                String ts = model.getRaynaTimeSlotModel().getAvailabilityTime();
+                if (TextUtils.isEmpty(ts)) ts = model.getRaynaTimeSlotModel().getTimeSlot();
+                viewHolder.binding.tourTimeSlotTv.setText(ts);
+            }else {
+                if (TextUtils.isEmpty(model.getTourOptionSelectDate())) {
+                    viewHolder.binding.viewLine1.setVisibility(View.GONE);
+                    viewHolder.binding.timeSlotLayout.setVisibility(View.GONE);
+                } else {
                     viewHolder.binding.viewLine1.setVisibility(View.VISIBLE);
                     viewHolder.binding.timeSlotLayout.setVisibility(View.VISIBLE);
-                    viewHolder.binding.tourTimeSlotTv.setText(model.getSlotText());
-                }else if (model.getRaynaTimeSlotModel() != null){
-                    viewHolder.binding.viewLine1.setVisibility(View.VISIBLE);
-                    viewHolder.binding.timeSlotLayout.setVisibility(View.VISIBLE);
-                    String ts = model.getRaynaTimeSlotModel().getAvailabilityTime();
-                    if (TextUtils.isEmpty(ts)) ts = model.getRaynaTimeSlotModel().getTimeSlot();
-                    viewHolder.binding.tourTimeSlotTv.setText(ts);
-                }else {
-                    if (TextUtils.isEmpty(model.getTourOptionSelectDate())) {
-                        viewHolder.binding.viewLine1.setVisibility(View.GONE);
-                        viewHolder.binding.timeSlotLayout.setVisibility(View.GONE);
-                    } else {
-                        viewHolder.binding.viewLine1.setVisibility(View.VISIBLE);
-                        viewHolder.binding.timeSlotLayout.setVisibility(View.VISIBLE);
                     if (model.getRaynaTimeSlotModel() != null){
                         String ts = model.getRaynaTimeSlotModel().getAvailabilityTime();
                         if (TextUtils.isEmpty(ts)) ts = model.getRaynaTimeSlotModel().getTimeSlot();
@@ -2151,20 +2151,20 @@ public class EditCartOptionActivity extends BaseActivity {
                 }
             }
 
-            if (model.getOptionDetail() != null && !TextUtils.isEmpty(model.getOptionDetail().getOptionDescription())) {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
-                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getOptionDetail().getOptionDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
-                        bottomSheet.title = getValue("description");
-                        bottomSheet.formattedDescription = model.getOptionDetail().getOptionDescription();
-                        bottomSheet.show(getSupportFragmentManager(),"");
-                    }
-                });
-            } else {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
-            }
+//            if (model.getOptionDetail() != null && !TextUtils.isEmpty(model.getOptionDetail().getOptionDescription())) {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
+//                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getOptionDetail().getOptionDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
+//                        bottomSheet.title = getValue("description");
+//                        bottomSheet.formattedDescription = model.getOptionDetail().getOptionDescription();
+//                        bottomSheet.show(getSupportFragmentManager(),"");
+//                    }
+//                });
+//            } else {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
+//            }
 
 
             viewHolder.loadOptionImage(model.getOptionDetail());
@@ -2238,15 +2238,20 @@ public class EditCartOptionActivity extends BaseActivity {
             }
 
 
-            RaynaTicketDetailModel raynaTicketDetailModel = RaynaTicketManager.shared.raynaTicketDetailModel;
-            if (raynaTicketDetailModel != null && raynaTicketDetailModel.getDiscount() != 0){
+            if (model.getDiscount() != null && model.getDiscount() > 0){
                 viewHolder.binding.discountTagLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.tvDiscountTag.setText(raynaTicketDetailModel.getDiscount() + " %");
+                if ("flat".equalsIgnoreCase(model.getDiscountType())) {
+                    Utils.setStyledText(activity, viewHolder.binding.tvDiscountTag, model.getDiscountText());
+                } else {
+                    viewHolder.binding.tvDiscountTag.setText(model.getDiscountText());
+                }
             }else {
                 viewHolder.binding.discountTagLayout.setVisibility(View.GONE);
+                viewHolder.binding.tvDiscountTag.setText("");
             }
 
 
+            viewHolder.binding.expandedArrow.setVisibility(View.GONE);
             viewHolder.updatePaxBg(model);
 
 
@@ -2658,8 +2663,8 @@ public class EditCartOptionActivity extends BaseActivity {
 
 
                 int drawableRes = !TextUtils.isEmpty(model.getTourOptionSelectDate())
-                        ? R.drawable.selected_tour_option_people_stock_bg
-                        : R.drawable.tour_option_spinner_stock_bg;
+                        ? R.drawable.ticket_date_selected_bg
+                        : R.drawable.ticket_date_selection_bg;
                 binding.dateTimeLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
                 binding.detailLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
 
@@ -2708,7 +2713,7 @@ public class EditCartOptionActivity extends BaseActivity {
             viewHolder.setOnClickListeners(model);
 
             viewHolder.binding.tvOptionName.setText(model.getTitle());
-            viewHolder.binding.tvOptionDescription.setText(model.getDescription());
+//            viewHolder.binding.tvOptionDescription.setText(model.getDescription());
 
             viewHolder.binding.selectTourDateLayout.setText(model.getTourOptionSelectDate());
 
@@ -2728,20 +2733,20 @@ public class EditCartOptionActivity extends BaseActivity {
             }
 
 
-            if (!TextUtils.isEmpty(model.getDescription())) {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
-                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
-                        bottomSheet.title = getValue("description");
-                        bottomSheet.formattedDescription = model.getDescription();
-                        bottomSheet.show(getSupportFragmentManager(),"");
-                    }
-                });
-            } else {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
-            }
+//            if (!TextUtils.isEmpty(model.getDescription())) {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
+//                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
+//                        bottomSheet.title = getValue("description");
+//                        bottomSheet.formattedDescription = model.getDescription();
+//                        bottomSheet.show(getSupportFragmentManager(),"");
+//                    }
+//                });
+//            } else {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
+//            }
 
             if (model.getAddons() == null || model.getAddons().isEmpty()) {
                 viewHolder.binding.addOnLayout.setVisibility(View.GONE);
@@ -2759,16 +2764,18 @@ public class EditCartOptionActivity extends BaseActivity {
 
             viewHolder.binding.selectSpinnerLayout.setVisibility(View.GONE);
 
-
-            RaynaTicketDetailModel raynaTicketDetailModel = RaynaTicketManager.shared.raynaTicketDetailModel;
-
-            if (raynaTicketDetailModel != null && raynaTicketDetailModel.getDiscount() != 0){
+            if (model.getDiscount() != null && model.getDiscount() > 0){
                 viewHolder.binding.discountTagLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.tvDiscountTag.setText(raynaTicketDetailModel.getDiscount() + " %");
+                if ("flat".equalsIgnoreCase(model.getDiscountType())) {
+                    Utils.setStyledText(activity, viewHolder.binding.tvDiscountTag, model.getDiscountText());
+                } else {
+                    viewHolder.binding.tvDiscountTag.setText(model.getDiscountText());
+                }
             }else {
                 viewHolder.binding.discountTagLayout.setVisibility(View.GONE);
+                viewHolder.binding.tvDiscountTag.setText("");
             }
-
+            viewHolder.binding.expandedArrow.setVisibility(View.GONE);
 
             viewHolder.updatePaxBg(model);
 
@@ -3209,8 +3216,8 @@ public class EditCartOptionActivity extends BaseActivity {
 
 
                 int drawableRes = !TextUtils.isEmpty(model.getTourOptionSelectDate())
-                        ? R.drawable.selected_tour_option_people_stock_bg
-                        : R.drawable.tour_option_spinner_stock_bg;
+                        ? R.drawable.ticket_date_selected_bg
+                        : R.drawable.ticket_date_selection_bg;
                 binding.dateTimeLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
 
             }
@@ -3267,31 +3274,36 @@ public class EditCartOptionActivity extends BaseActivity {
 
 
 
-            if (!TextUtils.isEmpty(model.getDescription())) {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
-                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
-                        bottomSheet.title = getValue("description");
-                        bottomSheet.formattedDescription = model.getDescription();
-                        bottomSheet.show(getSupportFragmentManager(),"");
-                    }
-                });
-            } else {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
-            }
+//            if (!TextUtils.isEmpty(model.getDescription())) {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
+//                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
+//                        bottomSheet.title = getValue("description");
+//                        bottomSheet.formattedDescription = model.getDescription();
+//                        bottomSheet.show(getSupportFragmentManager(),"");
+//                    }
+//                });
+//            } else {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
+//            }
 
 
             viewHolder.loadOptionImage(model);
 
-            if (raynaTicketDetailModel.getDiscount() != 0){
+            if (model.getDiscount() != null && model.getDiscount() > 0){
                 viewHolder.binding.discountTagLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.tvDiscountTag.setText(raynaTicketDetailModel.getDiscount() + " %");
+                if ("flat".equalsIgnoreCase(model.getDiscountType())) {
+                    Utils.setStyledText(activity, viewHolder.binding.tvDiscountTag, model.getDiscountText());
+                } else {
+                    viewHolder.binding.tvDiscountTag.setText(model.getDiscountText());
+                }
             }else {
                 viewHolder.binding.discountTagLayout.setVisibility(View.GONE);
+                viewHolder.binding.tvDiscountTag.setText("");
             }
-
+            viewHolder.binding.expandedArrow.setVisibility(View.GONE);
             viewHolder.updatePaxBg(model);
 
             if (isLastItem) {
@@ -3657,8 +3669,8 @@ public class EditCartOptionActivity extends BaseActivity {
 
 
                 int drawableRes = !TextUtils.isEmpty(model.getTourOptionSelectDate())
-                        ? R.drawable.selected_tour_option_people_stock_bg
-                        : R.drawable.tour_option_spinner_stock_bg;
+                        ? R.drawable.ticket_date_selected_bg
+                        : R.drawable.ticket_date_selection_bg;
                 binding.dateTimeLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
 
             }
@@ -3721,20 +3733,20 @@ public class EditCartOptionActivity extends BaseActivity {
             }
 
 
-            if (!TextUtils.isEmpty(model.getOptionDescription())) {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
-                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getOptionDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
-                        bottomSheet.title = getValue("description");
-                        bottomSheet.formattedDescription = model.getOptionDescription();
-                        bottomSheet.show(getSupportFragmentManager(),"");
-                    }
-                });
-            } else {
-                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
-            }
+//            if (!TextUtils.isEmpty(model.getOptionDescription())) {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
+//                Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getOptionDescription()), 1, "... " + getValue("see_more"), new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
+//                        bottomSheet.title = getValue("description");
+//                        bottomSheet.formattedDescription = model.getOptionDescription();
+//                        bottomSheet.show(getSupportFragmentManager(),"");
+//                    }
+//                });
+//            } else {
+//                viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
+//            }
 
 
             viewHolder.loadOptionImage(model);
@@ -3742,15 +3754,18 @@ public class EditCartOptionActivity extends BaseActivity {
 
             viewHolder.binding.selectSpinnerLayout.setVisibility(View.GONE);
 
-
-            RaynaTicketDetailModel raynaTicketDetailModel = RaynaTicketManager.shared.raynaTicketDetailModel;
-            if (raynaTicketDetailModel.getDiscount() != 0){
+            if (model.getDiscount() != null && model.getDiscount() > 0){
                 viewHolder.binding.discountTagLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.tvDiscountTag.setText(raynaTicketDetailModel.getDiscount() + " %");
+                if ("flat".equalsIgnoreCase(model.getDiscountType())) {
+                    Utils.setStyledText(activity, viewHolder.binding.tvDiscountTag, model.getDiscountText());
+                } else {
+                    viewHolder.binding.tvDiscountTag.setText(model.getDiscountText());
+                }
             }else {
                 viewHolder.binding.discountTagLayout.setVisibility(View.GONE);
+                viewHolder.binding.tvDiscountTag.setText("");
             }
-
+            viewHolder.binding.expandedArrow.setVisibility(View.GONE);
 
             viewHolder.updatePaxBg(model);
 
@@ -4115,8 +4130,8 @@ public class EditCartOptionActivity extends BaseActivity {
 
 
                 int drawableRes = !TextUtils.isEmpty(model.getTourOptionSelectDate())
-                        ? R.drawable.selected_tour_option_people_stock_bg
-                        : R.drawable.tour_option_spinner_stock_bg;
+                        ? R.drawable.ticket_date_selected_bg
+                        : R.drawable.ticket_date_selection_bg;
                 binding.dateTimeLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
 
             }
@@ -4172,20 +4187,20 @@ public class EditCartOptionActivity extends BaseActivity {
                 viewHolder.binding.tourTimeSlotTv.setText(slotText);
             }
 
-            if (!model.isDescriptionProcessed()){
-                if (!TextUtils.isEmpty(model.getShortDescription())) {
-                    viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
-                    Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getShortDescription()), 1, "... " + getValue("see_more"), v -> {
-                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
-                        bottomSheet.title = getValue("description");
-                        bottomSheet.formattedDescription = model.getShortDescription();
-                        bottomSheet.show(getSupportFragmentManager(),"");
-                    });
-                } else {
-                    viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
-                }
-                model.setDescriptionProcessed(true);
-            }
+//            if (!model.isDescriptionProcessed()){
+//                if (!TextUtils.isEmpty(model.getShortDescription())) {
+//                    viewHolder.binding.tvOptionDescription.setVisibility(View.VISIBLE);
+//                    Utils.addSeeMore(viewHolder.binding.tvOptionDescription, Html.fromHtml(model.getShortDescription()), 1, "... " + getValue("see_more"), v -> {
+//                        ReadMoreBottomSheet bottomSheet = new ReadMoreBottomSheet();
+//                        bottomSheet.title = getValue("description");
+//                        bottomSheet.formattedDescription = model.getShortDescription();
+//                        bottomSheet.show(getSupportFragmentManager(),"");
+//                    });
+//                } else {
+//                    viewHolder.binding.tvOptionDescription.setVisibility(View.GONE);
+//                }
+//                model.setDescriptionProcessed(true);
+//            }
 
 
             if (model.isPickupAvailable() && model.isPickupRequired()) {
@@ -4201,15 +4216,18 @@ public class EditCartOptionActivity extends BaseActivity {
 
             viewHolder.loadOptionImage(model);
 
-
-            RaynaTicketDetailModel raynaTicketDetailModel = RaynaTicketManager.shared.raynaTicketDetailModel;
-            if (raynaTicketDetailModel.getDiscount() != 0){
+            if (model.getDiscount() != null && model.getDiscount() > 0){
                 viewHolder.binding.discountTagLayout.setVisibility(View.VISIBLE);
-                viewHolder.binding.tvDiscountTag.setText(raynaTicketDetailModel.getDiscount() + " %");
+                if ("flat".equalsIgnoreCase(model.getDiscountType())) {
+                    Utils.setStyledText(activity, viewHolder.binding.tvDiscountTag, model.getDiscountText());
+                } else {
+                    viewHolder.binding.tvDiscountTag.setText(model.getDiscountText());
+                }
             }else {
                 viewHolder.binding.discountTagLayout.setVisibility(View.GONE);
+                viewHolder.binding.tvDiscountTag.setText("");
             }
-
+            viewHolder.binding.expandedArrow.setVisibility(View.GONE);
             viewHolder.updatePaxBg(model);
 
             if (isLastItem) {
@@ -4625,8 +4643,8 @@ public class EditCartOptionActivity extends BaseActivity {
 
 
                 int drawableRes = !TextUtils.isEmpty(model.getTourOptionSelectDate())
-                        ? R.drawable.selected_tour_option_people_stock_bg
-                        : R.drawable.tour_option_spinner_stock_bg;
+                        ? R.drawable.ticket_date_selected_bg
+                        : R.drawable.ticket_date_selection_bg;
                 binding.dateTimeLayout.setBackground(ContextCompat.getDrawable(activity, drawableRes));
 
             }
