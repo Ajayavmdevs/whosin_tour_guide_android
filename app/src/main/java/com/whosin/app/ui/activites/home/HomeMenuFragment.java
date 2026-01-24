@@ -121,7 +121,7 @@ public class HomeMenuFragment extends BaseFragment {
     protected Map<View, String> getTranslationMap() {
         Map<View, String> map = new HashMap<>();
         map.put(binding.tvSettingTitle, "settings");
-        map.put(binding.tvClaimHistoryTitle, "claim_history");
+        map.put(binding.tvClaimHistoryTitle, "Transaction History");
         map.put(binding.tvWalletTitle, "wallet");
         map.put(binding.tvMySubscriptionTitle, "my_subscription");
         map.put(binding.tvInviteYourFriendTitle, "invite_a_friend");

@@ -29,7 +29,7 @@
                 app:showCartItem="true"
                 app:showLeftButton="true"
                 app:showRightButton="false"
-                app:showSerachButton="true"
+                app:showSerachButton="false"
                 app:showSaperator="true" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

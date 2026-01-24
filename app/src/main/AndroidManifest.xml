@@ -154,10 +154,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activites.venue.MenuActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.activites.Profile.BlockUserListActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -181,11 +177,6 @@
             android:name=".ui.activites.Profile.ProfileFullScreenImageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activites.wallet.RedeemActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".ui.activites.Notification.NotificaionActivity"
             android:exported="false"
