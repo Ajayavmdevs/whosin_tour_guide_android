@@ -34,19 +34,15 @@ import com.whosin.app.service.models.ChatModel;
 import com.whosin.app.service.models.ContactListModel;
 import com.whosin.app.service.models.ContainerListModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.OffersModel;
-import com.whosin.app.service.models.PromoterEventModel;
 import com.whosin.app.service.models.StoryObjectModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.VenueObjectModel;
-import com.whosin.app.service.models.YachtClubModel;
 import com.whosin.app.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.app.service.rest.RestCallback;
 import com.whosin.app.ui.activites.comman.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class VenueShareActivity extends BaseActivity {
 
@@ -57,12 +53,9 @@ public class VenueShareActivity extends BaseActivity {
     private String type = "";
     private Handler handler = new Handler();
     private VenueObjectModel venueObjectModel = new VenueObjectModel();
-    private OffersModel offersModel = new OffersModel();
 
     private UserDetailModel userDetailModel = new UserDetailModel();
 
-    private YachtClubModel yachtClubModel = new YachtClubModel();
-    private PromoterEventModel promoterEventModel = new PromoterEventModel();
     List<ContactListModel> followerList = new ArrayList<>();
     private CommanCallback<List<ContactListModel>> listener;
     private List<ContactListModel> selectedContacts = new ArrayList<>();
@@ -90,33 +83,14 @@ public class VenueShareActivity extends BaseActivity {
             }
         }
 
-
-        String venue = getIntent().getStringExtra( "venue" );
-        if (!TextUtils.isEmpty( venue )) {
-            venueObjectModel = new Gson().fromJson( venue, VenueObjectModel.class );
-        }
-
         String raynaTicket = getIntent().getStringExtra( "rayna" );
         if (!TextUtils.isEmpty( raynaTicket )) {
             raynaTicketDetailModel = new Gson().fromJson( raynaTicket, RaynaTicketDetailModel.class );
         }
 
-        String offer = getIntent().getStringExtra( "offer" );
-        if (!TextUtils.isEmpty( offer )) {
-            offersModel = new Gson().fromJson( offer, OffersModel.class );
-        }
         String user = getIntent().getStringExtra( "userModel" );
         if (!TextUtils.isEmpty( user )) {
             userDetailModel = new Gson().fromJson( user, UserDetailModel.class );
-        }
-        String yachtClub = getIntent().getStringExtra( "yachtClub" );
-        if (!TextUtils.isEmpty( yachtClub )) {
-            yachtClubModel = new Gson().fromJson( yachtClub, YachtClubModel.class );
-        }
-
-        String promoterEvent = getIntent().getStringExtra( "promoterEvent" );
-        if (!TextUtils.isEmpty( promoterEvent )) {
-            promoterEventModel = new Gson().fromJson( promoterEvent, PromoterEventModel.class );
         }
 
         requestLinkCreate();
@@ -160,12 +134,7 @@ public class VenueShareActivity extends BaseActivity {
 
         binding.btnSend.setOnClickListener( view -> {
             Utils.preventDoubleClick( view );
-            if (type.equalsIgnoreCase("plusOneAdd")){
-                requestAddMemberinPlusOne();
-            } else {
-                sendData();
-            }
-
+            sendData();
         } );
 
         binding.ivClose.setOnClickListener( view -> onBackPressed() );
@@ -237,47 +206,9 @@ public class VenueShareActivity extends BaseActivity {
         return jsonObject;
     }
 
-    private JsonObject getEventJson(PromoterEventModel promoterEventModel){
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("eventId",promoterEventModel.getId());
-        jsonObject.addProperty("type",promoterEventModel.getType());
-        jsonObject.addProperty("venueType",promoterEventModel.getVenueType());
-        jsonObject.addProperty("date",promoterEventModel.getDate());
-        jsonObject.addProperty("startTime",promoterEventModel.getStartTime());
-        jsonObject.addProperty("endTime",promoterEventModel.getEndTime());
-        jsonObject.addProperty("status",promoterEventModel.getStatus());
-        if (promoterEventModel.getVenueType().equals("venue")){
-            JsonObject venueJson = new JsonObject();
-            venueJson.addProperty("name", promoterEventModel.getVenue() != null ? promoterEventModel.getVenue().getName() : "");
-            venueJson.addProperty("address", promoterEventModel.getVenue() != null ? promoterEventModel.getVenue().getAddress() : "");
-            venueJson.addProperty("image", promoterEventModel.getVenue() != null ? promoterEventModel.getVenue().getCover() : "");
-            venueJson.addProperty("image", promoterEventModel.getVenue() != null ? promoterEventModel.getVenue().getCover() : "");
-            venueJson.addProperty("logo", promoterEventModel.getVenue() != null ? promoterEventModel.getVenue().getLogo() : "");
-            jsonObject.add("customVenue",venueJson);
-        }else {
-            JsonObject customVenueJson = new JsonObject();
-            customVenueJson.addProperty("name", promoterEventModel.getCustomVenue() != null ? promoterEventModel.getCustomVenue().getName() : "");
-            customVenueJson.addProperty("address", promoterEventModel.getCustomVenue() != null ? promoterEventModel.getCustomVenue().getAddress() : "");
-            customVenueJson.addProperty("image", promoterEventModel.getCustomVenue() != null ? promoterEventModel.getCustomVenue().getImage() : "");
-            customVenueJson.addProperty("description", promoterEventModel.getCustomVenue() != null ? promoterEventModel.getCustomVenue().getDescription() : "");
-            customVenueJson.addProperty("logo",  promoterEventModel.getCustomVenue() != null ? promoterEventModel.getCustomVenue().getImage() : "");
-
-            jsonObject.add("customVenue",customVenueJson);
-        }
-
-        return jsonObject;
-
-    }
-
     private String getMessageText() {
         JsonObject jsonObject = new JsonObject();
         switch (type) {
-            case "venue":
-                jsonObject = getVenueJson(venueObjectModel);
-                break;
-            case "promoterEvent":
-                jsonObject = getEventJson(promoterEventModel);
-                 break;
             case "story":
                 if (!venueObjectModel.getStories().isEmpty()) {
                     jsonObject = getVenueJson(venueObjectModel);
@@ -308,29 +239,6 @@ public class VenueShareActivity extends BaseActivity {
                 jsonObject.addProperty("description", userDetailModel.getBio());
                 jsonObject.addProperty("follow", userDetailModel.getFollow());
                 break;
-            case "offer":
-                jsonObject.addProperty("_id", offersModel.getId());
-                jsonObject.addProperty("title", offersModel.getTitle());
-                jsonObject.addProperty("image", offersModel.getImage());
-                jsonObject.addProperty("description", offersModel.getDescription());
-                jsonObject.addProperty("days", offersModel.days);
-                jsonObject.addProperty("startTime", offersModel.getStartTime());
-                jsonObject.addProperty("endTime", offersModel.getEndTime());
-                if (offersModel.getVenue() != null) {
-                    JsonObject venueJson = getVenueJson(offersModel.getVenue());
-                    jsonObject.add("venue", venueJson);
-                }
-                break;
-            case "yachtClub":
-                if(yachtClubModel != null){
-                    jsonObject.addProperty("_id", yachtClubModel.getId());
-                    jsonObject.addProperty("name", yachtClubModel.getName());
-                    jsonObject.addProperty("cover", yachtClubModel.getCover());
-                    jsonObject.addProperty("logo", yachtClubModel.getLogo());
-                    jsonObject.addProperty("address", yachtClubModel.getAddress());
-                }
-
-                break;
             case "ticket":
                 if (raynaTicketDetailModel != null) {
                     jsonObject.addProperty("_id", raynaTicketDetailModel.getId());
@@ -338,7 +246,6 @@ public class VenueShareActivity extends BaseActivity {
                     jsonObject.addProperty("description", raynaTicketDetailModel.getDescription());
                     jsonObject.addProperty("city", raynaTicketDetailModel.getCity());
                     Object startingAmount = raynaTicketDetailModel.getStartingAmount();
-//                    jsonObject.addProperty("startingAmount", startingAmount != null ? startingAmount.toString() : "");
                     if (startingAmount != null) {
                         try {
                             double amount = Double.parseDouble(startingAmount.toString());
@@ -365,11 +272,6 @@ public class VenueShareActivity extends BaseActivity {
             Toast.makeText( VenueShareActivity.this, "Something went wrong. Please try again", Toast.LENGTH_SHORT ).show();
             return;
         }
-//        selectedContacts.forEach( c -> {
-//            ChatModel chatModel = new ChatModel( c );
-//            ChatMessageModel messageModel = new ChatMessageModel( jsonString, type, chatModel, chatModel.getMembers() );
-//            ChatRepository.shared( this ).addMessage( messageModel, data -> ChatManager.shared.sendMessage( messageModel ) );
-//        } );
 
         Graphics.showProgressBarDialog(this, "message_sending",getValue("message_sending"));
         final int delayInMillis = 1000; // 1 second
@@ -393,20 +295,6 @@ public class VenueShareActivity extends BaseActivity {
             }
         };
         handler1.post(runnable);
-
-//        new Handler().postDelayed( () -> onBackPressed(), 2000 );
-    }
-
-    private static String formatLists(List<String> requirements, List<String> benefits) {
-        String requirementsString = requirements.stream()
-                .map(req -> " • " + req)
-                .collect(Collectors.joining("\n"));
-
-        String benefitsString = benefits.stream()
-                .map(ben -> " • " + ben)
-                .collect(Collectors.joining("\n"));
-
-        return "Requirements : \n" + requirementsString + "\n\nBenefits : \n" + benefitsString;
     }
 
     // endregion
@@ -438,50 +326,6 @@ public class VenueShareActivity extends BaseActivity {
             jsonObject.addProperty( "image", userDetailModel.getImage().isEmpty() ? "https://ui-avatars.com/api/?name=" + userDetailModel.getFirstName() : userDetailModel.getImage() );
             jsonObject.addProperty( "itemId", userDetailModel.getId() );
             jsonObject.addProperty( "itemType", "user" );
-        } else if (type.equals( "offer" )) {
-
-            if (offersModel == null) {
-                return;
-            }
-            jsonObject.addProperty( "title", offersModel.getTitle() );
-            jsonObject.addProperty( "description", offersModel.getDescription() );
-            jsonObject.addProperty( "image", offersModel.getImage() );
-            jsonObject.addProperty( "itemId", offersModel.getId() );
-            jsonObject.addProperty( "itemType", "offer" );
-        } else if (type.equals("promoterEvent")) {
-            if (promoterEventModel == null) return;
-
-            String eventImage = "";
-            String eventDescription = "";
-
-            if (promoterEventModel.getVenueType().equals("venue") && promoterEventModel.getVenue() != null && !TextUtils.isEmpty(promoterEventModel.getVenue().getCover())) {
-                eventImage = promoterEventModel.getVenue().getCover();
-                eventDescription = promoterEventModel.getVenue().getAddress();
-                jsonObject.addProperty("title", promoterEventModel.getVenue().getName());
-
-            } else {
-                if (promoterEventModel.getCustomVenue() != null && !TextUtils.isEmpty(promoterEventModel.getCustomVenue().getImage())) {
-                    eventImage = promoterEventModel.getCustomVenue().getImage();
-                    eventDescription = promoterEventModel.getCustomVenue().getDescription();
-                    jsonObject.addProperty("title", promoterEventModel.getCustomVenue().getName());
-                }
-            }
-
-            formattedOutput = formatLists(promoterEventModel.getRequirementsAllowed(), promoterEventModel.getBenefitsIncluded());
-
-            jsonObject.addProperty("description", eventDescription);
-            jsonObject.addProperty("image", eventImage);
-            jsonObject.addProperty("itemId", promoterEventModel.getId());
-            jsonObject.addProperty("itemType", "promoter-event");
-        } else if (type.equals( "yachtClub" )) {
-            if (yachtClubModel == null) {
-                return;
-            }
-            jsonObject.addProperty( "title", yachtClubModel.getName() );
-            jsonObject.addProperty( "description", yachtClubModel.getAddress() );
-            jsonObject.addProperty( "image", yachtClubModel.getCover() );
-            jsonObject.addProperty( "itemId", yachtClubModel.getId() );
-            jsonObject.addProperty( "itemType", "yachtClub" );
         } else if (type.equals( "ticket" )) {
             if (raynaTicketDetailModel == null) {
                 return;
@@ -551,33 +395,6 @@ public class VenueShareActivity extends BaseActivity {
                 // 6. Save and show
                 SessionManager.shared.saveShareVenue(shareMsg);
                 binding.shareBtnLayout.setVisibility(View.VISIBLE);
-
-//                String shareMsg = "";
-//                if (type.equals("promoterEvent")) {
-//                    shareMsg = String.format("%s\n\n%s\n\n%s\n\n%s", jsonObject.get("title").getAsString(), jsonObject.get("description").getAsString(), finalFormattedOutput, model.getData());
-//                } else {
-//                    shareMsg = String.format("%s\n\n%s\n\n%s", jsonObject.get("title").getAsString(), jsonObject.get("description").getAsString(), model.getData());
-//                }
-//                SessionManager.shared.saveShareVenue( shareMsg );
-//                binding.shareBtnLayout.setVisibility( View.VISIBLE );
-            }
-        } );
-    }
-
-    private void requestAddMemberinPlusOne(){
-        String id = selectedContacts.get(0).getId();
-        Log.d("requestAddMemberinPlusOne", "requestAddMemberinPlusOne: " + id);
-        DataService.shared( activity ).requestPromoterPlusOneInviteUser( id, new RestCallback<ContainerModel<PromoterEventModel>>(this) {
-            @Override
-            public void result(ContainerModel<PromoterEventModel> model, String error) {
-                if (!Utils.isNullOrEmpty( error ) || model == null) {
-                    Toast.makeText( activity, error, Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-
-                Toast.makeText(activity, model.message, Toast.LENGTH_SHORT).show();
-                finish();
-
             }
         } );
     }

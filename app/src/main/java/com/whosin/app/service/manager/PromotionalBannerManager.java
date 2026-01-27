@@ -63,26 +63,6 @@ public class PromotionalBannerManager {
     // region Data/Services
     // --------------------------------------
 
-    public void requestPromotionalBanner(Context context) {
-        if (!AppSettingManager.shared.callHomeCommanApi) return;
-        this.context = context;
-        DataService.shared(context).requestPromotionalBanner(new RestCallback<ContainerModel<PromotionalMainModel>>(null) {
-            @Override
-            public void result(ContainerModel<PromotionalMainModel> model, String error) {
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-//                    Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
-                    isPromotionalBanner = false;
-                    return;
-                }
-
-                if (model.data != null) {
-                    isPromotionalBanner = true;
-                    promotionalMainModel = model.getData();
-                }
-            }
-        });
-    }
-
     // endregion
     // --------------------------------------
 

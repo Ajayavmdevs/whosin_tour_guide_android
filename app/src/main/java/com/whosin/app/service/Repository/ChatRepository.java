@@ -56,10 +56,6 @@ public class ChatRepository extends RealmRepository {
         getRealm().executeTransactionAsync(bgRealm -> bgRealm.deleteAll(), () -> getRealm().refresh());
     }
 
-    public List<ChatModel> getFriendChatList() {
-        return ChatModel.getChatList(getRealm());
-    }
-
     public List<ChatMessageModel> getChatMessages(String chatId) {
         RealmResults<ChatMessageModel> results = ChatMessageModel.getMessageByChatId(getRealm(), chatId).sort("date", Sort.ASCENDING);
         if(!results.isEmpty()) {
@@ -73,10 +69,6 @@ public class ChatRepository extends RealmRepository {
     }
     public long getAllUnrealMessageCount() {
         return ChatMessageModel.getAllUnrealMessageCount(getRealm());
-    }
-
-    public long getAllUnrealMessageCountForSubAdmin() {
-        return ChatMessageModel.getAllUnrealMessageCountForSubAdmin(getRealm());
     }
 
     public List<ChatMessageModel> getMediaMessages(String chatId) {
@@ -156,29 +148,6 @@ public class ChatRepository extends RealmRepository {
         } );
     }
 
-
-    public static RealmResults<ChatMessageModel> getMessageByIds(@NonNull Realm realm, List<String> ids) {
-        String[] stringIds = ids.toArray(new String[0]);
-        return realm.where( ChatMessageModel.class ).equalTo("chatId", Arrays.toString(stringIds)).findAll();
-    }
-
-//    public void updateSeenByForBucket(List<String> msgIds, String seenBy) {
-//        getRealm().executeTransactionAsync(bgRealm -> {
-//            RealmResults<ChatMessageModel> results = getMessageByIds(bgRealm, msgIds);
-//            results.forEach(messageModel -> {messageModel.getSeenBy().add(seenBy);});
-//        }, () -> {
-//            getRealm().refresh();
-//        });
-//    }
-//    public void updateSeenByForBucket(String  msgIds, String seenBy) {
-//        getRealm().executeTransactionAsync(bgRealm -> {
-//            RealmResults<ChatMessageModel> results = bgRealm.where( ChatMessageModel.class ).equalTo("chatId",msgIds).findAll();;
-//            results.forEach(messageModel -> {messageModel.getSeenBy().add(seenBy);});
-//        }, () -> {
-//            getRealm().refresh();
-//        });
-//    }
-
     public void updateSeenByForBuckets(List<String> msgIds, String seenBy) {
         getRealm().executeTransactionAsync(bgRealm -> {
             RealmResults<ChatMessageModel> results = bgRealm.where(ChatMessageModel.class)
@@ -233,7 +202,6 @@ public class ChatRepository extends RealmRepository {
 
     public List<ChatMessageModel> getPendingChatMessages() {
         String userId = SessionManager.shared.isPromoterSubAdmin() ? SessionManager.shared.getPromoterId() : SessionManager.shared.getUser().getId();
-//        String userId = SessionManager.shared.getUser().getId();
         RealmResults<ChatMessageModel> results = ChatMessageModel.getPendingMessageByUserId(getRealm(), userId);
         if(!results.isEmpty()) {
             return getRealm().copyFromRealm(results);
@@ -248,77 +216,6 @@ public class ChatRepository extends RealmRepository {
             return new Gson().fromJson(json, BucketListModel.class);
         }
         return null;
-    }
-
-    public void getBucketChatList(boolean shouldRefresh, CommanCallback<BucketListModel> delegate){
-
-        if (!shouldRefresh) {
-            String json = Preferences.shared.getString("groupChatList");
-            if (!TextUtils.isEmpty(json)) {
-                Type typeOfT = BucketListModel.class; // specify your model class
-                JsonUtils.parseJsonInBackground(json, typeOfT, (JsonUtils.JsonCallback<BucketListModel>) result -> {
-                    if (result != null) {
-                        delegate.onReceive(result);
-                    }
-                });
-            }
-        }
-
-        DataService.shared(context).requestMyBucketList(new RestCallback<ContainerModel<BucketListModel>>() {
-            @Override
-            public void result(ContainerModel<BucketListModel> model, String error) {
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    delegate.onReceive(null);
-                    return;
-                }
-                if (model.data != null) {
-                    EventBus.getDefault().post("");
-                    delegate.onReceive(model.data);
-                    String json = new Gson().toJson(model.data);
-                    Preferences.shared.setString("groupChatList", json);
-                } else {
-                    delegate.onReceive(null);
-                }
-            }
-        });
-
-    }
-
-
-    public void getEventChatList(CommanCallback<List<EventChatModel>> delegate) {
-        List<EventChatModel> realmResults = EventChatModel.getEventList(getRealm());
-        if (!realmResults.isEmpty()) {
-            delegate.onReceive(realmResults);
-        }
-
-        DataService.shared(context).requestEventChatList(new RestCallback<ContainerModel<EventChatListModel>>(null) {
-        @Override
-        public void result(ContainerModel<EventChatListModel> model, String error) {
-            if (!Utils.isNullOrEmpty(error) || model == null) {
-                delegate.onReceive(new ArrayList<>());
-                return;
-            }
-
-            if (model.data !=null) {
-                getRealm().executeTransactionAsync(bgRealm -> {
-                    RealmResults<EventChatModel> realmResults = bgRealm.where(EventChatModel.class).findAll();
-                    realmResults.forEach(c -> c.deleteFromRealm());
-                    bgRealm.insertOrUpdate(model.data.getData());
-                    bgRealm.insertOrUpdate(model.data.getUsers());
-                }, () -> {
-                    List<EventChatModel> realmResults = EventChatModel.getEventList(getRealm());
-                    delegate.onReceive(realmResults);
-                });
-
-            } else {
-                delegate.onReceive(new ArrayList<>());
-            }
-            }
-        });
-    }
-
-    public UserDetailModel getUserById(String userId) {
-        return UserDetailModel.getUserById(getRealm(), userId);
     }
 }
 

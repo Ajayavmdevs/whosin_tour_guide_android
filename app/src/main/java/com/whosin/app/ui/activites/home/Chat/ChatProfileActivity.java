@@ -199,13 +199,6 @@ public class ChatProfileActivity extends BaseActivity {
                 };
                 bottomSheet.show(getSupportFragmentManager(), "");
             }
-            else if (chatModel.getChatType().equals( "bucket" )) {
-                Graphics.showAlertDialogWithOkCancel( activity, getString(R.string.app_name), "Are you sure you want to exit the chat?", aBoolean -> {
-                    if (aBoolean) {
-                        requestExitBucket();
-                    }
-                });
-            }
             else {
                 Graphics.showAlertDialogWithOkCancel( activity, getString(R.string.app_name), "Are you sure you want to exit the chat?", aBoolean -> {
                     if (aBoolean) {
@@ -350,26 +343,6 @@ public class ChatProfileActivity extends BaseActivity {
                     finish();
                 });
 
-            }
-        } );
-    }
-
-    private void requestExitBucket() {
-        showProgress();
-        DataService.shared( activity ).requestBucketExit( chatModel.getChatId(), new RestCallback<ContainerModel<CommonModel>>(this) {
-            @Override
-            public void result(ContainerModel<CommonModel> model, String error) {
-                hideProgress();
-                if (!Utils.isNullOrEmpty( error ) || model == null) {
-                    Toast.makeText( activity, error, Toast.LENGTH_SHORT ).show();
-                    return;
-                }
-                Intent intent = new Intent();
-                intent.putExtra("close",true);
-                intent.putExtra("type","clear");
-                intent.putExtra("id",chatModel.getChatId());
-                setResult(RESULT_OK, intent);
-                finish();
             }
         } );
     }

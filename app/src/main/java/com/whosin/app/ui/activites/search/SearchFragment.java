@@ -821,26 +821,6 @@ public class SearchFragment extends BaseFragment {
         });
     }
 
-    private void reqOfferFollowUnFollow(String id, BooleanResult callBack) {
-        DataService.shared(requireActivity()).requestVenueFollow(id, new RestCallback<ContainerModel<FollowUnfollowModel>>(this) {
-            @Override
-            public void result(ContainerModel<FollowUnfollowModel> model, String error) {
-
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(requireActivity(), R.string.service_message_something_wrong, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (model.message.equals("Unfollowed!")) {
-                    callBack.success(false, "");
-                } else {
-                    callBack.success(true, "");
-                }
-
-            }
-        });
-    }
-
     private void requestSearchGetHomeBlock() {
         if (searchHomeBlockAdapter.getData() == null && searchHomeBlockAdapter.getData().isEmpty()){
             showProgress();

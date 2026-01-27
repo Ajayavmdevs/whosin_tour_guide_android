@@ -2,9 +2,7 @@ package com.whosin.app.service;
 
 public class EndpointConstants {
 
-    public static final String USER_GET_TOKEN = "user/get-token";
     public static final String AUTH_GOOGLE_LOGIN_ENDPOINT = "user/login/google";
-    public static final String AUTH_FACEBOOK_LOGIN_ENDPOINT = "user/login/facebook";
     public static final String AUTH_PHONE_LOGIN_NEW_ENDPOINT = "user/login-new";
     public static final String GUEST_LOGIN_ENDPOINT = "user/login/guest";
     public static final String AUTH_VERIFY_OTP_ENDPOINT = "user/verify";
@@ -24,7 +22,6 @@ public class EndpointConstants {
 
     public static final String SELECTED_PREFERENCES_GET_ENDPOINT = "user/preference/get";
     public static final String HOME_BLOCK_LIST = "homeblock/get-blocks";
-    public static final String SUBSCRIPTION_CUSTOM = "subscription/custom/get";
     public static final String CONTACT_LIST = "user/contact-sync";
     public static final String ALL_REVIEW_LIST = "review/list";
     public static final String RATING_SUMMARY = "review/summary";
@@ -37,7 +34,6 @@ public class EndpointConstants {
     public static final String FOLLOWERS_LIST = "user/followers/list";
 
     public static final String FOLLOWING_LIST = "user/following/list";
-    public static final String VENUE_FOLLOW  = "venue/follow/toggle";
 
     public static final String CHAT_CREATE  = "chat/friend/create";
     public static final String EVENT_CHAT_LIST  = "event/chat/list";
@@ -45,7 +41,6 @@ public class EndpointConstants {
 
     public static final String BLOCK_USER_ADD  = "user/block/add";
 
-    public static final String BUCKET_EXIT  = "bucket/exit";
     public static final String CHANGE_USER_EMAIL_PHONE = "user/user/link/email-phone";
     public static final String USER_OTP_UPDATE = "user/verify/otp/update";
     public static final String COMMAN_SEARCH = "comman/search";
@@ -59,14 +54,11 @@ public class EndpointConstants {
 
 
     public static final String  USER_NOTIFICATION_LIST  = "user/notification/list";
-    public static final String  PACKAGE_REDEEM  = "subscription/package-redeem";
 
     public static final String  SYNC_CHAT_MSG_LIST = "chat/messages/unreceived";
-    public static final String  MY_BUCKET_LIST = "bucket/my-bucket-list";
     public static final String  DELETE_CHAT = "chat/delete";
     public static final String LINK_CREATE = "link/create";
 
-    public static final String VENUE_OFFER_DETAIL = "venue/offer/detail";
     public static final String COMMAN_CONTACT_US_ADD_QUERY = "comman/contact-us/add-query";
     public static final String COMMAN_CONTACT_US_QUERY_LIST = "comman/contact-us/query-list";
     public static final String COMMAN_CONTACT_US_QUERY_REPLY = "comman/contact-us/query-reply";
@@ -91,11 +83,6 @@ public class EndpointConstants {
     public static final String REPLAY_ADD_UPDATE_REVIEW = "review/reply/addUpdate";
     public static final String DELETE_REVIEW = "review/reply/delete";
 
-    public static final String VENUE_ALL_FILTERS = "venue/all-filters";
-
-
-    public static final String PROMOTER_PLUS_ONE_INVITE_USER = "promoter/plus-one/invite/user";
-
     //Rayna
 
     public static final String RAYNA_CUSTOM_USER_DETAIL = "rayna/custom/detail-user";
@@ -116,7 +103,6 @@ public class EndpointConstants {
 
 
     public static final String USER_SESSION_CHECK = "user/session-check";
-    public static final String CM_PROFILE_TICKETS_BLOCK = "homeblock/cm-profile-tickets";
 
     public static final String USER_REPORT_ADD = "user/report-add";
 
@@ -159,11 +145,6 @@ public class EndpointConstants {
     public static final String RAYNA_WHOSIN_TOUR_BOOKING_CANCEL = "rayna/whosin/tour-booking-cancel";
 
     public static final String WHOSIN_ADD_ON_AVAILABILITY = "rayna/whosin/addon/availability";
-
-
-    // Promotional Banner
-
-    public static final String  HOMEBLOCK_BANNER_LIST = "homeblock/promotional-banner/list";
 
 
     // Travel Desk
@@ -229,4 +210,12 @@ public class EndpointConstants {
     public static final String HOTEL_BOOKING_RULES = "hotel/booking-rules";
 
     public static final String TICKET_SUGGESTIONS = "rayna/get-ticket-suggestions";
+
+
+
+    // Bank Details
+
+    public static final String GET_BANK_DETAILS = "user/tour-guide/get-bank-detail";
+
+    public static final String UPDATE_BANK_DETAILS = "user/tour-guide/update-bank-detail";
 }

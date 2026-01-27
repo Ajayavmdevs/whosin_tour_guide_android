@@ -444,34 +444,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginEnd="@dimen/_5sdp"
                 app:layout_constraintStart_toEndOf="@+id/closeBtn"
-                app:layout_constraintEnd_toStartOf="@+id/profileswitchBtn"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="@dimen/_15sdp"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
-                android:id="@+id/profileswitchBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:paddingHorizontal="@dimen/_5sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/brand_pink"
-                android:layout_gravity="end"
-                android:visibility="visible"
-                android:layout_marginTop="@dimen/_3sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:corner_radius="@dimen/_5sdp">
-
-                <TextView
-                    android:id="@+id/tvSwitchBtn"
-                    style="@style/txt9SemiBoldWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Switch to Promoter"
-                    android:padding="@dimen/_2sdp"/>
-
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,9 +15,6 @@ import com.whosin.app.service.models.AppSettingModel;
 import com.whosin.app.service.models.CartModel;
 import com.whosin.app.service.models.CategoriesModel;
 import com.whosin.app.service.models.ContainerModel;
-import com.whosin.app.service.models.HomeObjectModel;
-import com.whosin.app.service.models.InAppNotificationModel;
-import com.whosin.app.service.models.SearchHistoryModel;
 import com.whosin.app.service.models.SubscriptionModel;
 import com.whosin.app.service.models.VenueFiltersModel;
 import com.whosin.app.service.rest.RestCallback;
@@ -31,7 +28,6 @@ public class AppSettingManager {
 
      private static AppSettingModel appSettingModel;
     private static SubscriptionModel subscriptionModel;
-    public static SubscriptionModel homePostersubscriptionModel;
      private static AppSettingManager instance = null;
     private Context context;
     public CommanCallback<Boolean> reloadHomeFragment;
@@ -89,64 +85,6 @@ public class AppSettingManager {
             }
         });
 
-
-    }
-
-    /*public void requestSubscriptionDetail(Context context) {
-        this.context = context;
-        DataService.shared( context ).requestSubscriptionDetail( new RestCallback<ContainerModel<MemberShipModel>>() {
-            @Override
-            public void result(ContainerModel<MemberShipModel> model, String error) {
-
-                if (!Utils.isNullOrEmpty(error)) { return;}
-                if (model == null) {
-                    return;
-                }
-
-                subscriptionModel  = model.getData();
-                if (subscriptionModel != null) {
-                    saveSubscriptionData(model.getData());
-                }
-
-            }
-        } );
-    }*/
-
-    public void requestSubscriptionCustomPlan(Context context) {
-
-        this.context = context;
-        DataService.shared( context ).requestSubscriptionPlan(new RestCallback<ContainerModel<SubscriptionModel>>(null) {
-            @Override
-            public void result(ContainerModel<SubscriptionModel> model, String error) {
-
-                if (!Utils.isNullOrEmpty(error)) {
-                    return;
-                }
-                if (model == null) {
-                    return;
-                }
-                homePostersubscriptionModel = model.getData();
-            }
-        });
-
-    }
-
-    public void requestVenueAllFilters(Context context) {
-        this.context = context;
-        DataService.shared( context ).requestVenueAllFilters(new RestCallback<ContainerModel<VenueFiltersModel>>(null) {
-            @Override
-            public void result(ContainerModel<VenueFiltersModel> model, String error) {
-
-                if (!Utils.isNullOrEmpty(error)) {
-                    return;
-                }
-                if (model == null) {
-                    return;
-                }
-
-                venueFilterModel = model.getData();
-            }
-        });
 
     }
 

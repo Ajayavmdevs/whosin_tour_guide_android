@@ -13,7 +13,7 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-       app:layout_constraintBottom_toTopOf="@+id/confiremedEventView"
+       app:layout_constraintBottom_toTopOf="@+id/bottomBarLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -26,7 +26,7 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/confiremedEventView"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBarLayout"
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.whosin.app.ui.controller.MiniVideoView
@@ -49,15 +49,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/mainImg"-->
-<!--            android:layout_width="@dimen/_45sdp"-->
-<!--            android:layout_height="@dimen/_45sdp"-->
-<!--            app:layout_anchor="@id/bottomAppBar"-->
-<!--            android:foreground="@drawable/center_icon_tab"-->
-<!--            app:borderWidth="0dp"-->
-<!--            app:backgroundTint="@android:color/black"/>-->
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"

@@ -149,10 +149,6 @@ public class OtherUserProfileActivity extends BaseActivity {
 
         } );
 
-        binding.profileswitchBtn.setOnClickListener(v -> {
-            Utils.preventDoubleClick(v);
-        });
-
     }
 
     @Override
@@ -176,7 +172,6 @@ public class OtherUserProfileActivity extends BaseActivity {
         map.put(binding.tvUserBio1, "following");
         map.put(binding.txtUserTitle, "suggested_friends");
         map.put(binding.tvMainTitle, "profile");
-        map.put(binding.tvSwitchBtn, "switch_to_promoter");
 
         binding.btnMessage.setText(getValue("messages"));
 
@@ -258,43 +253,9 @@ public class OtherUserProfileActivity extends BaseActivity {
                 binding.tvShareUserName.setVisibility(View.GONE);
             }
 
-
-
-            if (SessionManager.shared.getUser().isRingMember() && userDetailModel.isPromoter()){
-                binding.profileswitchBtn.setVisibility(View.VISIBLE);
-            } else if (SessionManager.shared.getUser().isPromoter() && userDetailModel.isRingMember()) {
-                binding.profileswitchBtn.setVisibility(View.VISIBLE);
-                binding.tvSwitchBtn.setText(getValue("switch_to_complimentary"));
-            }else {
-                binding.tvSwitchBtn.setVisibility(View.GONE);
-            }
-
         }
 
 
-    }
-
-    private void setTitleFromList(List<String> categoryIds, List<AppSettingTitelCommonModel> commonModels, String type, TextView textView) {
-        if (categoryIds == null && categoryIds.isEmpty()) {
-            textView.setVisibility(View.GONE);
-            return;
-        }
-
-        if (categoryIds != null && !categoryIds.isEmpty() && commonModels != null) {
-            String cuisineText = commonModels.stream().filter(p -> categoryIds.contains(p.getId()))
-                    .map(AppSettingTitelCommonModel::getTitle).collect(Collectors.joining(", "));
-            if (!cuisineText.isEmpty()) {
-                textView.setVisibility(View.VISIBLE);
-                SpannableString spannableString = new SpannableString(type + cuisineText);
-                ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.WHITE);
-                spannableString.setSpan(colorSpan, 0, type.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                textView.setText(spannableString);
-            } else {
-                textView.setVisibility(View.GONE);
-            }
-        } else {
-            textView.setVisibility(View.GONE);
-        }
     }
 
     // endregion

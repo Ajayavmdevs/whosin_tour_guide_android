@@ -24,7 +24,6 @@ import com.whosin.app.service.manager.UrlManager;
 import com.whosin.app.service.models.AdListModel;
 import com.whosin.app.service.models.AppSettingModel;
 import com.whosin.app.service.models.BigBusModels.OctaTourAvailabilityModel;
-import com.whosin.app.service.models.BucketListModel;
 import com.whosin.app.service.models.ChatMessageModel;
 import com.whosin.app.service.models.ChatModel;
 import com.whosin.app.service.models.CommanMsgModel;
@@ -40,7 +39,6 @@ import com.whosin.app.service.models.FollowUnfollowModel;
 import com.whosin.app.service.models.GetPrefrenceModel;
 import com.whosin.app.service.models.HomeObjectModel;
 import com.whosin.app.service.models.HomeTicketsModel;
-import com.whosin.app.service.models.ImageListUploadModel;
 import com.whosin.app.service.models.ImageUploadModel;
 import com.whosin.app.service.models.InAppListUserModel;
 import com.whosin.app.service.models.JuniperHotelModels.JPHotelTourAvailabilityModel;
@@ -52,12 +50,9 @@ import com.whosin.app.service.models.MyUserFeedModel;
 import com.whosin.app.service.models.MyWalletModel;
 import com.whosin.app.service.models.NotificationModel;
 import com.whosin.app.service.models.PaymentCredentialModel;
-import com.whosin.app.service.models.PromoterEventModel;
-import com.whosin.app.service.models.PromotionalBannerModels.PromotionalMainModel;
 import com.whosin.app.service.models.ReportUseListModel;
 import com.whosin.app.service.models.ReviewModel;
 import com.whosin.app.service.models.ReviewReplayModel;
-import com.whosin.app.service.models.SubscriptionModel;
 import com.whosin.app.service.models.TotalRatingModel;
 import com.whosin.app.service.models.TravelDeskModels.TravelDeskCancellationPolicyModel;
 import com.whosin.app.service.models.TravelDeskModels.TravelDeskPickUpListModel;
@@ -65,8 +60,8 @@ import com.whosin.app.service.models.TravelDeskModels.TravelDeskTourAvailability
 import com.whosin.app.service.models.UpdateStatusModel;
 import com.whosin.app.service.models.UserDetailModel;
 import com.whosin.app.service.models.UserTokenModel;
-import com.whosin.app.service.models.VenueFiltersModel;
 import com.whosin.app.service.models.VenuePromoCodeModel;
+import com.whosin.app.service.models.bankDetails.UserBankDetailModel;
 import com.whosin.app.service.models.myCartModels.MyCartMainModel;
 import com.whosin.app.service.models.newExploreModels.ExploreObjectModel;
 import com.whosin.app.service.models.rayna.RaynaCheckReviewModel;
@@ -171,12 +166,6 @@ public class DataService {
         @Headers({"Accept: application/json"})
         Call<ContainerModel<ImageUploadModel>> requestUploadImage(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Part MultipartBody.Part part);
 
-        @Multipart
-        @POST()
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<ImageListUploadModel>> requestUploadImageList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Part List<MultipartBody.Part> images);
-
-
         @POST()
         @Headers({"Accept: application/json"})
         Call<ContainerModel<UserDetailModel>> requestUpdateProfile(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
@@ -188,11 +177,6 @@ public class DataService {
         @GET()
         @Headers({"Accept: application/json"})
         Call<ContainerModel<AppSettingModel>> requestAppSetting(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token);
-
-        @GET()
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<VenueFiltersModel>> requestVenueFilter(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token);
-
 
         @POST()
         @Headers({"Accept: application/json"})
@@ -236,10 +220,6 @@ public class DataService {
 
         @POST()
         @Headers({"Accept: application/json"})
-        Call<ContainerModel<FollowUnfollowModel>> requestVenueFollow(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
-
-        @POST()
-        @Headers({"Accept: application/json"})
         Call<ContainerListModel<ChatMessageModel>> requestChatMsg(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
 
         @POST()
@@ -258,15 +238,6 @@ public class DataService {
         @POST()
         @Headers({"Accept: application/json"})
         Call<ContainerModel<CommonModel>> requestBlockUserAdd(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
-
-
-        @POST()
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<CommonModel>> requestBucketExit(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
-
-        @GET()
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<SubscriptionModel>> requestSubcriptionPlan(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token);
 
         @POST()
         @Headers({"Accept: application/json"})
@@ -304,17 +275,9 @@ public class DataService {
         @Headers({"Accept: application/json"})
         Call<ContainerListModel<MyWalletModel>> requestHistoryList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token);
 
-        @GET()
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<BucketListModel>> requestMyBucketList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token);
-
         @POST()
         @Headers({"Accept: application/json"})
         Call<ContainerModel<MainNotificationModel>> requestUserNotificationList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
-
-        @POST()
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<CommanMsgModel>> requestPackageRedeem(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
 
         @POST()
         @Headers({"Accept: application/json"})
@@ -395,14 +358,6 @@ public class DataService {
         @HTTP(method = "DELETE", hasBody = true)
         @Headers({"Accept: application/json"})
         Call<ContainerModel<ReviewReplayModel>> requestDeleteReview(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
-
-        @POST
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<PromoterEventModel>> requestPromoterPlusOneInviteUser(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
-
-        @POST()
-        @Headers({"Accept: application/json"})
-        Call<ContainerModel<String>> requestGetToken(@Url String url, @Body JsonObject bodyRequest);
 
         @POST()
         @Headers({"Accept: application/json"})
@@ -522,10 +477,6 @@ public class DataService {
 
         @POST()
         @Headers({"Accept: application/json"})
-        Call<ContainerModel<PromotionalMainModel>> requestPromotionBanner(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token);
-
-        @POST()
-        @Headers({"Accept: application/json"})
         Call<ContainerListModel<TravelDeskPickUpListModel>> requestTravelDeskPickUpList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
 
         @POST()
@@ -564,6 +515,13 @@ public class DataService {
         @Headers({"Accept: application/json"})
         Call<ContainerListModel<HomeTicketsModel>> requestSuggestedTicketList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
 
+        @POST()
+        @Headers({"Accept: application/json"})
+        Call<ContainerModel<UserBankDetailModel>> requestUpdateBankDetails(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
+
+        @POST()
+        @Headers({"Accept: application/json"})
+        Call<ContainerModel<UserBankDetailModel>> requestGetBankDetails(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
     }
 
 
@@ -871,21 +829,9 @@ public class DataService {
     // region Authentication
     // --------------------------------------
 
-    public void requestGetToken(final RestCallback<ContainerModel<String>> delegate) {
-        JsonObject object = new JsonObject();
-        object.addProperty("deviceId", Utils.getDeviceUniqueId(_context));
-        String url = UrlManager.shared.getServiceUrl(EndpointConstants.USER_GET_TOKEN);
-        _getService().requestGetToken(url, object).enqueue(new CommonContainerDataCallback<>(delegate));
-    }
-
     public void requestLoginWithGoogle(JsonObject object, final RestCallback<ContainerModel<UserTokenModel>> delegate) {
         object.addProperty("deviceId", Utils.getDeviceUniqueId(_context));
         String url = UrlManager.shared.getServiceUrlV2(EndpointConstants.AUTH_GOOGLE_LOGIN_ENDPOINT);
-        _getService().requestAuth(url, object).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
-    public void requestLoginWithFb(JsonObject object, final RestCallback<ContainerModel<UserTokenModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrlV2(EndpointConstants.AUTH_FACEBOOK_LOGIN_ENDPOINT);
         _getService().requestAuth(url, object).enqueue(new CommonContainerCallback<>(delegate));
     }
 
@@ -962,11 +908,6 @@ public class DataService {
     public void requestAppSetting(final RestCallback<ContainerModel<AppSettingModel>> delegate) {
         String url = UrlManager.shared.getServiceUrl(EndpointConstants.APP_SETTING_ENDPOINT);
         _getService().requestAppSetting(url, _getToken()).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
-    public void requestVenueAllFilters(final RestCallback<ContainerModel<VenueFiltersModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrl(EndpointConstants.VENUE_ALL_FILTERS);
-        _getService().requestVenueFilter(url, _getToken()).enqueue(new CommonContainerCallback<>(delegate));
     }
 
     public void requestSelectedPreference(JsonObject jsonObject, final RestCallback<ContainerModel<GetPrefrenceModel>> delegate) {
@@ -1057,13 +998,6 @@ public class DataService {
         _getService().requestFollowersList(url, _getToken(), object).enqueue(new CommonContainerListCallback<>(delegate));
     }
 
-    public void requestVenueFollow(String id, final RestCallback<ContainerModel<FollowUnfollowModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrlV2(EndpointConstants.VENUE_FOLLOW);
-        JsonObject object = new JsonObject();
-        object.addProperty("followId", id);
-        _getService().requestVenueFollow(url, _getToken(), object).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
     public void requestSyncChatMsg(final RestCallback<ContainerListModel<ChatMessageModel>> delegate) {
         String url = UrlManager.shared.getServiceUrl(EndpointConstants.SYNC_CHAT_MSG_LIST);
         String date = Preferences.shared.getString("lastSyncedDate");
@@ -1115,18 +1049,6 @@ public class DataService {
         JsonObject object = new JsonObject();
         object.addProperty("blockId", blockId);
         _getService().requestBlockUserAdd(url, _getToken(), object).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
-    public void requestBucketExit(String id, final RestCallback<ContainerModel<CommonModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrl(EndpointConstants.BUCKET_EXIT);
-        JsonObject object = new JsonObject();
-        object.addProperty("id", id);
-        _getService().requestBucketExit(url, _getToken(), object).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
-    public void requestSubscriptionPlan(final RestCallback<ContainerModel<SubscriptionModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrl(EndpointConstants.SUBSCRIPTION_CUSTOM);
-        _getService().requestSubcriptionPlan(url, _getToken()).enqueue(new CommonContainerCallback<>(delegate));
     }
 
     public void requestSentOtp(JsonObject object, final RestCallback<ContainerModel<UserDetailModel>> delegate) {
@@ -1210,17 +1132,6 @@ public class DataService {
         object.addProperty("page", page);
         object.addProperty("limit", limit);
         _getService().requestUserNotificationList(url, _getToken(), object).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
-
-    public void requestPackageRedeem(JsonObject object, final RestCallback<ContainerModel<CommanMsgModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrlV2(EndpointConstants.PACKAGE_REDEEM);
-        _getService().requestPackageRedeem(url, _getToken(), object).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
-    public void requestMyBucketList(final RestCallback<ContainerModel<BucketListModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrl(EndpointConstants.MY_BUCKET_LIST);
-        _getService().requestMyBucketList(url, _getToken()).enqueue(new CommonContainerCallback<>(delegate));
     }
 
     public void requestDeleteChat(String chatId, final RestCallback<ContainerModel<ChatModel>> delegate) {
@@ -1354,13 +1265,6 @@ public class DataService {
         object.addProperty("reviewId", reviewId);
         String url = UrlManager.shared.getServiceUrl(EndpointConstants.DELETE_REVIEW);
         _getService().requestDeleteReview(url, _getToken(), object).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
-    public void requestPromoterPlusOneInviteUser(String id, final RestCallback<ContainerModel<PromoterEventModel>> delegate) {
-        JsonObject object = new JsonObject();
-        object.addProperty("plusOneId", id);
-        String url = UrlManager.shared.getServiceUrl(EndpointConstants.PROMOTER_PLUS_ONE_INVITE_USER);
-        _getService().requestPromoterPlusOneInviteUser(url, _getToken(), object).enqueue(new CommonContainerCallback<>(delegate));
     }
 
     public void requestRaynaCustomUserDetail(String customTicketId, final RestCallback<ContainerModel<RaynaTicketDetailModel>> delegate) {
@@ -1558,11 +1462,6 @@ public class DataService {
         _getService().requestRaynaMoreInfo(url, _getToken(), object).enqueue(new CommonContainerListCallback<>(delegate));
     }
 
-    public void requestPromotionalBanner(final RestCallback<ContainerModel<PromotionalMainModel>> delegate) {
-        String url = UrlManager.shared.getServiceUrl(EndpointConstants.HOMEBLOCK_BANNER_LIST);
-        _getService().requestPromotionBanner(url, _getToken()).enqueue(new CommonContainerCallback<>(delegate));
-    }
-
 
     public Call<ContainerListModel<TravelDeskPickUpListModel>> requestTravelDeskPickUpList(JsonObject object, final RestCallback<ContainerListModel<TravelDeskPickUpListModel>> delegate) {
         String url = UrlManager.shared.getServiceUrl(EndpointConstants.TRAVEL_DESK_PICKUP_LIST);
@@ -1720,6 +1619,16 @@ public class DataService {
         JsonObject object = new JsonObject();
         object.addProperty("ticketId", id);
         _getService().requestSuggestedTicketList(url, _getToken(), object).enqueue(new CommonContainerListCallback<>(delegate));
+    }
+
+    public void requestGetBankDetails(JsonObject jsonObject, final RestCallback<ContainerModel<UserBankDetailModel>> delegate) {
+        String url = UrlManager.shared.getServiceUrl(EndpointConstants.GET_BANK_DETAILS);
+        _getService().requestGetBankDetails(url, _getToken(), jsonObject).enqueue(new CommonContainerDataCallback<>(delegate));
+    }
+
+    public void requestUpdateBankDetails(JsonObject jsonObject, final RestCallback<ContainerModel<UserBankDetailModel>> delegate) {
+        String url = UrlManager.shared.getServiceUrl(EndpointConstants.UPDATE_BANK_DETAILS);
+        _getService().requestUpdateBankDetails(url, _getToken(), jsonObject).enqueue(new CommonContainerDataCallback<>(delegate));
     }
 
     // endregion
