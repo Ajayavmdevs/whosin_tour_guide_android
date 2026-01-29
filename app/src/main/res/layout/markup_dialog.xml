@@ -34,7 +34,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:hint="Enter your markup"
-            android:inputType="textCapSentences"
+            android:inputType="numberDecimal"
             android:background="@drawable/edit_text_stroke"
             android:fontFamily="@font/sfuitext_regular"
             android:textColorHint="@color/white_50"

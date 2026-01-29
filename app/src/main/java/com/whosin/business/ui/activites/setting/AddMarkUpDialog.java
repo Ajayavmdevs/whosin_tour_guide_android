@@ -22,7 +22,7 @@ public class AddMarkUpDialog extends DialogFragment {
 
     public CommanCallback<String> callback;
 
-    public String location = "";
+    public String markup = "";
 
 
     // --------------------------------------
@@ -56,8 +56,8 @@ public class AddMarkUpDialog extends DialogFragment {
 
         Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).setBackgroundDrawable( new ColorDrawable( Color.TRANSPARENT ) );
 
-        if (!TextUtils.isEmpty(location)){
-            binding.tvName.setText(location);
+        if (!TextUtils.isEmpty(markup)){
+            binding.tvName.setText(markup);
         }
         binding.tvName.requestFocus();
 

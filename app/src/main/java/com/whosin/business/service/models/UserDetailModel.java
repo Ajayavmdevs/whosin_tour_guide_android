@@ -272,6 +272,18 @@ public class UserDetailModel extends RealmObject implements DiffIdentifier, Mode
     @Expose
     private RealmList<RoleAcessModel> roleAcessModelList ;
 
+    @SerializedName("globelMarkup")
+    @Expose
+    private float globelMarkup = 0;
+
+    public float getGlobelMarkup() {
+        return globelMarkup;
+    }
+
+    public void setGlobelMarkup(float globelMarkup) {
+        this.globelMarkup = globelMarkup;
+    }
+
     public boolean isGuest() {
         return isGuest;
     }

@@ -76,6 +76,12 @@ public class SettingActivity extends BaseActivity {
         Utils.hideViews(binding.ilUpdateLang,binding.langViewLine);
 
         binding.tvCurrentUserCurrency.setText(SessionManager.shared.getUser().getCurrency());
+        binding.markupAmount.setText(
+                SessionManager.shared.getUser().getGlobelMarkup() > 0
+                        ? String.valueOf(Utils.roundFloatValue(
+                        SessionManager.shared.getUser().getGlobelMarkup()))
+                        : ""
+        );
         binding.tvCurrentUserSelectLang.setText(SessionManager.shared.getUser().getLang());
 
     }
@@ -91,7 +97,35 @@ public class SettingActivity extends BaseActivity {
         binding.ilReportUser.setOnClickListener( view -> startActivity( new Intent( activity, ReportedUserListActivity.class ) ) );
         binding.ilUserReviewList.setOnClickListener( view -> startActivity( new Intent( activity, MyReviewListActivity.class ) ) );
 
+        binding.ivMarkUp.setOnClickListener(view -> {
 
+            AddMarkUpDialog markupDialog = new AddMarkUpDialog();
+            markupDialog.markup = String.valueOf(Utils.roundFloatValue(SessionManager.shared.getUser().getGlobelMarkup()));
+            markupDialog.callback = value -> {
+                if (TextUtils.isEmpty(value)) return;
+
+                JsonObject json = new JsonObject();
+                json.addProperty("globelMarkup", value);
+
+                requestUpdateProfile(json, () -> {
+
+                    // 🔥 Update local user instantly
+                    SessionManager.shared.getUser().setGlobelMarkup(Float.parseFloat(value));
+
+                    // 🔥 Update UI instantly
+                    binding.markupAmount.setText(
+                            SessionManager.shared.getUser().getGlobelMarkup() > 0
+                                    ? String.valueOf(Utils.roundFloatValue(
+                                    SessionManager.shared.getUser().getGlobelMarkup()))
+                                    : ""
+                    );
+
+                    Toast.makeText(activity, "Markup Updated", Toast.LENGTH_SHORT).show();
+                });
+            };
+
+            markupDialog.show(getSupportFragmentManager(), "AddMarkUpDialog");
+        });
 
 
 //        binding.ilContact.setOnClickListener( view -> {
@@ -459,6 +493,23 @@ public class SettingActivity extends BaseActivity {
         languageBottomSheet.show(getSupportFragmentManager(), "");
     }
 
+    private void requestUpdateProfile(JsonObject jsonObject, Runnable onSuccess) {
+
+        showProgress();
+
+        SessionManager.shared.updateProfile(activity, jsonObject, (success, error) -> {
+            hideProgress();
+
+            if (!Utils.isNullOrEmpty(error)) {
+                Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (onSuccess != null) {
+                onSuccess.run();
+            }
+        });
+    }
 
     private void requestChangeCurrency(String code,boolean isUpdateLang) {
         AppSettingManager.shared.callHomeCommanApi = false;

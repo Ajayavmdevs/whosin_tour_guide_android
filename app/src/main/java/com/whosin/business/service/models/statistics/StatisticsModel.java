@@ -20,49 +20,37 @@ public class StatisticsModel {
 
     @SerializedName("list")
     @Expose
-    private List<StatisticsTicketModel> list;
+    private List<TransactionListModel> list;
 
     public int getTotalSale() {
         return totalSale;
+    }
+
+    public void setTotalSale(int totalSale) {
+        this.totalSale = totalSale;
     }
 
     public double getTotalProfit() {
         return totalProfit;
     }
 
+    public void setTotalProfit(double totalProfit) {
+        this.totalProfit = totalProfit;
+    }
+
     public double getVat() {
         return vat;
     }
 
-    public List<StatisticsTicketModel> getList() {
+    public void setVat(double vat) {
+        this.vat = vat;
+    }
+
+    public List<TransactionListModel> getList() {
         return list;
     }
-}
 
-
-class StatisticsTicketModel {
-
-    @SerializedName("quantity")
-    @Expose
-    private int quantity;
-
-    @SerializedName("ticketId")
-    @Expose
-    private String ticketId;
-
-    @SerializedName("title")
-    @Expose
-    private String title;
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public String getTicketId() {
-        return ticketId;
-    }
-
-    public String getTitle() {
-        return title;
+    public void setList(List<TransactionListModel> list) {
+        this.list = list;
     }
 }

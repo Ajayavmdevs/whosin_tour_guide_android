@@ -2,10 +2,10 @@ package com.whosin.business.service;
 
 public class EndpointConstants {
 
-    public static final String AUTH_GOOGLE_LOGIN_ENDPOINT = "user/login/google";
+    public static final String AUTH_GOOGLE_LOGIN_ENDPOINT = "user/tour-guide/google-login";
     public static final String AUTH_PHONE_LOGIN_NEW_ENDPOINT = "user/tour-guide/signup";
     public static final String GUEST_LOGIN_ENDPOINT = "user/login/guest";
-    public static final String AUTH_VERIFY_OTP_ENDPOINT = "user/verify";
+    public static final String AUTH_VERIFY_OTP_ENDPOINT = "user/tour-guide/verify";
     public static final String USER_SENT_OTP = "user/send/otp";
     public static final String USER_VERIFY_OTP = "user/verify/otp";
     public static final String USER_UPDATE_FCM_TOKEN = "user/fcm/token";
@@ -221,4 +221,5 @@ public class EndpointConstants {
 
     // Tour Guide Statistics
     public static final String TOUR_GUIDE_STATS = "comman/tour-guide/stats";
+    public static final String TOUR_GUIDE_TRANSACTIONS = "comman/tour-guide/transaction";
 }

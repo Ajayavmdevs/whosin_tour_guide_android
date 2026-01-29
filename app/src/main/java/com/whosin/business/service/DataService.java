@@ -70,6 +70,7 @@ import com.whosin.business.service.models.rayna.RaynaTicketDetailModel;
 import com.whosin.business.service.models.rayna.RaynaTimeSlotModel;
 import com.whosin.business.service.models.rayna.TourOptionsModel;
 import com.whosin.business.service.models.statistics.StatisticsModel;
+import com.whosin.business.service.models.statistics.TransactionModel;
 import com.whosin.business.service.models.whosinTicketModel.RaynaWhosinBookingRulesModel;
 import com.whosin.business.service.models.whosinTicketModel.RaynaWhosinMoreInfoModel;
 import com.whosin.business.service.models.whosinTicketModel.WhosinAvailabilityModel;
@@ -527,6 +528,10 @@ public class DataService {
         @POST()
         @Headers({"Accept: application/json"})
         Call<ContainerModel<StatisticsModel>> requestGetStatistics(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
+
+        @POST()
+        @Headers({"Accept: application/json"})
+        Call<ContainerModel<TransactionModel>> requestGetTransactions(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
     }
 
 
@@ -836,7 +841,7 @@ public class DataService {
 
     public void requestLoginWithGoogle(JsonObject object, final RestCallback<ContainerModel<UserTokenModel>> delegate) {
         object.addProperty("deviceId", Utils.getDeviceUniqueId(_context));
-        String url = UrlManager.shared.getServiceUrlV2(EndpointConstants.AUTH_GOOGLE_LOGIN_ENDPOINT);
+        String url = UrlManager.shared.getServiceUrl(EndpointConstants.AUTH_GOOGLE_LOGIN_ENDPOINT);
         _getService().requestAuth(url, object).enqueue(new CommonContainerCallback<>(delegate));
     }
 
@@ -1639,6 +1644,11 @@ public class DataService {
     public void requestGetStatistics(JsonObject jsonObject, final RestCallback<ContainerModel<StatisticsModel>> delegate) {
         String url = UrlManager.shared.getServiceUrl(EndpointConstants.TOUR_GUIDE_STATS);
         _getService().requestGetStatistics(url, _getToken(), jsonObject).enqueue(new CommonContainerDataCallback<>(delegate));
+    }
+
+    public void requestGetTransactions(JsonObject jsonObject, final RestCallback<ContainerModel<TransactionModel>> delegate) {
+        String url = UrlManager.shared.getServiceUrl(EndpointConstants.TOUR_GUIDE_TRANSACTIONS);
+        _getService().requestGetTransactions(url, _getToken(), jsonObject).enqueue(new CommonContainerDataCallback<>(delegate));
     }
 
     // endregion

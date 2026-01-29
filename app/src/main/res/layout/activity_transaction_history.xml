@@ -36,44 +36,100 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/llFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingEnd="@dimen/_15sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All"
-                android:textColor="@color/white_70"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/sfuitext_regular" />
-
-            <ImageView
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:src="@drawable/arrow_drop_down"
-                app:tint="@color/white_70"/>
-        </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTransactions"
+    <LinearLayout
+        android:id="@+id/ivAmountView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintHeader"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:weightSum="2"
+        android:layout_marginHorizontal="@dimen/_10sdp">
+
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/venue_bg"
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            app:corner_radius="@dimen/_10sdp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ivTopSales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top Sales"
+                android:textColor="@color/gray"
+                style="@style/txt14Regular"/>
+
+            <TextView
+                android:id="@+id/ivTopSalesAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.0"
+                style="@style/txt20Bold" />
+
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/venue_bg"
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:corner_radius="@dimen/_10sdp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ivTotalProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Profile"
+                android:textColor="@color/gray"
+                style="@style/txt14Regular"/>
+
+            <TextView
+                android:id="@+id/ivTotalProfileAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.0"
+                style="@style/txt20Bold" />
+
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        style="@style/MyWalletTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivAmountView"
+        app:tabIndicatorColor="@color/white"
+        app:tabIndicatorHeight="@dimen/_3sdp"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/venue_text" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintHeader" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
 
 
