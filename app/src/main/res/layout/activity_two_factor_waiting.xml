@@ -59,7 +59,7 @@
         android:layout_height="@dimen/_150sdp"
         android:layout_marginHorizontal="@dimen/_20sdp">
 
-        <com.whosin.app.ui.controller.RoundProgressBar
+        <com.whosin.business.ui.controller.RoundProgressBar
             android:id="@+id/progressBar"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_120sdp"
@@ -101,7 +101,7 @@
         android:layout_marginTop="@dimen/_3sdp"/>
 
 
-    <com.whosin.app.ui.controller.IconButton
+    <com.whosin.business.ui.controller.IconButton
         android:id="@+id/btnMoreOption"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_30sdp"

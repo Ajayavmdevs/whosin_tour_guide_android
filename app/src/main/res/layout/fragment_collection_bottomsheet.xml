@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvContactPrivacyPolicy">
 
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/notNowBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,10 +96,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/agreenBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,8 +119,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
     </LinearLayout>
 
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

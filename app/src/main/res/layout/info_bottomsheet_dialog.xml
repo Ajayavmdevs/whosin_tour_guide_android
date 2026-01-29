@@ -28,7 +28,7 @@
            />
 
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/layoutEmail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -49,9 +49,9 @@
                 android:layout_marginHorizontal="@dimen/_6sdp"
                 style="@style/txt12Regular"/>
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/layoutCancel"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -73,6 +73,6 @@
                 android:layout_marginHorizontal="@dimen/_6sdp"
                 style="@style/txt12Regular"/>
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

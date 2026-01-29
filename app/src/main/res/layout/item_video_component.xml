@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/_10sdp"
@@ -64,7 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.whosin.app.service.storyViewer.StoriesProgressView
+        <com.whosin.business.service.storyViewer.StoriesProgressView
             android:id="@+id/storyProgressView"
             android:layout_width="match_parent"
             android:layout_height="3dp"
@@ -72,7 +72,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintTop_toBottomOf="@id/txtTitle" />
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/btnVolume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 android:buttonTint="@color/white"
                 android:padding="@dimen/_6sdp" />
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
         <eightbitlab.com.blurview.BlurView
             android:id="@+id/blurView"
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.whosin.app.comman.ui.UserInfoView
+                <com.whosin.business.comman.ui.UserInfoView
                     android:id="@+id/venueContainer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -151,6 +151,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

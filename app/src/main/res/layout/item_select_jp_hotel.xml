@@ -43,14 +43,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRoomName">
 
-        <com.whosin.app.ui.controller.JpHotel.JPHotelPaxSelectView
+        <com.whosin.business.ui.controller.JpHotel.JPHotelPaxSelectView
             android:id="@+id/adultView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_6sdp"
             android:layout_weight="1" />
 
-        <com.whosin.app.ui.controller.JpHotel.JPHotelPaxSelectView
+        <com.whosin.business.ui.controller.JpHotel.JPHotelPaxSelectView
             android:id="@+id/childView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

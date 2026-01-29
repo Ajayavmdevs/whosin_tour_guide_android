@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/navi_blue">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_15sdp"
+            android:src="@drawable/icon_left_back_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bank Details"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:fontFamily="@font/sfuitext_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/sfuitext_regular"
+            android:paddingEnd="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_15sdp"
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp">
+
+            <!-- Account Holder Name -->
+            <TextView
+                style="@style/txt13SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Holder Name" />
+
+            <EditText
+                android:id="@+id/etAccountHolderName"
+                style="@style/txt13Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/bank_field_background"
+                android:hint="Enter account holder name"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:singleLine="true"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/grey" />
+
+            <!-- IBAN & SWIFT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bank_field_background"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IBAN"
+                    style="@style/txt10RegularWhite70" />
+
+                <EditText
+                    android:id="@+id/etIBAN"
+                    style="@style/txt13Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="Enter IBAN"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:textColorHint="@color/grey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tap Edit to view full IBAN"
+                    style="@style/txt10RegularWhite70"
+                    android:layout_marginTop="@dimen/_2sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white_10"
+                    android:layout_marginVertical="@dimen/_10sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Swift / BIC"
+                    style="@style/txt10RegularWhite70" />
+
+                <EditText
+                    android:id="@+id/etSwift"
+                    style="@style/txt13Regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="Enter Swift / BIC"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:textColorHint="@color/grey" />
+
+            </LinearLayout>
+
+            <!-- Account Number -->
+            <TextView
+                style="@style/txt13SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Account Number" />
+
+            <EditText
+                android:id="@+id/etAccountNumber"
+                style="@style/txt13Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/bank_field_background"
+                android:hint="Enter account number"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:singleLine="true"
+                android:inputType="number"
+                android:textColorHint="@color/grey" />
+
+            <!-- Bank Name -->
+            <TextView
+                style="@style/txt13SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Bank Name" />
+
+            <EditText
+                android:id="@+id/etBankName"
+                style="@style/txt13Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/bank_field_background"
+                android:hint="Enter bank name"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColorHint="@color/grey" />
+
+            <!-- Branch -->
+            <TextView
+                style="@style/txt13SemiBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Branch" />
+
+            <EditText
+                android:id="@+id/etBranch"
+                style="@style/txt13Regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/bank_field_background"
+                android:hint="Enter branch name"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColorHint="@color/grey" />
+
+
+            <!-- Country Selector -->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/llCountrySelector"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                android:background="@drawable/invitesheet_edittext_background"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingHorizontal="@dimen/_15sdp"-->
+<!--                android:paddingVertical="@dimen/_12sdp">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/ivCountryFlag"-->
+<!--                    android:layout_width="@dimen/_20sdp"-->
+<!--                    android:layout_height="@dimen/_15sdp"-->
+<!--                    android:src="@drawable/flag_uae"-->
+<!--                    android:scaleType="centerCrop"/>-->
+<!--                    &lt;!&ndash; Assuming there is a flag icon, using a placeholder or common one if available &ndash;&gt;-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvCountryCurrency"-->
+<!--                    style="@style/txt13Regular"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/_10sdp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="United Arab Emirates • AED" />-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_12sdp"-->
+<!--                    android:layout_height="@dimen/_12sdp"-->
+<!--                    android:src="@drawable/left_arrow"-->
+<!--                    android:rotation="90"-->
+<!--                    app:tint="@color/white_70"/>-->
+
+<!--            </LinearLayout>-->
+
+            <!-- Security Note -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/bank_field_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_12sdp"
+                android:backgroundTint="@color/white_10"> 
+                <!-- Making it look slightly different as per image (darker) -->
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/stripe_ic_lock"
+                    app:tint="@color/white_70"/>
+
+                <TextView
+                    style="@style/txt10RegularWhite70"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="Your bank details are encrypted and used only for payouts." />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

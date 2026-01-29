@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
         android:paddingHorizontal="@dimen/_10sdp"
         android:visibility="gone">
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -195,7 +195,7 @@
                 android:id="@+id/recycler_view_add_ons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
     </LinearLayout>
 
@@ -275,4 +275,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

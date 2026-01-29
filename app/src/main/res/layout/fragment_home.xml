@@ -16,7 +16,7 @@
             app:layout_scrollFlags="scroll|enterAlways"
             android:background="@color/clear">
 
-            <com.whosin.app.ui.controller.NavBarWithBack
+            <com.whosin.business.ui.controller.NavBarWithBack
                 android:id="@+id/navbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

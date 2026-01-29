@@ -48,7 +48,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:layout_marginHorizontal="@dimen/_15sdp">
 
-                            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                                 android:id="@+id/userBackGroundImageLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                                     android:background="@color/gray"
                                     app:showNavigationButtons="false" />
 
-                                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                                     android:id="@+id/editProfileLayout"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -112,10 +112,10 @@
                                         app:layout_constraintStart_toEndOf="@+id/editImage"
                                         app:layout_constraintTop_toTopOf="parent" />
 
-                                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
-                            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/linearHeader"

@@ -312,7 +312,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layoutBio">
 
-                    <com.whosin.app.ui.controller.FollowButton
+                    <com.whosin.business.ui.controller.FollowButton
                         android:id="@+id/btnFollowingButton"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -364,7 +364,7 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:itemCount="7" />
 
-            <com.whosin.app.ui.controller.EmptyPlaceHolderView
+            <com.whosin.business.ui.controller.EmptyPlaceHolderView
                 android:id="@+id/emptyPlaceHolderView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -158,7 +158,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <com.whosin.app.comman.ui.UserInfoView
+                <com.whosin.business.comman.ui.UserInfoView
                     android:id="@+id/venueContainer"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/_8sdp"

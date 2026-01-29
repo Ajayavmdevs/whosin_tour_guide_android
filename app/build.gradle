@@ -10,23 +10,23 @@ apply plugin: "realm-android"
 android {
     signingConfigs {
         debug {
-            storeFile file("${rootDir}/keystore/key")
+            storeFile file("${rootDir}/keystore/key.jks")
             storePassword '123456'
             keyPassword '123456'
-            keyAlias 'com.whosin.app'
+            keyAlias 'com.whosin.business'
         }
         release {
-            storeFile file("${rootDir}/keystore/key")
+            storeFile file("${rootDir}/keystore/key.jks")
             storePassword '123456'
-            keyAlias 'com.whosin.app'
+            keyAlias 'com.whosin.business '
             keyPassword '123456'
         }
     }
-    namespace 'com.whosin.app'
+    namespace 'com.whosin.business'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.whosin.me"
+        applicationId "com.whosin.business"
         minSdk 24
         targetSdk 35
         versionCode 67

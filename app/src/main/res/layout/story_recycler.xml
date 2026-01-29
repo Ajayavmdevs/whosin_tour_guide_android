@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <!--below widget is use to create indicator for our stories at top-->
-    <com.whosin.app.service.storyViewer.StoriesProgressView
+    <com.whosin.business.service.storyViewer.StoriesProgressView
         android:id="@+id/stories"
         android:layout_width="match_parent"
         android:layout_height="3dp"

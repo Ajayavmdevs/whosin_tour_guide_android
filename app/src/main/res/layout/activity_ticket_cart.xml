@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myCartItemRecycleView" />
 
-    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
         android:id="@+id/emptyPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
 
         </LinearLayout>
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/YourSavingLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -288,7 +288,7 @@
             </LinearLayout>
 
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
         <View
             android:id="@+id/viewLine"
@@ -298,7 +298,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/roundCartButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -370,7 +370,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

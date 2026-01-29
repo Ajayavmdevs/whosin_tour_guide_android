@@ -17,7 +17,7 @@
         app:use_controller="false" />
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/btnVolume"
         app:corner_radius="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
             android:buttonTint="@color/white"
             android:padding="@dimen/_6sdp" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
     <ImageView

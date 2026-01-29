@@ -25,7 +25,7 @@
             android:textColor="@color/solid_blue"
             android:text="WhosIn" />
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:layout_width="@dimen/_150sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
             app:corner_radius="@dimen/_6sdp"
@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="center" />
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
         <TextView
             android:id="@+id/txtTime"

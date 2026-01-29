@@ -41,7 +41,7 @@
             tools:orientation="horizontal" />
 
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/change_date_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_change_selected_date" />
 
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

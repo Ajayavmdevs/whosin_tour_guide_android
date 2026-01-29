@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
    >
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,7 +99,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/aedLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvStart" />
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

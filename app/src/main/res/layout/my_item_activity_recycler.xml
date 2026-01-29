@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/brand_pink"
@@ -160,7 +160,7 @@
                         android:paddingHorizontal="@dimen/_10sdp"
                         android:paddingVertical="@dimen/_2sdp"
                         android:text="Activity" />
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -305,4 +305,4 @@
 
     </LinearLayout>
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

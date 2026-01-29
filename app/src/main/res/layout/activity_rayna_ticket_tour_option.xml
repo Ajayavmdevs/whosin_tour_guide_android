@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintHeader"
         tools:listitem="@layout/item_rayna_ticket_option_view" />
 
-    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
         android:id="@+id/emptyPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/nextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 />
 
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
     </LinearLayout>
 

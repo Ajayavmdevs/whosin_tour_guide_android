@@ -8,7 +8,7 @@
     android:background="@drawable/mainbackground"
     tools:context=".ui.activites.auth.AuthUserEmailActivity">
 
-    <com.whosin.app.ui.controller.NavBarWithBack
+    <com.whosin.business.ui.controller.NavBarWithBack
         android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:rightBtnTitle="Clear"
         app:showBackButton="true" />
 
-    <com.whosin.app.ui.controller.OnBoardTextInfoView
+    <com.whosin.business.ui.controller.OnBoardTextInfoView
         android:id="@+id/nameControl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:inputType="textEmailAddress" />
 
 
-    <com.whosin.app.ui.controller.RoundButton
+    <com.whosin.business.ui.controller.RoundButton
         android:id="@+id/imageNext"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"

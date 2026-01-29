@@ -1,4 +1,4 @@
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dateLinear"
@@ -10,7 +10,7 @@
     app:corner_radius="@dimen/_12sdp"
     app:layout_constraintTop_toTopOf="parent">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/dateConstraint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -46,10 +46,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/timeConstraint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
 
@@ -102,4 +102,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detailLayout"
@@ -14,7 +14,7 @@
     app:layout_constraintTop_toBottomOf="@+id/tourDetailLayout">
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/checkout_bg"
@@ -121,10 +121,10 @@
 
         </LinearLayout>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/checkout_bg"
@@ -162,10 +162,10 @@
             tools:itemCount="2"
             tools:listitem="@layout/item_checkout_jp_sub_hotel_room" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/cardConstraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -214,10 +214,10 @@
             app:layout_constraintTop_toBottomOf="@+id/viewLine"
             tools:itemCount="1" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/roundPriceLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -345,8 +345,8 @@
 
         </LinearLayout>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

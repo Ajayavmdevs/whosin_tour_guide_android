@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/timeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             tools:listitem="@layout/layout_weekdays_field" />
 
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/addMoreLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,10 +89,10 @@
             </LinearLayout>
 
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

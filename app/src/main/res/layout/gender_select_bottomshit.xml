@@ -7,7 +7,7 @@
 
     >
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/roundMale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,11 +77,11 @@
             android:gravity="center"
             android:text="@string/edtPrefer" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
@@ -108,6 +108,6 @@
             android:textColor="@color/brand_pink"
             />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

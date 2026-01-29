@@ -93,7 +93,7 @@
         android:layout_marginBottom="@dimen/_5sdp"
         app:layout_constraintTop_toBottomOf="@id/linearFriends" />
 
-    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
         android:id="@+id/emptyPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.whosin.app.ui.controller.IconButton
+    <com.whosin.business.ui.controller.IconButton
         android:id="@+id/btnInvite"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
@@ -120,6 +120,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    </com.whosin.app.ui.controller.IconButton>
+    </com.whosin.business.ui.controller.IconButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

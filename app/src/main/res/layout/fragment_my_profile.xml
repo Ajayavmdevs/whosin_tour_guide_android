@@ -79,7 +79,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                             android:id="@+id/vipImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                                 android:paddingHorizontal="@dimen/_8sdp"
                                 android:text="Promoter" />
 
-                        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -192,7 +192,7 @@
 
                 </LinearLayout>
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                     android:id="@+id/eventConstraint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
@@ -290,7 +290,7 @@
 
             </LinearLayout>
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                 android:id="@+id/roundShare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -309,7 +309,7 @@
                     android:src="@drawable/img_share_profile"
                     app:tint="@color/white" />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,7 +40,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
 
-                        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                             android:id="@+id/linear"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                                 android:id="@+id/layoutImage"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -327,7 +327,7 @@
                                 android:textColor="@color/black"
                                 android:visibility="visible" />
 
-                        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+                        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

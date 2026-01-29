@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/headerView" />
 
-    <com.whosin.app.ui.controller.raynaTicketsView.ExploreBlockTicketView
+    <com.whosin.business.ui.controller.raynaTicketsView.ExploreBlockTicketView
         android:id="@+id/ticketRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

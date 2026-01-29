@@ -141,7 +141,7 @@
                 android:lines="6"
                 android:maxLines="15" />
 
-            <com.whosin.app.ui.controller.IconButton
+            <com.whosin.business.ui.controller.IconButton
                 android:id="@+id/btnSubmit"
                 android:layout_width="@dimen/_85sdp"
                 android:layout_height="@dimen/_30sdp"

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.whosin.app.ui.controller.promotionalView.PromotionalBannerView
+    <com.whosin.business.ui.controller.promotionalView.PromotionalBannerView
         android:id="@+id/adView"
         android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"

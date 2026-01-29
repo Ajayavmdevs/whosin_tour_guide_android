@@ -1,4 +1,4 @@
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -75,4 +75,4 @@
             tools:text="Chat now" />
     </LinearLayout>
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

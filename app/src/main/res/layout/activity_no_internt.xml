@@ -42,7 +42,7 @@
             android:lineSpacingExtra="1.5dp"
             android:text="Your internet connection is down. Retry and continue using 7NIGHTS." />
 
-        <com.whosin.app.ui.controller.IconButton
+        <com.whosin.business.ui.controller.IconButton
             android:id="@+id/btnRetry"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_27sdp"

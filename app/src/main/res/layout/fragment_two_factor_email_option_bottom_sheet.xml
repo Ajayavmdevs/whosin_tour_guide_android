@@ -7,7 +7,7 @@
     android:background="@drawable/img_bottomsheet_bg"
     tools:context=".ui.activites.Profile.ChangePhoneNumberActivity">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerFrameLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerFrameLayout
         android:id="@+id/dragView"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_3sdp"
@@ -68,7 +68,7 @@
 
     </LinearLayout>
 
-    <com.whosin.app.ui.controller.IconButton
+    <com.whosin.business.ui.controller.IconButton
         android:id="@+id/submitBtn"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_30sdp"

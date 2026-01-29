@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:id="@+id/layoutDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                         app:layout_constraintBaseline_toBaselineOf="@id/amountLabel"
                         app:layout_constraintEnd_toEndOf="parent" />
 
-                    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                         android:id="@+id/downloadTicketBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -264,11 +264,11 @@
 <!--                            app:layout_constraintStart_toStartOf="parent"-->
 <!--                            app:layout_constraintTop_toBottomOf="@id/amountLabel" />-->
 
-                    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
 
-                    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                         android:id="@+id/add_ticket_wallet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -311,14 +311,14 @@
                             android:indeterminateTint="@color/brand_pink"
                             android:visibility="gone" />
 
-                    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+                    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:id="@+id/guestInfoCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -485,7 +485,7 @@
 
                 </LinearLayout>
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
             <include
                 android:id="@+id/jpHotelDetailview"

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:background="@drawable/bank_field_background"
+    android:padding="@dimen/_8sdp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:src="@drawable/icon_user_image"
+        app:civ_border_color="@color/transparent"
+        app:civ_border_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+        <!-- using placeholder or some default image -->
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/txt13SemiBoldWhite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Burj Khalifa - Standard"
+        app:layout_constraintEnd_toStartOf="@+id/tvAmount"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+        app:layout_constraintTop_toTopOf="@+id/ivAvatar" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        style="@style/txt10RegularWhite70"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Ajay Kumarkhaniya"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        style="@style/txt13SemiBoldWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AED 132.00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        style="@style/txt10Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:text="Cancelled"
+        android:textColor="@color/brand_pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
+
+    <TextView
+        android:id="@+id/tvDateTime"
+        style="@style/txt10RegularWhite70"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="23 Sep 2025 • 14:00 - 16:00"
+        app:layout_constraintEnd_toStartOf="@+id/tvStatus"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@color/white_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateTime" />
+
+    <LinearLayout
+        android:id="@+id/llBottomInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintEnd_toStartOf="@+id/tvBottomAmount"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
+
+        <ImageView
+            android:id="@+id/ivBottomIcon"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/icon_close" 
+            app:tint="@color/brand_pink"
+            android:visibility="visible"/>
+            <!-- icon_close or icon_check or icon_user etc -->
+
+        <TextView
+            android:id="@+id/tvBottomText"
+            style="@style/txt10Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:text="Cancelled"
+            android:textColor="@color/brand_pink" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBottomAmount"
+        style="@style/txt10Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AED 250.00"
+        android:textColor="@color/brand_pink" 
+        app:layout_constraintBottom_toBottomOf="@+id/llBottomInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/llBottomInfo"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/ivMore"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:src="@drawable/icon_more"
+        app:tint="@color/white_70"
+        app:layout_constraintBottom_toBottomOf="@+id/llBottomInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/llBottomInfo"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <com.whosin.app.ui.controller.IconButton
+        <com.whosin.business.ui.controller.IconButton
             android:id="@+id/btnDownloadTicket"
             style="@style/txt14SemiBoldWhite"
             android:layout_width="match_parent"
@@ -77,7 +77,7 @@
             app:buttonTitle="Download Ticket" />
 
 
-        <com.whosin.app.ui.controller.IconButton
+        <com.whosin.business.ui.controller.IconButton
             android:id="@+id/btnCancelBooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_max="@dimen/_200sdp" />
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_4sdp"
@@ -39,7 +39,7 @@
             android:padding="@dimen/_2sdp"
             app:corner_radius="@dimen/_10sdp">
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:id="@+id/imageConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                     android:id="@+id/roundLinear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,9 +81,9 @@
                         android:text="500"
                         android:textColor="@color/white" />
 
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/detailLayout"
@@ -188,7 +188,7 @@
 
             </LinearLayout>
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
         <TextView
             android:id="@+id/tvMsg"
@@ -202,7 +202,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/imageLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_160sdp"
@@ -217,7 +217,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="center" />
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

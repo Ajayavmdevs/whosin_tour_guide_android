@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/brand_pink"
@@ -84,11 +84,11 @@
                     android:paddingVertical="@dimen/_3sdp"
                     android:text="ticket" />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <com.whosin.app.ui.controller.myItem.MyItemPassengerDetailView
+        <com.whosin.business.ui.controller.myItem.MyItemPassengerDetailView
             android:id="@+id/rvPassengersRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -344,4 +344,4 @@
         app:layout_constraintBottom_toBottomOf="@+id/headerLinear"
         app:layout_constraintTop_toTopOf="@+id/headerLinear" />
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

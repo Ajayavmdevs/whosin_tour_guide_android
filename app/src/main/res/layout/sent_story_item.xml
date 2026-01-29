@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_height="wrap_content">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/layoutSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,9 +24,9 @@
             android:padding="@dimen/_8sdp"
             android:layout_gravity="center" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/roundCornerConstraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
 
         </LinearLayout>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
     <TextView
         android:id="@+id/txtStoryUnavailable"

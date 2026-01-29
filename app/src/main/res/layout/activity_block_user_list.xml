@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
         android:id="@+id/emptyPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

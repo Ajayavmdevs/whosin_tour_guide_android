@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.whosin.app.ui.controller.raynaTicketsView.RaynaCategoryView
+    <com.whosin.business.ui.controller.raynaTicketsView.RaynaCategoryView
         android:id="@+id/categoryView"
         android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"

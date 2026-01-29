@@ -8,7 +8,7 @@
     android:windowSoftInputMode="adjustResize"
     tools:context=".ui.activites.auth.AuthUserNameActivity">
 
-    <com.whosin.app.ui.controller.NavBarWithBack
+    <com.whosin.business.ui.controller.NavBarWithBack
         android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         app:showRightButton="false"
         app:showSerachButton="false" />
 
-    <com.whosin.app.ui.controller.OnBoardTextInfoView
+    <com.whosin.business.ui.controller.OnBoardTextInfoView
         android:id="@+id/nameControl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
         android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@id/txt">
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/roundMale"
             android:layout_width="0dp"
             android:layout_height="@dimen/_35sdp"
@@ -134,9 +134,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Male" />
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/linearFemale"
             android:layout_width="0dp"
             android:layout_height="@dimen/_35sdp"
@@ -158,9 +158,9 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:text="Female" />
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/linearPrefer"
             android:layout_width="@dimen/_145sdp"
             android:layout_height="@dimen/_35sdp"
@@ -181,10 +181,10 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:text="Prefer not to Say" />
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.whosin.app.ui.controller.RoundButton
+    <com.whosin.business.ui.controller.RoundButton
         android:id="@+id/imageNext"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"

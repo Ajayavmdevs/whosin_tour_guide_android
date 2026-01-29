@@ -7,7 +7,7 @@
     tools:context=".ui.fragment.wallet.PurchaseSuccessFragment">
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:layout_width="@dimen/_240sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
@@ -108,7 +108,7 @@
                 android:textColor="#B00566" />
 
         </androidx.cardview.widget.CardView>
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
     <ImageView
         android:id="@+id/ivSuccess"

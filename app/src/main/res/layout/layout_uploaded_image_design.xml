@@ -5,7 +5,7 @@
     android:layout_marginStart="@dimen/_8sdp"
     android:layout_height="wrap_content">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:layout_width="@dimen/_49sdp"
         android:layout_height="@dimen/_49sdp"
         app:corner_radius="@dimen/_10sdp"
@@ -47,6 +47,6 @@
             android:visibility="gone"
             />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

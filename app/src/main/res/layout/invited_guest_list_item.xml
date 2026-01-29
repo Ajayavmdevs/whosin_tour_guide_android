@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contactLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,7 +59,7 @@
 
     </LinearLayout>
 
-    <com.whosin.app.ui.controller.UserOptionView
+    <com.whosin.business.ui.controller.UserOptionView
         android:id="@+id/optionContainer"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_26sdp"
@@ -82,4 +82,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

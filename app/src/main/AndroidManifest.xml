@@ -377,7 +377,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.whosin.me.fileprovider"
+            android:authorities="com.whosin.business.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

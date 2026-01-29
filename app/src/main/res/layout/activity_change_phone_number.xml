@@ -82,7 +82,7 @@
     </LinearLayout>
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/imageNext"
         android:layout_width="@dimen/_88sdp"
         android:layout_height="@dimen/_30sdp"
@@ -103,7 +103,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Submit" />
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

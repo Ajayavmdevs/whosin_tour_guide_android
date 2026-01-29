@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:id="@+id/mainConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                     android:id="@+id/detailLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -379,10 +379,10 @@
                     </LinearLayout>
 
 
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -410,7 +410,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/nextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -443,7 +443,7 @@
                 android:rotation="180"
                 android:src="@drawable/icon_left_back_arrow" />
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
     </LinearLayout>
 

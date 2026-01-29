@@ -47,7 +47,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/constrainFollowRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/followersList"
@@ -181,7 +181,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constrainFollowRequest" />
 
-    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
         android:id="@+id/emptyPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

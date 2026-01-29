@@ -281,7 +281,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                 android:id="@+id/linearReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -311,7 +311,7 @@
                     android:gravity="center"
                     android:text="Write a Review" />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
         </LinearLayout>
 
@@ -326,7 +326,7 @@
 
     </LinearLayout>
 
-    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
         android:id="@+id/emptyPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

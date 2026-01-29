@@ -64,7 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.whosin.app.comman.ui.UserInfoView
+            <com.whosin.business.comman.ui.UserInfoView
                 android:id="@+id/venueContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                 android:id="@+id/layoutVolume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                     android:buttonTint="@color/white"
                     android:padding="@dimen/_6sdp" />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
             <ImageView
@@ -114,7 +114,7 @@
 
     </FrameLayout>
 
-    <com.whosin.app.service.storyViewer.StoriesProgressView
+    <com.whosin.business.service.storyViewer.StoriesProgressView
         android:id="@+id/storiesProgress"
         android:layout_width="match_parent"
         android:layout_height="2.5dp"
@@ -127,7 +127,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/offerLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                     android:id="@+id/ivOfferLayout"
                     android:layout_width="@dimen/_68sdp"
                     android:layout_height="@dimen/_68sdp"
@@ -164,7 +164,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/icon_venue_image" />
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
                 <LinearLayout
                     android:id="@+id/offerDetailContainer"
@@ -267,9 +267,9 @@
 
         </eightbitlab.com.blurview.BlurView>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/shareBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -302,9 +302,9 @@
 
         </eightbitlab.com.blurview.BlurView>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/ticketLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -339,7 +339,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:text="" />
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                     android:id="@+id/ivTicketLayout"
                     android:layout_width="@dimen/_84sdp"
                     android:layout_height="@dimen/_55sdp"
@@ -355,7 +355,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"/>
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
                 <TextView
                     android:id="@+id/tvTicketDescription"
@@ -421,7 +421,7 @@
 
                 </LinearLayout>
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                     android:id="@+id/shareTicketBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -453,14 +453,14 @@
 
                     </eightbitlab.com.blurview.BlurView>
 
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </eightbitlab.com.blurview.BlurView>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

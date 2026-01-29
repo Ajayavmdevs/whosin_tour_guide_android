@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" formatted="false">WHOS’IN</string>
+    <string name="app_name" formatted="false">WHOS’IN Business</string>
 
 
     <string name="geoloc_api_key" formatted="false">AIzaSyCL-4fwbA4QXewihYTCj_8eRoXG4JKe9k0</string>

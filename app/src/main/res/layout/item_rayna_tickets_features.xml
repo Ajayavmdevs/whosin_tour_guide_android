@@ -7,7 +7,7 @@
     android:layout_marginEnd="@dimen/_5sdp"
     android:orientation="vertical">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/linearMainView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +36,6 @@
             android:text="dfg"
             android:textColor="@color/white_85" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 </LinearLayout>

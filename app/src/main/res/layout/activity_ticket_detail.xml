@@ -40,7 +40,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/SearchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,9 +99,9 @@
             android:visibility="gone" />
 
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
-    <com.whosin.app.ui.controller.raynaTicketsView.ExploreBlockTicketView
+    <com.whosin.business.ui.controller.raynaTicketsView.ExploreBlockTicketView
         android:id="@+id/ticketRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -112,7 +112,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.whosin.app.ui.controller.EmptyPlaceHolderView
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
         android:id="@+id/emptyPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

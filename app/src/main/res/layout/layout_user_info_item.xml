@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/_40sdp">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/roundLinear"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
     <LinearLayout
         android:id="@+id/venueTitleContainer"

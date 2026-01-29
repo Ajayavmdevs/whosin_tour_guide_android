@@ -161,7 +161,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.whosin.app.ui.controller.CustomWeekdaysView
+            <com.whosin.business.ui.controller.CustomWeekdaysView
                 android:id="@+id/layoutCustomWeekDays"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

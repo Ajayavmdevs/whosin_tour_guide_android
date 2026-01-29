@@ -10,7 +10,7 @@
     tools:context=".ui.activites.auth.OtpVerificationBottomSheet">
 
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerFrameLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerFrameLayout
         android:id="@+id/dragView"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_3sdp"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dragView">
 
-        <com.whosin.app.ui.controller.RoundProgressBar
+        <com.whosin.business.ui.controller.RoundProgressBar
             android:id="@+id/progressBar"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
@@ -64,7 +64,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.whosin.app.ui.controller.RoundButton
+        <com.whosin.business.ui.controller.RoundButton
             android:id="@+id/indicatorView"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
@@ -80,7 +80,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.whosin.app.ui.controller.OnBoardTextInfoView
+    <com.whosin.business.ui.controller.OnBoardTextInfoView
         android:id="@+id/infoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/otpTextField" />
 
-    <com.whosin.app.ui.controller.IconButton
+    <com.whosin.business.ui.controller.IconButton
         android:id="@+id/btnVerify"
         android:layout_width="0dp"
         android:layout_height="@dimen/_30sdp"

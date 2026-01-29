@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/image_layout"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_76sdp"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
     <TextView
         android:id="@+id/tv_title"

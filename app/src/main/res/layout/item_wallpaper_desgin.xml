@@ -5,7 +5,7 @@
     android:layout_margin="@dimen/_3sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:corner_radius="@dimen/_6sdp"
@@ -21,6 +21,6 @@
             android:src="@drawable/img_chat_wallpaper_1"/>
 
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

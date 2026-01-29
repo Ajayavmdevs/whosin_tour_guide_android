@@ -84,7 +84,7 @@
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginHorizontal="@dimen/_20sdp">
 
-        <com.whosin.app.ui.controller.IconButton
+        <com.whosin.business.ui.controller.IconButton
             android:id="@+id/btnNo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
             app:buttonCorner="@dimen/_20sdp"
             app:buttonBg="@color/brand_pink"/>
 
-        <com.whosin.app.ui.controller.IconButton
+        <com.whosin.business.ui.controller.IconButton
             android:id="@+id/btnYes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

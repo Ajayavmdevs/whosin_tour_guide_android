@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +9,7 @@
     android:orientation="vertical"
     app:corner_radius="@dimen/_8sdp">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:id="@+id/imageConstraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         </LinearLayout>
 
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
             android:id="@+id/roundLinear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,10 +97,10 @@
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:textColor="@color/white" />
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
     <LinearLayout
         android:id="@+id/detailLayout"
@@ -262,7 +262,7 @@
                 </LinearLayout>
 
 
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                     android:id="@+id/ticketTag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -288,7 +288,7 @@
                         android:textSize="@dimen/_10sdp" />
 
 
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -298,4 +298,4 @@
 
     </LinearLayout>
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

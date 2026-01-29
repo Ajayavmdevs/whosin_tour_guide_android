@@ -43,7 +43,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <com.whosin.app.comman.DotsIndicator
+                <com.whosin.business.comman.DotsIndicator
                     android:id="@+id/dots_indicator"
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_16sdp"
@@ -186,7 +186,7 @@
                 app:layout_constraintTop_toBottomOf="@id/ratingLayout" />
 
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:id="@+id/guest_detail_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -221,7 +221,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvGuestTitle" />
 
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
             <include
@@ -357,7 +357,7 @@
 
         </LinearLayout>
 
-        <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
             android:id="@+id/YourSavingLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -492,7 +492,7 @@
 
 
 
-        </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
         <LinearLayout
             android:id="@+id/check_out_buttons"
@@ -521,7 +521,7 @@
                 android:textSize="@dimen/_11sdp"
                 android:textColor="@color/white"  />
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:id="@+id/btnCheckOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -545,7 +545,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
         </LinearLayout>

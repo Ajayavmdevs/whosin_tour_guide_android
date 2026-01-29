@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintRound"
@@ -11,7 +11,7 @@
     android:padding="@dimen/_1sdp"
     app:corner_radius="@dimen/_8sdp">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/detailLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
                 android:id="@+id/pickupNoteLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,10 +109,10 @@
                     android:layout_marginTop="@dimen/_6sdp"
                     android:text="• Shared transfers are provided only from centrally located hotels and residences in Dubai city (Deira, Bur Dubai, Sheikh Zayed Road, Marina)." />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
         </LinearLayout>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

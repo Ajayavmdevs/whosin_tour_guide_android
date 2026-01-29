@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintRound"
@@ -35,4 +35,4 @@
         android:background="@drawable/thin_light_gray_line" />
 
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>

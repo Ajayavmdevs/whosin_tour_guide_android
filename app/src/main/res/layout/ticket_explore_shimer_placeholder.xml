@@ -8,7 +8,7 @@
     app:shimmer_auto_start="true"
     app:shimmer_duration="1500">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -79,6 +79,6 @@
 
         </LinearLayout>
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 </com.facebook.shimmer.ShimmerFrameLayout>

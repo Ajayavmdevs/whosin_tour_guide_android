@@ -41,7 +41,7 @@
     </LinearLayout>
 
 
-    <com.whosin.app.ui.controller.UserOptionView
+    <com.whosin.business.ui.controller.UserOptionView
         android:id="@+id/optionContainer"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_26sdp"

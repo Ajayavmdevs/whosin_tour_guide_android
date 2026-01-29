@@ -592,7 +592,7 @@
                     android:text="@string/private_profiles_notice"
                     />
 
-                <com.whosin.app.ui.controller.CustomSocialField
+                <com.whosin.business.ui.controller.CustomSocialField
                     android:id="@+id/layout_instagram"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -603,7 +603,7 @@
                     app:socialFieldHintText="@string/add_your_instagram_handle"
                     app:socialFieldIcon="@drawable/instagram_icon" />
 
-                <com.whosin.app.ui.controller.CustomSocialField
+                <com.whosin.business.ui.controller.CustomSocialField
                     android:id="@+id/layout_tiktok"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -613,7 +613,7 @@
                     app:socialFieldHintText="@string/add_your_tiktok_account_optional"
                     app:socialFieldIcon="@drawable/tiktok_iconn" />
 
-                <com.whosin.app.ui.controller.CustomSocialField
+                <com.whosin.business.ui.controller.CustomSocialField
                     android:id="@+id/layout_youtube"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -623,7 +623,7 @@
                     app:socialFieldHintText="@string/add_your_youtube_channel_optional"
                     app:socialFieldIcon="@drawable/youtube_icon" />
 
-                <com.whosin.app.ui.controller.CustomSocialField
+                <com.whosin.business.ui.controller.CustomSocialField
                     android:id="@+id/layout_facebook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

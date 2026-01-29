@@ -73,7 +73,7 @@
                 android:gravity="center"
                 android:text="@string/welcome_to_whosin_bottomtxt" />
 
-            <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+            <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/img_search_border"
@@ -131,7 +131,7 @@
                     app:layout_constraintEnd_toEndOf="@id/inputContainer"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+            </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
             <TextView
                 android:id="@+id/termsCondition"
@@ -149,7 +149,7 @@
 
     </ScrollView>
 
-    <com.whosin.app.ui.controller.RoundButton
+    <com.whosin.business.ui.controller.RoundButton
         android:id="@+id/imageNext"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -75,7 +75,7 @@
         android:layout_marginVertical="@dimen/_15sdp"
         />
 
-    <com.whosin.app.ui.controller.IconButton
+    <com.whosin.business.ui.controller.IconButton
         android:id="@+id/btnDone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
@@ -86,4 +86,4 @@
         app:buttonTitle="Done"
         app:buttonTintColor="@color/white"/>
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

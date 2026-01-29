@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +12,7 @@
     android:isScrollContainer="true"
     tools:context=".ui.activites.raynaTicket.BottomSheets.AddOnGuestTimeSheet">
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/layoutView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:elevation="@dimen/_10sdp"
             android:visibility="visible" />
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
     <TextView
         android:id="@+id/tv_available_date"
@@ -75,7 +75,7 @@
 
 
                 <!-- Add-on Image -->
-                <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+                <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
                     android:id="@+id/roundImage"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
@@ -90,7 +90,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
-                </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+                </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
 
 
                 <!-- Right side content -->
@@ -445,7 +445,7 @@
                 tools:listitem="@layout/rayna_time_slot_new_item" />
 
 
-            <com.whosin.app.ui.controller.EmptyPlaceHolderView
+            <com.whosin.business.ui.controller.EmptyPlaceHolderView
                 android:id="@+id/emptyPlaceHolderView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -611,4 +611,4 @@
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-</com.whosin.app.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>

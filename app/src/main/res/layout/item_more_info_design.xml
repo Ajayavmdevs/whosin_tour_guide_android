@@ -27,7 +27,7 @@
         android:layout_marginTop="@dimen/_3sdp"
         app:layout_constraintTop_toBottomOf="@+id/info_title"/>
 
-    <com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
         android:id="@+id/cancellation_policy_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:text="Non Refundable" />
 
 
-    </com.whosin.app.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.whosin.app.ui.controller.IconTitleHorizontal
+        <com.whosin.business.ui.controller.IconTitleHorizontal
             android:id="@+id/iconTitleView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
