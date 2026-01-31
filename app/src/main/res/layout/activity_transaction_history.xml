@@ -108,6 +108,65 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ivDateView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/ivAmountView"
+        android:layout_marginHorizontal="@dimen/_10sdp">
+
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/venue_bg"
+            android:layout_weight="0.25"
+            android:layout_marginEnd="@dimen/_5sdp"
+            app:corner_radius="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/selectDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:hint="Filter Dates"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/white"
+                style="@style/txt12Regular"/>
+
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:id="@+id/ivClearView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.75"
+            android:visibility="gone"
+            android:background="@color/dark_pink"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:corner_radius="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/clearButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="Clear"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                style="@style/txt14Bold"/>
+
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+    </LinearLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         style="@style/MyWalletTabLayout"
@@ -117,7 +176,7 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:background="@color/transparent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivAmountView"
+        app:layout_constraintTop_toBottomOf="@id/ivDateView"
         app:tabIndicatorColor="@color/white"
         app:tabIndicatorHeight="@dimen/_3sdp"
         app:tabSelectedTextColor="@color/white"

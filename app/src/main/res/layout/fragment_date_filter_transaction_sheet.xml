@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="#121727"
+    app:top_left_corner_radius="@dimen/_20sdp"
+    app:top_right_corner_radius="@dimen/_20sdp"
+    tools:context=".ui.fragment.transaction.DateFilterTransactionSheet">
+
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/materialCalenderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/clear"
+        app:abbreviationsBarColor="#121727"
+        app:abbreviationsLabelsColor="@color/white"
+        app:daysLabelsColor="@color/white"
+        app:disabledDaysLabelsColor="@color/white_30"
+        app:headerColor="#121727"
+        app:headerLabelColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnDone"
+        app:pagesColor="#121727"
+        app:selectionColor="@color/brand_pink"
+        app:type="range_picker" />
+
+    <com.whosin.business.ui.controller.IconButton
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_margin="@dimen/_15sdp"
+        app:buttonBg="@color/green_medium"
+        app:buttonCorner="@dimen/_15sdp"
+        app:buttonTintColor="@color/white"
+        app:buttonTitle="Done"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
