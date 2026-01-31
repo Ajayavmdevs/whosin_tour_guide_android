@@ -2889,5 +2889,92 @@ public class Utils {
         }
     }
 
+    public static Date getToday() {
+        Calendar cal = Calendar.getInstance();
+        return cal.getTime();
+    }
+
+    public static Date getYesterday() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, -1);
+        return cal.getTime();
+    }
+
+    public static Date getStartOfWeek() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        return cal.getTime();
+    }
+
+    public static Date getStartOfLastWeek() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.WEEK_OF_YEAR, -1);
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        return cal.getTime();
+    }
+
+    public static Date getEndOfLastWeek() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.WEEK_OF_YEAR, -1);
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        cal.add(Calendar.DAY_OF_WEEK, 6); // end of week
+        setEndOfDay(cal);
+        return cal.getTime();
+    }
+
+    public static Date getStartOfMonth() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        setStartOfDay(cal);
+        return cal.getTime();
+    }
+
+
+    public static Date getStartOfLastMonth() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        return cal.getTime();
+    }
+
+    public static Date getEndOfLastMonth() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        cal.add(Calendar.DAY_OF_MONTH, -1); // last day of previous month
+        setEndOfDay(cal);
+        return cal.getTime();
+    }
+
+
+    public static Date getStartOfLastYear() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -1);
+        cal.set(Calendar.DAY_OF_YEAR, 1);
+        return cal.getTime();
+    }
+
+    public static Date getEndOfLastYear() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -1);
+        cal.set(Calendar.MONTH, Calendar.DECEMBER);
+        cal.set(Calendar.DAY_OF_MONTH, 31);
+        setEndOfDay(cal);
+        return cal.getTime();
+    }
+
+    private static void setStartOfDay(Calendar cal) {
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+    }
+
+    private static void setEndOfDay(Calendar cal) {
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.MILLISECOND, 999);
+    }
+
 
 }

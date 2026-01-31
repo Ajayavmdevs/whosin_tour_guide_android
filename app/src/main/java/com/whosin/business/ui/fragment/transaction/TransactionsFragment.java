@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.JsonObject;
 import com.whosin.business.R;
+import com.whosin.business.comman.Graphics;
 import com.whosin.business.comman.Utils;
 import com.whosin.business.databinding.FragmentTransactionBinding;
 import com.whosin.business.service.DataService;
@@ -102,21 +103,8 @@ public class TransactionsFragment extends BaseFragment {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("page", page);
         jsonObject.addProperty("limit", limit);
-        
-        String fDate = fromDate;
-        String tDate = toDate;
-        
-        String currentDate = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.ENGLISH).format(new java.util.Date());
-        
-        if (Utils.isNullOrEmpty(fDate)) {
-            fDate = currentDate;
-        }
-        if (Utils.isNullOrEmpty(tDate)) {
-            tDate = currentDate;
-        }
-        
-        jsonObject.addProperty("fromDate", fDate);
-        jsonObject.addProperty("toDate", tDate);
+        jsonObject.addProperty("fromDate", fromDate);
+        jsonObject.addProperty("toDate", toDate);
         
         DataService.shared(context).requestGetTransactions(jsonObject, new RestCallback<ContainerModel<TransactionModel>>(null) {
             @Override
@@ -125,7 +113,8 @@ public class TransactionsFragment extends BaseFragment {
                 binding.swipeRefreshLayout.setRefreshing(false);
                 
                 if (!Utils.isNullOrEmpty(error)) {
-                    // Handle error if needed
+                    Graphics.showAlertDialogWithOkButton(context, getString(R.string.app_name), error);
+                    binding.emptyPlaceHolderView.setVisibility(View.VISIBLE);
                     return;
                 }
                 

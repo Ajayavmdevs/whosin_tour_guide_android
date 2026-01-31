@@ -532,6 +532,18 @@ public class DataService {
         @POST()
         @Headers({"Accept: application/json"})
         Call<ContainerModel<TransactionModel>> requestGetTransactions(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
+
+        @POST()
+        @Headers({"Accept: application/json"})
+        Call<ContainerModel<TransactionModel>> requestAddMarkup(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
+
+        @POST()
+        @Headers({"Accept: application/json"})
+        Call<ContainerListModel<RaynaTicketDetailModel>> requestMarkupList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
+
+        @POST()
+        @Headers({"Accept: application/json"})
+        Call<ContainerModel<TransactionModel>> requestRemoveMarkup(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
     }
 
 
@@ -1649,6 +1661,21 @@ public class DataService {
     public void requestGetTransactions(JsonObject jsonObject, final RestCallback<ContainerModel<TransactionModel>> delegate) {
         String url = UrlManager.shared.getServiceUrl(EndpointConstants.TOUR_GUIDE_TRANSACTIONS);
         _getService().requestGetTransactions(url, _getToken(), jsonObject).enqueue(new CommonContainerDataCallback<>(delegate));
+    }
+
+    public void requestAddMarkup(JsonObject jsonObject, final RestCallback<ContainerModel<TransactionModel>> delegate) {
+        String url = UrlManager.shared.getServiceUrl(EndpointConstants.ADD_MARKUP);
+        _getService().requestAddMarkup(url, _getToken(), jsonObject).enqueue(new CommonContainerDataCallback<>(delegate));
+    }
+
+    public void requestMarkupList(JsonObject jsonObject, final RestCallback<ContainerListModel<RaynaTicketDetailModel>> delegate) {
+        String url = UrlManager.shared.getServiceUrl(EndpointConstants.MARKUP_LIST);
+        _getService().requestMarkupList(url, _getToken(), jsonObject).enqueue(new CommonContainerListCallback<>(delegate));
+    }
+
+    public void requestRemoveMarkup(JsonObject jsonObject, final RestCallback<ContainerModel<TransactionModel>> delegate) {
+        String url = UrlManager.shared.getServiceUrl(EndpointConstants.REMOVE_MARKUP);
+        _getService().requestRemoveMarkup(url, _getToken(), jsonObject).enqueue(new CommonContainerDataCallback<>(delegate));
     }
 
     // endregion

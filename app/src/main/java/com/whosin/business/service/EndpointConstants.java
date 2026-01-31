@@ -220,6 +220,15 @@ public class EndpointConstants {
     public static final String UPDATE_BANK_DETAILS = "user/tour-guide/update-bank-detail";
 
     // Tour Guide Statistics
+
     public static final String TOUR_GUIDE_STATS = "comman/tour-guide/stats";
     public static final String TOUR_GUIDE_TRANSACTIONS = "comman/tour-guide/transaction";
+
+
+    // Markup
+
+    public static final String ADD_MARKUP = "rayna/tour-guide/markup-add";
+    public static final String MARKUP_LIST = "rayna/tour-guide/ticket/mark-list";
+    public static final String REMOVE_MARKUP = "rayna/tour-guide/markup-remove";
+
 }

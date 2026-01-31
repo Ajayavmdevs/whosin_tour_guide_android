@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.gson.JsonObject;
 import com.whosin.business.R;
+import com.whosin.business.comman.Graphics;
 import com.whosin.business.comman.Utils;
+import com.whosin.business.comman.interfaces.CommanCallback;
+import com.whosin.business.comman.interfaces.TransCallBack;
 import com.whosin.business.databinding.FragmentTopSalesBinding;
 import com.whosin.business.service.DataService;
 import com.whosin.business.service.models.ContainerModel;
@@ -23,6 +26,11 @@ public class TopSalesFragment extends BaseFragment {
     private TopSalesAdapter<TransactionListModel> adapter;
     private String fromDate;
     private String toDate;
+    private TransCallBack  callBack;
+
+    public TopSalesFragment(TransCallBack callBack){
+        this.callBack = callBack;
+    }
 
     @Override
     public void initUi(View view) {
@@ -49,32 +57,22 @@ public class TopSalesFragment extends BaseFragment {
         
         binding.swipeRefreshLayout.setRefreshing(true);
         JsonObject jsonObject = new JsonObject();
-        
-        String fDate = fromDate;
-        String tDate = toDate;
-        
-        String currentDate = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.ENGLISH).format(new java.util.Date());
-        
-        if (Utils.isNullOrEmpty(fDate)) {
-            fDate = currentDate;
-        }
-        if (Utils.isNullOrEmpty(tDate)) {
-            tDate = currentDate;
-        }
-        
-        jsonObject.addProperty("fromDate", fDate);
-        jsonObject.addProperty("toDate", tDate);
+
+        jsonObject.addProperty("fromDate", fromDate);
+        jsonObject.addProperty("toDate", toDate);
         
         DataService.shared(context).requestGetStatistics(jsonObject, new RestCallback<ContainerModel<StatisticsModel>>(null) {
             @Override
             public void result(ContainerModel<StatisticsModel> model, String error) {
                 binding.swipeRefreshLayout.setRefreshing(false);
                 if (!Utils.isNullOrEmpty(error)) {
-                    // Handle error if needed, maybe show toast
+                    Graphics.showAlertDialogWithOkButton(context, getString(R.string.app_name), error);
+                    binding.emptyPlaceHolderView.setVisibility(View.VISIBLE);
                     return;
                 }
                 
                 if (model != null && model.getData() != null) {
+                    callBack.onReceive(String.valueOf(model.getData().getTotalSale()), String.valueOf(model.getData().getTotalProfit()));
                     StatisticsModel stats = model.getData();
                     List<TransactionListModel> list = stats.getList();
                     

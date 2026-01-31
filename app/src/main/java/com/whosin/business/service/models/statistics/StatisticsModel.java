@@ -8,7 +8,7 @@ public class StatisticsModel {
 
     @SerializedName("totalSale")
     @Expose
-    private int totalSale;
+    private double totalSale;
 
     @SerializedName("totalProfit")
     @Expose
@@ -22,7 +22,7 @@ public class StatisticsModel {
     @Expose
     private List<TransactionListModel> list;
 
-    public int getTotalSale() {
+    public double getTotalSale() {
         return totalSale;
     }
 

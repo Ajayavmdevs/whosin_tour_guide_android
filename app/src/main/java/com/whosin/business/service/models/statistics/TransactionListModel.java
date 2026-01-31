@@ -2,9 +2,10 @@ package com.whosin.business.service.models.statistics;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.whosin.business.comman.DiffIdentifier;
 import com.whosin.business.service.models.rayna.RaynaTicketDetailModel;
 
-public class TransactionListModel {
+public class TransactionListModel implements DiffIdentifier {
 
     @SerializedName("ticketId")
     @Expose
@@ -88,5 +89,10 @@ public class TransactionListModel {
 
     public void setTicketInfo(RaynaTicketDetailModel ticketInfo) {
         this.ticketInfo = ticketInfo;
+    }
+
+    @Override
+    public int getIdentifier() {
+        return ticketId != null ? ticketId.hashCode() : 0;
     }
 }
