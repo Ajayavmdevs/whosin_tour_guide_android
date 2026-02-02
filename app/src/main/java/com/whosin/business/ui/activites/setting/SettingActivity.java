@@ -70,7 +70,9 @@ public class SettingActivity extends BaseActivity {
             Utils.hideViews(binding.ilUpdateProfile,binding.ilBlockUser,binding.ilReportUser,
                     binding.ilUserReviewList,binding.ilAuth,binding.ilAccountType,
                     binding.viewLine1,binding.viewLine2,binding.viewLine3,binding.viewAuth,
-                    binding.viewPrivate,binding.viewLineChangeCurreny);
+                    binding.viewPrivate,binding.viewLineChangeCurreny,
+                    binding.viewLine4, binding.ivMarkUp,
+                    binding.viewLine5, binding.ivMarkUpList);
         }
 
         Utils.hideViews(binding.ilUpdateLang,binding.langViewLine);
@@ -126,7 +128,7 @@ public class SettingActivity extends BaseActivity {
 
             markupDialog.show(getSupportFragmentManager(), "AddMarkUpDialog");
         });
-
+        binding.ivMarkUpList.setOnClickListener( view -> startActivity( new Intent( activity, MarkupListActivity.class ) ) );
 
 //        binding.ilContact.setOnClickListener( view -> {
 //            if (hasContactPermission()){

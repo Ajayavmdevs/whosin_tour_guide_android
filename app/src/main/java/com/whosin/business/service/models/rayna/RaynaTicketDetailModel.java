@@ -163,7 +163,7 @@ public class RaynaTicketDetailModel implements DiffIdentifier, ModelProtocol {
     private boolean isReviewVisible = false;
 
     @SerializedName("markup")
-    private int markup = 0;
+    private float markup = 0;
 
     @SerializedName("maximumPax")
     private String maximumPax = "";
@@ -606,11 +606,11 @@ public class RaynaTicketDetailModel implements DiffIdentifier, ModelProtocol {
         isEnableReview = enableReview;
     }
 
-    public int getMarkup() {
+    public float getMarkup() {
         return markup;
     }
 
-    public void setMarkup(int markup) {
+    public void setMarkup(float markup) {
         this.markup = markup;
     }
 

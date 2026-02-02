@@ -88,52 +88,59 @@ public class HistoryFragment extends BaseFragment {
     // --------------------------------------
 
 
+    public void giftHistoryList() {
+        DataService.shared( requireActivity() ).requestHistoryList(new RestCallback<ContainerListModel<MyWalletModel>>(this) {
+            @Override
+            public void result(ContainerListModel<MyWalletModel> model, String error) {
 
-    private void filterData(List<MyWalletModel> data){
+                if (!Utils.isNullOrEmpty( error ) || model == null) {
+                    binding.swipeRefreshLayout.setRefreshing( false );
+                    if (Graphics.context != null) {
+                        Toast.makeText(Graphics.context, error, Toast.LENGTH_SHORT).show();
+                        binding.emptyPlaceHolderView.setVisibility( View.VISIBLE );
+                        binding.historyRecycler.setVisibility( View.GONE );
+                    }
+                    return;
+                }
+
+                binding.swipeRefreshLayout.setRefreshing( false );
+                if (model.data != null && !model.data.isEmpty()) {
+                    binding.emptyPlaceHolderView.setVisibility( View.GONE );
+                    binding.historyRecycler.setVisibility( View.VISIBLE );
+                    filterData(model.data);
+                } else {
+                    binding.emptyPlaceHolderView.setVisibility( View.VISIBLE );
+                    binding.historyRecycler.setVisibility( View.GONE );
+                }
+
+            }
+        } );
+
+
+    }
+
+    private void filterData(List<MyWalletModel> data) {
         List<MyWalletModel> filteredList = data.stream()
-                .filter(this::isValidWalletItem)
-                .sorted(Comparator.comparing(MyWalletModel::getCreatedAt))
+                .filter(model ->
+                        ("ticket".equals(model.getType()) && model.getTicket() != null)
+                                || ("big-bus".equals(model.getType()) && model.getOctoTicket() != null)
+                                || ("hero-balloon".equals(model.getType()) && model.getOctoTicket() != null)
+                                || ("juniper-hotel".equals(model.getType()) && model.getJuniperHotel() != null)
+                                || ("whosin-ticket".equals(model.getType()) && model.getWhosinTicket() != null)
+                                || ("travel-desk".equals(model.getType()) && model.getTraveldeskTicket() != null)
+                )
+                .sorted(Comparator.comparing(MyWalletModel::getCreatedAt).reversed())
                 .collect(Collectors.toList());
-        Comparator<MyWalletModel> dateComparator = Comparator.comparing(MyWalletModel::getCreatedAt).reversed();
-        filteredList.sort(dateComparator);
 
         if (!filteredList.isEmpty()) {
+            binding.emptyPlaceHolderView.setVisibility(View.GONE);
+            binding.historyRecycler.setVisibility(View.VISIBLE);
             historyListAdapter.updateData(filteredList);
         } else {
             binding.emptyPlaceHolderView.setVisibility(View.VISIBLE);
             binding.historyRecycler.setVisibility(View.GONE);
         }
-
     }
-
-    private boolean isValidWalletItem(MyWalletModel model) {
-        if (model == null) return false;
-
-        String type = model.getType();
-        if (type == null) return model.getEvent() != null;
-
-        switch (type) {
-            case "ticket":
-                return model.getTicket() != null;
-
-            case "big-bus":
-            case "hero-balloon":
-                return model.getOctoTicket() != null;
-
-            case "juniper-hotel":
-                return model.getJuniperHotel() != null;
-
-            case "whosin-ticket":
-                return model.getWhosinTicket() != null;
-
-            case "travel-desk":
-                return model.getTraveldeskTicket() != null;
-
-            default:
-                return model.getEvent() != null;
-        }
-    }
-
 
     private void openActionSheet(MyWalletModel model) {
         ArrayList<String> data = new ArrayList<>();
@@ -155,40 +162,6 @@ public class HistoryFragment extends BaseFragment {
     // region Data/Service
     // --------------------------------------
 
-    public void giftHistoryList() {
-        DataService.shared( requireActivity() ).requestHistoryList( new RestCallback<ContainerListModel<MyWalletModel>>(this) {
-            @Override
-            public void result(ContainerListModel<MyWalletModel> model, String error) {
-
-                if (!Utils.isNullOrEmpty( error ) || model == null) {
-                    binding.swipeRefreshLayout.setRefreshing( false );
-                    if (Graphics.context != null) {
-                        Toast.makeText(Graphics.context, error, Toast.LENGTH_SHORT).show();
-                        binding.emptyPlaceHolderView.setVisibility( View.VISIBLE );
-                        binding.historyRecycler.setVisibility( View.GONE );
-                    }
-//                    if (isHistoryPresent != null) isHistoryPresent.onReceive(false);
-                    return;
-                }
-
-                binding.swipeRefreshLayout.setRefreshing( false );
-                if (model.data != null && !model.data.isEmpty()) {
-                    binding.emptyPlaceHolderView.setVisibility( View.GONE );
-                    binding.historyRecycler.setVisibility( View.VISIBLE );
-                    filterData(model.data);
-//                    if (isHistoryPresent != null) isHistoryPresent.onReceive(true);
-                } else {
-                    binding.emptyPlaceHolderView.setVisibility( View.VISIBLE );
-                    binding.historyRecycler.setVisibility( View.GONE );
-//                    if (isHistoryPresent != null) isHistoryPresent.onReceive(false);
-                }
-
-            }
-        } );
-
-
-    }
-
     private void requestDeleteSubscriptionOrder(MyWalletModel myWalletModel) {
         List<String> id = new ArrayList<>();
         id.add(myWalletModel.getOrderId());
@@ -207,33 +180,6 @@ public class HistoryFragment extends BaseFragment {
                     historyListAdapter.notifyDataSetChanged();
                     binding.swipeRefreshLayout.setVisibility(historyListAdapter.getData().isEmpty() ? View.GONE : VISIBLE);
                     binding.emptyPlaceHolderView.setVisibility(historyListAdapter.getData().isEmpty() ? VISIBLE : View.GONE);
-//                    if (isHistoryPresent != null){
-//                        isHistoryPresent.onReceive(!historyListAdapter.getData().isEmpty());
-//                    }
-                }
-            }
-        });
-    }
-
-    private void requestDeleteSubscriptionOrder(List<MyWalletModel> notificationList) {
-        List<String> id = new ArrayList<>();
-        for (MyWalletModel model : notificationList) {
-            if (!TextUtils.isEmpty(model.getOrderId())) id.add(model.getOrderId());
-        }
-        showProgress();
-        DataService.shared(requireActivity()).requestDeleteSubscriptionOrder(id, new RestCallback<ContainerModel<NotificationModel>>(this) {
-            @Override
-            public void result(ContainerModel<NotificationModel> model, String error) {
-                hideProgress();
-                if (!Utils.isNullOrEmpty(error) || model == null) {
-                    Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Toast.makeText(requireActivity(), model.message, Toast.LENGTH_SHORT).show();
-                if (historyListAdapter.getData() != null && !historyListAdapter.getData().isEmpty()) {
-                    historyListAdapter.getData().clear();
-                    historyListAdapter.notifyDataSetChanged();
-                    giftHistoryList();
                 }
             }
         });
