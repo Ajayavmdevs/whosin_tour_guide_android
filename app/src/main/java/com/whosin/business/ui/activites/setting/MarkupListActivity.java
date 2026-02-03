@@ -1,9 +1,14 @@
 package com.whosin.business.ui.activites.setting;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,10 +37,20 @@ public class MarkupListActivity extends BaseActivity {
 
     private ActivityMarkupListBinding binding;
     private MarkupAdapter<RaynaTicketDetailModel> adapter;
+    ActivityResultLauncher<Intent> reloadLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            requestMarkupList(false);
+                        }
+                    }
+            );
+
 
     @Override
     protected void initUi() {
-        requestMarkupList();
+        requestMarkupList(true);
         adapter = new MarkupAdapter<>();
         binding.itemRecycler.setLayoutManager(new LinearLayoutManager(activity));
         binding.itemRecycler.setAdapter(adapter);
@@ -44,8 +59,13 @@ public class MarkupListActivity extends BaseActivity {
     @Override
     protected void setListeners() {
         binding.ivClose.setOnClickListener(view -> onBackPressed());
-        binding.addMarkup.setOnClickListener(view -> {
-            Utils.preventDoubleClick( view );
+        binding.addMarkup.setOnClickListener(v -> {
+            Intent intent = new Intent(activity, TicketSearchBottomSheet.class);
+            reloadLauncher.launch(intent);
+        });
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            binding.swipeRefreshLayout.setRefreshing(true);
+            requestMarkupList(false);
         });
     }
 
@@ -60,12 +80,15 @@ public class MarkupListActivity extends BaseActivity {
         return binding.getRoot();
     }
 
-    private void requestMarkupList() {
-        showProgress();
+    private void requestMarkupList(boolean showLoader) {
+        if (showLoader) {
+            showProgress();
+        }
         DataService.shared( activity ).requestMarkupList( new RestCallback<ContainerListModel<RaynaTicketDetailModel>>(this) {
             @Override
             public void result(ContainerListModel<RaynaTicketDetailModel> model, String error) {
                 hideProgress();
+                binding.swipeRefreshLayout.setRefreshing(false);
                 if (!Utils.isNullOrEmpty( error ) || model == null) {
                     Toast.makeText( activity, R.string.service_message_something_wrong, Toast.LENGTH_SHORT ).show();
                     return;
@@ -83,6 +106,25 @@ public class MarkupListActivity extends BaseActivity {
         } );
     }
 
+    private void requestAddMarkup(String ticketId, String optionId, String markup) {
+        JsonObject object = new JsonObject();
+        object.addProperty("customTicketId", ticketId);
+        object.addProperty("optionId", optionId);
+        object.addProperty("markup", markup);
+
+        DataService.shared( activity ).requestAddMarkup( object, new RestCallback<ContainerModel<CommonModel>>(this) {
+            @Override
+            public void result(ContainerModel<CommonModel> model, String error) {
+                if (!Utils.isNullOrEmpty( error ) || model == null) {
+                    Toast.makeText( activity, R.string.service_message_something_wrong, Toast.LENGTH_SHORT ).show();
+                    return;
+                }
+                Alerter.create(activity).setTitle(getValue("thank_you")).setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("Markup Updated Successfully").setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
+                requestMarkupList(true);
+            }
+        } );
+    }
+
     private void requestRemoveMarkup(String ticketId, String optionId) {
         JsonObject object = new JsonObject();
         object.addProperty("customTicketId", ticketId);
@@ -96,7 +138,7 @@ public class MarkupListActivity extends BaseActivity {
                     return;
                 }
                 Alerter.create(activity).setTitle(getValue("oh_snap")).setTitleAppearance(R.style.AlerterTitle).setTextAppearance(R.style.AlerterText).setText("You have removed markup from this ticket").setBackgroundColorRes(R.color.AlerterSuccessBg).hideIcon().show();
-                requestMarkupList();
+                requestMarkupList(true);
             }
         } );
     }
@@ -122,15 +164,18 @@ public class MarkupListActivity extends BaseActivity {
             viewHolder.binding.ivMore.setOnClickListener(v -> {
 
                 ArrayList<String> options = new ArrayList<>();
-                options.add("Remove Markup");
+                options.add("Edit");
+                options.add("Delete");
 
                 Graphics.showActionSheet(
                         v.getContext(),
                         v.getContext().getString(R.string.app_name),
                         options,
                         (item, index) -> {
-                            if ("Remove Markup".equals(item)) {
+                            if ("Delete".equals(item)) {
                                 requestRemoveMarkup(model.getId(), "");
+                            } else if ("Edit".equals(item)) {
+                                openTicketMarkupDialog(model);
                             }
                         }
                 );
@@ -152,6 +197,17 @@ public class MarkupListActivity extends BaseActivity {
                     viewHolder.binding.ivImage
             );
 
+        }
+
+        private void openTicketMarkupDialog(RaynaTicketDetailModel model) {
+            AddMarkUpDialog markupDialog = new AddMarkUpDialog();
+            markupDialog.markup = String.valueOf(Utils.roundFloatValue(model.getMarkup()));
+            markupDialog.callback = value -> {
+                if (TextUtils.isEmpty(value)) return;
+                requestAddMarkup(model.getId(), "", value);
+            };
+
+            markupDialog.show(getSupportFragmentManager(), "AddMarkUpDialog");
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {

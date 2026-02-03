@@ -356,6 +356,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activites.setting.TicketSearchBottomSheet"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.adevinta.leku.LocationPickerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" /> <!-- <service -->

@@ -96,6 +96,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
@@ -541,7 +542,7 @@ public class DataService {
         @Headers({"Accept: application/json"})
         Call<ContainerListModel<RaynaTicketDetailModel>> requestMarkupList(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token);
 
-        @POST()
+        @HTTP(method = "DELETE", hasBody = true)
         @Headers({"Accept: application/json"})
         Call<ContainerModel<CommonModel>> requestRemoveMarkup(@Url String url, @Header(HttpCommon.HTTPRequestHeaderAuthorization) String token, @Body JsonObject bodyRequest);
     }
