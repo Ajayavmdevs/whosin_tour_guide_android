@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackgroundColor"
+    tools:context=".ui.fragment.DashboardFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/txt15Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Business Dashboard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout
+        android:id="@+id/ivGlobalView"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/venue_bg"
+        android:layout_weight="1"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:corner_radius="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/constraint"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ivTopSales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Global Markup: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/white"
+            style="@style/txt12Regular"/>
+
+        <EditText
+            android:id="@+id/ivGlobalMarkupAmount"
+            style="@style/txt12Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/txtBook"
+            android:inputType="numberDecimal"
+            app:layout_constraintStart_toEndOf="@+id/ivTopSales"
+            app:layout_constraintEnd_toStartOf="@+id/btnEditGlobalMarkup"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:background="@color/transparent" />
+
+        <com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout
+            android:id="@+id/btnEditGlobalMarkup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/invitesheet_edittext_background"
+            app:corner_radius="@dimen/_18sdp">
+
+            <TextView
+                android:id="@+id/ivButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:text="Edit"
+                android:textColor="@color/white"
+                style="@style/txt10Bold"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_4sdp"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone" />
+
+        </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerLinearLayout>
+
+
+    </com.whosin.business.comman.ui.roundcornerlayout.RoundCornerConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_28sdp"
+        app:layout_constraintTop_toBottomOf="@+id/ivGlobalView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/editSearch"
+            style="@style/txt12Regular"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_full_bg_search"
+            android:hint="Search Tickets"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:textColorHint="@color/venue_text"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:scrollbars="none"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@+id/searchLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_50sdp"
+        app:layout_constraintTop_toBottomOf="@+id/itemRecycleView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appBackgroundColor"
+            tools:context=".ui.fragment.NewExploreFragment">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itemRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/appBackgroundColor"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/_100sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.whosin.business.ui.controller.EmptyPlaceHolderView
+        android:id="@+id/emptyPlaceHolderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20ssp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:emptyPlaceTxtIcon="@drawable/explore_icon"
+        app:emptyPlaceTxtTitle="Search for unforgettable experiences — tours, parks, cruises &amp; beyond!"
+        app:emptyPlaceTxtTitleSize="@dimen/_14sdp"
+        app:emptyPlaceTxtTitleColor="#3F434E"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

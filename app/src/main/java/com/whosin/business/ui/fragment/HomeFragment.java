@@ -71,7 +71,7 @@ import com.whosin.business.ui.activites.Notification.NotificaionActivity;
 import com.whosin.business.ui.activites.Story.StoryViewActivity;
 import com.whosin.business.ui.activites.cartManagement.TicketCartActivity;
 import com.whosin.business.ui.activites.explore.ExploreDetailActivity;
-import com.whosin.business.ui.activites.home.MainHomeActivity;
+import com.whosin.business.ui.activites.home.HomeMenuActivity;
 import com.whosin.business.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.business.ui.activites.raynaTicket.RaynaTicketListActivity;
 import com.whosin.business.ui.activites.search.SearchFragment;
@@ -131,10 +131,13 @@ public class HomeFragment extends BaseFragment {
             reqHomeBlocks(false);
         });
 
+//        binding.navbar.getSettingBtn().setOnClickListener(v -> {
+//            if (getActivity() instanceof MainHomeActivity) {
+//                ((MainHomeActivity) getActivity()).openProfileTab();
+//            }
+//        });
         binding.navbar.getSettingBtn().setOnClickListener(v -> {
-            if (getActivity() instanceof MainHomeActivity) {
-                ((MainHomeActivity) getActivity()).openProfileTab();
-            }
+            startActivity(new Intent(requireActivity(), HomeMenuActivity.class));
         });
 
         binding.navbar.getLinearBtn().setOnClickListener(v -> {

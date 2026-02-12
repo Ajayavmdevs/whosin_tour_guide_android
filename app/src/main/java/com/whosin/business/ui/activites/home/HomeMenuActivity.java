@@ -16,17 +16,17 @@ import com.whosin.business.service.manager.TranslationManager;
 import com.whosin.business.ui.activites.Profile.FollowingActivity;
 import com.whosin.business.ui.activites.Profile.FollowresActivity;
 import com.whosin.business.ui.activites.auth.AuthenticationActivity;
+import com.whosin.business.ui.activites.comman.BaseActivity;
 import com.whosin.business.ui.activites.home.privacy.PrivacyPolicyActivity;
 import com.whosin.business.ui.activites.setting.BankDetailsActivity;
 import com.whosin.business.ui.activites.setting.SettingActivity;
 import com.whosin.business.ui.activites.setting.TransactionHistoryActivity;
 import com.whosin.business.ui.activites.wallet.WalletActivity;
-import com.whosin.business.ui.fragment.comman.BaseFragment;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class HomeMenuFragment extends BaseFragment {
+public class HomeMenuActivity extends BaseActivity {
 
     private ActivityHomeMenuBinding binding;
 
@@ -35,59 +35,47 @@ public class HomeMenuFragment extends BaseFragment {
     // --------------------------------------
 
     @Override
-    public void initUi(View view) {
-
-        binding = ActivityHomeMenuBinding.bind( view );
-
-        applyTranslations();
-
-        binding.avmdevsLlcTv.setClickable(true);
-
-        setupUserData();
-    }
-
-    @Override
     public void setListeners() {
 
-        binding.ilLogout.setOnClickListener( v -> Graphics.showAlertDialogWithOkCancel( requireActivity(), getString(R.string.app_name), getValue("logout_confirmation"), aBoolean -> {
+        binding.ilLogout.setOnClickListener( v -> Graphics.showAlertDialogWithOkCancel( activity, getString(R.string.app_name), getValue("logout_confirmation"), aBoolean -> {
             if (aBoolean) {
                 //SessionManager.shared.clearSessionData( activity );
                 showProgress();
-                SessionManager.shared.logout(requireActivity(), (success, error) -> {
+                SessionManager.shared.logout(activity, (success, error) -> {
                     hideProgress();
                     if (!Utils.isNullOrEmpty(error)) {
-                        Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    startActivity( new Intent( requireActivity(), AuthenticationActivity.class ).addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK ).addFlags( Intent.FLAG_ACTIVITY_NEW_TASK ) );
+                    startActivity( new Intent( activity, AuthenticationActivity.class ).addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK ).addFlags( Intent.FLAG_ACTIVITY_NEW_TASK ) );
                 });
 
             }
         } ) );
 
 
-        binding.ilWallet.setOnClickListener( v -> startActivity( new Intent( requireActivity(), WalletActivity.class ) ));
+        binding.ilWallet.setOnClickListener( v -> startActivity( new Intent( activity, WalletActivity.class ) ));
 
-        Glide.with( requireActivity() ).load( R.drawable.icon_left_back_arrow ).into( binding.ivClose );
-//        binding.ivClose.setOnClickListener( view -> onBackPressed());
+        Glide.with( activity ).load( R.drawable.icon_left_back_arrow ).into( binding.ivClose );
+        binding.ivClose.setOnClickListener( view -> onBackPressed());
 
-        binding.ilSettings.setOnClickListener( view -> startActivity( new Intent( requireActivity(), SettingActivity.class ) ));
+        binding.ilSettings.setOnClickListener( view -> startActivity( new Intent( activity, SettingActivity.class ) ));
 
-        binding.ilClaimHistory.setOnClickListener( view -> startActivity( new Intent( requireActivity(), TransactionHistoryActivity.class ) ));
+        binding.ilClaimHistory.setOnClickListener( view -> startActivity( new Intent( activity, TransactionHistoryActivity.class ) ));
 
-        binding.ivBankDetailView.setOnClickListener( view -> startActivity( new Intent( requireActivity(), BankDetailsActivity.class ) ));
+        binding.ivBankDetailView.setOnClickListener( view -> startActivity( new Intent( activity, BankDetailsActivity.class ) ));
 
-        binding.ilFollowing.setOnClickListener( view -> startActivity( new Intent( requireActivity(), FollowingActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ));
+        binding.ilFollowing.setOnClickListener( view -> startActivity( new Intent( activity, FollowingActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ));
 
-        binding.ilFollowers.setOnClickListener( view -> startActivity( new Intent( requireActivity(), FollowresActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ) );
+        binding.ilFollowers.setOnClickListener( view -> startActivity( new Intent( activity, FollowresActivity.class ).putExtra( "id", SessionManager.shared.getUser().getId() ) ) );
 
-        binding.ilContact.setOnClickListener( v -> startActivity( new Intent( requireActivity(), ContactUsActivity.class ) ));
+        binding.ilContact.setOnClickListener( v -> startActivity( new Intent( activity, ContactUsActivity.class ) ));
 
-        binding.ilPrivacyPolicy.setOnClickListener( v -> startActivity( new Intent( requireActivity(), PrivacyPolicyActivity.class ).putExtra( "type", "Privacy Policy" ) ));
+        binding.ilPrivacyPolicy.setOnClickListener( v -> startActivity( new Intent( activity, PrivacyPolicyActivity.class ).putExtra( "type", "Privacy Policy" ) ));
 
-        binding.roundTerms.setOnClickListener( view -> startActivity( new Intent( requireActivity(), PrivacyPolicyActivity.class ).putExtra( "type", "Terms & Condition" ) ));
+        binding.roundTerms.setOnClickListener( view -> startActivity( new Intent( activity, PrivacyPolicyActivity.class ).putExtra( "type", "Terms & Condition" ) ));
 
-        binding.ilFriend.setOnClickListener( view -> Utils.openShareDialog( requireActivity() ));
+        binding.ilFriend.setOnClickListener( view -> Utils.openShareDialog( activity ));
 
         binding.ilBundle.setVisibility(SessionManager.shared.getUser().isMembershipActive() ? View.VISIBLE : View.GONE);
 
@@ -100,25 +88,30 @@ public class HomeMenuFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void populateData(boolean getDataFromServer) {
-
-    }
 
     @Override
     public int getLayoutRes() {
         return R.layout.activity_home_menu; }
 
-//    @Override
-//    protected View getLayoutView() {
-//        binding = ActivityHomeMenuBinding.inflate( getLayoutInflater() );
-//        return binding.getRoot();
-//    }
+    @Override
+    protected View getLayoutView() {
+        binding = ActivityHomeMenuBinding.inflate( getLayoutInflater() );
+        return binding.getRoot();
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        CheckUserSession.checkSessionAndProceed(requireActivity(), this::requestUserDetail);
+        CheckUserSession.checkSessionAndProceed(activity, this::requestUserDetail);
+    }
+
+    @Override
+    protected void initUi() {
+        applyTranslations();
+
+        binding.avmdevsLlcTv.setClickable(true);
+
+        setupUserData();
     }
 
     @Override
@@ -162,9 +155,9 @@ public class HomeMenuFragment extends BaseFragment {
     // --------------------------------------
 
     private void requestUserDetail() {
-        SessionManager.shared.getCurrentUserProfile( requireActivity(), (success, error) -> {
+        SessionManager.shared.getCurrentUserProfile( activity, (success, error) -> {
             if (!Utils.isNullOrEmpty( error )) {
-                Toast.makeText( requireActivity(), error, Toast.LENGTH_SHORT ).show();
+                Toast.makeText( activity, error, Toast.LENGTH_SHORT ).show();
                 return;
             }
             setupUserData();

@@ -84,6 +84,7 @@ import com.whosin.business.ui.activites.raynaTicket.RaynaTicketDetailActivity;
 import com.whosin.business.ui.activites.search.SearchFragment;
 import com.whosin.business.ui.activites.wallet.MyWalletActivity;
 import com.whosin.business.ui.activites.wallet.WalletActivity;
+import com.whosin.business.ui.fragment.DashboardFragment;
 import com.whosin.business.ui.fragment.HomeFragment;
 import com.whosin.business.ui.fragment.InAppNotification.InAppNotificationDialog;
 import com.whosin.business.ui.fragment.NewExploreFragment;
@@ -794,7 +795,7 @@ public class MainHomeActivity extends BaseActivity {
                 case Search:
                     return new SearchFragment();
                 case Profile:
-                    return new HomeMenuFragment();
+                    return new DashboardFragment();
                 case Explore:
                     return new NewExploreFragment();
                 default:

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navi_blue"
-    tools:context=".ui.activites.home.HomeMenuFragment">
+    tools:context=".ui.activites.home.HomeMenuActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:visibility="gone"
+                android:visibility="visible"
                 tools:src="@drawable/icon_left_back_arrow" />
 
 

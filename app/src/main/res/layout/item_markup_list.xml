@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
+    android:id="@+id/ivMainView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
     app:cardCornerRadius="@dimen/_6sdp"
     app:cardBackgroundColor="@color/card_color"
     app:strokeColor="@color/tour_option"
     app:strokeWidth="1dp"
     app:cardElevation="0dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,8 +28,8 @@
             android:layout_margin="@dimen/_10sdp"
             app:corner_radius="@dimen/_8sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toTopOf="@+id/tvOptionsView"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/ivImage"
@@ -45,12 +47,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center_vertical"
             app:layout_constraintStart_toEndOf="@id/imgCard"
             app:layout_constraintEnd_toStartOf="@id/ivMore"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="@id/imgCard"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCard">
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -66,6 +68,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
+                android:paddingHorizontal="@dimen/_6sdp"
+                android:paddingVertical="@dimen/_2sdp"
+                android:background="@color/message_bg"
                 android:layout_marginTop="@dimen/_4sdp">
 
                 <TextView
@@ -93,14 +98,79 @@
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:src="@drawable/icon_category_menu"
-            android:contentDescription="More"
+            android:src="@drawable/edit_pencil"
             android:clickable="true"
             android:focusable="true"
+            android:visibility="visible"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/titleMarkupLayout"
             app:layout_constraintBottom_toBottomOf="@id/titleMarkupLayout" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/tvOptionsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:corner_radius="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:cardBackgroundColor="@color/main_bg_color"
+            app:strokeColor="@color/tour_option"
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp"
+            android:visibility="visible"
+            app:rippleColor="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvOptionsText"
+                    style="@style/txt10SemiBoldWhite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="View Options"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ivDropDown"/>
+
+                <ImageView
+                    android:id="@+id/ivDropDown"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:rotation="90"
+                    android:src="@drawable/icon_left_btn"
+                    app:layout_constraintTop_toTopOf="@+id/tvOptionsText"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvOptionsText"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/itemRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:visibility="gone"
+                    android:paddingVertical="@dimen/_4sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvOptionsText" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

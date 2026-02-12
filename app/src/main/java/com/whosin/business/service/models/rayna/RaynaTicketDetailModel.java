@@ -1406,4 +1406,14 @@ public class RaynaTicketDetailModel implements DiffIdentifier, ModelProtocol {
     }
 
 
+    private boolean isOptionsExpanded = false;
+
+    public boolean isOptionsExpanded() {
+        return isOptionsExpanded;
+    }
+
+    public void setOptionsExpanded(boolean expanded) {
+        isOptionsExpanded = expanded;
+    }
+
 }
